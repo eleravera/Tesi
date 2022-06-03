@@ -1,0 +1,44 @@
+\label{threshold_noise}
+\begin{titlepage}
+
+\section{Charaterization of ARCADIA-MD1}
+
+
+\subsection{Misure di threshold dispersion }
+The signal to threshold ratio is the figure of merit for pixel detectors.\\
+
+Il fatto di poter cambiare le soglie il time è importante in caso di problemi durante
+la presa dati. Di solito chiedono di alzarle in time.\\
+
+Invece di prendere il rapporto segnale rumore prendi il rapporto segnale soglia. Perchè?
+la soglia è collegato al rumore, nel senso che: supponiamo di volere un occupancy di 10-4
+allora sceglierò la soglia in base a questo. (plot su quaderno)
+Da questo conto trovo la minima soglia mettibile\\
+In realtà quello che faccio è mettere una soglia un po' più grande perchè il rate di rumore
+dipende da molti fattori quali la temperatura, l anneling ecc, e non voglio che cambiando leggermente
+uno di questi parametri vedo alzarsi molto il rate di rumore. In realtà non è solo il
+rumore sensibile a diversi fattori, ma anche la soglia: ad esempio la cosa classica è
+la variabilità della soglia da pixel a pixel.\\
+In questo modo rumore e soglia diventano parenti.\\
+Review pag 26.
+
+The noise requirement can be expressed as:
+\begin{equation}
+ENC \minto \sqrt{T^{2} /3.7 - T_{RMS}(t, x)}
+\end{equation}
+
+Questo implica tra le altre cose che voglio poter assegnare delle soglie diverse
+a diversi pixel: Drawback è dare spazio per registri e quantaltro.\\
+Questo lascia però ancora aperto il problema temporale delle variazioni del rumore:
+problema per cui diventano necessarie le misure dei sensori dopo l'irraggiamento.\\
+
+
+Per arcadia i registri (c'è un DAC) per la soglia (VCASN) si trovano in periferia.
+Non fare trimming sulla soglia è uno dei problemi che si sono sempre incontrati: a casusa dei mismatch dei transistor
+le soglie efficaci pixel per pixel cambiano tanto.
+La larghezza della s curve è il noise se assumi che il noise è gaussiano
+
+\subsection{Com'è fatto il set up per le misure}
+Com'è fatto il set up per le misure.\\
+FPGA BB, Chip con FE board, qualche foto\\
+\end{titlepage}
