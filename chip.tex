@@ -1,93 +1,41 @@
 \label{chip}
 \begin{titlepage}
 
-\section{Pixel carateristics}
-Fanno parte dei detector a semiconduttore
-\begin{itemize}
-\item puoi fare giunzioni di che tipo,
-\item backprocess,
-\item come fai isolation?
-\item cos'è il puncht.?
-\item Info sull'inversione e qualcosa sulla radiazione?!
-\item carica nel substrato in funzione dell'energia persa: due conti con MIP e assorbimento totale
-\end{itemize}
-
-Pixel detector can provide informations about both the cordinates in the plane; that is by
-construction, but with some strategy, as positioning them with a stareo angle, even
-the third cordinate can be measured. SPIEGARE?\\
-Because of their dimension\footnote{Their size is not limited by bump-bonding technique,
-as happens instead for hybrid pixels} (this is an advantage $\sim$
-30 $\mu m$ or even better) and then their spatial resolution
-($\sim$ 5-10 $\mu m$) they have fastely been used in the inner layer of accelerator
-experiments as vertex detector.\\
-Talking about resolution, if only a binary information is read (pixel fired if hit
-and 'spento' if not), the spatial resolution of a single hit is:
+\section{Pixel detectors}
+\subsection{Signal formation}
+When a charge particle passes through a pixel and loses energy by ionization, a part of that
+energy is used to generate electron-hole pairs (a part is also used for other processes, as the lattice 
+exitation) which are then separated by the elettric field 
+and collected at their respectivelly electrodes ($p$ and $n$); by the drift of these charges a 
+signal is generated on the electrode as stated by the Ramo's theorem: 
 \begin{equation}
-\sigma_x = \frac{p}{\sqrt{12}}
+   I = V * v_{D}
 \end{equation}
-where $p$ is the pitch between pixels.
-To improve the position resolution of a single hit one can use other analogical
-informations; for example, a standard tecnique also used in multiwire chambers and
-in strip detectors, is the capacitive charge division.\\
-\begin{itemize}
-\item capacitive charge division
-\item Morover they can be used as beam monitor???
-\end{itemize}
+where $v_{D} = \mu(E)E$ is the drift velocity. Typical values for elecrons and holes mobility 
+in silicon are $\mu _n \sim$ 1450 $cm^2/Vs$, $\mu _h = 500$\\
 
-\subsection{Monolitic active pixel}
-Monolitic active pixel acoomodate on the same wafer both the sensor and the front
-end electronics.\\
-They have been first proposed and realized in 1990s and their use has been enabled
-by the development of the electronic sector which guarantees the decrease in CMOS
-dimension, as stated by the Moore's law\footnote{Moore's law states that logic
-density doubles every two years.}.\\
-As a matter of fact the dimension of componenents, their organization on the
-pixel area and logic density are hot topics for the designers of this type of detector
-and for all high rate experiments who intend to use pixel deterctor; typiccally
-different decisions are taken for different purposes. \\
-Collegato al fattore spazio c'è ad esempio la disponibilità di integrare sul pixel un trigger.
-Questo è un argomento caldo per l'utilizzo di questi detector in rivelatori di esperimenti
-agli acceleratori ad esempio; ne parlerò dopo.
-
-Moreover one other benefit related with the possibility of using the microelectronics
-and CMOSS in digital circuit is the lack of resistors, which require a lot of
-space and have a high power consumption, in favor of MOSFET transistors, whose power
-consumption depends by the switching frequency\footnote{Discorso fatto con Ludovico
-sul fatto che i CMOSS tirano meno rispetto al circuito analogico}.
-Scrivi perchè si usano i CMOSS invece dei transistor: discorso sulla potenza e sull'
-elettronica digitale.
-\begin{itemize}
-\item discorso dei CMOSS
-\end{itemize}
-
-\subsubsection{MAPS and DMPAS}
-Monolithic active pixel can be distinguish beteween two main category: MAPS and depleted
-MAPS (DMAPS).
-
-MAPS (figure \ref{fig:MAPS_scheme}) have typically an epilayer in range between 1-20 $\mu m$ and because they
-are not depleted, the charge is mainly collected by diffusion rather then by drift.
-This makes the path of charges created in the bulk longer than usual and then they are
-slow (of order of 100 ns) and the collection could be partial expecially after
-an irradiation of the detector, when the trapping probability become highter.
-
-\begin{figure}
-\centering\includegraphics[width=8cm]{figures/MAPS_scheme.png}
-\caption{Concept cross section of one MAPS pixel}
-\label{fig:MAPS_scheme}
-\end{figure}
-\begin{figure}
-\centering\includegraphics[width=9cm]{figures/DMAPS_scheme.png}
-\caption{Concept cross section of one DMAPS pixel}
-\label{fig:DMAPS_scheme}
-\end{figure}
-
-DMAPS (figure \ref{fig:DMAPS_scheme}) are istead depleated (depleted region underneath
-the collection electrode is typically 15-25 $\mu$m thick) and depending on the
-bias applied $V$ and on the resistivity of the bulk $\rho$ the depleated region
-$d$ ($\sim$ 25-150 $\mu m$) is: (vedi a pag 283 del KW)
+The average energy needed to create a pair at 300 K in silicon is $w_i$ = 3.65 eV, hence for a MIP the total charge 
+relised is: 
 \begin{equation}
-   d \propto  \sqrt{ \rho V}
+   \langle \frac{dE}{dx}\rangle \frac{1}{w_i} = HOW \frac{fC}{\mu m} \sim electrons
 \end{equation}
+That is foundamental that pairs are produced in a depleted region where the probability
+of recombination with charge carriers is low; what happens in an undeplated silicon detector
+is similar to what already said talking about the problems of recombination of gas detectors 
+in high radiation field: electrons and holes quickly recombine with charge carriers.\\
+So, pixel detectors are commonly reverse biased (a positive bias is given 
+to the $n$ electrode and a negative to the $p$) and the depletion zone is grown in the bulk; 
+the depletion region is related with the extern bias $V_{ext}$, the resistivity $\rho$ and also
+with the dopant:
+\begin{multicols}{2}
+\begin{equation}
+   d_{n} \sim 0.55 \sqrt{\frac{\rho}{\Omega cm}\frac{V_{ext}}{V}} \mu m 
+\end{equation}\break
+\begin{equation}
+   d_{p} \sim 0.32 \sqrt{\frac{\rho}{\Omega cm}\frac{V_{ext}}{V}} \mu m
+\end{equation}
+\label{eq:deplation_d}
+\end{multicols}
 Looking at this formula one could think that high resistivity\footnote{Hight resistivity
 crystall can be produces using Czochralki (Cz) or float-zone (Fz) process;
 the fist one creates a silicon bulk with a highter oxygen concentration
@@ -95,20 +43,67 @@ which can be beneficial for radiation damage} bulk are prefered, but
 instead for high radiation applications the starting resistivity is not too crucial
 and lower resisistivity may be advantageous (pag 37 review).\\
 
+Depending on the type of signal reading the spatial resolution is 
+$\sigma_x = \frac{p}{\sqrt{12}}$ where $p$ is the pitch between pixels, or even better if other 
+analogica information, as the charge, are read and capacitive charge division method is applied.
+
+
+\subsection{MAPS and DMPAS}
+Monolitic active pixel acoomodate on the same wafer both the sensor and the front
+end electronics.\\
+They have been first proposed and realized in 1990s and their use has been enabled
+by the development of the electronic sector which guarantees the decrease in CMOS
+dimension, as stated by the Moore's law\footnote{Moore's law states that logic
+density doubles every two years.}.\\
+As a matter of fact the dimension of componenents, their organization on the
+pixel area and logic density are hot topics for the designers; typiccally
+different decisions are taken for different purposes. Related with this thematic there is the possibility
+of integrating or not on the pixel area a memory which would allow the use of a trigger. \\ 
+Moreover one other benefit related with the possibility of using the digital microelectronics
+and CMOSS in digital circuit is the lack of resistors, which require a lot of
+space and have a high power consumption, in favor of MOSFET transistors, whose power
+consumption depends by the switching frequency. Discorso fatto con Ludovico
+sul fatto che i CMOSS tirano meno rispetto al circuito analogico.
+Scrivi perchè si usano i CMOSS invece dei transistor: discorso sulla potenza e sull'
+elettronica digitale.\\
+Monolithic active pixel can be distinguish beteween two main category: MAPS and depleted
+MAPS (DMAPS).\\
+\begin{figure}
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth]{figures/MAPS_scheme.png}
+     \label{fig:MAPS_scheme}
+   \end{minipage}
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=1.\linewidth]{figures/DMAPS_scheme.png}
+     \label{fig:DMAPS_scheme}
+   \end{minipage}
+   \caption{Concept cross section of MAPS and DMAPS pixel}
+   \label{fig:MAPS_DMAPS_scheme}
+\end{figure}
+MAPS (figure \ref{fig:MAPS_DMAPS_scheme}) have typically an epilayer in range between 
+1-20 $\mu m$ and because they
+are not depleted, the charge is mainly collected by diffusion rather then by drift.
+This makes the path of charges created in the bulk longer than usual and then they are
+slow (of order of 100 ns) and the collection could be partial expecially after
+an irradiation of the detector, when the trapping probability become highter. \\
+DMAPS (figure \ref{fig:DMAPS_scheme}) are istead depleated and the depleated region
+$d$ is typically in $\sim$ 25-150 $\mu m$ (formula \ref{eq:deplation_d}).
+
 The main drawback of DMAPS is a new capacity term that contributes to the total
 amplifier input capacity; in addition to th capacity between pixels ($C_{pp}$) and
 between the pixel and the backside ($C_{b}$), a non negligible contribution comes
 from the capacities between wells ($C_{SW}$ and $C_{WW}$) needed to shield the
-embedded electronics.\\
-These capcaities affect the thermal and 1/f noise of the charge amplifier and
-the $ \tau_{CSA}$ too.\\
-
-\begin{figure}
+embedded electronics. These capacities affect the thermal and 1/f noise of the charge amplifier and
+the $ \tau_{CSA}$ too. 
+\begin{figure}[h!]
 \centering\includegraphics[width=12cm]{figures/DMAPS_capacity.png}
 \caption{$C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$}
 \label{fig:DMAPS_capacity}
 \end{figure}
 
+\subsubsection{DMAPS: large and small fill factor}
 There are two different sensor-design approaches (figure \ref{fig:large_small_sensor_scheme})
 to DMAPS:
 \begin{itemize}
@@ -116,10 +111,6 @@ to DMAPS:
  and that host the embedded electronics
 \item small fill factor: a small n-well is used as charge collection node
 \end{itemize}
-
-one with a large fill factor, and so with a large sensor, and the other
-with a small electrode.
-
 Larger charge collection electrode sensors means uniformity of electric field in
 the bulk, and so shorter drift path and less trapping. The drawback is the large
 capacity (???) and, as I have just explained, this contributes to the noise, to a
@@ -129,8 +120,7 @@ it has a small capacity (5-20 fF), e quindi tau più brevi e minor potenza dissi
 however il campo elettrico può essere disuniforme and this means again
 that the path percorso by drift by particles is longer and then this
 detectors suffers radiation. \\
-These two different types of sensor require different amplifier (section \ref{sec:}).
-
+These two different types of sensor require different amplifier .
 \begin{figure}
 \centering\includegraphics[width=12cm]{figures/large_small_sensor_scheme.png}
 \caption{Concept cross section with large and small fill factor}
@@ -157,11 +147,32 @@ radiation hard & $\times$ & $\surd$ \\
 \end{center}
 \end{table}
 
-\subsection{Analog front end (AFE)}
+\subsubsection{A modified sensor}
+CITA Articolo: A process modification for CMOS monolithic active pixel sensors for
+enhanced depletion, timing performance and radiation tolerance\\
+Da un certo momneto in poi si è iniziato a modificare il bulk in modo da avere un elettrodo largo e
+una giunzione planare senza però aumentare a dismisura la capacità del sensore.\\
+Si mette un low dose n-type layer.Anche a bassi voltaggi la
+L n drograto tanto e poco formano un continuo n type, e come conseguenza hai che le
+zona di svuotamento parte dalle due giunzioni p-n: una tra deep p well-n- e una tra
+n- e p epi e così si estende su tutta l'area planare del pixel. \\
+La dose di drogaggio è importante: deve essere abbasatnza alta da prevalere sulla dose
+dell'epitassial layer e da prevenire il punchthrought tra well e substrate e per
+prevenire l'inversione dopo alte fluenze, ma anche a zero volt la zona fi svuotamento si estende su 
+tutta la pixel area. 
+abb bassa per poter essere svuotato a ragionevoli basse tensioni.\\
+Questo processo di modifica aumenta di molto anche le prestazioni dopo alte fluenze (pag 55 tesi)
+\begin{figure}
+   \centering\includegraphics[width=12cm]{figures/modified_process.png}
+   \caption{A modied process}
+   \label{fig:modified_process}
+   \end{figure}
+Monopix1 è fatto così.
+
+\subsection{Analog front end }
 Dopo che la carica è stata creata nel substrato e abbia driftato fino agli elettrodi
 inducendo un segnale su questi utlimi, il segnale creato entra nel circuito di FE
 (figure \ref{fig:readout_scheme}).
-
 \begin{figure}
 \centering\includegraphics[width=15cm]{figures/readout_scheme.png}
 \caption{Readout FE scheme}
@@ -189,11 +200,11 @@ preamplifier can be modellized as an operational amplifier (OpAmp) with an imped
 feedback (first step in figure \ref{fig:readout_scheme}).\\
 Depending on whether a capacity or a resistance is used as feedback, respectevely,
 a charge or a voltage amplifier is used (figure \ref{fig:amplifier}).
-\begin{figure}
-\centering\includegraphics[width=15cm]{figures/.png}
-\caption{Amplifier}
-\label{fig:amplifier}
-\end{figure}
+%\begin{figure}
+%\centering\includegraphics[width=15cm]{figures/.png}
+%\caption{Amplifier}
+%\label{fig:amplifier}
+%\end{figure}
 The amplification gain is determined by the input and feedback impedance:
 \begin{equation}
 G = \frac{v_{out}}{v_{in}} = \frac{Z_{f}}{Z_{in}}
@@ -209,17 +220,32 @@ v_{out} = \frac{R_f}{R_S}v_{in}(t) = R_{f}i_{S}(t)
 When the S/N is small a charge amplifier is prefered.
 
 \begin{equation}
-v_{out}(t) = -a_{0}v_{in}(t) = 
+v_{out}(t) = -a_{0}v_{in}(t) =
 
-
-\end{eqution}
-
+\end{equation}
 
 If the voltage input signals are large enought and have a sharp rise time, the voltage
 sensistive preamplifier is often used. For this reason this preamplifier don't
 perfectely suit to semiconductor detectors, especially for that one with large capacity
 that also have large fill factor ($v_{in} = Q/C_{D} \approx$ 3fC/100 pF = 0.03 mV); on the other hand they are fine for that one with
 very low capacity ($v_{in} = Q/C_{D} \approx$ 3fC/3 pF = 1 mV).
+
+\subsubsection{ALPIDE like }
+\begin{figure}
+   \centering\includegraphics[width=15cm]{figures/ALPIDE_FE.png}
+   \caption{ALPIDE-like FE}
+   \label{fig:ALPIDE-like}
+   \end{figure}
+immagine presa dalle slide di Wermes
+   ALPIDE LIKE LO TROVI NELLARTICOLO DI KIM ET AL.
+
+Modi di fare il reset del diodo: ci sono due modi , pro contribution
+\begin{figure}
+   \centering\includegraphics[width=15cm]{figures/main_reset_type.png}
+   \caption{main_reset_type}
+   \label{fig:main_reset_type}
+   \end{figure}   
+
 
 \subsubsection{Noise source}
 It is important to establish the noise source of MOSFET (Metal Oxide Semiconductor Field
@@ -239,6 +265,9 @@ A way to partially reMETTI FORMULA DEL CROSS TALK E FAI VEDERE CHE PIÙ C È PIC
 solve the problem, the analogical and digital part have different
 bias channels and also the buses to MASS are different: this tecnique reduces the
 loop in the circuit and therefore the induces singlas.\\
+
+
+
 
 
 \subsection{Readout logic}
@@ -330,5 +359,7 @@ FORMULA? slide APSEL\\
 Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere
 il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
 
+\begin{comment}
 
+\end{comment}
 \end{titlepage}
