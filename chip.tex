@@ -53,7 +53,7 @@ Looking at this formula one could think that high resistivity\footnote{Hight res
 \subsubsection{Radiation dameges}
 Radiation hardeness is a fundamental requirement for pixels detector especially in HEP since they are almost always installed near the interaction point where there is a high energy level of radiation.
 Here the high fluence of particles can cause a damage both in the substrate of the detector and in the superficial electronics.\\
-At LHC the $\phi_{eq}$\footnote{The radiation damage has a principal non ionising nature (non ionizing energy loss, NIEL) since the dislocation of the lattice is caused by the collision with nuclei; for this reason NIEL damage is normalized to the damage caused by 1 MeV neutrons.} per year in the innermost pixels detector is $10^{14} n_{eq}/cm^2$; this number reduces by an order allontanandosi andando a prendere gli ultimi layer nel tracciatore. (referenza: pag 341 Wermes)\\
+At LHC the $\phi_{eq}$\footnote{The radiation damage has a principal non ionising nature (non ionizing energy loss, NIEL) since the dislocation of the lattice is caused by the collision with nuclei; as stated by the NIEL hypothesis the subsrate damage is normalized to the damage caused by 1 MeV neutrons.} per year in the innermost pixels detector is $10^{14} n_{eq}/cm^2$; this number reduces by an order allontanandosi andando a prendere gli ultimi layer nel tracciatore. (referenza: pag 341 Wermes)\\
 Dei secondi ..\\
 Let's stop for a while on the substrate damages: the general result is the creation of new energy levels within the silicon band gap and depending on their energy-location their effect can be different (fig. \ref{fig:radiation_damage_scheme}). 
 \begin{figure}
@@ -70,13 +70,13 @@ Let's stop for a while on the substrate damages: the general result is the creat
      \label{fig:type_inversion}
    \end{subfigure}
 \end{figure}
-The three main consequence, corresponding with the tre main substrate defects, of radiation damage are the changing of the effect doping concentration, the leakage current and the increasing of trapping probability.\\
+The three main consequence, corresponding with the tre main substrate defects and corresponding with processes described in the Shockely-Read-Hall (SRH) statistics, of radiation damage are the changing of the effect doping concentration, the leakage current and the increasing of trapping probability.\\
 \textbf{Changing of the effective doping concentration:} is associated with the creation/removal of donors and acceptors center which trap respectively electrons/holes from the conduction band and cause a change in effective space charge density. Even an inversion (p-type becomes n-type) can happen: indeed it is quite common at not too high fluences ($\phi_{eq} 10^{12-13}n_{eq}cm^{-2}$). \\
 A changing in the doping concentration requires an adjust of the biasing of the sensor in time (eq.\ref{eq:deplation_d}) and sometimes can be difficult keeping to fully deplete the bulk.\\
 Studies have shown that, compared to p+ -in-n sensors (easier and chieper to obtain), n+ -in-p sensors are more radiation hard ando also, since they are already p-type, they don't invert.\\
 \textbf{Leakage current:} is associated with the generation-recombination centres. It has a strong dependence with the temperature ($I_{leak}\propto T^2$), whose solution is therefore to operate at lower temperature.\\
 \textbf{Increase of trapping probability:}
-
+essendo la probabilità di trapping costante nella zona di svuotamento si ha che la carica collected diminuisce esponenzialmente con lo spazio di drift da percorrere; valori tipici delle distanze da percorrere vanno da 300 um (più per i detector a strip che per i pixel) in giù mentre valori tipici per la distanza media di trapping è 125-250 um e si riduce con l'aumento della fluenza.\\ 
 
 \subsection{MAPS and DMPAS}
 Monolitic active pixel acoomodate on the same wafer both the sensor and the front
