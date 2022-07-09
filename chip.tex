@@ -48,7 +48,7 @@ Pixel detectors are then commonly reverse biased (a positive bias is given to th
 \end{equation}
 \label{eq:deplation_d}
 \end{multicols}
-Looking at this formula one could think that high resistivity\footnote{Hight resistivity crystall can be produces using Czochralki (Cz) or float-zone (Fz) process; the fist one creates a silicon bulk with a highter oxygen concentration which can be beneficial for radiation damage} bulk are prefered, but instead for high radiation applications the starting resistivity is not too crucial and intermediate resisistivity (100 $\Omega$cm-1k$\Omega$cm) may be advantageous because the charges collection properties don't change so much during sensor lifetime while the effective space charge concentration changes after irradiation. IMMAGINE?\\
+Looking at this formula one could think that high resistivity\footnote{Hight resistivity crystall can be produces using Czochralki (Cz) or float-zone (Fz) process; the fist one creates a silicon bulk with a highter oxygen concentration which can be beneficial for radiation damage. Puoio avere un damage compensation} bulk are prefered, but instead for high radiation applications the starting resistivity is not too crucial and intermediate resisistivity (100 $\Omega$cm-1k$\Omega$cm) may be advantageous because the charges collection properties don't change so much during sensor lifetime while the effective space charge concentration changes after irradiation. IMMAGINE?\\
 
 \subsubsection{Radiation dameges}
 Radiation hardeness is a fundamental requirement for pixels detector especially in HEP since they are almost always installed near the interaction point where there is a high energy level of radiation.
@@ -79,16 +79,17 @@ Studies have shown that, compared to p+ -in-n sensors (easier and chieper to obt
 essendo la probabilità di trapping costante nella zona di svuotamento si ha che la carica collected diminuisce esponenzialmente con lo spazio di drift da percorrere; valori tipici delle distanze da percorrere vanno da 300 um (più per i detector a strip che per i pixel) in giù mentre valori tipici per la distanza media di trapping è 125-250 um e si riduce con l'aumento della fluenza.\\ 
 
 \subsection{MAPS and DMPAS}
-Monolitic active pixel acoomodate on the same wafer both the sensor and the front
-end electronics, with the second one implanted on top.\\
-They have been first proposed and realized in 1990s and their use has been enabled
-by the development of the electronic sector which guarantees the decrease in CMOS
-dimension, as stated by the Moore's law\footnote{Moore's law states that logic
-density doubles every two years.}.\\
-As a matter of fact the dimension of componenents, their organization on the
-pixel area and logic density are hot topics for the designers; typiccally
-different decisions are taken for different purposes. Related with this thematic there is the possibility
-of integrating or not on the pixel area a memory which would allow the use of a trigger. \\ 
+As already stated, hybrid pixels constitute a solid option for pixel detectors since they have been used for decades and they costitute the current state of art, but they are gradually passing their primacy along to monolitic active pixel.\\
+Let's look the main caratheristics of hybrid pixels and let's brefly compare them to the more innovative MAPS. \\ 
+
+Hybrid pixels are made by two parts, the sensor and the electronics: for each pixel this two parts are connect together through microconnection (bump bond) using the so called flip-chipping tecnology.\\
+This particular and sophisticated technique makes hybrid pixels difficult to produce and to test (sensor can't be test separatelly but need connection with the readout), delicate, especially for high levels of radiation, and also expensive. \\
+An hot topic for accelerator experiment is the material budget that represents the main limit for momentum measurement resolution; since MAPS integrate both the sensor and the redout on the same bulk, they are thinner ($\sim$ 100-150 $\mu m$) than the hybrid ($\sim$ ?? $\mu m$) and they can down the material budget (the typical value for hybrid pixels is 1.5 \% $X_0$ per layer) by a third.\\
+Among other disadvantages there is the bigger power consumption that implies, by the way, a bigger cooling system that implies in turn other material.\\
+
+Monolitic active pixels, instead, acoomodate on the same wafer both the sensor and the front end electronics, with the second one implanted on top.\\
+They have been first proposed and realized in 1990s and their use has been enabled by the development of the electronic sector which guarantees the decrease in CMOS dimension, as stated by the Moore's law\footnote{Moore's law states that logic density doubles every two years.}.\\
+As a matter of fact the dimension of componenents, their organization on the pixel area and logic density are hot topics for the designers; typiccally different decisions are taken for different purposes. Related with this thematic there is the possibility of integrating or not on the pixel area a memory which would allow the use of a trigger. \\ 
 Moreover one other benefit related with the possibility of using the digital microelectronics
 and CMOSS in digital circuit is the lack of resistors, which require a lot of
 space and have a high power consumption, in favor of MOSFET transistors, whose power
@@ -99,11 +100,21 @@ elettronica digitale.\\
 Monolithic active pixel can be distinguish beteween two main category: MAPS and depleted
 MAPS (DMAPS).\\
 \begin{figure}
-   \centering
-   \includegraphics[width=.4\linewidth]{figures/MAPS_scheme.png}
-   \caption{Concept cross section of MAPS and DMAPS pixel}
-   \label{fig:MAPS_scheme}
+   \begin{subfigure}{.5\textwidth}
+     \centering
+     \includegraphics[width=.6\linewidth]{figures/hybrid_scheme.png}
+     \caption{Concept cross section of hybrid pixel}
+     \label{fig:radiation_damage_scheme}
+   \end{subfigure}%
+   \begin{subfigure}{.5\textwidth}
+     \centering
+     \includegraphics[width=.8\linewidth]{figures/MAPS_scheme.png}
+     \caption{oncept cross section of MPAS pixel}
+     \label{fig:MAPS_scheme}
+   \end{subfigure}
 \end{figure}
+
+
 MAPS (figure a \ref{fig:MAPS_DMAPS_scheme}) have typically an epilayer in range 
 1-20 $\mu m$ and because they
 are not depleted, the charge is mainly collected by diffusion rather then by drift.
