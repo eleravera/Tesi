@@ -1,25 +1,42 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{report}
 
-\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-\usepackage{amsmath}
+
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}\usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{comment}
+\usepackage[utf8]{inputenc}
+\usepackage[style=authoryear,backend=biber]{biblatex}
+\addbibresource{references.bib}
+
 \renewcommand*\contentsname{Summary}
 
 \begin{document}
 
 \tableofcontents
 
-\include{introduction.tex}
+
+
+\chapter{Introduction}
+\input{introduction}
+
 %\include{FLASH-therapy.tex}
-\include{Chip.tex}
-%\include{Monopix1.tex}
+
+\chapter{Pixel detectors}
+\input{Chip}
+
+%\chapter{TJ-Monopix1}
+%\input{Monopix1}
+
+%\chapter{Arcadia-MD1}
 %\include{Arcadia-MD1.tex}
+
 %\include{threshold_noise.tex}
 
 
+
+\printbibliography
 \end{document}
