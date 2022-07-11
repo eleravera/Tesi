@@ -140,6 +140,14 @@ To implement a uniform and stronger electric field, DMAPS often uses large elect
 \end{multicols}
 where $g_m$ is the transconductance, $\tau_{sh}$ is the shaping time. \\
 By the way a big problem coming from this input capacity could be the coupling with the electronics resulting in cross talk.\\
+
+
+When an signal causes an output signal on neighbouring electrodes we refer to cross talk; since digital switching in the FE electronics do a lot of oscillations this problem is especially connected with the
+Ovviamente essendo un rumore legato all'induzione di un segnale, il rumore aumenta allìaumentare della capacità:
+METTI FORMULA DEL CROSS TALK E FAI VEDERE CHE PIÙ C È PICCOLA E MENO CROSS TALK HAI.\\
+A way to partially resolve the problem, the analogical and digital part have different bias channels and also the buses to MASS are different: this tecnique reduces the loop in the circuit and therefore the induces singlas.\\
+
+
 \begin{figure}[h!]
    \centering\includegraphics[width=12cm]{figures/DMAPS_capacity.png}
    \caption{$C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$}
@@ -148,8 +156,7 @@ By the way a big problem coming from this input capacity could be the coupling w
 So, larger charge collection electrode sensors provide a uniform electric field in the bulk that results in short drift path and so in good collection properties, especially after irradiation, when trapping probability can become an issue. The drawback of a large fill-factor is the large capacity ($\sim$100 fF): this contributes to the noise and to a speed penalty and to a larger possibility of cross talk.
 
 The small fill-factor variant, indeed, benefits from a small capacity (5-20 fF), but suffers from a not uniform electric field. \\
-These two different types of sensor require different amplifier .
-
+These two different types of sensor require different amplifier: the large elctrode one is coupled with the charge sensitive amplifier, while the small one with voltage amplifier (sec \ref{sec:}).
 
 \begin{table}
    \begin{center}
@@ -172,31 +179,17 @@ These two different types of sensor require different amplifier .
 \end{table}
 
 \subsection{A modified sensor}
-A process modification that has become the standard solution that combine the carateristic
-of a small fill factor sensor (small input amplifier capacity) and of large fill factor sensor
-(uniform electric field) is the one carried out for ALICE upgrade (REFERENZA).\\
-Una soluzione alternativa potrebbe essere fare pixel piccoli (E uniforme e c piccola), però 
-così uno dovrebbe cambiare anche l'elettronica: non ci sarebbe posto per tutto. Il vantaggio
-di questo modifica è proprio il fatto di non necessitare di nessun cambiamento nel layout,
-tant'è vero che i chip di test spesso vengono fatti sia con che senza questa modifica.\\
-The tecnique involve the implementation of a low dose implant in the epitassial layer in the 
-upper part of the bulk.\\
-Before the process modification the depletion region extends below the diode towards the 
-substrate and it doesn't extend laterally so much even if a high bias is applied to 
-the sensor (figure \ref{fig:modified_process}). \\
-After, instead, two distinct pn junctions are built: one between the deep p well and the 
-$n^-$ layer, and the other between the $n^-$ and the $p^-$ epitaxial layer, estendendosi a tutta l'area
-planare del sensore.\\
+A process modification that has become the standard solution to combine the carateristic of a small fill factor sensor (small input amplifier capacity) and of large fill factor sensor (uniform electric field) is the one carried out for ALICE upgrade about ten years ago (REFERENZA).\\
+A compromise between the two sensors could also be making smaller pixels but this solution requires reducing the electronic circuit area, so a completelly new pixel layout should be think. The advantageous of the modification lies in its versatility: both standard and modified sensor are often produced for testing in fact.\\
+
+The modification consists in inserting a low dose implant under the electrode: before the process modification the depletion region extends below the diode towards the substrate and it doesn't extend laterally so much even if a high bias is applied to the sensor (figure \ref{fig:modified_process}). \\
+After two distinct pn junctions are built: one between the deep p well and the $n^-$ layer, and the other between the $n^-$ and the $p^-$ epitaxial layer, extending to the all area of the sensor.\\
 Questa configurazione fa sì che si crei sotto l'elettrodo ($n^+$) si crei un minimo dove vengono 
 accumulati anche dalle regione laterali gli elettroni. 
 Il fatto che ci sia una zona di svuotamento dall'alto al basso che separi le zone drogate p, fa sì
 che psub e pwell si possando polarizzare in modo diverso\footnote{This is true a meno di altre 
 caratteristiche del sensore, come vedremo per MONOPIx1}.\\
-La dose di drogaggio è importante: deve essere abbasatnza alta da prevalere sulla dose
-dell'epitassial layer in modo da prevenire il punchthrought tra well e substrate e da 
-prevenire l'inversione dopo alte fluenze (nell'articolo si mostra che il sensore modificato
-tende ad avere migliori prestazioni anche dopo alte fluenze), ma anche abb bassa per poter essere svuotato 
-a ragionevoli basse tensioni.\\
+The doping concentration must be high enought to be greater than the epitaxial layer to prevent the punchthrought\footnote{COS?é il punchthrought?} between p-well and the substrate, but it must also be lower enought to allow the depletion without reaching too high bias.
 \begin{figure}
    \centering
    \includegraphics[width=.7\linewidth]{figures/modified_process.png}
@@ -206,67 +199,32 @@ a ragionevoli basse tensioni.\\
 
 
 \section{Analog front end}
-Dopo che la carica è stata creata nel substrato e abbia driftato fino agli elettrodi
-inducendo un segnale su questi utlimi, il segnale creato entra nel circuito di FE 
-(uno schema tipico di un circuito di FE in figura \ref{fig:readout_scheme}).
+After the creation of a signal on the electrode, the signal enters in the front end circuit (fig.\ref{fig:readout_scheme}), ready to be molded and transmitted out of chip.
 \begin{figure}
    \centering
    \includegraphics[width=1.\linewidth]{figures/readout_scheme.png}
-   \caption{Readout FE scheme}
+   \caption{Readout FE scheme: il preampl è un CSA, ma se ci metti un feedback resistivo puoi fare un voltage o current amplifier}
    \label{fig:readout_scheme}
 \end{figure}
-The main steps of the front end chain are: the preamplifier (that actually often is the 
-only amplification stage) with a reset to the baseline mechanism, a shaper (a band-pass 
-filter whose $\tau$ time costant is tuned in order to optimize S/N ratio and pile-up)
-and finally a discriminator. The whole chain must be optimized to improve the S/N ratio.\\
+The main steps of the front end chain are: the preamplifier (that actually often is the only amplification stage) with a reset to the baseline mechanism, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio.
 
 \subsection{Preamplifier}
-Even if circuits on the silicon crystal are only costruct by CMOSS, a
-preamplifier can be modellized as an operational amplifier (OpAmp) with an impedence
-feedback (first step in figure \ref{fig:readout_scheme}).\\
-Depending on whether a capacity or a resistance is used as feedback, respectevely,
-a charge or a voltage amplifier is used (figure ).
-%\begin{figure}
-   %centering
-   %\includegraphics[width=1.\linewidth]{figures/readout_scheme.png}
-   %\caption{Amplifier}
-   %\label{fig:amplifier}
-%\end{figure}
-The amplification gain is determined by the input and feedback impedance:
+Even if circuits on the silicon crystal are only costruct by CMOSS, a preamplifier can be modellized as an operational amplifier (OpAmp) where the gain is determined by the input and feedback impedance (first step in figure \ref{fig:readout_scheme}):
 \begin{equation}
    G = \frac{v_{out}}{v_{in}} = \frac{Z_{f}}{Z_{in}}
 \end{equation}
-
-If the signal duration is longer than the charateristic time ($R_S C_D$) of the amplifier with
-a resistor in feedback ($\tau << \Delta t$), then the second condition in equation () is satisfied
-and the system operates as a current amplifier:
-\begin{equation}
-   v_{out} = \frac{R_f}{R_S}v_{in}(t) = R_{f}i_{S}(t)
-\end{equation}
-
-When the S/N is small a charge amplifier is prefered.
-
-\begin{equation}
-   v_{out}(t) = -a_{0}v_{in}(t) =
-\end{equation}
-
-If the voltage input signals are large enought and have a sharp rise time, the voltage
-sensistive preamplifier is often used. For this reason this preamplifier don't
-perfectely suit to semiconductor detectors, especially for that one with large capacity
-that also have large fill factor ($v_{in} = Q/C_{D} \approx$ 3fC/100 pF = 0.03 mV); on the other hand they are fine for that one with
-very low capacity ($v_{in} = Q/C_{D} \approx$ 3fC/3 pF = 1 mV).
+Depending on whether a capacity or a resistance is used as feedback, respectevely a charge or a voltage amplifier is used (figure \ref{fig:charge_voltage_ampl}). If the voltage input signal is large enought and have a sharp rise time, the voltage sensistive preamplifier is prefered. As already anticipated this flavor doen't suit to large fill factor MAPS whose signal is already enought high: $v_{in} = Q/C_{D} \approx$ 3fC/100 pF = 0.03 mV, but it's fine for the small fill factor ones: $v_{in} = Q/C_{D} \approx$ 3fC/3 pF = 1 mV.\\
+In the case of a resistor feedback, if the signal duration time is longer than the discharge time  ($R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmit to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.
 
 \subsection{ALPIDE-like front end}
-ALPIDE (ALice PIxel DEtector) is the pixel detector (TowerJazz 180 nm CMOS) installed in the 
-Inner Tracking System during the second long shut down of the LHC in 2019. Its FE became a
-standard for all the following chip, and this also applies to ARCADIA MD1 and Monopix1, and this 
-is why I'm going to explain some principals characteristics of how it works. 
+I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state of art and most of the following designers took inspiration form that. Its FE became a standard for all the following chip: ARCADIA MD1 and Monopix1 are no exception, this is why I'm going to explain some principals characteristics of how it works. (CITA ARTICOLO)
 \begin{figure}[h!]
    \centering
    \includegraphics[width=.7\linewidth]{figures/ALPIDE_FE.png}
    \caption{ALPIDE like FE}
    \label{fig:ALPIDE-like}
 \end{figure}
+
 Carica fa un segnale negagtivo di $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$ su PIX IN. 
 M1 fa da source follower con IBIAS , costringendo la tensione al source a seguire la tensione di M1
 al gate. \\
@@ -277,7 +235,6 @@ So ideally:
 \begin{equation}
    \Delta V_{OUT_A} = \frac{C_{Source}}{C_{OUTA}}\frac{Q_{IN}}{C_{IN}}
 \end{equation}
-
 A second branch (M4, M5) is used to generate a low frequency feedback. 
 The voltage bias
 VCASN and current bias ITHR define the baseline value of OUTA and the return to baseline after
@@ -285,33 +242,11 @@ a particle hit. The distance of the OUT A baseline voltage to the point where
 IM8 = IDB defines the charge threshold.
   
 \section{Readout logic}
-One of the main problems of MAPS is the cross talk: one speaks about cross talk
-when an input signal causes an output signal on neighbouring electrodes; digital signals
-in the FE electronics do a lot of oscillations and digital switching produce spikes
-and so noise.\\
-METTI FORMULA DEL CROSS TALK E FAI VEDERE CHE PIÙ C È PICCOLA E MENO CROSS TALK HAI.\\
-A way to partially resolve the problem, the analogical and digital part have different
-bias channels and also the buses to MASS are different: this tecnique reduces the
-loop in the circuit and therefore the induces singlas.\\
+Readout logic means the part of the circuit which takes the FE output singal, processes it and then tramitprovideds it out of pixel and/or out of chip; depending on what one wants to store different readout characteristics must be provided. \\
+To store the analogical informations (i.e. charge collected, evolution of signal in time, ...) big buffers and a big bandwidth are needed; a problem that doesn't occur if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded).\\
+A common compromise made is to save the time over threshold (ToT) of the pulse; this is a relatively coarse requirement (ToT is less then a dozen bits) but, being correlated with the deposited charge by the impinging particle in the detector, it provides a sufficent information.
 
-
-To store the analogical informations (charge collected, evolution of signal in time)
-big buffers and a big bandwidth are needed.
-Digital information, instead, means that if one pixel is hit 1 is recorded, and if
-not 0 is recorded.\\
-Typically one want to save some more information than the digital one, but also
-less then the analogical one, so one choise used in some design is to save the time over threshold
-(ToT) of the pulse; this is a a relatively coarse information (about 7 bits) but it
-is correlated with the deposited charge by the impinging particle in the detector.
-
-This is why, while the front end architecture remains similar from one generation
-to the next (almost all pixels have a FE-ALPIDE), the processing of the information
-produced by the front end, and the relationship of the front end to the rest of
-the chip, changed significantly.\\
-Il modo con cui vengono lette le hit su una matrice è il column drain readout.\\
-The simple 3T (three transistor) readout has a row select, a
-source-follower buffer and an input baseline reset;
-
+BANDA-MEMORIA-\\
 Moreover the readout architetcture can be full, if every hit from every pixel must eventually
 make its way to the data output, or triggered, if hits are recorded during a trigger signal.
 Again, on the one hand the triggered-readout needs buffers and storage memories
@@ -372,7 +307,6 @@ L'architettura di lettura che colloca i pixel in regioni da 4 si chiama FE-I4.\\
 One standard way to reduce the readout bandwidth is to implement the zero suppression
 on the pixel: only informations about channels with an hit (when signal exceeds
 the discriminator threshold) are read.
-
 Per gli esperimenti agli acceleratori, e soprattutto per gli esperimenti che
 intendono aumentare la luminosita, è sicuramente di particolare importanza
 l'occupancy dei pixel: sia il rate del noise va mantenuto basso, sia un
@@ -383,3 +317,7 @@ FORMULA? slide APSEL\\
 Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere
 il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
 
+COLUM DRAIN READ OUT\\
+Il modo con cui vengono lette le hit su una matrice è il column drain readout.\\
+The simple 3T (three transistor) readout has a row select, a
+source-follower buffer and an input baseline reset;
