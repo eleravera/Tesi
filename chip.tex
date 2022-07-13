@@ -1,350 +1,375 @@
-\label{chip}
-
 \section{Brief overview}
-\subsection{Signal formation}
-When a charge particle passes through a pixel and loses energy by ionization a part of that energy is used to generate electron-hole pairs (some of the energy is also used for other processes, as the lattice excitation) which are then separated by the elettric field and collected at their respectivelly electrodes ($p$ for holes and $n$ for electrons)\footnote{Even if in principle both the electrode can be used to read a signal, for pixel detectors, where the number of channel and the complexity of readout are high, only one is actually used. In strip and pad detectors, instead, is more common a dual-side readout}; by the drift of these charges, a signal $i_e$ is generated on the  electrode $e$ as stated by the Ramo's theorem: 
-\begin{equation}
-   i_e(t) = -q\: v(t)\, E_{WF,e}
-\end{equation}
-where $v(t)$ is the instantaneous velocity of the charge $q$ and $E_{WF}$ is the weighting field, that is the field obtained biasing the electrode $e$ with 1V and all the others with 0V.\\
-The drift velocity of the charge depends on the elettric field and on the mobility of the particle:
-\begin{equation}
-   v = \mu(E)\, E
-\end{equation}
-where $\mu(E)$ is a function of the electric field and is linear with $E$ only for small $E$: at highter values the probability
-of interactions with optical phonons increases and the mobility drops and this leads to an indipendency of the velocity from the electric field (fig. \ref{fig:mobility_drift})\\
-\begin{figure}[h!]
-   \begin{subfigure}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figures/mobility_in_semiconductor.png}
-     \caption{Typical values for elecrons and holes mobility 
-     in silicon at room temperature are $\mu _n \sim$ 1450 $cm^2/Vs$, $\mu _h = 500$}
-     \label{fig:sfig1}
-   \end{subfigure}%
-   \begin{subfigure}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figures/velocity_in_semiconductor.png}
-     \caption{Drift velocity at room temperature in different semiconductors}
-     \label{fig:sfig2}
-   \end{subfigure}
-   \label{fig:mobility_drift}
-\end{figure}
+   \subsection{Signal formation}
+      When a charge particle passes through a pixel and loses energy by ionization a part of that energy is used to generate electron-hole pairs (an other part is used for other processes, as the lattice excitation) which are then separated by the elettric field and collected at their respectivelly electrodes ($p$ for holes and $n$ for electrons)\footnote{Even if in principle both the electrode can be used to read a signal, for pixel detectors, where the number of channel and the complexity of readout are high, only one is actually used. In strip and pad detectors, instead, is more common a dual-side readout}; by the drift of these charges, a signal $i_e$ is generated on the  electrode $e$ as stated by the Shockley–Ramo's theorem: 
+      \begin{equation}
+         i_e(t) = -q\: v(t)\, E_{WF,e}
+      \end{equation}
+      where $v(t)$ is the instantaneous velocity of the charge $q$ and $E_{WF}$ is the weighting field, that is the field obtained biasing the electrode $e$ with 1V and all the others with 0V.\\
+      The drift velocity of the charge depends on the elettric field and on the mobility of the particle:
+      \begin{equation}
+         v = \mu(E)\, E
+      \end{equation}
+      where $\mu(E)$ is a function of the electric field and is linear with $E$ only for small $E$: at highter values the probability of interactions with optical phonons increases and the mobility drops and this leads to an indipendency of the velocity from the electric field (fig. \ref{fig:mobility_drift2}).\\
+      SECONDO ME MANCA ANCORA UNA FRASE DI CONNESSIONE\\
+      \begin{figure}[h!]
+         \begin{subfigure}{.5\textwidth}
+         \centering
+         \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/mobility_in_semiconductor.png}
+         \caption{Typical values for elecrons and holes mobility 
+         in silicon at room temperature are $\mu _n \sim$ 1450 $cm^2/Vs$, $\mu _h = 500$}
+         \label{fig:mobility_drift1}
+         \end{subfigure}
+         \begin{subfigure}{.5\textwidth}
+         \centering
+         \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/velocity_in_semiconductor.png}
+         \caption{Drift velocity at room temperature in different semiconductors}
+         \label{fig:mobility_drift2}
+         \end{subfigure}
+         \label{fig:mobility_drift}
+      \end{figure}
 
-The average energy needed to create a pair at 300 K in silicon is $w_i$ = 3.65 eV, that is more than the mean ionization energy because of the interactions with phonon, hence for a MIP the most probable value of charge released (assuming a stopping power in silicum of 1 MeV g/$cm^2$) is: 
-\begin{equation}
-   \langle \frac{dE}{dx}\rangle \frac{1}{w_i} \sim 100 \: e/h \sim \frac{1.6 \:10^{-2}fC}{\mu m}
-\end{equation}
-That is foundamental that pairs e/h are produced in the depleted region of the semiconductor where the probability of recombination with charge carriers is low.\\
-Pixel detectors are then commonly reverse biased (a positive bias is given to the $n$ electrode and a negative to the $p$) and the depletion zone is grown in the epitaxial layer below the electrode; the depletion region is related with the extern bias $V_{ext}$, the resistivity $\rho$ and also with the dopant:
-\begin{multicols}{2}
-\begin{equation}
-   d_{n} \sim 0.55 \sqrt{\frac{\rho}{\Omega cm}\frac{V_{ext}}{V}} \mu m 
-\end{equation}\break
-\begin{equation}
-   d_{p} \sim 0.32 \sqrt{\frac{\rho}{\Omega cm}\frac{V_{ext}}{V}} \mu m
-\end{equation}
-\label{eq:deplation_d}
-\end{multicols}
+      The average energy needed to create a pair at 300 K in silicon is $w_i$ = 3.65 eV, that is more than the mean ionization energy because of the interactions with phonon, hence for a MIP the most probable value of charge released in the semiconductor (assuming a stopping power in silicum of 1 MeV g/$cm^2$) is: 
+      \begin{equation}
+         \langle \frac{dE}{dx}\rangle \frac{1}{w_i} \sim 100 \: e/h \sim \frac{1.6 \:10^{-2}fC}{\mu m}
+      \end{equation}
+      It is foundamental that pairs e/h are produced in the depleted region of the semiconductor where the probability of recombination with charge carriers is low to avoid loss of signals.\\
+      Pixel detectors are then commonly reverse biased: a positive bias is given to the $n$ electrode and a negative to the $p$
+      to grow the depletion zone in the epitaxial layer below the electrode. The width of the depletion region is related with the extern bias $V_{ext}$, the resistivity $\rho$ and also with the dopant:
+      \begin{multicols}{2}
+         \begin{equation}
+            d_{n} \sim 0.55 \sqrt{\frac{\rho}{\Omega cm}\frac{V_{ext}}{V}} \mu m 
+         \end{equation}\break
+         \begin{equation}
+            d_{p} \sim 0.32 \sqrt{\frac{\rho}{\Omega cm}\frac{V_{ext}}{V}} \mu m
+         \end{equation}
+         \label{eq:deplation_d}
+      \end{multicols}
+      DA DOVE VENIVA QUESTA DIFFERENZA? DALLA MOBILITÀ MA NON MI RICORDO COME CI SI ARRIVAVA.\\
+      For that reason high resistivities wafer (100 $\Omega cm - k\Omega cm$) are typically prefered beacause they allow bigger deplation zone with smaller voltage bias. 
 
-\subsection{Radiation dameges}
-Radiation hardeness is a fundamental requirement for pixels detector especially in HEP since they are almost always installed near the interaction point where there is a high energy level of radiation. At LHC the $\phi_{eq}$ per year in the innermost pixels detector is $10^{14} n_{eq}/cm^2$; this number reduces by an order passing to the outer tracker layer. (referenza: pag 341 Wermes)\\ 
-Here the high fluence of particles can cause a damage both in the substrate of the detector and in the superficial electronics. The first one has a principal non ionising nature (non ionizing energy loss, NIEL) since the dislocation of the lattice is caused by the collision with nuclei; by this fact the NIEL hypothesis states that the subsrate damage is normalized to the damage caused by 1 MeV neutrons. Differently, surface damages are principally due to ionising energy loss; a charge accumulation in oxide ($S_iO_2$) can cause the generation of parasitic current with an obvious increase of the 1/f noise.\\
-Anyway surface damages are less relevant then the previous one since with the development of microelectronics and with the miniaturization of components (in electronic industry 6-7 nm transistors are already used, while for MAPS the dimensions of components is around 180 nm) the quantity of oxide in circuit is reduced.\\
-Let's spend instead two more other words on substrate damages: the general result is the creation of new energy levels within the silicon band gap and depending on their energy-location their effect can be different (fig. \ref{fig:radiation_damage_scheme}). 
-\begin{figure}
-   \begin{subfigure}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figures/radiation_damage_scheme.png}
-     \caption{Three main type of defects produced by radiation}
-     \label{fig:radiation_damage_scheme}
-   \end{subfigure}%
-   \begin{subfigure}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figures/type_inversion.png}
-     \caption{1b}
-     \label{fig:type_inversion}
-   \end{subfigure}
-\end{figure}
-The three main consequence, corresponding with the tre main substrate defects and corresponding with processes described in the Shockely-Read-Hall (SRH) statistics, of radiation damages are the changing of the effect doping concentration, the leakage current and the increasing of trapping probability.
+   \subsection{Radiation dameges}
+      Radiation hardeness is a fundamental requirement for pixels detector especially in HEP since they are almost always installed near the interaction point where there is a high energy level of radiation. At LHC the $\phi_{eq}$ per year in the innermost pixels detector is $10^{14} n_{eq}/cm^2$; this number reduces by an order passing to the outer tracker layer. (referenza: pag 341 Wermes)\\ 
+      Here the high fluence of particles can cause a damage both in the substrate of the detector and in the superficial electronics. 
+      
+      The first one has a principal non ionising nature (non ionizing energy loss, NIEL) since it is related with the dislocation of the lattice caused by the collision with nuclei; by this fact the NIEL hypothesis states that the substrate damage is normalized to the damage caused by 1 MeV neutrons. Differently, surface damages are principally due to ionising energy loss.
 
-\textbf{Changing of the effective doping concentration:} is associated with the creation/removal of donors and acceptors center which trap respectively electrons/holes from the conduction band and cause a change in effective space charge density. Even an inversion (p-type becomes n-type) can happen: indeed it is quite common at not too high fluences ($\phi_{eq} 10^{12-13}n_{eq}cm^{-2}$). 
-A changing in the doping concentration requires an adjust of the biasing of the sensor in time (eq.\ref{eq:deplation_d}) and sometimes can be difficult keeping to fully deplete the bulk.
+      DUE PAROLE IN PIÙ SUL SURFACE DAMAGE\\
+      a charge accumulation in oxide ($S_iO_2$) can cause the generation of parasitic current with an obvious increase of the 1/f noise.\\
+      Anyway surface damages are less relevant then the previous one since with the development of microelectronics and with the miniaturization of components (in electronic industry 6-7 nm transistors are already used, while for MAPS the dimensions of components is around 180 nm) the quantity of oxide in circuit is reduced.
 
-\textbf{Leakage current:} is associated with the generation-recombination centres. It has a strong dependence with the temperature ($I_{leak}\propto T^2$), whose solution is therefore to operate at lower temperature.
+      Let's spend instead two more other words on the more-relevant substrate damages: the general result of high radiation level is the creation of new energy levels within the silicon band gap and depending on their energy-location their effect can be different, as described in the Shockely-Read-Hall (SRH) statistical model.
+      \begin{figure}
+         \begin{subfigure}{.5\textwidth}
+         \centering
+         \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/type_inversion.png}
+         \caption{1a}
+         \label{fig:type_inversion}
+         \end{subfigure}%
+         \begin{subfigure}{.5\textwidth}
+         \centering
+         \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/type_inversion.png}
+         \caption{1b}
+         \label{fig:type_inversion}
+         \end{subfigure}
+      \end{figure}
+      The three main consequence of radiation damages are the changing of the effect doping concentration, the leakage current and the increasing of trapping probability.
 
-\textbf{Increase of trapping probability:} since the trapping probability is costant in the depleted region, the collected charge decreases exponentially with the drift path. The exponential coefficient, that is the mean trapping path, decreases after irradiation and typical values are 125-250 $\mu m$ and must be compared with the thickness of the depleted region which () corresponds to the mean drift path.
+      \textbf{Changing of the effective doping concentration:} is associated with the creation/removal of donors and acceptors center which trap respectively electrons/holes from the conduction band and cause a change in effective space charge density. Even an inversion (p-type becomes n-type\footnote{L'INVERSIONE OPPOSTA NON CE L'HAI PERCHÈ L'INVERSIONE È ASSOCIATA AD UN CAMBIO DELLA CONCETRAZIONE DA ... A ...\\E COME MAI L'ALTRO NON È FAVORITO?}) can happen: indeed it is quite common and happens at not too high fluences ($\phi_{eq} 10^{12-13}n_{eq}cm^{-2}$). 
+      A changing in the doping concentration requires an adjust of the biasing of the sensor in time (eq.\ref{eq:deplation_d}) and sometimes can be difficult keeping to fully deplete the bulk.
 
-Different choises for substate resistivity, for junctions type and for detector design are typically made: some material with high oxygen concentration (as crystall produced using Czochralki (Cz) or float-zone (Fz) process) for example, show a compensation effect for radiation damage\footnote{High” Resistivity Substrate (or epi)
-Wafers 100 Ohm cm – kOhm cm}. An other example is the usage of n+ -in-p/n sensors (even if p+ -in-n sensors are easier and chieper to obtain) to get advantage of inversion/to haven't inversion ( since they are already p-type); after inversion the n+p boudary, coming from n+ in-n, and the depletion zone still must be placed near the diode\footnote{An with inversion some isolation process of electrodes can become important and p-spray/p-stop tecnique can eventually be applied}.
+      \textbf{Leakage current:} is associated with the generation-recombination centres. It has a strong dependence with the temperature ($I_{leak}\propto T^2$), whose solution is therefore to operate at lower temperature.
+
+      \textbf{Increase of trapping probability:}  È ASSOCIATA CON QUALE TIPO DI CREAZIONE DI LIVELLO ENERGETICO?
+      since the trapping probability is costant in the depleted region, the collected charge decreases exponentially with the drift path. The exponential coefficient, that is the mean trapping path, decreases after irradiation and typical values are 125-250 $\mu m$ and must be compared with the thickness of the depleted region which () corresponds to the mean drift path.
+
+      Different choises for substate resistivity, for junctions type and for detector design are typically made to fight radiation issues. Some material with high oxygen concentration (as crystall produced using Czochralki (Cz) or float-zone (Fz) process (CONTROLLA SE SONO LORO QUELLI GIUSTI)) for example, show a compensation effect for radiation damage; an other example is the usage of n+ -in-p/n sensors (even if p+ -in-n sensors are easier and chieper to obtain) to get advantage of inversion/to have not the inversion (since they are already p-type). After inversion the n+p boudary, coming from n+ in-n, but to keep using the sensor the depletion zone still must be placed near the diode\footnote{With inversion some isolation process of electrodes can become important and p-spray/p-stop tecnique can eventually be applied. PERCHÈ CON L'INVERSIONE TI POTREBBE SERVIRE UNA TECNICA DI ISOLAMENTO?}.
 
 \section{Hybrid pixels}
+   Before talking about MAPS let's look for a while at the current state of art for pixel detectors, hybrid pixels, and brefly compare them to the more recent and innovative MAPS. \\
+   Hybrid pixels are made by two parts (fig. \ref{fig:hybrid_scheme}), the sensor and the electronics: for each pixel this two parts are welded together through microconnection (bump bond) using the so called flip-chipping technique.\\
+   \begin{figure}
+      \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.6\linewidth]{figures/Pixel_detectors/hybrid_scheme.png}
+      \caption{Concept cross section of hybrid pixel}
+      \label{fig:hybrid_scheme}
+      \end{subfigure}%
+      \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/hybrid_scheme.png}
+      \caption{}
+      \label{fig:hybrid_scheme}
+      \end{subfigure}
+   \end{figure}
+   Hybrid pixels provide a very effective and performant system
+   Sensor and readout chip can be optimized separately.
+   Can be very fast and efficient
+   
+   The particular and sophisticated procedure to bond sensor and ASIC makes hybrid pixels difficult to produce and to test (sensor can't be test separatelly but need connection with the readout), delicate, especially for high levels of radiation, and also expensive. \\
 
-\subsection{Hybrid pixels vs MAPS}
+   An hot topic for accelerator experiment is the material budget that represents the main limit for momentum measurement resolution; since MAPS are thinner ($\sim$ 100-150 $\mu m$) than the hybrid ($\sim$ ?? $\mu m$), using MAPS the material budget can be down by a third: typical value for hybrid pixels is 1.5 \% $X_0$ per layer, while for MAPS is ???? \\
+   Among other disadvantages of hybrid pixels there is the bigger power consumption that implies, by the way, a bigger cooling system that implies in turn other increase in material.\\
 
-
-\section{MAPS and DMPAS}
-
-Before talking about MAPS let's look for a while at the current state of art for pixel detectors, hybrid pixels, and brefly compare them to the more innovative MAPS.
-
-Hybrid pixels are made by two parts (fig. \ref{fig:hybrid_scheme}), the sensor and the electronics: for each pixel this two parts are welded together through microconnection (bump bond) using the so called flip-chipping technique.\\
-This particular and sophisticated procedure makes hybrid pixels difficult to produce and to test (sensor can't be test separatelly but need connection with the readout), delicate, especially for high levels of radiation, and also expensive. \\
-Monolitic active pixels, instead, accomodate on the same wafer both the sensor and the front end electronics, with the second one implanted on top, a feature that makes them really advantageous. \\
-An hot topic for accelerator experiment is the material budget that represents the main limit for momentum measurement resolution; since MAPS are thinner ($\sim$ 100-150 $\mu m$) than the hybrid ($\sim$ ?? $\mu m$),  they can down the material budget (the typical value for hybrid pixels is 1.5 \% $X_0$ per layer) by a third. Among other disadvantages of hybrid pixels there is the bigger power consumption that implies, by the way, a bigger cooling system that implies in turn other increase in material.\\
-FRASE DI CONNESSIONE.\\
-
-MAPS have been first proposed and realized in 1990s and their usage has been enabled by the development of the electronic sector which guarantees the decrease in CMOS dimension at least every two years, as stated by the Moore's law\footnote{Moore's law states that logic density doubles every two years.}.\\
-As a matter of fact the dimension of componenents, their organization on the pixel area and logic density are important issues for the designers; typically different decisions are taken for different purposes. Related with this thematic there is the possibility of integrating or not on the pixel area a memory which would allow the use of a trigger. \\ 
-Moreover one other benefit related with the possibility of using the digital microelectronics
-and CMOSS in digital circuit is the lack of resistors, which require a lot of
-space and have a high power consumption, in favor of MOSFET transistors, whose power
-consumption depends by the switching frequency. Discorso fatto con Ludovico
-sul fatto che i CMOSS tirano meno rispetto al circuito analogico.
-Scrivi perchè si usano i CMOSS invece dei transistor: discorso sulla potenza e sull'elettronica digitale.\\
-
-Monolithic active pixel can be distinguish beteween two main category: MAPS and depleted
-MAPS (DMAPS).
-\begin{figure}
-   \begin{subfigure}{.5\textwidth}
-     \centering
-     \includegraphics[width=.6\linewidth]{figures/hybrid_scheme.png}
-     \caption{Concept cross section of hybrid pixel}
-     \label{fig:hybrid_scheme}
-   \end{subfigure}%
-   \begin{subfigure}{.5\textwidth}
-     \centering
-     \includegraphics[width=.8\linewidth]{figures/MAPS_scheme.png}
-     \caption{oncept cross section of MPAS pixel}
-     \label{fig:MAPS_scheme}
-   \end{subfigure}
-\end{figure}
-
-MAPS (figure a \ref{fig:MAPS_scheme}) have typically an epilayer in range 1-20 $\mu m$ and because they are not depleted, the charge is mainly collected by diffusion rather then by drift. This makes the path of charges created in the bulk longer than usual, therefore they are slow (of order of 100 ns) and the collection could be partial expecially after an irradiation of the detector, when the trapping probability become highter. \\
-DMAPS (figure b \ref{fig:MAPS_scheme}) are instead MAPS depleated with $d$ typically in $\sim$ 25-150 $\mu m$ (eq. \ref{eq:deplation_d}) which extends from the diode to the deep p well, and sometimes also to the the backside (in this case if one wants to collect the signal also on this electrode, additional process must be done).\\
-The sensor in the scheme  (figure \ref{fig:MAPS_scheme}) implements an n well as  collection diode; to avoid the others n wells (which contain PMOS transistor) of the electronic circuit would compete in charge collection and to shield the CMOS circuit from the substrate, additionaly underlying deep p well are needed.
-
-\subsection{DMAPS: large and small fill factor}
-There are two different sensor-design approaches (figure \ref{fig:large_small_sensor_scheme})
-to DMAPS:
-\begin{itemize}
-   \item large fill factor: a large collection electrode that is a large deep n-well
- and that host the embedded electronics
-   \item small fill factor: a small n-well is used as charge collection node
-\end{itemize}
-\begin{figure}
-   \centering\includegraphics[width=12cm]{figures/large_small_sensor_scheme.png}
-   \caption{Concept cross section with large and small fill factor}
-   \label{fig:large_small_sensor_scheme}
-\end{figure}
-To implement a uniform and stronger electric field, DMAPS often uses large electrode design that requires multiple wells (typically four including deep n and p wells); this layout adds on to the standard terms of the total capacity of the sensor a new term (fig. \ref{fig:DMAPS_capacity}), that contributes to the total amplifier input capacity. In addition to the capacity between pixels ($C_{pp}$) and between the pixel and the backside ($C_{b}$), a non negligible contribution comes from the capacities between wells ($C_{SW}$ and $C_{WW}$) needed to shield the embedded electronics. These capacities affect the thermal and 1/f noise of the charge amplifier and the $ \tau_{CSA}$ too:
-\begin{multicols}{2}
-   \begin{equation}
-      ENC^2 _ {thermal} \propto \frac{4}{3}\frac{kT}{g_m}\frac{C_D ^2}{\tau_{sh}}
-   \end{equation}\break
-   \begin{equation}
-     \tau_{CSA} \propto \frac{1}{g_m}\frac{C_D}{C_f}
-   \end{equation}
-\end{multicols}
-where $g_m$ is the transconductance, $\tau_{sh}$ is the shaping time. \\
-By the way a big problem coming from this input capacity could be the coupling with the electronics resulting in cross talk.\\
+\section{DEPFET}
 
 
-When an signal causes an output signal on neighbouring electrodes we refer to cross talk; since digital switching in the FE electronics do a lot of oscillations this problem is especially connected with the
-Ovviamente essendo un rumore legato all'induzione di un segnale, il rumore aumenta allìaumentare della capacità:
-METTI FORMULA DEL CROSS TALK E FAI VEDERE CHE PIÙ C È PICCOLA E MENO CROSS TALK HAI.\\
-A way to partially resolve the problem, the analogical and digital part have different bias channels and also the buses to MASS are different: this tecnique reduces the loop in the circuit and therefore the induces singlas.\\
+\section{CMOSS MAPS and DMPAS}
+   DI CHE IN REALTÀ C'È ANCHE IL "FLAVOR" SOI. DOVE LO METTO?\\
+   Monolitic active pixels accomodate on the same wafer both the sensor and the front end electronics, with the second one implanted on top, a feature that makes them really advantageous. \\
+   MAPS have been first proposed and realized in 1990s and their usage has been enabled by the development of the electronic sector which guarantees the decrease in CMOS dimension at least every two years, as stated by the Moore's law\footnote{Moore's law states that logic density doubles every two years.}.\\
+   As a matter of fact the dimension of componenents, their organization on the pixel area and logic density are important issues for the designers; typically different decisions are taken for different purposes. Related with this thematic there is the possibility of integrating or not on the pixel area a memory which would allow the use of a trigger. \\ 
+   Moreover one other benefit related with the possibility of using the digital microelectronics
+   and CMOSS in digital circuit is the lack of resistors, which require a lot of
+   space and have a high power consumption, in favor of MOSFET transistors, whose power
+   consumption depends by the switching frequency. Discorso fatto con Ludovico
+   sul fatto che i CMOSS tirano meno rispetto al circuito analogico.
+   Scrivi perchè si usano i CMOSS invece dei transistor: discorso sulla potenza e sull'elettronica digitale.\\
+   UNA COSA (TROVATA SULLE SLIDES IFIP DI FORTI)È CHE ELETTRONICA RICHIEDE BASSA RESISTIVITÀ MENTRE ALTA RHO È RICHIESRA PER IL SENSORE. UN ALTRO PROBLEMA DEL CONNUBIO TRA LE DUE PARTI È LA TEMPERATURA: ELETTRONICA LAVORA ANCHE A T ALTE, SENSORE NO PERCHÈ SENNO HAI LEACKAGE CURRENT\\
+
+   Monolithic active pixel can be distinguish beteween two main category: MAPS and depleted
+   MAPS (DMAPS).
+   \begin{figure}
+      \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.6\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}
+      \caption{Concept cross section of DEPFET}
+      \label{fig:DEPFET_scheme}
+      \end{subfigure}%
+      \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}
+      \caption{Concept cross section of MPAS pixel}
+      \label{fig:MAPS_scheme}
+      \end{subfigure}
+   \end{figure}
+
+   MAPS (figure a \ref{fig:MAPS_scheme}) have typically an epilayer in range 1-20 $\mu m$ and because they are not depleted, the charge is mainly collected by diffusion rather then by drift. This makes the path of charges created in the bulk longer than usual, therefore they are slow (of order of 100 ns) and the collection could be partial expecially after an irradiation of the detector, when the trapping probability become highter. \\
+   DMAPS (figure b \ref{fig:MAPS_scheme}) are instead MAPS depleated with $d$ typically in $\sim$ 25-150 $\mu m$ (eq. \ref{eq:deplation_d}) which extends from the diode to the deep p well, and sometimes also to the the backside (in this case if one wants to collect the signal also on this electrode, additional process must be done).\\
+   The sensor in the scheme  (figure \ref{fig:MAPS_scheme}) implements an n well as  collection diode; to avoid the others n wells (which contain PMOS transistor) of the electronic circuit would compete in charge collection and to shield the CMOS circuit from the substrate, additionaly underlying deep p well are needed.
+
+   \subsection{DMAPS: large and small fill factor}
+      There are two different sensor-design approaches (figure \ref{fig:large_small_sensor_scheme})
+      to DMAPS:
+      \begin{itemize}
+         \item large fill factor: a large collection electrode that is a large deep n-well
+      and that host the embedded electronics
+         \item small fill factor: a small n-well is used as charge collection node
+      \end{itemize}
+      \begin{figure}
+         \centering\includegraphics[width=12cm]{figures/Pixel_detectors/large_small_sensor_scheme.png}
+         \caption{Concept cross section with large and small fill factor}
+         \label{fig:large_small_sensor_scheme}
+      \end{figure}
+      To implement a uniform and stronger electric field, DMAPS often uses large electrode design that requires multiple wells (typically four including deep n and p wells); this layout adds on to the standard terms of the total capacity of the sensor a new term (fig. \ref{fig:DMAPS_capacity}), that contributes to the total amplifier input capacity. In addition to the capacity between pixels ($C_{pp}$) and between the pixel and the backside ($C_{b}$), a non negligible contribution comes from the capacities between wells ($C_{SW}$ and $C_{WW}$) needed to shield the embedded electronics. These capacities affect the thermal and 1/f noise of the charge amplifier and the $ \tau_{CSA}$ too:
+      \begin{multicols}{2}
+         \begin{equation}
+            ENC^2 _ {thermal} \propto \frac{4}{3}\frac{kT}{g_m}\frac{C_D ^2}{\tau_{sh}}
+         \end{equation}\break
+         \begin{equation}
+            \tau_{CSA} \propto \frac{1}{g_m}\frac{C_D}{C_f}
+         \end{equation}
+      \end{multicols}
+      where $g_m$ is the transconductance, $\tau_{sh}$ is the shaping time. \\
+      By the way a big problem coming from this input capacity could be the coupling with the electronics resulting in cross talk.\\
 
 
-\begin{figure}[h!]
-   \centering\includegraphics[width=12cm]{figures/DMAPS_capacity.png}
-   \caption{$C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$}
-   \label{fig:DMAPS_capacity}
-\end{figure}
-So, larger charge collection electrode sensors provide a uniform electric field in the bulk that results in short drift path and so in good collection properties, especially after irradiation, when trapping probability can become an issue. The drawback of a large fill-factor is the large capacity ($\sim$100 fF): this contributes to the noise and to a speed penalty and to a larger possibility of cross talk.
+      When an signal causes an output signal on neighbouring electrodes we refer to cross talk; since digital switching in the FE electronics do a lot of oscillations this problem is especially connected with the
+      Ovviamente essendo un rumore legato all'induzione di un segnale, il rumore aumenta allìaumentare della capacità:
+      METTI FORMULA DEL CROSS TALK E FAI VEDERE CHE PIÙ C È PICCOLA E MENO CROSS TALK HAI.\\
+      A way to partially resolve the problem, the analogical and digital part have different bias channels and also the buses to MASS are different: this tecnique reduces the loop in the circuit and therefore the induces singlas.\\
 
-The small fill-factor variant, indeed, benefits from a small capacity (5-20 fF), but suffers from a not uniform electric field. \\
-These two different types of sensor require different amplifier: the large elctrode one is coupled with the charge sensitive amplifier, while the small one with voltage amplifier (sec \ref{sec:}).
 
-\begin{table}
-   \begin{center}
-   \begin{tabular}{|c | c |c |}
-   \hline
-   & small fill factor & large fill factor\\
-   \hline
-   \hline
-   small sensor C & $\surd$ ($<$ 5 fF) & $\times$ ($\sim$ 100-200 fF)\\
-   low noise & $\surd$ & $\times$\\
-   low cross talk & $\surd$ & $\times$ \\
-   velocity perfomances & $\surd$ & $\times$ ($\sim$ 100 ns)\\
-   short drift paths & $\times$ & $\surd$ \\
-   radiation hard & $\times$ & $\surd$ \\
-   \hline
-   \end{tabular}
-   \caption{Small and large fill factor DMAPS characteristics}
-   \label{tab:DMAPS_large_small_fillfactor}
-   \end{center}
-\end{table}
+      \begin{figure}[h!]
+         \centering\includegraphics[width=12cm]{figures/Pixel_detectors/DMAPS_capacity.png}
+         \caption{$C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$}
+         \label{fig:DMAPS_capacity}
+      \end{figure}
+      So, larger charge collection electrode sensors provide a uniform electric field in the bulk that results in short drift path and so in good collection properties, especially after irradiation, when trapping probability can become an issue. The drawback of a large fill-factor is the large capacity ($\sim$100 fF): this contributes to the noise and to a speed penalty and to a larger possibility of cross talk.
 
-\subsection{A modified sensor}
-A process modification that has become the standard solution to combine the carateristic of a small fill factor sensor (small input amplifier capacity) and of large fill factor sensor (uniform electric field) is the one carried out for ALICE upgrade about ten years ago (REFERENZA).\\
-A compromise between the two sensors could also be making smaller pixels but this solution requires reducing the electronic circuit area, so a completelly new pixel layout should be think. The advantageous of the modification lies in its versatility: both standard and modified sensor are often produced for testing in fact.\\
+      The small fill-factor variant, indeed, benefits from a small capacity (5-20 fF), but suffers from a not uniform electric field. \\
+      These two different types of sensor require different amplifier: the large elctrode one is coupled with the charge sensitive amplifier, while the small one with voltage amplifier (sec \ref{sec:}).
 
-The modification consists in inserting a low dose implant under the electrode: before the process modification the depletion region extends below the diode towards the substrate and it doesn't extend laterally so much even if a high bias is applied to the sensor (figure \ref{fig:modified_process}). \\
-After two distinct pn junctions are built: one between the deep p well and the $n^-$ layer, and the other between the $n^-$ and the $p^-$ epitaxial layer, extending to the all area of the sensor.\\
-Questa configurazione fa sì che si crei sotto l'elettrodo ($n^+$) si crei un minimo dove vengono 
-accumulati anche dalle regione laterali gli elettroni. 
-Il fatto che ci sia una zona di svuotamento dall'alto al basso che separi le zone drogate p, fa sì
-che psub e pwell si possando polarizzare in modo diverso\footnote{This is true a meno di altre 
-caratteristiche del sensore, come vedremo per MONOPIx1}.\\
-The doping concentration must be high enought to be greater than the epitaxial layer to prevent the punchthrought\footnote{COS?é il punchthrought?} between p-well and the substrate, but it must also be lower enought to allow the depletion without reaching too high bias.
-\begin{figure}
-   \centering
-   \includegraphics[width=.7\linewidth]{figures/modified_process.png}
-   \caption{A modied process}
-   \label{fig:modified_process}
-\end{figure}
+      \begin{table}
+         \begin{center}
+         \begin{tabular}{|c | c |c |}
+         \hline
+         & small fill factor & large fill factor\\
+         \hline
+         \hline
+         small sensor C & $\surd$ ($<$ 5 fF) & $\times$ ($\sim$ 100-200 fF)\\
+         low noise & $\surd$ & $\times$\\
+         low cross talk & $\surd$ & $\times$ \\
+         velocity perfomances & $\surd$ & $\times$ ($\sim$ 100 ns)\\
+         short drift paths & $\times$ & $\surd$ \\
+         radiation hard & $\times$ & $\surd$ \\
+         \hline
+         \end{tabular}
+         \caption{Small and large fill factor DMAPS characteristics}
+         \label{tab:DMAPS_large_small_fillfactor}
+         \end{center}
+      \end{table}
+
+   \subsection{A modified sensor}
+      A process modification that has become the standard solution to combine the carateristic of a small fill factor sensor (small input amplifier capacity) and of large fill factor sensor (uniform electric field) is the one carried out for ALICE upgrade about ten years ago (REFERENZA).\\
+      A compromise between the two sensors could also be making smaller pixels but this solution requires reducing the electronic circuit area, so a completelly new pixel layout should be think. The advantageous of the modification lies in its versatility: both standard and modified sensor are often produced for testing in fact.\\
+
+      The modification consists in inserting a low dose implant under the electrode: before the process modification the depletion region extends below the diode towards the substrate and it doesn't extend laterally so much even if a high bias is applied to the sensor (figure \ref{fig:modified_process}). \\
+      After two distinct pn junctions are built: one between the deep p well and the $n^-$ layer, and the other between the $n^-$ and the $p^-$ epitaxial layer, extending to the all area of the sensor.\\
+      Questa configurazione fa sì che si crei sotto l'elettrodo ($n^+$) si crei un minimo dove vengono 
+      accumulati anche dalle regione laterali gli elettroni. 
+      Il fatto che ci sia una zona di svuotamento dall'alto al basso che separi le zone drogate p, fa sì
+      che psub e pwell si possando polarizzare in modo diverso\footnote{This is true a meno di altre 
+      caratteristiche del sensore, come vedremo per MONOPIx1}.\\
+      The doping concentration must be high enought to be greater than the epitaxial layer to prevent the punchthrought\footnote{COS?é il punchthrought?} between p-well and the substrate, but it must also be lower enought to allow the depletion without reaching too high bias.
+      \begin{figure}
+         \centering
+         \includegraphics[width=.7\linewidth]{figures/Pixel_detectors/modified_process.png}
+         \caption{A modied process}
+         \label{fig:modified_process}
+      \end{figure}
 
 
 \section{Analog front end}
-After the creation of a signal on the electrode, the signal enters in the front end circuit (fig.\ref{fig:readout_scheme}), ready to be molded and transmitted out of chip.
-Low noise amplification, fast hit discrimination and an efficient, high-speed readout architecture, consuming as low power as possible  must be provided by the read out integrated electronics (ROIC).\\
-\begin{figure}
-   \centering
-   \includegraphics[width=1.\linewidth]{figures/readout_scheme.png}
-   \caption{Readout FE scheme: il preampl è un CSA, ma se ci metti un feedback resistivo puoi fare un voltage o current amplifier}
-   \label{fig:readout_scheme}
-\end{figure}
-Let's take a look to the main steps of the analog front end chain: the preamplifier (that actually often is the only amplification stage) with a reset to the baseline mechanism and a leakage current compensation, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio.
+   After the creation of a signal on the electrode, the signal enters in the front end circuit (fig.\ref{fig:readout_scheme}), ready to be molded and transmitted out of chip.
+   Low noise amplification, fast hit discrimination and an efficient, high-speed readout architecture, consuming as low power as possible  must be provided by the read out integrated electronics (ROIC).\\
+   \begin{figure}
+      \centering
+      \includegraphics[width=1.\linewidth]{figures/Pixel_detectors/readout_scheme.png}
+      \caption{Readout FE scheme: il preampl è un CSA, ma se ci metti un feedback resistivo puoi fare un voltage o current amplifier}
+      \label{fig:readout_scheme}
+   \end{figure}
+   Let's take a look to the main steps of the analog front end chain: the preamplifier (that actually often is the only amplification stage) with a reset to the baseline mechanism and a leakage current compensation, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio.
 
-\subsection{Preamplifier}
-Even if circuits on the silicon crystal are only costruct by CMOSS, a preamplifier can be modellized as an operational amplifier (OpAmp) where the gain is determined by the input and feedback impedance (first step in figure \ref{fig:readout_scheme}):
-\begin{equation}
-   G = \frac{v_{out}}{v_{in}} = \frac{Z_{f}}{Z_{in}}
-\end{equation}
-Depending on whether a capacity or a resistance is used as feedback, respectevely a charge or a voltage amplifier is used (figure \ref{fig:charge_voltage_ampl}). If the voltage input signal is large enought and have a sharp rise time, the voltage sensistive preamplifier is prefered. As already anticipated this flavor doen't suit to large fill factor MAPS whose signal is already enought high: $v_{in} = Q/C_{D} \approx$ 3fC/100 pF = 0.03 mV, but it's fine for the small fill factor ones: $v_{in} = Q/C_{D} \approx$ 3fC/3 pF = 1 mV.\\
-AVERE UN AMPLIFICATORE A BASSO RUMORE È IMPORTANTE PERCHÈ DOPO LO STADIO DI AMPL IL SEGNALE È ABB GRANDE PER CUI NON È COSÌ RILEVANTE INTRODURRE UN PO' DI RUMORE, INVECE PRIMA VIENE AMPLIFICATO.ABBIAMO GIÀ VISTO NELLA FORMULA SOPRA CHE IL RUMORE È INVERSAMENTE PROPORZIONALE ALLA TRASDUTTANZA, QUINDI CONVIENE FARNE UNA ALTA input transistor transconductance.
+   \subsection{Preamplifier}
+      Even if circuits on the silicon crystal are only costruct by CMOSS, a preamplifier can be modellized as an operational amplifier (OpAmp) where the gain is determined by the input and feedback impedance (first step in figure \ref{fig:readout_scheme}):
+      \begin{equation}
+         G = \frac{v_{out}}{v_{in}} = \frac{Z_{f}}{Z_{in}}
+      \end{equation}
+      Depending on whether a capacity or a resistance is used as feedback, respectevely a charge or a voltage amplifier is used (figure \ref{fig:charge_voltage_ampl}). If the voltage input signal is large enought and have a sharp rise time, the voltage sensistive preamplifier is prefered. As already anticipated this flavor doen't suit to large fill factor MAPS whose signal is already enought high: $v_{in} = Q/C_{D} \approx$ 3fC/100 pF = 0.03 mV, but it's fine for the small fill factor ones: $v_{in} = Q/C_{D} \approx$ 3fC/3 pF = 1 mV.\\
+      AVERE UN AMPLIFICATORE A BASSO RUMORE È IMPORTANTE PERCHÈ DOPO LO STADIO DI AMPL IL SEGNALE È ABB GRANDE PER CUI NON È COSÌ RILEVANTE INTRODURRE UN PO' DI RUMORE, INVECE PRIMA VIENE AMPLIFICATO.ABBIAMO GIÀ VISTO NELLA FORMULA SOPRA CHE IL RUMORE È INVERSAMENTE PROPORZIONALE ALLA TRASDUTTANZA, QUINDI CONVIENE FARNE UNA ALTA input transistor transconductance.
 
 
-In the case of a resistor feedback, if the signal duration time is longer than the discharge time  ($R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmit to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.\\
+      In the case of a resistor feedback, if the signal duration time is longer than the discharge time  ($R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmit to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.\\
 
-Il discriminatore è forse il componente più importante: 1 perchè ha un impatto semplice e diretto sul funzionamento del circuito, 2 perchè è un altro modo, applicando una soglia, per tagliare il rumore.
+      Il discriminatore è forse il componente più importante: 1 perchè ha un impatto semplice e diretto sul funzionamento del circuito, 2 perchè è un altro modo, applicando una soglia, per tagliare il rumore.
 
-\subsection{ALPIDE-like front end}
-I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state of art and most of the following designers took inspiration form that. Its FE became a standard for all the following chip: ARCADIA MD1 and Monopix1 are no exception, this is why I'm going to explain some principals characteristics of how it works. (CITA ARTICOLO)
-\begin{figure}[h!]
-   \centering
-   \includegraphics[width=.7\linewidth]{figures/ALPIDE_FE.png}
-   \caption{ALPIDE like FE}
-   \label{fig:ALPIDE-like}
-\end{figure}
+   \subsection{ALPIDE-like front end}
+      I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state of art and most of the following designers took inspiration form that. Its FE became a standard for all the following chip: ARCADIA MD1 and Monopix1 are no exception, this is why I'm going to explain some principals characteristics of how it works. (CITA ARTICOLO)
+      \begin{figure}[h!]
+         \centering
+         \includegraphics[width=.7\linewidth]{figures/Pixel_detectors/ALPIDE_FE.png}
+         \caption{ALPIDE like FE}
+         \label{fig:ALPIDE-like}
+      \end{figure}
 
-Carica fa un segnale negagtivo di $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$ su PIX IN. 
-M1 fa da source follower con IBIAS , costringendo la tensione al source a seguire la tensione di M1
-al gate. \\
-This causes transfer of charge 
-$Q_{source}=C_{source}\Delta V_{PIXIN}$ from $C_{source}$ to $C_{OUT}$ in case the current sink
-to GND is IBIAS.
-So ideally:
-\begin{equation}
-   \Delta V_{OUT_A} = \frac{C_{Source}}{C_{OUTA}}\frac{Q_{IN}}{C_{IN}}
-\end{equation}
-A second branch (M4, M5) is used to generate a low frequency feedback. 
-The voltage bias
-VCASN and current bias ITHR define the baseline value of OUTA and the return to baseline after
-a particle hit. The distance of the OUT A baseline voltage to the point where
-IM8 = IDB defines the charge threshold.
-  
+      Carica fa un segnale negagtivo di $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$ su PIX IN. 
+      M1 fa da source follower con IBIAS , costringendo la tensione al source a seguire la tensione di M1
+      al gate. \\
+      This causes transfer of charge 
+      $Q_{source}=C_{source}\Delta V_{PIXIN}$ from $C_{source}$ to $C_{OUT}$ in case the current sink
+      to GND is IBIAS.
+      So ideally:
+      \begin{equation}
+         \Delta V_{OUT_A} = \frac{C_{Source}}{C_{OUTA}}\frac{Q_{IN}}{C_{IN}}
+      \end{equation}
+      A second branch (M4, M5) is used to generate a low frequency feedback. 
+      The voltage bias
+      VCASN and current bias ITHR define the baseline value of OUTA and the return to baseline after
+      a particle hit. The distance of the OUT A baseline voltage to the point where
+      IM8 = IDB defines the charge threshold.
+      
 \section{Readout logic}
-Readout logic includes the part of the circuit which takes the FE output singal, processes it and then trsamit it out of pixel and/or out of chip; depending on what data one wants to store, different readout characteristics must be provided. 
+   Readout logic includes the part of the circuit which takes the FE output singal, processes it and then trsamit it out of pixel and/or out of chip; depending on what data one wants to store, different readout characteristics must be provided. 
 
-To store the analogical informations (i.e. charge collected, evolution of signal in time, ...) big buffers and a big bandwidth are needed; the problem that doesn't occur, or better occur only really high rate, if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded).\\
-A common compromise often made is to save the time over threshold (ToT) of the pulse in clock cycle counts; this is a relatively coarse requirement (ToT could be trimmer to be less then a dozen bits) but, being correlated with the deposited charge by the impinging particle in the detector, it provides a sufficent information.\\
-
-
-RISISTEMA: 
-The ToT method is essentially a Time to Digital Conversion (TDC) using the BCID
-time stamp to measure the number of clock cycles during which the signal is higher than the
-discriminator threshold. The BCID time stamp is latched into local registers when the leading
-edge and trailing edge transitions are detected, and the ToT is obtained by their difference.
-The ToT should ideally be
-an almost linear function of the input charge, that is usually achieved by a constant current
-reset mechanism. The discharge current that determines the ToT slope is adjusted according to
-the desirable resolution, the BCID time stamp frequency and number of bits and the readout
-architecture capabilities
-
-BANDA-MEMORIA-\\
-Moreover the readout architetcture can be full, if every hit from every pixel must eventually
-make its way to the data output, or triggered, if hits are recorded during a trigger signal.
-Again, on the one hand the triggered-readout needs buffers and storage memories
-(therfore needs space on the pixel are to accomodate them), on the other the full readout,
-because there is no need to store hit data on chip, needs an high enough bandwidth.\\
-I will now give some hints about the optimization between this two trends.
-
-If all the pixels in a column share a data bus to the EoC and only one pixel at a time can
-be use and there aren't any storage memory, the column (si comporta) as a single
-server queue and the probability for waiting a time greater than $t$ with an input
-hit rate $\mu$ in a column and an output bandwidt $B_W$ is:
-\begin{equation}
-P(T > t) = \frac{\mu}{B_W} e^{-( B_W-\mu )t}
-\end{equation}
-To avoid hit loss (let's neglect the contribution to the inefficency of the dead
-time $\tau$), for example imponing $P(T > t)\sim$0.001, one obtains
-$(B_W -\mu)t_t\sim$6, where $t_t$ is the time to transfer the hit;
-since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth.
-
-If shift registers (SR) are used to transfer data instead of buses the bandwidth $B_W$
-of the SR corresponds to the clock speed; differently from the bus case, each pixel
-sees a different bandwidth depending on the position on the queue: the first pixel
-in the priority logic chain , that is the closest pixel to the EoC typically,
-sees a full bandwidth, but the next pixel sees less bandwidth because
-occasionally it will be blocked by data from the previou pixel.\\
-Then the condition about the bandwidth and the hit rate become: $B_{W,i} > \mu_{i}$,
-where the index $i$ means the requirement is for a single pixel. If all the pixels
-on the same column
-have the same rate $\mu = N\mu_{i}$ and the condition become $B_{W} > \mu$.
-The bandwidth must be chosen such that the mean time between hits of the last pixel
-in the readout chain is bigger than that.\\
-Questa condizione tra banda e rate sulla colonna ci dice già una cosa importante:
-il fatto che l'algoritmo di lettura column drain non è scalabile: infatti se aumento
-il numero di pixel sulla stessa linea di lettura rischio di violare la condizione.\\
-La scalabilità risiede quindi nel poter utilizzare tanti chip piccoli.\\
+   To store the analogical informations (i.e. charge collected, evolution of signal in time, ...) big buffers and a big bandwidth are needed; the problem that doesn't occur, or better occur only really high rate, if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded).\\
+   A common compromise often made is to save the time over threshold (ToT) of the pulse in clock cycle counts; this is a relatively coarse requirement (ToT could be trimmer to be less then a dozen bits) but, being correlated with the deposited charge by the impinging particle in the detector, it provides a sufficent information.\\
 
 
-If instead the hits are stored in buffers until a trigger signal arrives, the input rate
-to column bus is reduced as $\mu'=\mu t$, where $t$ is the trigger rate.
-This implies that $B_{W} \gtrsim \mu'$, that is a very relaxed condition on the
-bandwidth, but the limiting factor is the amount of memory  which the pixel area
-can host; the amount needed depends on the trigger frequency 1/$t$ as
-$\propto\mu/t$, that means that the highter the trigger frequency and the highter
-the hit rate that can be handled. \\
-In order to have an efficient use of memory on pixel area it's convenient
-grouping pixels into regions with shared storage. Let's look what happens when
-single pixel local storage is used: for example, suppose to have a 50 kHz single
-pixel hits rate and a trigger frequency of 1/5 microseconds, allora il rapporto dei due
-è 0.25 e cioè il numero medio di hit perse per trigger signal.\\
-usando la statistica di Poisson, uno dovrebbe storare 3 hit per pixel se volesse
-raggiungere il 99.9 per cento di efficienza.\\
-Consideriamo cosa succede se faccio un gruppo di quattro pixel: allora se il rate
-medio di 1 hit sui 4 pixel (sempre 50 khz di single pixel) per ogni trigger signal, allora se volessi un'eff di 99.9
-avrei bisogno di un buffer depht of 5 region-hits. Quindi significa che in media per
-ogni pixel avrei 5/4 = 1.25 buffer depht, minore di quello di prima.\\
-L'architettura di lettura che colloca i pixel in regioni da 4 si chiama FE-I4.\\
+   RISISTEMA: 
+   The ToT method is essentially a Time to Digital Conversion (TDC) using the BCID
+   time stamp to measure the number of clock cycles during which the signal is higher than the
+   discriminator threshold. The BCID time stamp is latched into local registers when the leading
+   edge and trailing edge transitions are detected, and the ToT is obtained by their difference.
+   The ToT should ideally be
+   an almost linear function of the input charge, that is usually achieved by a constant current
+   reset mechanism. The discharge current that determines the ToT slope is adjusted according to
+   the desirable resolution, the BCID time stamp frequency and number of bits and the readout
+   architecture capabilities
 
-One standard way to reduce the readout bandwidth is to implement the zero suppression
-on the pixel: only informations about channels with an hit (when signal exceeds
-the discriminator threshold) are read.
-Per gli esperimenti agli acceleratori, e soprattutto per gli esperimenti che
-intendono aumentare la luminosita, è sicuramente di particolare importanza
-l'occupancy dei pixel: sia il rate del noise va mantenuto basso, sia un
-bisogna prestare attenzione al pile up.
-L'occupancy tra le altre cose dipende dalla differenza tra threshold e offset del
-segnale, per cui uno può agire sulla soglia per poterla cambiare.\\
-FORMULA? slide APSEL\\
-Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere
-il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
+   BANDA-MEMORIA-\\
+   Moreover the readout architetcture can be full, if every hit from every pixel must eventually
+   make its way to the data output, or triggered, if hits are recorded during a trigger signal.
+   Again, on the one hand the triggered-readout needs buffers and storage memories
+   (therfore needs space on the pixel are to accomodate them), on the other the full readout,
+   because there is no need to store hit data on chip, needs an high enough bandwidth.\\
+   I will now give some hints about the optimization between this two trends.
 
-\subsection{Colum-drain readout}
-COLUM DRAIN READ OUT\\
-Il modo con cui vengono lette le hit su una matrice è il column drain readout.\\
-The simple 3T (three transistor) readout has a row select, a
-source-follower buffer and an input baseline reset;
+   If all the pixels in a column share a data bus to the EoC and only one pixel at a time can
+   be use and there aren't any storage memory, the column (si comporta) as a single
+   server queue and the probability for waiting a time greater than $t$ with an input
+   hit rate $\mu$ in a column and an output bandwidt $B_W$ is:
+   \begin{equation}
+   P(T > t) = \frac{\mu}{B_W} e^{-( B_W-\mu )t}
+   \end{equation}
+   To avoid hit loss (let's neglect the contribution to the inefficency of the dead
+   time $\tau$), for example imponing $P(T > t)\sim$0.001, one obtains
+   $(B_W -\mu)t_t\sim$6, where $t_t$ is the time to transfer the hit;
+   since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth.
+
+   If shift registers (SR) are used to transfer data instead of buses the bandwidth $B_W$
+   of the SR corresponds to the clock speed; differently from the bus case, each pixel
+   sees a different bandwidth depending on the position on the queue: the first pixel
+   in the priority logic chain , that is the closest pixel to the EoC typically,
+   sees a full bandwidth, but the next pixel sees less bandwidth because
+   occasionally it will be blocked by data from the previou pixel.\\
+   Then the condition about the bandwidth and the hit rate become: $B_{W,i} > \mu_{i}$,
+   where the index $i$ means the requirement is for a single pixel. If all the pixels
+   on the same column
+   have the same rate $\mu = N\mu_{i}$ and the condition become $B_{W} > \mu$.
+   The bandwidth must be chosen such that the mean time between hits of the last pixel
+   in the readout chain is bigger than that.\\
+   Questa condizione tra banda e rate sulla colonna ci dice già una cosa importante:
+   il fatto che l'algoritmo di lettura column drain non è scalabile: infatti se aumento
+   il numero di pixel sulla stessa linea di lettura rischio di violare la condizione.\\
+   La scalabilità risiede quindi nel poter utilizzare tanti chip piccoli.\\
+
+
+   If instead the hits are stored in buffers until a trigger signal arrives, the input rate
+   to column bus is reduced as $\mu'=\mu t$, where $t$ is the trigger rate.
+   This implies that $B_{W} \gtrsim \mu'$, that is a very relaxed condition on the
+   bandwidth, but the limiting factor is the amount of memory  which the pixel area
+   can host; the amount needed depends on the trigger frequency 1/$t$ as
+   $\propto\mu/t$, that means that the highter the trigger frequency and the highter
+   the hit rate that can be handled. \\
+   In order to have an efficient use of memory on pixel area it's convenient
+   grouping pixels into regions with shared storage. Let's look what happens when
+   single pixel local storage is used: for example, suppose to have a 50 kHz single
+   pixel hits rate and a trigger frequency of 1/5 microseconds, allora il rapporto dei due
+   è 0.25 e cioè il numero medio di hit perse per trigger signal.\\
+   usando la statistica di Poisson, uno dovrebbe storare 3 hit per pixel se volesse
+   raggiungere il 99.9 per cento di efficienza.\\
+   Consideriamo cosa succede se faccio un gruppo di quattro pixel: allora se il rate
+   medio di 1 hit sui 4 pixel (sempre 50 khz di single pixel) per ogni trigger signal, allora se volessi un'eff di 99.9
+   avrei bisogno di un buffer depht of 5 region-hits. Quindi significa che in media per
+   ogni pixel avrei 5/4 = 1.25 buffer depht, minore di quello di prima.\\
+   L'architettura di lettura che colloca i pixel in regioni da 4 si chiama FE-I4.\\
+
+   One standard way to reduce the readout bandwidth is to implement the zero suppression
+   on the pixel: only informations about channels with an hit (when signal exceeds
+   the discriminator threshold) are read.
+   Per gli esperimenti agli acceleratori, e soprattutto per gli esperimenti che
+   intendono aumentare la luminosita, è sicuramente di particolare importanza
+   l'occupancy dei pixel: sia il rate del noise va mantenuto basso, sia un
+   bisogna prestare attenzione al pile up.
+   L'occupancy tra le altre cose dipende dalla differenza tra threshold e offset del
+   segnale, per cui uno può agire sulla soglia per poterla cambiare.\\
+   FORMULA? slide APSEL\\
+   Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere
+   il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
+
+   \subsection{Colum-drain readout}
+      COLUM DRAIN READ OUT\\
+      Il modo con cui vengono lette le hit su una matrice è il column drain readout.\\
+      The simple 3T (three transistor) readout has a row select, a
+      source-follower buffer and an input baseline reset;
 
