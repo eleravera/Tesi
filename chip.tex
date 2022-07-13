@@ -77,7 +77,13 @@ A changing in the doping concentration requires an adjust of the biasing of the 
 Different choises for substate resistivity, for junctions type and for detector design are typically made: some material with high oxygen concentration (as crystall produced using Czochralki (Cz) or float-zone (Fz) process) for example, show a compensation effect for radiation damage\footnote{High” Resistivity Substrate (or epi)
 Wafers 100 Ohm cm – kOhm cm}. An other example is the usage of n+ -in-p/n sensors (even if p+ -in-n sensors are easier and chieper to obtain) to get advantage of inversion/to haven't inversion ( since they are already p-type); after inversion the n+p boudary, coming from n+ in-n, and the depletion zone still must be placed near the diode\footnote{An with inversion some isolation process of electrodes can become important and p-spray/p-stop tecnique can eventually be applied}.
 
+\section{Hybrid pixels}
+
+\subsection{Hybrid pixels vs MAPS}
+
+
 \section{MAPS and DMPAS}
+
 Before talking about MAPS let's look for a while at the current state of art for pixel detectors, hybrid pixels, and brefly compare them to the more innovative MAPS.
 
 Hybrid pixels are made by two parts (fig. \ref{fig:hybrid_scheme}), the sensor and the electronics: for each pixel this two parts are welded together through microconnection (bump bond) using the so called flip-chipping technique.\\
@@ -200,13 +206,14 @@ The doping concentration must be high enought to be greater than the epitaxial l
 
 \section{Analog front end}
 After the creation of a signal on the electrode, the signal enters in the front end circuit (fig.\ref{fig:readout_scheme}), ready to be molded and transmitted out of chip.
+Low noise amplification, fast hit discrimination and an efficient, high-speed readout architecture, consuming as low power as possible  must be provided by the read out integrated electronics (ROIC).\\
 \begin{figure}
    \centering
    \includegraphics[width=1.\linewidth]{figures/readout_scheme.png}
    \caption{Readout FE scheme: il preampl è un CSA, ma se ci metti un feedback resistivo puoi fare un voltage o current amplifier}
    \label{fig:readout_scheme}
 \end{figure}
-The main steps of the front end chain are: the preamplifier (that actually often is the only amplification stage) with a reset to the baseline mechanism, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio.
+Let's take a look to the main steps of the analog front end chain: the preamplifier (that actually often is the only amplification stage) with a reset to the baseline mechanism and a leakage current compensation, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio.
 
 \subsection{Preamplifier}
 Even if circuits on the silicon crystal are only costruct by CMOSS, a preamplifier can be modellized as an operational amplifier (OpAmp) where the gain is determined by the input and feedback impedance (first step in figure \ref{fig:readout_scheme}):
@@ -214,7 +221,12 @@ Even if circuits on the silicon crystal are only costruct by CMOSS, a preamplifi
    G = \frac{v_{out}}{v_{in}} = \frac{Z_{f}}{Z_{in}}
 \end{equation}
 Depending on whether a capacity or a resistance is used as feedback, respectevely a charge or a voltage amplifier is used (figure \ref{fig:charge_voltage_ampl}). If the voltage input signal is large enought and have a sharp rise time, the voltage sensistive preamplifier is prefered. As already anticipated this flavor doen't suit to large fill factor MAPS whose signal is already enought high: $v_{in} = Q/C_{D} \approx$ 3fC/100 pF = 0.03 mV, but it's fine for the small fill factor ones: $v_{in} = Q/C_{D} \approx$ 3fC/3 pF = 1 mV.\\
-In the case of a resistor feedback, if the signal duration time is longer than the discharge time  ($R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmit to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.
+AVERE UN AMPLIFICATORE A BASSO RUMORE È IMPORTANTE PERCHÈ DOPO LO STADIO DI AMPL IL SEGNALE È ABB GRANDE PER CUI NON È COSÌ RILEVANTE INTRODURRE UN PO' DI RUMORE, INVECE PRIMA VIENE AMPLIFICATO.ABBIAMO GIÀ VISTO NELLA FORMULA SOPRA CHE IL RUMORE È INVERSAMENTE PROPORZIONALE ALLA TRASDUTTANZA, QUINDI CONVIENE FARNE UNA ALTA input transistor transconductance.
+
+
+In the case of a resistor feedback, if the signal duration time is longer than the discharge time  ($R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmit to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.\\
+
+Il discriminatore è forse il componente più importante: 1 perchè ha un impatto semplice e diretto sul funzionamento del circuito, 2 perchè è un altro modo, applicando una soglia, per tagliare il rumore.
 
 \subsection{ALPIDE-like front end}
 I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state of art and most of the following designers took inspiration form that. Its FE became a standard for all the following chip: ARCADIA MD1 and Monopix1 are no exception, this is why I'm going to explain some principals characteristics of how it works. (CITA ARTICOLO)
@@ -242,9 +254,22 @@ a particle hit. The distance of the OUT A baseline voltage to the point where
 IM8 = IDB defines the charge threshold.
   
 \section{Readout logic}
-Readout logic means the part of the circuit which takes the FE output singal, processes it and then tramitprovideds it out of pixel and/or out of chip; depending on what one wants to store different readout characteristics must be provided. \\
-To store the analogical informations (i.e. charge collected, evolution of signal in time, ...) big buffers and a big bandwidth are needed; a problem that doesn't occur if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded).\\
-A common compromise made is to save the time over threshold (ToT) of the pulse; this is a relatively coarse requirement (ToT is less then a dozen bits) but, being correlated with the deposited charge by the impinging particle in the detector, it provides a sufficent information.
+Readout logic includes the part of the circuit which takes the FE output singal, processes it and then trsamit it out of pixel and/or out of chip; depending on what data one wants to store, different readout characteristics must be provided. 
+
+To store the analogical informations (i.e. charge collected, evolution of signal in time, ...) big buffers and a big bandwidth are needed; the problem that doesn't occur, or better occur only really high rate, if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded).\\
+A common compromise often made is to save the time over threshold (ToT) of the pulse in clock cycle counts; this is a relatively coarse requirement (ToT could be trimmer to be less then a dozen bits) but, being correlated with the deposited charge by the impinging particle in the detector, it provides a sufficent information.\\
+
+
+RISISTEMA: 
+The ToT method is essentially a Time to Digital Conversion (TDC) using the BCID
+time stamp to measure the number of clock cycles during which the signal is higher than the
+discriminator threshold. The BCID time stamp is latched into local registers when the leading
+edge and trailing edge transitions are detected, and the ToT is obtained by their difference.
+The ToT should ideally be
+an almost linear function of the input charge, that is usually achieved by a constant current
+reset mechanism. The discharge current that determines the ToT slope is adjusted according to
+the desirable resolution, the BCID time stamp frequency and number of bits and the readout
+architecture capabilities
 
 BANDA-MEMORIA-\\
 Moreover the readout architetcture can be full, if every hit from every pixel must eventually
@@ -317,7 +342,9 @@ FORMULA? slide APSEL\\
 Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere
 il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
 
+\subsection{Colum-drain readout}
 COLUM DRAIN READ OUT\\
 Il modo con cui vengono lette le hit su una matrice è il column drain readout.\\
 The simple 3T (three transistor) readout has a row select, a
 source-follower buffer and an input baseline reset;
+

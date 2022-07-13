@@ -1,5 +1,3 @@
-\section{ARCADIA-MD1}
-
 ARCADIA-MD1 is an LFoundry chip which implements the technology 110 nm CMOSS node
 with six metal layer \ref{articolo fully depl}.
 The standard p-type substrate was replaced with an n-type floating zone material,
@@ -30,9 +28,8 @@ dopo arcadia: technology demonstration with large area sensors
 Small scale demo SEED(sensor with embedded electronic developement)
 Quanto spazio dato all'elettronica sopra il pwell e quanto al diodo. ..
 
-
-
-\subsection{Matrix division}
+\section{Readout logic and data structure}
+\subsection{Matrix division and data-packets}
 The matrix is divided into an internal physical and logical hierarchy:
 The 512 columns are divided in 16 section: each section has different voltage-bias + serializzatori.
 Each section is devided in cores () in modo che in ogni doppia colonna ci siano 1Pacchetto dei dati
@@ -48,7 +45,7 @@ to implement complex functionality in the pixel matrix, sharing resources among
 many pixels as needed.".
 pagina 28 della review.\\
 
-
+\section{From SEED to MD2}
 
 
 TABELLA: con la gerarchia del chip
@@ -63,8 +60,3 @@ Nel chip trovi diverse padframe: cosa c'è nelle padframe e End of section.
 "DC-balance avoids low frequencies by guaranteeing at least one transition every
 n bits; for example 8b10b encoding n =5"
 
-
-\subsection{Front end description}
-ALPIDE (ALice PIxel Detector) like.
-Spiegazione del circuito. Articolo di Kim perfetto + tesi di Moustakas.
-Come possiamo cambiare i parametri del FE.

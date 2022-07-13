@@ -1,1 +1,60 @@
-\section{Flash therapy}
+La radioterapia si usa nel 60 per cento dei pazienti, sia come cura che come trattamento palliativo. Si associa spesso ad altre cure e si può fare prima/durante/dopo un intervento.\\
+
+Si può fare in modi diversi: da dentro (brachytherapy) oppure da fuori (quella standard). Un requisito importante è la delinazione del target (non vuoi rischiare di beccare i tessuti sani), per cui prima tipicamente si fanno esami di imaginig del tumore. TIpicamente anche gli acceleratori stessi per la terapia sono provvisti di radiografia.
+
+Un problema dei fotoni ad esempio è che il loro rilascio di dose è lineare, per cui danneggi anche i tessuti sani. Il problema dei protoni invece è che hanno un picco troppo strtto per cui non puoi coprire grosse zone e sorpattuto se sbagli rischi davvero di danneggiare moooolto i tessuti sani.\\
+
+\section{Cell survival curves}
+Curva di efficacia del trattamento in funzione della dose:
+\begin{equation}
+    \frac{S(D)}{S(0)}=e^{-F(D)}
+\end{equation} 
+dove F(D)   
+\begin{equation}
+    F(D) = \alpha D + \beta D^2
+\end{equation} 
+dove $\alpha$ e $\beta$ rappresentano due tipi di danno diversi: coefficients, experimentally determined, characterizing the
+radiation response of cells. In particularly, alpha represents the rate of cell killing
+by single ionizing events, while beta indicates the maximal rate of cell killing by
+double hits observed when the repair mechanisms do not activate during the
+radiation exposure.
+Si ottiene una curva di sopravvivenza dove si vede la possibilità delle cellule di autoripararsi. A basse dosi infatti le cellule possono ripararsi.\\
+
+Per introdurre l'effetto FLASH instroduco prima la therapeutic window.  \\
+
+TCP è la tumor control Probability che indica la probabilità delle cellule del tumore di essere uccise dopo una certa dose (con in riferimento a dose in acqua)\\
+Se una media di $\mu(D)$ di cellule di tumore are killed con una dose D, la probabilità che n cellule sopravvivono è data da $P(n|\mu)$ poisson:
+\begin{equation}
+    P(n|\mu) = \frac{\mu(D)^ne^{-\mu(D)}}{n!}
+\end{equation}    
+
+\begin{equation}
+    TPC(D) = P(n=0|\mu(D))= e^{-\mu(D)}
+\end{equation} 
+D'altra parte hai una probabilità di fare danno su normal tissue NTCP Normal Tissue Complication Probability, che rappresenta il problema principale e che limita la massima radiazione erogabile\\
+Una scelta bilanciata si applica guardando a questi due fattori; si usa il therapeutic index definito come TCP/NTCP.\\
+La cosa ottimale è ampliare la finestra del therapeutic ratio.\\
+
+
+CONV-RT 0.01-5 Gy/min. A typical RT regime today consists of daily franctions of 1.5 to 3 Gy given over several weeks.\\
+Nell Intra operative radiation therapy (IORT), where they reach values respectively about
+20 and 100 times greater than those of conventional radiation therapy.
+
+FLASH vuole ultrahigh mean dose-rate (maggione di 40 Gy/s) in modo da ridurere anche il trattamento a meno di un secondo. \\
+
+
+
+\section{FLASH effect}
+Ci sono due effetti che affect the flsh effect and la sua applicabilità: Dose rate effect e oxygen\\
+
+Cellule che esibiscono hypoxia (cioè cellule che non hanno ossigeno sono radioresistenti); al contrario normoxia e physoxia non lo sono.
+la presenza di ossigeno rende la curva steeper indicando che lo stesso danno si raggiunge a livelli di dose più bassi rispetto al caso senza ossigeno.\\
+FIGURA con una curva a confronto con e senza ossigeno.\\
+Typically, the OER is in the order of 2.5–3.5 for most cellular systems
+
+
+Quindi si vogliono sfruttare questi effetti per diminuire la tossicità sui tessuti sani\\
+
+
+
+
