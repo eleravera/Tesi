@@ -7,10 +7,11 @@
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{comment}
 \usepackage[utf8]{inputenc}
-\usepackage[style=authoryear,backend=biber]{biblatex}
-\addbibresource{references.bib}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}%style=alphabetic 
+\addbibresource{bib/bibliography.bib}
 
 \renewcommand*\contentsname{Summary}
 
@@ -21,27 +22,30 @@
 
 
 \chapter{Introduction}
-\input{introduction}
+\input{tex/introduction}
 
 \chapter{Pixel detectors}
-\input{Chip}
+\input{tex/Chip}
 
 \chapter{Use of pixels detector}
-\input{usage_of_pixel_detectors}
+\input{tex/usage_of_pixel_detectors}
 
 \chapter{TJ-Monopix1}
-\input{Monopix1}
+\input{tex/Monopix1}
 
 \chapter{Arcadia-MD1}
-\include{Arcadia-MD1}
+\input{tex/Arcadia-MD1}
 
 \chapter{Threshold and noise characterization}
-\include{threshold_noise}
+\input{tex/threshold_noise}
 
 \appendix
+\chapter{Pixels detector: a brief overview}
+\input{tex/Pixels_overview}
+
 \chapter{FLASH radiotherapy}
-\include{FLASH-therapy}
+\input{tex/FLASH-therapy}
 
 
-\printbibliography
+\printbibliography[heading=bibintoc, title={Bibliography}] 
 \end{document}
