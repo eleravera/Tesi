@@ -1,0 +1,48 @@
+\section{Threshold and noise: figure of merit for pixel detectors}
+The signal to threshold ratio is the figure of merit for pixel detectors.\\
+
+la soglia deve essere abb alta da tagliare il rumore ma abb bassa da non perdere efficienza.\\
+Invece di prendere il rapporto segnale rumore prendi il rapporto segnale soglia. Perchè?
+la soglia è collegato al rumore, nel senso che: supponiamo di volere un occupancy di 10-4
+allora sceglierò la soglia in base a questo. (plot su quaderno)
+Da questo conto trovo la minima soglia mettibile\\
+In realtà quello che faccio è mettere una soglia un po' più grande perchè il rate di rumore
+dipende da molti fattori quali la temperatura, l anneling ecc, e non voglio che cambiando leggermente
+uno di questi parametri vedo alzarsi molto il rate di rumore. In realtà non è solo il
+rumore sensibile a diversi fattori, ma anche la soglia: ad esempio la cosa classica è
+la variabilità della soglia da pixel a pixel.\\
+In questo modo rumore e soglia diventano parenti.\\
+Review pag 26.
+
+The noise requirement can be expressed as:
+
+
+Questo implica tra le altre cose che voglio poter assegnare delle soglie diverse
+a diversi pixel: Drawback è dare spazio per registri e quantaltro.\\
+Questo lascia però ancora aperto il problema temporale delle variazioni del rumore:
+problema per cui diventano necessarie le misure dei sensori dopo l'irraggiamento.\\
+
+
+Per arcadia i registri (c'è un DAC) per la soglia (VCASN) si trovano in periferia.
+Non fare trimming sulla soglia è uno dei problemi che si sono sempre incontrati: a casusa dei mismatch dei transistor
+le soglie efficaci pixel per pixel cambiano tanto.
+La larghezza della s curve è il noise se assumi che il noise è gaussiano
+
+
+Il trimming della soglia avviene con dei DAC: la dispersione della soglia dopo al tuning e dovuta al dac è: 
+\begin{equation}
+    \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
+\end{equation}
+dove il numero di bit cambia varia tra 3-7 tipicamente. Monopix è 7 Arcadia 6\\
+
+Each ROIC is different in this respect, but in general the minimum stable threshold was around 2500 electrons (e) in 1st generation ROICs, whereas it will be around 500 e for the 3rd generation. This reduction has been deliberate: required by decreasing input signal values. Large pixels (2  104 um2), thick sensors (maggiore di200 um), and moderate sensor radiation damage for 1st generation detectors translated into expected signals of order 10 ke, while small pixels (0.25  104 um2), thinner sensors (100 um), and heavier sensor radiation damage will lead to signals as low as 2 ke atthe HL-LHC\\
+The ENC can be directly calculated by the Cumulative Distribution Function (CDF) (scurve) obtained from the discriminator "hit" pulse response to multiple charge injections
+
+
+\section{TJ-Monopix1 characterization}
+Com'è fatto il set up per le misure.\\
+FPGA BB, Chip con FE board, qualche foto\\
+
+\section{ARCADIA-MD1 characterization}
+Com'è fatto il set up per le misure.\\
+FPGA BB, Chip con FE board, qualche foto\\
