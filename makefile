@@ -18,7 +18,7 @@ bib: $(BBL)
 
 $(BBL): $(BIB) | $(AUX)
 	pdflatex $(MAIN)
-	biber -W $(AUX)
+	biber -W $(NAME)
 
 $(AUX):
 	pdflatex $(MAIN)
