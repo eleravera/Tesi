@@ -1,11 +1,30 @@
 
-Epitaxial layer thickness: più grande è e più carica viene depositata da una MIP, però devi fare attenzione alla forma della zona svuotata perchè può portare ad un aumento della charge sharing tra pixel vicini. Se il diodo è molto piccolo rischi che l'efficienza di collection è diminutia perchè l'intensità del campo elettrico è più bassa intorno al diodo, e hai più charge sharing.\\
+The TJ-Monopix chip series, as the name suggests, is fabricated by ToweJazz with 180 CMOS imaging process with the goal to find a sensor suitable for future upgrade of experiments.\\
+With the same intention and to compare each other \cite{LF-TJ-Monopix}, an other similar sensor has been fabricated bt LFoundrywith 150 CMOSS thecnology: the LF-Monopix is a large-fill factor DMPAS while the TJ-Monopix has a small fill-factor electrode, but both implements a column drain read out with ToT cabability.
+
+
+\begin{table}
+    \begin{center}
+    \begin{tabular}{|c | c |c |}
+    \hline
+    & LF-Monopix & TJ-Monopix\\
+    \hline
+    \hline
+
+    \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:LF-TJ-Monopix}
+    \end{center}
+ \end{table}
+The modified process employed in TJ-Monopix1 makes use of () $\mu$  thick high resistivity (> 1 k$\Omega$ cm), p-type epitaxial layer grown on a low-ohmic p+ substrate wafer and a low dose implant ().\\
+
 50x50 um2 e l'elettrodo è 3 um
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
-    \caption{Cross scheme of a modified sensor of TJ-Monopix1}
+    \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix 180 nm with modified process; additionaly in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field}
     \label{fig:Monopix1_section_scheme}
  \end{figure}
 
@@ -35,7 +54,7 @@ Epitaxial layer thickness: più grande è e più carica viene depositata da una 
     Source follower per disaccoppiare shaper e LF feedback.\\
 
 
-\section{Readout logic}
+\section{Readout logic and sata-packets structure}
     viene da lf monopix\\
     TJ monopix ha un colum drain readout proven by the ATLAS FEI3 front end chip (
     I. Peric et al., The FEI3 readout chip for the ATLAS pixel detector,
@@ -57,9 +76,6 @@ Epitaxial layer thickness: più grande è e più carica viene depositata da una 
         \label{fig:readout_timing}
     \end{figure}
     
-
-    \subsection{Data-packets structure}
-
     \subsection{Dead time measurement}
 
 \section{From TJ-Monopix1 to Obelix}
@@ -72,3 +88,5 @@ Epitaxial layer thickness: più grande è e più carica viene depositata da una 
         \label{fig:TJ180nm}
     \end{figure}
 
+\section{Applicability to FLASH}
+Epitaxial layer thickness: più grande è e più carica viene depositata da una MIP, però devi fare attenzione alla forma della zona svuotata perchè può portare ad un aumento della charge sharing tra pixel vicini. Se il diodo è molto piccolo rischi che l'efficienza di collection è diminutia perchè l'intensità del campo elettrico è più bassa intorno al diodo, e hai più charge sharing.\\

@@ -1,7 +1,7 @@
 \section{Hybrid pixels}
-   Hybrid pixels are made by two parts (fig. \ref{fig:hybrid_scheme}), the sensor and the electronics: for each pixel this two parts are welded together through microconnection (bump bond) using the so called flip-chipping technique.\\  
-   Hybrid pixels provide a practical system where readout and sensor, being independent, can be optimize separately although the particular and sophisticated procedure to bond sensor and ASIC makes them difficult to produce and to test (sensor can't be test separatelly but need to be connected with the readout), delicate, especially for high levels of radiation, and also expensive. \\
-   An hot topic for accelerator experiment is the material budget that represents the main limit for momentum measurement resolution in a magnetic field; since hybrid are thicker ($\sim$ hundreds $\mu m$) than monolithic ones (even less than 100 $\mu m$), using the latter the material budget can be down by a third: typical value for hybrid pixels is 1.5 \% $X_0$ per layer.\\
+   Hybrid pixels are made of two parts (fig. \ref{fig:hybrid_scheme}), the sensor and the electronics: for each pixel these two parts are welded together through microconnection (bump bond) using the so called flip-chipping technique.\\  
+   Hybrid pixels provide a practical system where readout and sensor, being independent, can be optimized separately, although the particular and sophisticated procedure to bond sensor and ASIC makes them difficult to produce and to test, as sensors cannot be tested without connecting them to the readout. In addition delicate, especially for high levels of radiation, and also expensive. \\
+   A critical parameter for accelerator experiments is the material budget, which represents the main limit for momentum measurement resolution in a magnetic field; since hybrid pixels are thicker ($\sim$ hundreds of $\mu m$) than monolithic ones ($\lessapprox$ 100 $\mu m$), using the latter the material budget can be down by a third: typical value for hybrid pixels is 1.5 \% $X_0$ per layer.\\
    Among other disadvantages of hybrid pixels there is the bigger power consumption that implies, by the way, a bigger cooling system that implies in turn increase in material too.
 
    \begin{figure}
@@ -142,22 +142,18 @@
          \caption{ALPIDE like FE}
          \label{fig:ALPIDE-like}
       \end{figure}
-
-      Carica fa un segnale negagtivo di $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$ su PIX IN. 
-      M1 fa da source follower con IBIAS , costringendo la tensione al source a seguire la tensione di M1
-      al gate. \\
-      This causes transfer of charge 
-      $Q_{source}=C_{source}\Delta V_{PIXIN}$ from $C_{source}$ to $C_{OUT}$ in case the current sink
-      to GND is IBIAS.
-      So ideally:
+      The amplification is done by the trasmition of charge from a bigger capcaity, $C_{source}$, to a smaller one, $C_{out}$: the input transistor M1 with current source IBIAS acts as a source follower and this forces the source of M1 to be equal to the gate input  $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$.
       \begin{equation}
-         \Delta V_{OUT_A} = \frac{C_{Source}}{C_{OUTA}}\frac{Q_{IN}}{C_{IN}}
+         Q_{source} = C_{source} \Delta V_{PIX\_IN}
       \end{equation}
-      A second branch (M4, M5) is used to generate a low frequency feedback. 
-      The voltage bias
-      VCASN and current bias ITHR define the baseline value of OUTA and the return to baseline after
-      a particle hit. The distance of the OUT A baseline voltage to the point where
-      IM8 = IDB defines the charge threshold. SPIEGA IL CIRCUITO.\\
+      The current in M2 and the charge accumulates on $C_{out}$ is fixed by the one on $C_{source}$:
+      \begin{equation}
+         \Delta V_{OUT\_A} = \frac{Q_{source}}{C_{OUT\_A}} = \frac{C_{source}\Delta V_{PIX\_IN}}{C_{OUT\_A}}  = \frac{C_{Source}}{C_{OUT\_A}}\frac{Q_{IN}}{C_{IN}}
+      \end{equation}
+
+      A second branch (M4, M5) is used to generate a low frequency feedback, where VCASN and ITHR set the baseline value of the signal on $C_{OUT\_A}$ and the velocity to goes down to the baseline.\\
+      The curfeed net, loaded with $C_{curfeed}$ capacitance and connected to the gate of M3 is adjusted for M3 to absorb IBIAS+ITHR (?????).\\
+      Then IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: ??
       
 \section{Readout logic}
    Readout logic includes the part of the circuit which takes the FE output singal, processes it and then trsamit it out of pixel and/or out of chip; depending on what data one wants to store, different readout characteristics must be provided. \\
@@ -172,18 +168,17 @@
       \label{fig:column_drain_RO-like}
    \end{figure}
 
-   Moreover the readout architecture can be full, if every hit is read, or triggered, if a trigger system decides if the hit must be store or not. \\
-   On the one hand the triggered-readout needs buffers and storage memories (therfore needs space on the pixel are to accomodate them), on the other the full readout, because there is no need to store hit data on chip, needs an high enough bandwidth.
+   Moreover the readout architecture can be full, if every hit is read, or triggered, if a trigger system decides if the hit must be store or not. On one hand the triggered-readout needs buffers and storage memories and also space on pixel to accomodate them, on the other the full readout, because there is no need to store hit data on chip, needs an high enough bandwidth.\\
+   SCRTIVEREI ANCHE CHE UN TRIGGER È RICHIESTO NEGLI ESPERIMENTI TIPICAMENTE ..\\   Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
 
-   The trasmission of data from pixel to EoC is usually based on the column-drain read out: all the pixels in a double-column share a data bus and only one pixel at a time according to a priority chain can be read. Dopo che una hit è arrivata il dato viene salvato su una memoria temporanea e tipicamente gli shift register vengono usati per implementare la logica della priorità di lettura.\\
+   The trasmission of data from pixel to EoC is usually based on the column-drain read out: all the pixels in a double-column share a data bus and only one pixel at a time, according to a priority chain, can be read. Dopo che una hit è arrivata il dato viene salvato su una memoria temporanea e tipicamente gli shift register vengono usati per implementare la logica della priorità di lettura.\\
    If there isn't any storage memory, the double-column behaves as a single server queue and the probability for a pixel of waiting a time $T$ greater than $t$ with an input hit rate on the column $\mu$ and an output bandwidt $B_W$ is\cite{Garcia-Review}:
    \begin{equation}
    P(T > t) = \frac{\mu}{B_W} e^{-( B_W-\mu )t}
    \label{eq:priority_chain_no_buffer}
    \end{equation}
-   To avoid hit loss (let's neglect the contribution to the inefficency of the dead time $\tau$ due to the AFE), for example imponing $P(T > t)\sim\:$0.001, one obtains $(B_W -\mu)\:t_t\sim\:$6, where $t_t$ is the time to transfer the hit; since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth.\\
-
-   Anyways each pixel sees a different bandwidth depending on the position on the queue: the first one sees a full bandwidth, but the next sees a smaller one because occasionally it can be blocked by the previous pixel.\\
+   To avoid hit loss (let's neglect the contribution to the inefficency of the dead time $\tau$ due to the AFE), for example imponing $P(T > t)\sim\:$0.001, one obtains $(B_W -\mu)\:t_t\sim\:$6, where $t_t$ is the time to transfer the hit; since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth \cite{Garcia-Review}.\\
+   Each pixel sees a different bandwidth depending on the position on the queue: the first one sees a full bandwidth, but the next sees a smaller one because occasionally it can be blocked by the previous pixel.\\
    Then, the efficiency requirement on the bandwidth and the hit rate becomes: $B_{W,i} > \mu_{i}$, where the index $i$ means the constraint is for a single pixel; if all the pixels on a column have the same rate $\mu = N\mu_{i}$, the condition reduces to $B_{W} > \mu$.
    The bandwidth must be chosen such that the mean time between hits of the last pixel in the readout chain is bigger than that.\\
    Questa condizione tra banda e rate sulla colonna ci dice già una cosa importante: il fatto che l'algoritmo di lettura column drain non è scalabile: infatti se aumento il numero di pixel sulla stessa linea di lettura rischio di violare la condizione.\\
@@ -220,12 +215,6 @@
    L'occupancy tra le altre cose dipende dalla differenza tra threshold e offset del
    segnale, per cui uno può agire sulla soglia per poterla cambiare.\\
    FORMULA? slide APSEL\\
-   Una soluzione potrebbe essere mettere un trigger e in sincro con il beam mettere
-   il reset avviene ad ogni beam collision; questo consuma però un sacco di power. \\
 
-   \subsection{Colum-drain readout}
-      COLUM DRAIN READ OUT\\
-      Il modo con cui vengono lette le hit su una matrice è il column drain readout.\\
-      The simple 3T (three transistor) readout has a row select, a
-      source-follower buffer and an input baseline reset;
+
 
