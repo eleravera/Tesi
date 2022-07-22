@@ -1,7 +1,8 @@
 \documentclass[a4paper]{report}
 
 
-\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}\usepackage{amsmath}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -9,11 +10,16 @@
 \usepackage{amssymb}
 \usepackage{comment}
 \usepackage[utf8]{inputenc}
+\usepackage{booktabs} % tabelle belle che fa Eugenia!
+\usepackage{xcolor}
+\usepackage{etoolbox}
+
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}%style=alphabetic 
 \addbibresource{bib/bibliography.bib}
 
 \renewcommand*\contentsname{Summary}
 
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 \begin{document}
 
 \tableofcontents
@@ -48,3 +54,14 @@
 
 \printbibliography[heading=bibintoc, title={Bibliography}] 
 \end{document}
+
+
+%article{LF-TJ-Monopix-slides,
+%    author        = {Tianyang Wang},
+%    title         = {Depleted Monolithic Active Pixel Sensors (DMAPS) in LFoundry 150 nm and TowerJazz 180 nm CMOS technologies},
+%    year          = {2019},
+%    conference    = {VERTEX 2019, Croatia}
+%}
+
+
+
