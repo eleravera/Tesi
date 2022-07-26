@@ -1,20 +1,14 @@
-The TJ-Monopix1 is one of the chips fabricated by ToweJazz with 180 CMOS imaging process. Starting from the middle of 2010 (inteso come decina) a program with the goal to find a CMOSS sensor suitable for future upgrade of experiments; a dedicated collaboration, RD53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been estabilished in 2013 specifically for the HL-LHC Atlas and CMS detector upgrades. \\
-Among the main objects of study of the collaboration there are both hybrid pixels and CMOSS MAPS: fig \ref{fig:TJ180nm} shows the intermediate steps in the MAPS research timeline.\\
-Besides the Monopix series also the small electrode demonstrator TJ-Malta and mini-Malta have been produced and tested\cite{MALTA}: differently from TJ-Monopix column-drain readout, an asynchronous readout without any distribution of BCID and therefore without timestamp is used by TJ-Malta in order to reduce power consumption.
-
-Not only TowerJazz, but also LFoundry, with the same intention, fabricated an other similar sensor with 150 CMOSS thecnology\cite{LF-Monopix}\cite{LF-TJ-Monopix}: LF-Monopix\\
-The main difference between the LFoundry and TowerJazz's products, summerized in \ref{tab:LF-TJ-Monopix}, is the sensor structure rather than the read out architecture that has adopted a column drain R/O with ToT capability (LF-Monopix has 8 bits dedicated and TJ-Monopix 6 bits). Concerning the sensor, LFoundry pixels are bigger and have a large-fill factor, while TJ-Monopix has a small fill-factor electrode.\\
-The performances of both the detectors have been tested before and after irradiation ($\sim 10^{10} n_{eq}/cm^{2}$) and the result is, as expected since LF-Monopix is a large fill factor electrode (capitolo \ref{chap:}), that LF-Monopix is more radiation hard than TJ-Monopix; concerning the second one the main degradation of efficiency is due to the low electic field in the pixel corner. \\
-On the other side LF-Monopix1 showed a crosstalk problem principally due to the large fill-factor size ($\sim$ 55 $\%$) that influenced the pixel layout forcing the analog and digital power domain to be separate and also to be 
-LF1 ha problemi di crosstalk, quindi ha bisogno di un sistema di anelli di guardia (p-stop). Ha un deep p well che è estesissimo, quindi ha anche una capacità alta. QUindi crosstalk. \\
-
+The TJ-Monopix1 is one of the chips fabricated by ToweJazz with 180 CMOS imaging process. From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been estabilished with the specific goal to find a sensor suitable as vertex detector for future upgrade of CMS and ATLAS experiments. Among the main objects of study of the collaboration there are both hybrid pixels and monolitic options as CMOS MAPS: fig \ref{fig:TJ180nm} shows the intermediate MAPS-prototypes made by TowerJazz.\\
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.95\linewidth]{figures/Monopix1/TJ180nm.png}
-    \caption{Timeline between the firt demonstrator TJ-investigator and TJ-Monopix2, the successor of TJ-Monopix-1.}
+    \caption{Timeline in TowerJazz productions.  In addition to Monopix serie also the small electrode demonstrator TJ-Malta and mini-Malta have been produced and tested\cite{MALTA}. The Malta prototypes differ from TJ-Monopix in the readout: while Monopix implements a column-drain R/O, an asynchronous R/O without any distribution of BCID has been used by TJ-Malta in order to reduce power consumption.}
     \label{fig:TJ180nm}
 \end{figure} 
+Besides the TowerJazz series, also LFoundry fabricated other similar sensors with 150 CMOSS technology~\cite{LF-Monopix}\cite{LF-TJ-Monopix}: LF-Monopix.\\
+The main difference between the LFoundry and TowerJazz's products, summerized in \ref{tab:LF-TJ-Monopix}, is the sensor structure rather than the read out architecture, based on a column drain R/O with ToT capability (LF-Monopix has 8 bits dedicated and TJ-Monopix 6 bits). Concerning the sensor, LFoundry pixels are bigger and have a large-fill factor, while TJ-Monopix ones have a small fill-factor electrode.
 
+The performances of both the detectors have been tested before and after irradiation ($\sim 10^{10} n_{eq}/cm^{2}$) and the result is, as expected since LF-Monopix is a large fill factor electrode (capitolo \ref{chap:}), that LF-Monopix is more radiation hard than TJ-Monopix whereas the main degradation of efficiency in TJ-Monopix chips is due to the low electic field in the pixel corner. On the other hand one more accidental consequence of the large fill factor size in LF-Monopix (the deep p-well covers $\sim$ 55 $\%$ of the pixel area) is a significant cross-talk problem.
 \begin{table}
     \begin{center}
     \begin{tabular}{|c | c |c |}
@@ -41,6 +35,15 @@ LF1 ha problemi di crosstalk, quindi ha bisogno di un sistema di anelli di guard
  \end{table}
 
 \section{The sensor}
+    TJ-Monopix1 adopted the modification I've told about in \ref{chap:a_modified_sensor} that allows to achive a full depletion region within the epitaxyal layer: a planar low dose n implant is build on a high resistivity ($\geq $ 1 k$\Omega$ cm), p-type epitaxial layer.\\
+    The modification improves a lot the performances of the detector, especially after radiation, but  Technology Computer Aided Design (TCAD) simulations(fig.\ref{fig:Monopix1_section_scheme}) have shown that a non uniform electric field is still produced in the substrate after the modification; since the lateral component of the electric field drops at the pixel corner (this point in figure is indicated by a star) the efficiency at the side is reduced. \\
+    In some cases, then, a second modification have been made to increase the lateral component of electric field: a portion of low dose implant has been removed creating a discontinuity in the pixel corner. Questo migliora le prestazioni del rivelatore, ma dall'altra parte non rende più possibile fornire tensione separatamente a deep p well e substrate, sennò si ha punchthrought.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
+        \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix 180 nm with modified process; additionaly in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field}
+        \label{fig:Monopix1_section_scheme}
+    \end{figure}
     \begin{table}
         \begin{center}
         \begin{tabular}{| c |c |}
@@ -60,16 +63,6 @@ LF1 ha problemi di crosstalk, quindi ha bisogno di un sistema di anelli di guard
         \label{tab:LF-TJ-Monopix}
         \end{center}
     \end{table}
-    TJ-Monopix1 adopted the modification I've told about in \ref{chap:} that allows to achive a full depletion: a planar low dose n implant is build on a high resistivity ($\geq $ 1 k$\Omega$ cm), p-type epitaxial layer.\\
-    The modification improves a lot the performances of the detector, especially after radiation, but  Technology Computer Aided Design (TCAD) simulations(fig.\ref{fig:Monopix1_section_scheme}) have shown that a non uniform electric field is still produced in the substrate after the modification; since the lateral component of the electric field drops at the pixel corner (this point in figure is indicated by a star) the efficiency at the side is reduced. \\
-    In some cases, then, a second modification have been made to increase the lateral component of electric field: a portion of low dose implant has been removed creating a discontinuity in the pixel corner. Questo migliora le prestazioni del rivelatore, ma dall'altra parte non rende più possibile fornire tensione separatamente a deep p well e substrate, sennò si ha punchthrought.
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
-        \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix 180 nm with modified process; additionaly in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field}
-        \label{fig:Monopix1_section_scheme}
-    \end{figure}
-
     Moreover, to investigate the differences in charge collection efficiency, there is a difference between pixels within the matrix: rows from 0 to 111 are fully covered by deep p-well (FDPW) under p-well near the sensor, while rows from 112 till the last 223 have a portion of deep p-well removed (RDPW). \\
     The removing enhance the the lateral electric field component then resulting in a higher efficiency, as we'll see later.\\
 
