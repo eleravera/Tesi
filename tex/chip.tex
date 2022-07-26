@@ -155,11 +155,12 @@
       Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
       
 \section{Readout logic}
-   Readout logic includes the part of the circuit which takes the FE output singal, processes it and then trsamit it out of pixel and/or out of chip; depending on what data one wants to store, different readout characteristics must be provided. \\
+   Readout logic includes the part of the circuit which takes the FE output singal, processes it and then trsamit it out of pixel and/or out of chip; depending on the situation of usage different readout characteristics must be provided. \\
    To store the analogical informations (i.e. charge collected, evolution of signal in time, ...) big buffers and a large bandwidth are needed; the problem that doesn't occur, or better occur only with really high rate, if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded). 
 
-   A common compromise often made is to save the time over threshold (ToT) of the pulse in clock cycle counts; this needs of relatively coarse requirement (ToT could be trimmer to be a dozen bits) but, being correlated and hopefully being linear with the deposited charge by the impinging particle in the detector, it provides a sufficent information.
-   The ToT digitalization usually takes advantage of the distribution of a clock (namely BCID,  bunch crossing identification) on the pixels matrix. Leading and trailing edges' timestamp of the pulse are saved on on pixel within a RAM unitl they have beeen read,  and then the ToT is obtained from their difference. Therefore, since the number of clock cycles during which the signal is over the threshold corresponds to the ToT, the BCID frequency affect the time and charge resolutions: a reasonable BCID-clock frequency for pixels detector is 40 MHz, that gives 25 ns as lower limit for the time resolution.\\
+   A common compromise often made is to save the time over threshold (ToT) of the pulse in clock cycle counts; this needs of relatively coarse requirement as ToT could be trimmer to be a dozen bits but, being correlated and hopefully being linear with the deposited charge by the impinging particle in the detector, it provides a sufficent information.
+   The ToT digitalization usually takes advantage of the distribution of a clock (namely BCID,  bunch crossing identification) on the pixels matrix. The required timing precision is at least around 25 ns, that corresponds to the period of bunch collisions at LHC; for such reason a reasonable BCID-clock frequency for pixels detector is 40 MHz.\\
+   Leading and trailing edges' timestamp of the pulse are saved on on pixel within a RAM unitl they have beeen read,  and then the ToT is obtained from their difference.
    \begin{figure}[h!]
       \centering
       \includegraphics[width=.7\linewidth]{figures/Pixel_detectors/column_drain_RO.png}
@@ -167,54 +168,56 @@
       \label{fig:column_drain_RO-like}
    \end{figure}
 
-   Moreover the readout architecture can be full, if every hit is read, or triggered, if a trigger system decides if the hit must be store or not. On one hand the triggered-readout needs buffers and storage memories and also space on pixel to accomodate them, on the other the full readout, because there is no need to store hit data on chip, needs an high enough bandwidth.\\
+   Moreover the readout architecture can be full, if every hit is read, or triggered, if a trigger system decides if the hit must be store or not. On one hand the triggered-readout needs buffers and storage memories, on the other the full readout, because there is no need to store hit data on chip, needs an high enough bandwidth.\\
    A triggered readout is foundamental in accelerator experiments where the quantity of data to store is too large to be hanled and some selection have to be applied by the trigger: to give an order of growth, at LHC more than 100 TBit/s of datas are produced but the storage data limit is about 100 MBit/s \cite{K-Wermes} (pag. 797).\\
+   Typically the trigger signal is processed in a few $\mu s$ so the pixel gets it only after a hundred clock cycles from the hit arrival time: the buffer depht must than handle the higher trigger latency. 
  
-   The trasmission of data from pixel to the end of column (EoC) is usually based on the column-drain read out: all the pixels in a double-column share a data bus and only one pixel at a time, according to a priority chain, can be read. The reading order circuit is implemented by shift register (SR): when a hit arrives the corresponding data is temporarily stored on a RAM untill the SH does not allow the access to memory by data bus. \\
+   After having taken out the data from the pixel, it have to be transmitted to the end of column (EoC) where a serializer deliver it out of chip, typically to a FPGA.\\ 
+   There are several ways of trasmitting data from pixel to the end of column: one of the most famous is the column-drain read out, developed for CMS and ATLAS experiments \cite{column-drain}. 
+   All the pixels in a double-column share a data bus and only one pixel at a time, according to a priority chain, can be read. The reading order circuit is implemented by shift register (SR): when a hit arrives, the corresponding data, which can be made of timestamp and ToT, is temporarily stored on a RAM untill the SH does not allow the access to memory by data bus. \\
+   Even if many readout architectures are based the column-drain one, it doesn't suit for large size matrices. The problem is that increasing the pixels on a column would also raise the number of pixels in the priority chain and that would results in a slowdown of the readout. 
+
    If there isn't any storage memory, the double-column behaves as a single server queue and the probability for a pixel of waiting a time $T$ greater than $t$, with an input hit rate on the column $\mu$ and an output bandwidt $B_W$ is \cite{Garcia-Review}:
    \begin{equation}
    P(T > t) = \frac{\mu}{B_W} e^{-( B_W-\mu )t}
    \label{eq:priority_chain_no_buffer}
    \end{equation}
    To avoid hit loss (let's neglect the contribution to the inefficency of the dead time $\tau$ due to the AFE), for example imponing $P(T > t)\sim\:$0.001, one obtains $(B_W -\mu)\:t_t\sim\:$6, where $t_t$ is the time needed to transfer the hit; since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth \cite{Garcia-Review}.
+   \begin{figure}[h!]
+      \centering
+      \includegraphics[width=.6\linewidth]{figures/Pixel_detectors/pipeline.png}
+      \caption{Block diagram of a pipeline buffer: N is the dimension of memory buffer and L is the trigger latency expressed in BCID cycles}
+      \label{fig:pipeline}
+   \end{figure}
 
-   Actually the previous one is an approximation since each pixel sees a different bandwidth depending on the position on the queue: the first one sees a full bandwidth, but the next sees a smaller one because occasionally it can be blocked by the previous pixel.\\
-   Then, the efficiency requirement on the bandwidth and the hit rate becomes: $B_{W,i} > \mu_{i}$, where the index $i$ means the constraint is for a single pixel; if all the pixels on a column have the same rate $\mu = N\mu_{i}$, the condition reduces to $B_{W} > \mu$.
+   Actually the previous one is an approximation since each pixel sees a different bandwidth depending on the position on the queue: the first one sees a full bandwidth, but the next sees a smaller one because occasionally it can be blocked by the previous pixel. Then the bandwidth seen by the pixel $i$ is $B_{i} = B - \sum _{j}\mu_{j}$, where $\mu_j$ is the hit rate of the $j$th pixel.\\
+   The efficiency requirement on the bandwidth and the hit rate becomes: $B_{W,i} > \mu_{i}$, where the index $i$ means the constraint is for a single pixel; if all the N pixels on a column have the same rate $\mu = N\mu_{i}$, the condition reduces to $B_{W} > \mu$.
    The bandwidth must be chosen such that the mean time between hits of the last pixel in the readout chain is bigger than that.\\
-   Questa condizione tra banda e rate sulla colonna ci dice già una cosa importante: il fatto che l'algoritmo di lettura column drain non è scalabile: infatti se aumento il numero di pixel sulla stessa linea di lettura rischio di violare la condizione.\\
-   La scalabilità risiede quindi nel poter utilizzare tanti chip piccoli.\\
+   \red{In order to reduce the bandwidth a readout with zero suppression on pixel is typically employed; this means that only informations from channels where the signal exceeds the discriminator threshold are stored. QUalcosa sulla zero suprpession? La metto qui questa affermazione?}
 
+   If instead there is a local storage until a trigger signal arrives, the input rate to column bus $\mu '$ is reduced compared to the hit rate $\mu$ as: $\mu'=\mu \times r \times t$, where $r$ is the trigger rate and $t$ is the bunch crossing period.
+   In this situation there is a more relaxed constraint on the bandwidth, but the limiting factor is the buffer depht: the  amount of memory designed depends both on the expected rate $\mu$ and on the trigger latency $t$ as $\propto\mu \times t$, that means that the highter the trigger latency and the lower the hit rate to cope with. 
 
-   If instead the hits are stored in buffers until a trigger signal arrives, the input rate
-   to column bus is reduced as $\mu'=\mu t$, where $t$ is the trigger rate.
-   This implies that $B_{W} \gtrsim \mu'$, that is a very relaxed condition on the
-   bandwidth, but the limiting factor is the amount of memory  which the pixel area
-   can host; the amount needed depends on the trigger frequency 1/$t$ as
-   $\propto\mu/t$, that means that the highter the trigger frequency and the highter
-   the hit rate that can be handled. \\
-   In order to have an efficient use of memory on pixel area it's convenient
-   grouping pixels into regions with shared storage. Let's look what happens when
-   single pixel local storage is used: for example, suppose to have a 50 kHz single
-   pixel hits rate and a trigger frequency of 1/5 microseconds, allora il rapporto dei due
-   è 0.25 e cioè il numero medio di hit perse per trigger signal.\\
-   usando la statistica di Poisson, uno dovrebbe storare 3 hit per pixel se volesse
-   raggiungere il 99.9 per cento di efficienza.\\
-   Consideriamo cosa succede se faccio un gruppo di quattro pixel: allora se il rate
-   medio di 1 hit sui 4 pixel (sempre 50 khz di single pixel) per ogni trigger signal, allora se volessi un'eff di 99.9
-   avrei bisogno di un buffer depht of 5 region-hits. Quindi significa che in media per
-   ogni pixel avrei 5/4 = 1.25 buffer depht, minore di quello di prima.\\
-   L'architettura di lettura che colloca i pixel in regioni da 4 si chiama FE-I4.\\
-
-   One standard way to reduce the readout bandwidth is to implement the zero suppression
-   on the pixel: only informations about channels with an hit (when signal exceeds
-   the discriminator threshold) are read.
-   Per gli esperimenti agli acceleratori, e soprattutto per gli esperimenti che
-   intendono aumentare la luminosita, è sicuramente di particolare importanza
-   l'occupancy dei pixel: sia il rate del noise va mantenuto basso, sia un
-   bisogna prestare attenzione al pile up.
-   L'occupancy tra le altre cose dipende dalla differenza tra threshold e offset del
-   segnale, per cui uno può agire sulla soglia per poterla cambiare.\\
-   FORMULA? slide APSEL\\
-
-
+   In order to have an efficient usage of memory on pixels area it's convenient grouping pixels into regions with shared storage. Let's compare two different situations: in the first one a buffer is located on each pixel area, while in the second one a core of four pixels share a common buffer (this architecture is commonly called FE-I4). \\
+   \begin{figure}[h!]
+      \centering
+      \includegraphics[width=.7\linewidth]{figures/Pixel_detectors/core.png}
+      \caption{Block diagram of the FE-I4 PR organization. Read and memory
+      management section is highlighted in light blue; latency counters and
+      trigger management secrion are highlighted in green; hit processing blocks
+      are highlighted in purple; ToT counters and ToT management units are
+      highlighted in orange}
+      \label{fig:core}
+   \end{figure}
+   Consider a 50 kHz single pixel hits rate and a trigger latency of 5 $\mu s$, the probability of lossing hits is: 
+   \begin{equation}
+      P(N > 1 | \nu) = 1-P(N = 0 | \nu) - P(N = 1 | \nu) = 1 - e^{-\nu} (1+\nu) \thickapprox 2.6 \% 
+   \end{equation}    
+   where I have assumed a Poissonian distribution with mean $\nu$ = 0.25 to describe the counts N.\\
+   To get an efficiency $\epsilon$ greater than 99.9 \% a 3 hit depht buffer is needed: 
+   \begin{equation}
+      P(N > 3 | \nu) = 1-\sum_{i=0}^{3} P(N = i | \nu) < 0.1\%  
+   \label{eq:efficiency_buffer}
+   \end{equation} 
+   Considering the second situation: if the average single pixel rate is still 50 kHz, grouping four pixels the mean number of hits per trigger latency is $\nu = 0.25 \times 4 = 1$. To get an efficiency of 99.9\% (eq. \ref{eq:efficiency_buffer}) a buffer depht of 5 hits in the four-pixels region, instead of 3 per pixels, is needed. 
 
