@@ -35,13 +35,14 @@ The performances of both the detectors have been tested before and after irradia
  \end{table}
 
 \section{The sensor}
-    TJ-Monopix1 adopted the modification I've told about in \ref{chap:a_modified_sensor} that allows to achive a full depletion region within the epitaxyal layer: a planar low dose n implant is build on a high resistivity ($\geq $ 1 k$\Omega$ cm), p-type epitaxial layer.\\
-    The modification improves a lot the performances of the detector, especially after radiation, even if a Technology Computer Aided Design (TCAD) simulations have shown that a non uniform electric field is still produced in the lateral regions after the modification; since the transversal component of the electric field drops at the pixel corner (this point in figure is indicated by a star) the efficiency at the side is reduced  (fig.\ref{fig:Monopix1_section_scheme}). \\
-    In some cases, then, a second modification have been made to increase the lateral component of electric field: a portion of low dose implant has been removed creating a discontinuity in the pixel corner. Questo migliora le prestazioni del rivelatore, ma dall'altra parte non rende più possibile fornire tensione separatamente a deep p well e substrate, sennò si ha punchthrought.
-    \begin{figure}[h!]
+    TJ-Monopix1 adopts the modification described in \ref{chap:a_modified_sensor} that allows to achieve a planar depletion region near the electrode applying a relatively small reverse bias voltage: a low dose n implant is build on a high resistivity ($\geq $ 1 k$\Omega$ cm), p-type epitaxial layer.\\
+    This modification improves the efficiency of the detector, especially after irradiation\cite{}; however a Technology Computer Aided Design (TCAD) simulation has shown that a nonuniform electric field is still produced in the lateral regions after the modification; since the transversal component of the electric field drops at the pixel corner (this point in figure \ref{fig:Monopix1_section_scheme} is indicated by a star) the efficiency at the side is reduced. \\
+    On a sample of chip, the one I've tested in Pisa belongs to these, a second optimization have been made to enhance the lateral component of electric field and improve the efficiency and velocity in charge collection near the corners of the sensor: a portion of low dose implant has been removed, creating a step discontinuity in the pixel corner. 
+    A side-effect is the weaker separation between the deep p-well and the p-substrate, that cannot be biased separately anymore to prevent the punchthrough. 
+        \begin{figure}[h!]
         \centering
         \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
-        \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix 180 nm with modified process; additionaly in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field}
+        \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix 180 nm with modified process; additionally in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field}
         \label{fig:Monopix1_section_scheme}
     \end{figure}
     \begin{table}
@@ -63,8 +64,8 @@ The performances of both the detectors have been tested before and after irradia
         \label{tab:LF-TJ-Monopix}
         \end{center}
     \end{table}
-    Moreover, to investigate the differences in charge collection efficiency, there is a difference between pixels within the matrix: rows from 0 to 111 are fully covered by deep p-well (FDPW) under p-well near the sensor, while rows from 112 till the last 223 have a portion of deep p-well removed (RDPW). \\
-    The removing enhance the the lateral electric field component then resulting in a higher efficiency, as we'll see later.\\
+    Moreover, to investigate the charge collection properties, as the threshold, the noise and the efficiency, pixels within the matrix feature a difference in the doping structure of the deep p-well: rows from 0 to 111 are fully covered by deep p-well (FDPW) under p-well near the sensor, while rows from 112 till the last 223 have a portion of deep p-well removed (RDPW). \\
+    The removing enhance the lateral electric field component then resulting in a higher efficiency, as we'll see later.\\
 
 \section{FE flavors}
     TJ-Monopix1 has been implemented in four different flavors, each one corresponding to a different sector on the matrix (fig. \ref{fig:Monopix1_flavors}) and thus having a separate readout and data trasmission, in order to explore different variations of the FE. The four flavors mainly differ in the reset input circuit.
@@ -107,7 +108,12 @@ The performances of both the detectors have been tested before and after irradia
         Parameter & Meaning\\
         \hline
         \hline
-    
+        IBIAS\\
+        IDB\\
+        ITHR \\
+        VCASN\\
+        VREF\\
+        IREF\\
         \hline
         \end{tabular}
         \caption{}
@@ -116,12 +122,16 @@ The performances of both the detectors have been tested before and after irradia
      \end{table}
     
 \section{Readout logic and Data-packets structure}
-    TJ monopix ha un colum drain readout proven by the ATLAS FEI3 front end chip (
-    I. Peric et al., The FEI3 readout chip for the ATLAS pixel detector,
-    Nucl. Instrum. Meth. A 565 (2006) 178, ed. by J. Grosse-Knetter, H. Krueger, and N. Wermes
-    (cit. on pp. 42, 50, 60))\\
+    TJ-Monopix1 has a triggerless and fast R/O with ToT capability based on a column-drain architecture. On the pixel are located two Random Access Memory (RAM) cells to store the LE and TE of the pulse and a Read-Only Memory (ROM) containing the pixel address. 
+    A 40 MHz BCID is distributed across the matrix. 
+    Dopo essere stato letto un dato viene trasmesso alla EoC con un bus a () bit e dopo tramite un serializzatore portato out of chip to a breakout board and then to an FPGA (fig. \ref{}).
+     
+    
+    The access to the pixels' memory and the transmission of the data is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). After the arrival of a hit, when the pulse goes down the threshold the readout sequence starts.  
+    La lettura si può descrivere come una macchiana a stati in cui gli stati possibili sono READ, WAIT, DATA TRASMISSION\\ 
 
-    TJ-Monopix is a triggerless. It sends data whenever it gets hits. Only thing we can do is to record timetamp of the external triggers and correlate with the hits. 
+
+
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.7\linewidth]{figures/Monopix1/Monopix1_readout_schematics.png}
@@ -129,8 +139,11 @@ The performances of both the detectors have been tested before and after irradia
         \label{fig:Monopix1_readout_schematics}
     \end{figure}
 
-    La lettura si può descrivere come una macchiana a stati in cui gli stati possibili sono READ, WAIT, DATA TRASMISSION\\
 
+
+
+    ABOUT trigger: 
+    It sends data whenever it gets hits. Only thing we can do is to record timetamp of the external triggers and correlate with the hits. 
     
     \subsection{Dead time measurement}
     Descrivo come ho fatto il test. 
