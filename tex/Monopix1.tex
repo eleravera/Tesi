@@ -121,38 +121,49 @@ The performances of both the detectors have been tested before and after irradia
         \end{center}
      \end{table}
     
-\section{Readout logic and Data-packets structure}
-    TJ-Monopix1 has a triggerless and fast R/O with ToT capability based on a column-drain architecture. On the pixel are located two Random Access Memory (RAM) cells to store the LE and TE of the pulse and a Read-Only Memory (ROM) containing the pixel address. 
-    A 40 MHz BCID is distributed across the matrix. 
-    Dopo essere stato letto un dato viene trasmesso alla EoC con un bus a () bit e dopo tramite un serializzatore portato out of chip to a breakout board and then to an FPGA (fig. \ref{}).
-     
+\section{Readout logic}
+    TJ-Monopix1 has a triggerless and fast R/O with ToT capability based on a column-drain architecture.      
+    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse and a Read-Only Memory (ROM) containing the 9-bit pixel address: excluded these memories, TJ-Monopix1 hasn't any other buffer.
+    After being read, the data packet is sent to the EoC periphery of the chip, where a serializer transfer off-chip to an FPGA (\ref{fig.}). A FIFO is used to temporarily stored the data, which is after transmit to a computer through an ethernet cable.  
+    \begin{figure}
+        \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.98\linewidth]{figures/Monopix1/schematic_boards.png}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.98\linewidth]{figures/Monopix1/monopix1_front.jpeg}
+        \end{subfigure}
+        \caption{(a) (b) From the left to the right: TJ-Monopix1, a breakout board used to make the reboot of data and the FPGA. \red{Dove sono state sviluppate BB e FPGA? Bonn?}}
+        \label{fig:}
+     \end{figure} 
+  
+
+    The access to the pixels' memory and the transmission of the data off-pixel is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). The readout sequence starts with the TE of a pulse: the pixel immediately tries to grab the column-bus turning up a hit flag signal called \textit{token}.   
+    The token is used to control the priority chain and propagates across the column indicating the pixel that must be read. To start the readout and avoid that the arrival of new hits disrupt the priority logic, a \textit{freeze} signal is activated, and then a \textit{read} signal controls the readout and the access to memory.
+    During the freeze, the token state of all pixels on the matrix remains settled: this does not forbid new hits from being recorded, but forbid pixels hit from turning on the token until the freeze is ended. 
+    \red{The freeze is () fino a che il tokne non ha percorso tutta la priority chain and has reached the EoC, and only after that point is lowered. Until the freeze is applied . Supponiamo quindi che mentre la matrice sia freezata arrivino nuove hit. Quando il freeze si abbassa il token di queste hit si alza e il sistema di controllo si prepara a rialzaer il freeze; le hit che arrivano tra quando si è alzato il primo token e quando viene rialzato il freeze vengono lette. NON SO ANCORA COME SCRIVERLO BENE. È difficile da dire anche in italiano}
+    Since the start of the token is used to assign a timestamp to the hit, the token time has a direct impact on the time assignation of the hit and therefore on the time resolution measurement. All the hits     
     
-    The access to the pixels' memory and the transmission of the data is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). After the arrival of a hit, when the pulse goes down the threshold the readout sequence starts.  
-    La lettura si può descrivere come una macchiana a stati in cui gli stati possibili sono READ, WAIT, DATA TRASMISSION\\ 
-
-
-
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.7\linewidth]{figures/Monopix1/Monopix1_readout_schematics.png}
         \caption{}
         \label{fig:Monopix1_readout_schematics}
     \end{figure}
+    The data packet, that is long () bits, represents and contains all are information about the hit: the coordinates within the matrix and the ToT. Remembering that for each flavor there are 112 columns and 224 rows, and since the data bus are shared between double columns, to represent the data bus column () bits are needed, while the rows need () bits. 
+    A 40 MHz BCID is distributed across the matrix with a simulated timing dispersion along a column of 0.1-0.2 ns. 
 
 
-
-
-    ABOUT trigger: 
-    It sends data whenever it gets hits. Only thing we can do is to record timetamp of the external triggers and correlate with the hits. 
-    
     \subsection{Dead time measurement}
-    Descrivo come ho fatto il test. 
-    Fattore limi
-    \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.7\linewidth]{figures/Monopix1/dead_time.png}
-            \caption{}
-            \label{fig:dead_time}
-        \end{figure}
+        The RAM on pixel can store only one hit at a time, so the dead time...
+        Descrivo come ho fatto il test. 
+        Fattore limi
+        \begin{figure}[h!]
+                \centering
+                \includegraphics[width=.7\linewidth]{figures/Monopix1/dead_time.png}
+                \caption{}
+                \label{fig:dead_time}
+            \end{figure}
 
     

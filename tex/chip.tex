@@ -1,6 +1,6 @@
 \section{Hybrid pixels}
    Hybrid pixels are made of two parts (fig. \ref{fig:hybrid_DEPFET_scheme}a), the sensor and the electronics: for each pixel these two parts are welded together through microconnection (bump bond).\\  
-   They also provide a practical system where readout and sensor can be optimized separately, although the testing is less easy-to-do since the sensor and the R/O must be connected together before.\\
+   They provide a practical system where readout and sensor can be optimized separately, although the testing is less easy-to-do since the sensor and the R/O must be connected together before.\\
    In addition, the particular and sophisticated procedure to bond sensor and ASIC (application specific integrated circuit) makes them difficult to produce, delicate, especially when exposed to high levels of radiation, and also expensive. \\
    A critical parameter for accelerator experiments is the material budget, which represents the main limit factor for momentum measurement resolution in a magnetic field; since hybrid pixels are thicker ($\sim$ hundreds of $\mu m$) than monolithic ones (even less than 100 $\mu m$), using the latter the material budget can be down by a third: typical value for hybrid pixels is 1.5 \% $X_0$ per layer, while for monolithic 0.5 \% $X_0$.\\
    Among other disadvantages of hybrid pixels there is the bigger power consumption that implies, by the way, a bigger cooling system leading in turn to an increase in material too.\\
@@ -150,7 +150,7 @@
          \Delta V_{OUT\_A} = \frac{Q_{source}}{C_{OUT\_A}} = \frac{C_{source}\Delta V_{PIX\_IN}}{C_{OUT\_A}}  = \frac{C_{Source}}{C_{OUT\_A}}\frac{Q_{IN}}{C_{IN}}
       \end{equation}
       A second branch (M4, M5) is used to generate a low frequency feedback, where VCASN and ITHR set the baseline value of the signal on $C_{OUT\_A}$ and the velocity to goes down to the baseline.\\
-      \red{IL RUOLO DI CURVFEED NON L'HO CAPITO, NELL'ARTICOLO C'È SCRITTO: The curfeed net, loaded with $C_{curfeed}$ capacitance and connected to the gate of M3 is adjusted for M3 to absorb IBIAS+ITHR.}\\
+      \red{IL RUOLO DI CURVFEED NON L'HO CAPITO.}\\
       Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
       
 \section{Readout logic}
