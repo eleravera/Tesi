@@ -1,14 +1,14 @@
-The TJ-Monopix1 is one of the chips fabricated by ToweJazz with 180 CMOS imaging process. From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been estabilished with the specific goal to find a sensor suitable as vertex detector for future upgrade of CMS and ATLAS experiments. Among the main objects of study of the collaboration there are both hybrid pixels and monolitic options as CMOS MAPS: fig \ref{fig:TJ180nm} shows the intermediate MAPS-prototypes made by TowerJazz.\\
+The TJ-Monopix1 is one of the chips fabricated by ToweJazz with 180 CMOS imaging process. From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been established with the specific goal to find a sensor suitable as vertex detector for future upgrade of CMS and ATLAS experiments. Among the main objects of study of the collaboration there are both hybrid pixels and monolithic options as CMOS MAPS: fig \ref{fig:TJ180nm} shows the intermediate MAPS-prototypes made by TowerJazz.\\
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.95\linewidth]{figures/Monopix1/TJ180nm.png}
-    \caption{Timeline in TowerJazz productions.  In addition to Monopix serie also the small electrode demonstrator TJ-Malta and mini-Malta have been produced and tested\cite{MALTA}. The Malta prototypes differ from TJ-Monopix in the readout: while Monopix implements a column-drain R/O, an asynchronous R/O without any distribution of BCID has been used by TJ-Malta in order to reduce power consumption.}
+    \caption{Timeline in TowerJazz productions.  In addition to Monopix series also the small electrode demonstrator TJ-Malta and mini-Malta have been produced and tested\cite{MALTA}. The Malta prototypes differ from TJ-Monopix in the readout: while Monopix implements a column-drain R/O, an asynchronous R/O without any distribution of BCID has been used by TJ-Malta in order to reduce power consumption.}
     \label{fig:TJ180nm}
 \end{figure} 
 Besides the TowerJazz series, also LFoundry fabricated other similar sensors with 150 CMOSS technology~\cite{LF-Monopix}\cite{LF-TJ-Monopix}: LF-Monopix.\\
-The main difference between the LFoundry and TowerJazz's products, summerized in \ref{tab:LF-TJ-Monopix}, is the sensor structure rather than the read out architecture, based on a column drain R/O with ToT capability (LF-Monopix has 8 bits dedicated and TJ-Monopix 6 bits). Concerning the sensor, LFoundry pixels are bigger and have a large-fill factor, while TJ-Monopix ones have a small fill-factor electrode.
+The main differences between the LFoundry and TowerJazz's products (tab. \ref{tab:LF-TJ-Monopix}), are in the sensor structure rather than in the readout architecture, based on a column drain R/O with ToT capability (LF-Monopix has 8 bits dedicated and TJ-Monopix 6 bits). Concerning the sensor, LFoundry pixels are bigger and have a large-fill factor, while TJ-Monopix ones have a small fill-factor electrode.
 
-The performances of both the detectors have been tested before and after irradiation ($\sim 10^{10} n_{eq}/cm^{2}$) and the result is, as expected since LF-Monopix is a large fill factor electrode (capitolo \ref{chap:}), that LF-Monopix is more radiation hard than TJ-Monopix whereas the main degradation of efficiency in TJ-Monopix chips is due to the low electic field in the pixel corner. On the other hand one more accidental consequence of the large fill factor size in LF-Monopix (the deep p-well covers $\sim$ 55 $\%$ of the pixel area) is a significant cross-talk problem.
+The performances of both the detectors have been tested before and after irradiation ($\sim 10^{10} n_{eq}/cm^{2}$) and the result is, as expected since LF-Monopix is a large fill factor electrode (chap. \ref{chap:}), that LF-Monopix is more radiation hard than TJ-Monopix whereas the main degradation of efficiency in TJ-Monopix chips is due to the low electric field in the pixel corner. On the other hand one more accidental consequence of the large fill factor size in LF-Monopix (the deep p-well covers $\sim$ 55 $\%$ of the pixel area) is a significant cross-talk problem.
 \begin{table}
     \begin{center}
     \begin{tabular}{|c | c |c |}
@@ -38,7 +38,7 @@ The performances of both the detectors have been tested before and after irradia
     TJ-Monopix1 adopts the modification described in \ref{chap:a_modified_sensor} that allows to achieve a planar depletion region near the electrode applying a relatively small reverse bias voltage: a low dose n implant is build on a high resistivity ($\geq $ 1 k$\Omega$ cm), p-type epitaxial layer.\\
     This modification improves the efficiency of the detector, especially after irradiation\cite{}; however a Technology Computer Aided Design (TCAD) simulation has shown that a nonuniform electric field is still produced in the lateral regions after the modification; since the transversal component of the electric field drops at the pixel corner (this point in figure \ref{fig:Monopix1_section_scheme} is indicated by a star) the efficiency at the side is reduced. \\
     On a sample of chip, the one I've tested in Pisa belongs to these, a second optimization have been made to enhance the lateral component of electric field and improve the efficiency and velocity in charge collection near the corners of the sensor: a portion of low dose implant has been removed, creating a step discontinuity in the pixel corner. 
-    A side-effect is the weaker separation between the deep p-well and the p-substrate, that cannot be biased separately anymore to prevent the punchthrough. 
+    A side effect is the weaker separation between the deep p-well and the p-substrate, that cannot be biased separately anymore to prevent the punchthrough. 
         \begin{figure}[h!]
         \centering
         \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
@@ -68,7 +68,7 @@ The performances of both the detectors have been tested before and after irradia
     The removing enhance the lateral electric field component then resulting in a higher efficiency, as we'll see later.\\
 
 \section{FE flavors}
-    TJ-Monopix1 has been implemented in four different flavors, each one corresponding to a different sector on the matrix (fig. \ref{fig:Monopix1_flavors}) and thus having a separate readout and data trasmission, in order to explore different variations of the FE. The four flavors mainly differ in the reset input circuit.
+    TJ-Monopix1 has been implemented in four different flavors, each one corresponding to a different sector on the matrix (fig. \ref{fig:Monopix1_flavors}) and thus having a separate readout and data transmission, in order to explore different variations of the FE. The four flavors mainly differ in the reset input circuit.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.5\linewidth]{figures/Monopix1/Monopix1_flavors.png}
@@ -122,37 +122,58 @@ The performances of both the detectors have been tested before and after irradia
      \end{table}
     
 \section{Readout logic}
-    TJ-Monopix1 has a triggerless and fast R/O with ToT capability based on a column-drain architecture.      
-    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse and a Read-Only Memory (ROM) containing the 9-bit pixel address: excluded these memories, TJ-Monopix1 hasn't any other buffer.
-    After being read, the data packet is sent to the EoC periphery of the chip, where a serializer transfer off-chip to an FPGA (\ref{fig.}). A FIFO is used to temporarily stored the data, which is after transmit to a computer through an ethernet cable.  
-    \begin{figure}
-        \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.98\linewidth]{figures/Monopix1/schematic_boards.png}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.98\linewidth]{figures/Monopix1/monopix1_front.jpeg}
-        \end{subfigure}
-        \caption{(a) (b) From the left to the right: TJ-Monopix1, a breakout board used to make the reboot of data and the FPGA. \red{Dove sono state sviluppate BB e FPGA? Bonn?}}
-        \label{fig:}
-     \end{figure} 
+    TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
+    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address.   
+    After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig.}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  
+    
+    %\begin{figure}
+    %    \begin{subfigure}{.5\textwidth}
+    %    \centering
+    %    \includegraphics[width=.98\linewidth]{figures/Monopix1/schematic_boards.png}
+    %    \end{subfigure}%
+    %    \begin{subfigure}{.5\textwidth}
+    %    \centering
+    %    \includegraphics[width=.98\linewidth]{figures/Monopix1/monopix1_front.jpeg}
+    %    \end{subfigure}
+    %    \caption{(a) (b) From the left to the right: TJ-Monopix1, a breakout board used to make the reboot of data and the FPGA. \red{Dove sono state sviluppate BB e FPGA? Bonn?}}
+    %    \label{fig:}
+    %\end{figure} 
   
 
     The access to the pixels' memory and the transmission of the data off-pixel is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). The readout sequence starts with the TE of a pulse: the pixel immediately tries to grab the column-bus turning up a hit flag signal called \textit{token}.   
-    The token is used to control the priority chain and propagates across the column indicating the pixel that must be read. To start the readout and avoid that the arrival of new hits disrupt the priority logic, a \textit{freeze} signal is activated, and then a \textit{read} signal controls the readout and the access to memory.
-    During the freeze, the token state of all pixels on the matrix remains settled: this does not forbid new hits from being recorded, but forbid pixels hit from turning on the token until the freeze is ended. 
-    \red{The freeze is () fino a che il tokne non ha percorso tutta la priority chain and has reached the EoC, and only after that point is lowered. Until the freeze is applied . Supponiamo quindi che mentre la matrice sia freezata arrivino nuove hit. Quando il freeze si abbassa il token di queste hit si alza e il sistema di controllo si prepara a rialzaer il freeze; le hit che arrivano tra quando si è alzato il primo token e quando viene rialzato il freeze vengono lette. NON SO ANCORA COME SCRIVERLO BENE. È difficile da dire anche in italiano}
-    Since the start of the token is used to assign a timestamp to the hit, the token time has a direct impact on the time assignation of the hit and therefore on the time resolution measurement. All the hits     
-    
-    \begin{figure}[h!]
+    The token is used to control the priority chain and propagates across the column indicating what pixel that must be read. To start the readout and avoid that the arrival of new hits disrupt the priority logic, a \textit{freeze} signal is activated, and then a \textit{read} signal controls the readout and the access to memory.
+    During the freeze, the state of the token for all pixels on the matrix remains settled: this does not forbid new hits on other pixels from being recorded, but forbids pixels hit from turning on the token until the freeze is ended. 
+    The freeze stays on until the token covers the whole priority chain and gets the EoC: during that time new token cannot be turned on, and all hits arrived during a freeze will turn on their token at the end of the previous freeze.  
+    Since the start of the token is used to assign a timestamp to the hit, the token time has a direct impact on the time resolution measurement; this could be a problem coping with high hits rate. 
+
+    The analog FE circuit and the pixel control logic are connected by an edge detector which is used to determine the LE and the TE of the hit pulse(fig. \ref{fig:readout_schematics} (a)): when the TE is stored in the first latch the edge detector is disabled and, if the \textcolor{red}{FREEZE} signal is not set yet, the readout starts. 
+    At this point the HIT flag is set in a second latch and a token signal is produced and depending on the value of \textcolor{Cerulean}{Token in} the pixel can be read or must wait until the \textcolor{Cerulean}{Token in} is off. In figure an OR is used to manage the token propagation, but since a native OR logic port cannot be implemented with CMOS logic, a sum of a NOR and of an inverter is actually used; this construct significantly increases the propagation delay of the token and to speed up the circuit optimized solution are often implemented.  
+    When the pixel become the next to be read in the queue, and at the rising edge of the \textcolor{red}{READ} signal, the state of the pixel is stored in a D-latch and the pixel is allowed to use the data bus; the TE and the HIT flag latches are reset and a \textcolor{Cerulean}{READINT} signal that enable access of the RAM and ROM cells is produced.
+    \begin{figure}
+        \begin{subfigure}{.65\textwidth}
         \centering
-        \includegraphics[width=.7\linewidth]{figures/Monopix1/Monopix1_readout_schematics.png}
+        \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_readout_schematics.png}
+        \end{subfigure}%
+        \begin{subfigure}{.35\textwidth}
+        \centering
+        \includegraphics[width=.98\linewidth]{figures/Monopix1/readout_timing.png}
+        \end{subfigure}
         \caption{}
-        \label{fig:Monopix1_readout_schematics}
-    \end{figure}
+        \label{fig:readout_schematics}
+    \end{figure} 
+    
     The data packet, that is long () bits, represents and contains all are information about the hit: the coordinates within the matrix and the ToT. Remembering that for each flavor there are 112 columns and 224 rows, and since the data bus are shared between double columns, to represent the data bus column () bits are needed, while the rows need () bits. 
     A 40 MHz BCID is distributed across the matrix with a simulated timing dispersion along a column of 0.1-0.2 ns. 
+
+    Excluded the ROM and RAM memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing another one, the new data get lost.
+    no trigger memory is included and the matrix readout is direct (continuous). Since each flavor has a
+    standalone separate readout, only one pixel of each flavor can be read-out at a time. Therefore, the
+    EoC logic contains a token based priority mechanism, similar to the in-pixel control logic, to arbitrate
+    the double column readout with a direction from left to right
+
+    Data from the pixel that is read-out (6-bit LE time-stamp, 6-bit TE time-stamp, 9-bit pixel
+    address) is received by the sense-amplifiers and is temporarily stored at the EoC. The 6-bit column
+    address is subsequently appended and the complete hit data packet (27-bit) propagates through each
 
 
     \subsection{Dead time measurement}
