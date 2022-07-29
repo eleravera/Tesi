@@ -12,8 +12,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs} % tabelle belle che fa Eugenia!
 \usepackage{etoolbox}
-%\usepackage{siunitx} % per fare numeri e unità di misura belle
+\usepackage{siunitx} % per fare numeri e unità di misura belle
 \usepackage[dvipsnames]{xcolor}
+\usepackage{lineno} % To obtain line numbers
 
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}%style=alphabetic 
 \addbibresource{bib/bibliography.bib}
@@ -22,10 +23,11 @@
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \begin{document}
+\linenumbers
 
 \tableofcontents
 
-
+Characterization of monolithic CMOS pixel sensors for charged particle detectors and for high intensity dosimetry 
 
 \chapter{Introduction}
 \input{tex/introduction}
@@ -55,6 +57,3 @@
 
 \printbibliography[heading=bibintoc, title={Bibliography}] 
 \end{document}
-
-
-

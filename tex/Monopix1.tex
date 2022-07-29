@@ -1,3 +1,10 @@
+\red{\begin{itemize}
+    \item scrivere la differenza tra i FE
+    \item fare disegno uguale a quello del mascheramento però con solo due coordinate
+    \item scrivere delle misure cambiando i parametri del FE, e rifare le misure del FE con oscilloscopio e qualche plot
+    \item scrivere misure del tempo morto e rifarle
+\end{itemize}}
+
 The TJ-Monopix1 is one of the chips fabricated by ToweJazz with 180 CMOS imaging process. From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been established with the specific goal to find a sensor suitable as vertex detector for future upgrade of CMS and ATLAS experiments. Among the main objects of study of the collaboration there are both hybrid pixels and monolithic options as CMOS MAPS: fig \ref{fig:TJ180nm} shows the intermediate MAPS-prototypes made by TowerJazz.\\
 \begin{figure}[h!]
     \centering
@@ -101,6 +108,7 @@ The performances of both the detectors have been tested before and after irradia
 
     \subsection{FE parameters}
     Descrivo un po' le misure fatte sul fe e sul significato dei vari parametri.\\
+    it allows injecting pixels with a known charge in DAC units. 
     \begin{table}
         \begin{center}
         \begin{tabular}{|c | c |}
@@ -123,7 +131,7 @@ The performances of both the detectors have been tested before and after irradia
     
 \section{Readout logic}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
-    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address.   
+    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing another one, the new data get lost.  
     After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig.}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  
     
     %\begin{figure}
@@ -147,8 +155,8 @@ The performances of both the detectors have been tested before and after irradia
     Since the start of the token is used to assign a timestamp to the hit, the token time has a direct impact on the time resolution measurement; this could be a problem coping with high hits rate. 
 
     The analog FE circuit and the pixel control logic are connected by an edge detector which is used to determine the LE and the TE of the hit pulse(fig. \ref{fig:readout_schematics} (a)): when the TE is stored in the first latch the edge detector is disabled and, if the \textcolor{red}{FREEZE} signal is not set yet, the readout starts. 
-    At this point the HIT flag is set in a second latch and a token signal is produced and depending on the value of \textcolor{Cerulean}{Token in} the pixel can be read or must wait until the \textcolor{Cerulean}{Token in} is off. In figure an OR is used to manage the token propagation, but since a native OR logic port cannot be implemented with CMOS logic, a sum of a NOR and of an inverter is actually used; this construct significantly increases the propagation delay of the token and to speed up the circuit optimized solution are often implemented.  
-    When the pixel become the next to be read in the queue, and at the rising edge of the \textcolor{red}{READ} signal, the state of the pixel is stored in a D-latch and the pixel is allowed to use the data bus; the TE and the HIT flag latches are reset and a \textcolor{Cerulean}{READINT} signal that enable access of the RAM and ROM cells is produced.
+    At this point the HIT flag is set in a second latch and a token signal is produced and depending on the value of \textcolor{Cerulean}{Token in} the pixel can be read or must wait until the \textcolor{Cerulean}{Token in} is off. In figure an OR is used to manage the token propagation, but since a native OR logic port cannot be implemented with CMOS logic, a sum of a NOR and of an inverter is actually used; this construct significantly increases the propagation delay (the timing dispersion along a column of 0.1-0.2 ns) of the token and to speed up the circuit optimized solution are often implemented.  
+    When the pixel become the next to be read in the queue, and at the rising edge of the \textcolor{red}{READ} signal, the state of the pixel is stored in a D-latch and the pixel is allowed to use the data bus; the TE and the HIT flag latches are reset and a \textcolor{Cerulean}{READINT} signal that enable access of the RAM and ROM cells is produced.\\
     \begin{figure}
         \begin{subfigure}{.65\textwidth}
         \centering
@@ -162,29 +170,31 @@ The performances of both the detectors have been tested before and after irradia
         \label{fig:readout_schematics}
     \end{figure} 
     
-    The data packet, that is long () bits, represents and contains all are information about the hit: the coordinates within the matrix and the ToT. Remembering that for each flavor there are 112 columns and 224 rows, and since the data bus are shared between double columns, to represent the data bus column () bits are needed, while the rows need () bits. 
-    A 40 MHz BCID is distributed across the matrix with a simulated timing dispersion along a column of 0.1-0.2 ns. 
-
-    Excluded the ROM and RAM memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing another one, the new data get lost.
-    no trigger memory is included and the matrix readout is direct (continuous). Since each flavor has a
-    standalone separate readout, only one pixel of each flavor can be read-out at a time. Therefore, the
-    EoC logic contains a token based priority mechanism, similar to the in-pixel control logic, to arbitrate
-    the double column readout with a direction from left to right
-
-    Data from the pixel that is read-out (6-bit LE time-stamp, 6-bit TE time-stamp, 9-bit pixel
-    address) is received by the sense-amplifiers and is temporarily stored at the EoC. The 6-bit column
-    address is subsequently appended and the complete hit data packet (27-bit) propagates through each
-
+    The final data must provide all the hits' information: the pixel address, the ToT and the timestamp; all those parts are assigned at different time during the R/O:  
+    \begin{itemize}
+        \item\textbf{Pixel address:} while the row address (8-bits for each flavor) and the physical column in the double-column (1-bit) are typically assigned by the in-pixel logic, the double column address (6-bit) is appended by the EoC circuit.      
+        \item \textbf{ToT:} is obtained offline from the difference of 6-bits TE and 6-bits LE, stored by the edge detector in-pixel; since a 40 MHz BCID is distributed across the matrix, the ToT value is range 0-64 clock cycle which corresponds to 0-1.6 \unit{\mu s}  
+        \item \textbf{Timestamp:} The timestamp of the hit correspond to the time when the pixel set up the token. It is assigned by the FPGA. 
+    \end{itemize}
+    When the bits are joined up together the complete hit data packet is 27-bit. 
 
     \subsection{Dead time measurement}
-        The RAM on pixel can store only one hit at a time, so the dead time...
-        Descrivo come ho fatto il test. 
-        Fattore limi
+        Only one hit at a time can be stored on the pixel's RAM, so if 
+        The RAM on pixel can store only one hit at a time, so the dead time ...\\
+        To perform the test I've used the injection circuit available on matrix: it allows injecting pulses with fixed amplitude, period and width. 
+        Reducing the period between two consecutive pulses and finding the value when the efficiency decrease, one can extimates the dead time. 
+        Dal momento che c'è un solo serializzatore e che quindi la lettura è sequenziale per tutto il flavor e per quanto detto sul funzionamento del R/O, il $\tau$ dipende in maniera lineare dal numero di pixel contenenti una hit. Per verificare l'andamento lineare e valurare quanto fosse il tempo morto in funzione del rate ho effettuato uno scan nel rate (diminuendo il periodo tra gli impulsi) e nel numero di pixel iniettati. 
+
+        Il collo di bottiglia del tempo morto è dato dal fatto che c'è un unico serializzatore, infatti per trasmettere i dati dal pixel alla EoC è necessario un solo ciclo di clock dal momento che c'è un data bus da n-bit. 
+        Per definre meglio il $\tau$ faccio riferimento alla fig \ref{tempidilettura}: se una hit arriva su un pixel mentre ha il token alto allora la hit viene persa. Se una hit arriva su un pixel che non ha il token alto ma ha il freeze alto, allora non viene persa ma le viene assegnato un timestamp errato. 
+        
         \begin{figure}[h!]
                 \centering
                 \includegraphics[width=.7\linewidth]{figures/Monopix1/dead_time.png}
                 \caption{}
                 \label{fig:dead_time}
             \end{figure}
-
+        A tutte le hit di una iniezione che arrivano contemporaneamente viene assegnato lo stesso timestamp; quando le hit iniziano ad essere meno di quelle che mi aspetti.
+        Mappa in funzione delle iniezioni di quali pixel hai letto.
+        
     
