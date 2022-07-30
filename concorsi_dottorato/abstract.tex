@@ -2,21 +2,21 @@
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage{siunitx}
 \usepackage{lineno} % To obtain line numbers
+\usepackage[dvipsnames]{xcolor}
 
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 
 \begin{document}
 \linenumbers
 
-Since the 1980s, when the fabrication of very small electrodes (50-100 \unit{\mu m}) became a possibility, pixel detectors have been widely employed for the tracking of particles in the vertex region of experiments at accelerators: thanks to their excellent spatial resolution, today even better than 10 \unit{\mu m}, they allow the identification of secondary vertices of short-lived particles such as $\tau$ and B mesons. 
-CMOS MAPS, based on the technology of CMOS cameras, have been developed to improve the performance of the widely used hybrid pixel detectors, in particular by reducing the amount of material, power consumption, pixel dimension.  CURRENT USE OF CMOS MAPS: ALICE; STAR, speed limitation.\\
+Since the 1980s, when the fabrication of very small electrodes (50-100 \si{\mu m}) became a possibility, pixel detectors have been widely employed for the tracking of particles in the vertex region of experiments at accelerators: thanks to their excellent spatial resolution, today even better than 10 \si{\mu m}, they allow the identification of secondary vertices of short-lived particles such as $\tau$ and B mesons. 
+CMOS monolithic active pixels (MAPS), based on the technology of CMOS cameras, have been developed to improve the performance of the widely used hybrid pixel detectors, in particular by reducing the amount of material, power consumption and pixel dimension.  
 
-Future detectors will require thin and fast cmos maps. 
-Very active field with many development
+\red{Due esperimenti che hanno già adottato i MAPS sono ALICE at LHC and STAR at RHIC}; ALICE Tracking System (ITS2) installed in the LHC long shut down in 2019/2020: it is the first large-area ($\sim$10 \si{m^2}) silicon vertex detector based on the CMOS MAPS. Thanks to the reduction in the material budget, compared to the preceding ITS, it led to an amazing improvement both in the point position measurement and in the momentum resolution, allowing high efficienct track recontruction of particle with very low transverse momentum (efficiency for $p_{T}\sim$ 0.1 \si{GeV/c} improved by a factor $\sim$ 6); \red{the main limitation factor of CMOS MAPS detector is the limited readout velocity , future detectors (ITS3 is planned to be installed during the long shut down three, starting in 2026) are in 
+The new vertex detector (ITS3), which is planned to be installed during the long shut down starting in 2026, will be thinner and faster/Future detectors will require thin and fast cmos maps.}\\
 
-CMOS monolithic active pixels (CMOS MAPS), based on the technology of CMOS cameras, are opening promising perspectives in relation to the aforementioned constraints, as they are able to handle hit rates of hundreds of \unit{MHz/cm^2}. And besides, being thin and integrating the front end electronics on-pixel, they reduce the material budget and the power consumption compared to hybrid pixels, which are currently the most used in tracking detectors.
-ALICE, RICH, STAR-> speed limitation. LA RICHIESTA adesso è farli più veloci. 
-TANTI utilizzi, possible use: also in other fields.... dosimetry. 
-Finding new performing detectors is a goal not only within the framework of high energy physics, but also within that of dosimetry: in the last few years the search of radiotherapy oncological treatments with high intensity beams (FLASH mode) is requiring new dosimeters, both for the treatment and for radiological protection, as well as new beam-monitors, which are capable of deal with extreme dose rate (up to 40 \unit{Gy/s}).
+Beside tracking, the development of pixel detectors is a very active field with many applications: some of the most notable are x-rays astrophysics and medical imaging.\\
+One particular application is for dosimetry: in the last few years the search of radiotherapy oncological treatments with high intensity beams (FLASH mode) is requiring new dosimeters, both for the treatment and for radiological protection, as well as new beam-monitors, which are capable of deal with extreme dose rate (up to 40 \si{Gy/s}).
 
 I've studied the characteristics of two CMOS MAPS chips and tested them under different front end configuration. The first chip, a TJ-Monopix1 from the Monopix series, is a TowerJazz MAPS with 180 nm CMOS technology and is one of the prototypes for Belle II vertex detector upgrade expected in 2026. The second is a sensor projected and designed by ARCADIA (Advanced Readout CMOS Architectures with Depleted Integrated sensor Arrays) and is one of the Main Demonstrator-1: it is a general purpose -> dire così
  
@@ -26,12 +26,13 @@ Since one of the main challenges of MAPS are the differences between pixels, due
 
 Moreover, I've also test TJ-Monopix1 at high dose rate with the FLASH-accelerator recently installed at Santa Chiara hospital in Pisa, and I have participated in the design of the setup needed for test beam measurement.
 I've carried out the work in collaboration with both the Belle II and the physical medical groups in Pisa.
-\end{document}
 
 LOgicamente diverso: uno delle applicazioni è la flash.
 Pixel ibridi: dirlo di più
-echnological development is still a necessity-> un po' buffo
-aforementioned -> no è un espressione legale, non suona bene
+echnological development is still a necessity, un po' buffo
+
+\end{document}
+
 
 
 
