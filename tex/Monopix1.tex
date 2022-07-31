@@ -86,21 +86,21 @@ The performances of both the detectors have been tested before and after irradia
     Baseline reset: all'input solitamente hai un PMOSS o un diodo;  
 
     \subsection{ALPIDE-like front end}
-      I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state-of-art and most of the following chips' FE are inspired by that, making it a standard in the FE design. \red{ARCADIA MD1 and TJ-Monopix1 are no exception, this is why I'm going to explain some principals characteristics of how it works}
-      \begin{figure}[h!]
-        \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.98\linewidth]{figures/Monopix1/ALPIDE_FE.png}
-        \caption{ALPIDE-like}
-        \label{fig:ALPIDE-like}
-        \end{subfigure}
-        \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}
-        \caption{}
-        \label{fig:Monopix1_FE_circuit}
-        \end{subfigure}
-    \end{figure}
+        As I already mentioned, ALICE Pixel Detector (ALPIDE) is the current state-of-art and most of the following chips' FE are inspired by that, making it a standard in the FE design
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/Monopix1/ALPIDE_FE.png}
+            \caption{ALPIDE-like}
+            \label{fig:ALPIDE-like}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}
+            \caption{}
+            \label{fig:Monopix1_FE_circuit}
+            \end{subfigure}
+        \end{figure}
 
       The idea of the amplification stage is to transfer the charge from a bigger capacity\cite{ALPIDE-FE}, $C_{source}$, to a smaller one, $C_{out}$: the input transistor M1 with current source IBIAS acts as a source follower and this forces the source of M1 to be equal to the gate input  $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$.
       \begin{equation}
@@ -113,19 +113,20 @@ The performances of both the detectors have been tested before and after irradia
       A second branch (M4, M5) is used to generate a low frequency feedback, where VCASN and ITHR set the baseline value of the signal on $C_{OUT\_A}$ and the velocity to goes down to the baseline.\\
       \red{IL RUOLO DI CURVFEED NON L'HO CAPITO.}\\
       Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
+
     The FE circuit \ref{fig:Monopix1_FE_circuit} is ALPIDE-like, so it is similar to the one described in \ref{chap:}; a quanto già detto voglio però aggiungere due parole: come viene implementato il mascheramento dei pixels e il reset.\\ 
-    Prevedere un modo di mascherare gli screaming pixel, tipicamente pixels con manufacturing defects, è fondamentale per poter ridurre il rate molto alto di dati e non saturare la banda. 
-    In the circuit in fig. \ref{fig:Monopix1_FE_circuit} transistors M8, M9 and M10 implement are used to disable pixels-readout, where MASKH, MASKV and MASKD represent respectivelly the vertical, orizontal and diagonal coordinates of the pixel that one want to mask. \\ 
-    If all three transistors-signals are low, the discriminator is disabled and the pixel is masked. The masking is implemented in this way (with three cordinates instead of one) in order to avoid masking too many ghost pixels (fig. \ref{fig:masking_scheme}).
-    \begin{figure}[h!]
+
+    
+    In order to reduce the hit rate and to avoid saturating the bandwidth, is uttermost important to include in the FE a way to mask noisy pixels, which typically are those with manufacturing defects.
+    In the circuit in fig. \ref{fig:Monopix1_FE_circuit} transistors M8, M9 and M10 have the function of disabling registers with coordinates MASKH, MASKV and MASKD (respectivelly vertical, orizontal and diagonal) from readout: if all three transistors-signals are low, the pixel's discriminator is disabled. 
+    Compared with a configurable masking register which would allow disableing pixels individually, to use a triple redundancy reduces the sensistivity to SEU\footnote{Single Event Upset, in sostanza è quando un bit ti cambia valore (da 0 a 1 o viceversa) perché una particella deposita carica nell'elettronica che fa da memoria registro/RAM/.... Questo tipo di elettronica ha bisogno di un sacco di carica prima che il bit si "flippi" (cambi valore), infatti tipicamente per avere un SEU non basta una MIP che attraversa esattemente quel pezzo di chip in cui è implementata la memoria, ma un adrone che faccia interazione nucleare producendo più carica di quanto farebbe una MIP. Questo metodo pur essendo più comodo richieda less amount of area ha però come drawback che il registro può essere soggetto a SEU problema non trascurabile in acceleratori come HL-LHC adronici} but also gives amount of intentionally masked ("ghost") pixels.
+    This approach is suitable only for extremely small number N of pixel has to be masked: if two coordinate projection scheme had been implemented, the number of ghost pixels would have scale with $N^2$, if instead three coordinates are used, the N's exponential is lower than 2 (fig. \ref{fig:masking_scheme})
+       \begin{figure}[h!]
         \centering
         \includegraphics[width=.3\linewidth]{figures/Monopix1/masking_scheme.png}
         \caption{}
         \label{fig:masking_scheme}
     \end{figure}
-    Un modo standard che si usa di solito è allocare un registro su ogni pixel periphery: il vantaggio di questo modo è che si può disabilitare ogni pixel individually. Questo metodo pur essendo più comodo richieda less amount of area ha però come drawback che il registro può essere soggetto a SEU \footnote{SEU = Single Event Upset, in sostanza è quando un bit ti cambia valore (da 0 a 1 o viceversa) perché una particella deposita carica nell'elettronica che fa da memoria (registro/RAM/...). Questo tipo di elettronica ha bisogno di un sacco di carica prima che il bit si "flippi" (cambi valore), infatti tipicamente per avere un SEU non basta una MIP che attraversa esattemente quel pezzo di chip in cui è implementata la memoria, ma un adrone che faccia interazione nucleare producendo più carica di quanto farebbe una MIP.} problema non trascurabile in acceleratori come HL-LHC adronici\\
-    The implemented approch of masking in Monopix-1 funziona però solo se il numero di pixel da mascherare non è troppo alto dato che il numero di pixel unintentionally masked ("ghost pixels") increase with the number of pixels masked. \\
-    Nel caso in cui solo due cordinate vengono utilizzate il numero di pixel unintentionally masked scales with $N^2$, where N is the number of the intentionally masked; if instead three coordinates are given the ghost pixels are $N^\alpha$ where $\alpha \min$2.\\
 
     \subsection{FE parameters}
     Descrivo un po' le misure fatte sul fe e sul significato dei vari parametri.\\
@@ -137,12 +138,12 @@ The performances of both the detectors have been tested before and after irradia
         Parameter & Meaning\\
         \hline
         \hline
-        IBIAS\\
-        IDB\\
-        ITHR \\
-        VCASN\\
-        VREF\\
-        IREF\\
+        IBIAS &\\
+        IDB &\\
+        ITHR & \\
+        VCASN &\\
+        VREF &\\
+        IREF &\\
         \hline
         \end{tabular}
         \caption{}
@@ -152,63 +153,67 @@ The performances of both the detectors have been tested before and after irradia
     
 \section{Readout logic}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
-    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing another one, the new data get lost.  
-    After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig.}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  
-    
-    %\begin{figure}
-    %    \begin{subfigure}{.5\textwidth}
-    %    \centering
-    %    \includegraphics[width=.98\linewidth]{figures/Monopix1/schematic_boards.png}
-    %    \end{subfigure}%
-    %    \begin{subfigure}{.5\textwidth}
-    %    \centering
-    %    \includegraphics[width=.98\linewidth]{figures/Monopix1/monopix1_front.jpeg}
-    %    \end{subfigure}
-    %    \caption{(a) (b) From the left to the right: TJ-Monopix1, a breakout board used to make the reboot of data and the FPGA. \red{Dove sono state sviluppate BB e FPGA? Bonn?}}
-    %    \label{fig:}
-    %\end{figure} 
-  
+    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing a previous one, the new data get lost.  
+    After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig:R/O-system}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  
+    \begin{figure}
+        \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[clip,width=0.8\linewidth]{figures/Monopix1/schematic_boards.png}
+        \end{subfigure}
+        \bigskip
+        \begin{subfigure}{\textwidth}
+        \centering    
+        \includegraphics[clip,width=0.8\linewidth]{figures/Monopix1/monopix1_front.jpeg}
+        \end{subfigure}
+        \caption{Main caption}
+        \label{fig:R/O-system}
+    \end{figure}
 
-    The access to the pixels' memory and the transmission of the data off-pixel is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). The readout sequence starts with the TE of a pulse: the pixel immediately tries to grab the column-bus turning up a hit flag signal called \textit{token}.   
+
+    The access to the pixels' memory and the transmission of the data to the EoC is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). The readout sequence (\ref{fig:readout_schematics}) starts with the TE of a pulse: the pixel immediately tries to grab the column-bus turning up a hit flag signal called \textit{token}.   
     The token is used to control the priority chain and propagates across the column indicating what pixel that must be read. To start the readout and avoid that the arrival of new hits disrupt the priority logic, a \textit{freeze} signal is activated, and then a \textit{read} signal controls the readout and the access to memory.
     During the freeze, the state of the token for all pixels on the matrix remains settled: this does not forbid new hits on other pixels from being recorded, but forbids pixels hit from turning on the token until the freeze is ended. 
     The freeze stays on until the token covers the whole priority chain and gets the EoC: during that time new token cannot be turned on, and all hits arrived during a freeze will turn on their token at the end of the previous freeze.  
     Since the start of the token is used to assign a timestamp to the hit, the token time has a direct impact on the time resolution measurement; this could be a problem coping with high hits rate. 
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.5\linewidth]{figures/Monopix1/readout_timing.png}
+        \caption{Readout timing diagram: in this example two hits are being processed}
+        \label{fig:readout_schematics}
+    \end{figure}
 
-    The analog FE circuit and the pixel control logic are connected by an edge detector which is used to determine the LE and the TE of the hit pulse(fig. \ref{fig:readout_schematics} (a)): when the TE is stored in the first latch the edge detector is disabled and, if the \textcolor{red}{FREEZE} signal is not set yet, the readout starts. 
+    The analog FE circuit and the pixel control logic are connected by an edge detector which is used to determine the LE and the TE of the hit pulse(fig. \ref{fig:pixel_logic}): when the TE is stored in the first latch the edge detector is disabled and, if the \textcolor{red}{FREEZE} signal is not set yet, the readout starts. 
     At this point the HIT flag is set in a second latch and a token signal is produced and depending on the value of \textcolor{Cerulean}{Token in} the pixel can be read or must wait until the \textcolor{Cerulean}{Token in} is off. In figure an OR is used to manage the token propagation, but since a native OR logic port cannot be implemented with CMOS logic, a sum of a NOR and of an inverter is actually used; this construct significantly increases the propagation delay (the timing dispersion along a column of 0.1-0.2 ns) of the token and to speed up the circuit optimized solution are often implemented.  
     When the pixel become the next to be read in the queue, and at the rising edge of the \textcolor{red}{READ} signal, the state of the pixel is stored in a D-latch and the pixel is allowed to use the data bus; the TE and the HIT flag latches are reset and a \textcolor{Cerulean}{READINT} signal that enable access of the RAM and ROM cells is produced.\\
-    \begin{figure}
-        \begin{subfigure}{.65\textwidth}
+    \begin{figure}[h!]
         \centering
-        \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_readout_schematics.png}
-        \end{subfigure}%
-        \begin{subfigure}{.35\textwidth}
-        \centering
-        \includegraphics[width=.98\linewidth]{figures/Monopix1/readout_timing.png}
-        \end{subfigure}
+        \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_readout_schematics.png}
         \caption{}
-        \label{fig:readout_schematics}
-    \end{figure} 
+        \label{fig:pixel_logic}
+    \end{figure}
     
-    The final data must provide all the hits' information: the pixel address, the ToT and the timestamp; all those parts are assigned at different time during the R/O:  
+
+    
+    The final data must provide all the hits' information: the pixel address, the ToT and the timestamp. All those parts are assigned and appended at different time during the R/O chain:  
     \begin{itemize}
-        \item\textbf{Pixel address:} while the row address (8-bits for each flavor) and the physical column in the double-column (1-bit) are typically assigned by the in-pixel logic, the double column address (6-bit) is appended by the EoC circuit.      
-        \item \textbf{ToT:} is obtained offline from the difference of 6-bits TE and 6-bits LE, stored by the edge detector in-pixel; since a 40 MHz BCID is distributed across the matrix, the ToT value is range 0-64 clock cycle which corresponds to 0-1.6 \unit{\mu s}  
-        \item \textbf{Timestamp:} The timestamp of the hit correspond to the time when the pixel set up the token. It is assigned by the FPGA. 
+        \item\textbf{Pixel address:} while the double column address (6-bit) is appended by the EoC circuit, the row address (8-bits for each flavor) and the physical column in the doublet (1-bit) are assigned by the in-pixel logic      
+        \item \textbf{ToT:} is obtained offline from the difference of 6-bits TE and 6-bits LE, stored by the edge detector in-pixel; since a 40 MHz BCID is distributed across the matrix, the ToT value is range 0-64 clock cycle which corresponds to 0-1.6 \si{\mu s}  
+        \item \textbf{Timestamp:} The timestamp of the hit correspond to the time when the pixel set up the token; it is assigned by the FPGA, that uses the LE, TE and a 640 MHz clock to derive it
     \end{itemize}
     When the bits are joined up together the complete hit data packet is 27-bit. 
 
     \subsection{Dead time measurement}
-        Only one hit at a time can be stored on the pixel's RAM, so if 
-        The RAM on pixel can store only one hit at a time, so the dead time ...\\
-        To perform the test I've used the injection circuit available on matrix: it allows injecting pulses with fixed amplitude, period and width. 
-        Reducing the period between two consecutive pulses and finding the value when the efficiency decrease, one can extimates the dead time. 
+        Only one hit at a time can be stored on the pixel's RAM, so until the data have completed the path to get out, the pixel readout is paralyzed; so, the dead time corresponds with the time needed to export the data-packets. 
+        Since at the EoC there is one serializer per flavor, there is a linear dependence of the dead time depends 
+        
         Dal momento che c'è un solo serializzatore e che quindi la lettura è sequenziale per tutto il flavor e per quanto detto sul funzionamento del R/O, il $\tau$ dipende in maniera lineare dal numero di pixel contenenti una hit. Per verificare l'andamento lineare e valurare quanto fosse il tempo morto in funzione del rate ho effettuato uno scan nel rate (diminuendo il periodo tra gli impulsi) e nel numero di pixel iniettati. 
 
         Il collo di bottiglia del tempo morto è dato dal fatto che c'è un unico serializzatore, infatti per trasmettere i dati dal pixel alla EoC è necessario un solo ciclo di clock dal momento che c'è un data bus da n-bit. 
         Per definre meglio il $\tau$ faccio riferimento alla fig \ref{tempidilettura}: se una hit arriva su un pixel mentre ha il token alto allora la hit viene persa. Se una hit arriva su un pixel che non ha il token alto ma ha il freeze alto, allora non viene persa ma le viene assegnato un timestamp errato. 
-        
+        To measure the dead time I've used the injection circuit available on matrix that allows fixing not only the amplitude of the pulse (charge in DAC) but also the period and width. 
+
+        Reducing the distance between two consecutive pulses and finding the value when the efficiency decrease, one can extimates the dead time. 
+
         \begin{figure}[h!]
                 \centering
                 \includegraphics[width=.7\linewidth]{figures/Monopix1/dead_time.png}
