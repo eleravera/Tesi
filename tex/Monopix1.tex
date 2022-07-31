@@ -85,15 +85,36 @@ The performances of both the detectors have been tested before and after irradia
     R resistenza di reset deve essere abbastanza grande in modo da far si che il ritorno allo zero è abbastanza lento (non devi "interferire" con la tot slope e non devi più corto del tempo del preamplificatore, sennò hai perdita di segnale).\\
     Baseline reset: all'input solitamente hai un PMOSS o un diodo;  
 
-    The FE circuit \ref{fig:Monopix1_FE_circuit} is ALPIDE-like, so it is similar to the one described in \ref{chap:}; a quanto già detto voglio però aggiungere due parole: come viene implementato il mascheramento dei pixels e il reset.\\ 
-    Prevedere un modo di mascherare gli screaming pixel, tipicamente pixels con manufacturing defects, è fondamentale per poter ridurre il rate molto alto di dati e non saturare la banda. 
-    \begin{figure}[h!]
+    \subsection{ALPIDE-like front end}
+      I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state-of-art and most of the following chips' FE are inspired by that, making it a standard in the FE design. \red{ARCADIA MD1 and TJ-Monopix1 are no exception, this is why I'm going to explain some principals characteristics of how it works}
+      \begin{figure}[h!]
+        \begin{subfigure}{.5\textwidth}
         \centering
-        \includegraphics[width=.6\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}
+        \includegraphics[width=.98\linewidth]{figures/Monopix1/ALPIDE_FE.png}
+        \caption{ALPIDE-like}
+        \label{fig:ALPIDE-like}
+        \end{subfigure}
+        \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}
         \caption{}
         \label{fig:Monopix1_FE_circuit}
+        \end{subfigure}
     \end{figure}
 
+      The idea of the amplification stage is to transfer the charge from a bigger capacity\cite{ALPIDE-FE}, $C_{source}$, to a smaller one, $C_{out}$: the input transistor M1 with current source IBIAS acts as a source follower and this forces the source of M1 to be equal to the gate input  $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$.
+      \begin{equation}
+         Q_{source} = C_{source} \Delta V_{PIX\_IN}
+      \end{equation}
+      The current in M2 and the charge accumulates on $C_{out}$ is fixed by the one on $C_{source}$:
+      \begin{equation}
+         \Delta V_{OUT\_A} = \frac{Q_{source}}{C_{OUT\_A}} = \frac{C_{source}\Delta V_{PIX\_IN}}{C_{OUT\_A}}  = \frac{C_{Source}}{C_{OUT\_A}}\frac{Q_{IN}}{C_{IN}}
+      \end{equation}
+      A second branch (M4, M5) is used to generate a low frequency feedback, where VCASN and ITHR set the baseline value of the signal on $C_{OUT\_A}$ and the velocity to goes down to the baseline.\\
+      \red{IL RUOLO DI CURVFEED NON L'HO CAPITO.}\\
+      Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
+    The FE circuit \ref{fig:Monopix1_FE_circuit} is ALPIDE-like, so it is similar to the one described in \ref{chap:}; a quanto già detto voglio però aggiungere due parole: come viene implementato il mascheramento dei pixels e il reset.\\ 
+    Prevedere un modo di mascherare gli screaming pixel, tipicamente pixels con manufacturing defects, è fondamentale per poter ridurre il rate molto alto di dati e non saturare la banda. 
     In the circuit in fig. \ref{fig:Monopix1_FE_circuit} transistors M8, M9 and M10 implement are used to disable pixels-readout, where MASKH, MASKV and MASKD represent respectivelly the vertical, orizontal and diagonal coordinates of the pixel that one want to mask. \\ 
     If all three transistors-signals are low, the discriminator is disabled and the pixel is masked. The masking is implemented in this way (with three cordinates instead of one) in order to avoid masking too many ghost pixels (fig. \ref{fig:masking_scheme}).
     \begin{figure}[h!]
