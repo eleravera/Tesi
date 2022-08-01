@@ -1,5 +1,5 @@
 \red{\begin{itemize}
-    \item scrivere la differenza tra i FE (oggi)
+    \item scrivere la differenza tra i FE 
     \item fare disegno uguale a quello del mascheramento però con solo due coordinate (oggi?)
     \item scrivere delle misure cambiando i parametri del FE, e rifare le misure del FE con oscilloscopio e qualche plot
     \item scrivere misure del tempo morto (oggi)
@@ -198,19 +198,27 @@ The performances of both the detectors have been tested before and after irradia
     \begin{itemize}
         \item\textbf{Pixel address:} while the double column address (6-bit) is appended by the EoC circuit, the row address (8-bits for each flavor) and the physical column in the doublet (1-bit) are assigned by the in-pixel logic      
         \item \textbf{ToT:} is obtained offline from the difference of 6-bits TE and 6-bits LE, stored by the edge detector in-pixel; since a 40 MHz BCID is distributed across the matrix, the ToT value is range 0-64 clock cycle which corresponds to 0-1.6 \si{\mu s}  
-        \item \textbf{Timestamp:} The timestamp of the hit correspond to the time when the pixel set up the token; it is assigned by the FPGA, that uses the LE, TE and a 640 MHz clock to derive it
+        \item \textbf{Timestamp:} The timestamp of the hit correspond to the time when the pixel set up the token; it is assigned by the FPGA, that uses the LE, TE and a 640 MHz clock to derive it. For all those hits which arrived while the matrix is frozen, the timestamp is no more correlated with the time of arrival of the particle         
     \end{itemize}
     When the bits are joined up together the complete hit data packet is 27-bit. 
 
     \subsection{Dead time measurement}
         Only one hit at a time can be stored on the pixel's RAM, so until the data have completed the path to get out, the pixel readout is paralyzed; so, the dead time $\tau$ corresponds with the time needed to export the data-packets. 
-        The dead time bottleneck is given by the bandwidth of the serializer at the EoC: typically it operates at 40 MHz, and to transmit a data packet (27-bit), then, 675 \si{ns} are needed. 
-        Since the R/O is completely sequential, there is a linear dependence of the $\tau$ on the hit rate. 
-        
-        
-        Dal momento che c'è un solo serializzatore e che quindi la lettura è sequenziale per tutto il flavor e per quanto detto sul funzionamento del R/O, il $\tau$ dipende in maniera lineare dal numero di pixel contenenti una hit. Per verificare l'andamento lineare e valurare quanto fosse il tempo morto in funzione del rate ho effettuato uno scan nel rate (diminuendo il periodo tra gli impulsi) e nel numero di pixel iniettati. 
+        Since the trasmission of data from pixel to the EoC \red{Avviene per emzzo si } a -bits data bus (this means that only one clock cycle is need to transfer the data to the end of column), the dead time bottleneck is given by the bandwidth of the serializer at the EoC: typically it operates at 40 MHz, and to transmit a data packet (27-bit), then, 675 \si{ns} are needed. 
+        For what we have said so far, the R/O is completely sequential and therefore a linear dependence of the $\tau$ on the hit rate is expected:
+        \begin{equation}
+            \tau = 25 \unit{ns} 
+        \end{equation}
 
-        Il collo di bottiglia del tempo morto è dato dal fatto che c'è un unico serializzatore, infatti per trasmettere i dati dal pixel alla EoC è necessario un solo ciclo di clock dal momento che c'è un data bus da n-bit. 
+        %t_reading = 25 ns * (ToT + CONF_START_FREEZE + N_pixels_to_read * (CONF_STOP_FREEZE - CONF_START_READ))
+        %CONF_STOP_FREEZE - CONF_START_READ è il tempo che ci vuole a prendere i dati da un pixel e mandarli all'FPGA, e sono 34 cicli (850 ns). Se anche il ToT fosse zero (e non lo sarà) e riducessimo CONF_START_FREEZE a 3 (valore di default), per leggere 5 pixel ci vorrebbero 4.325 μs, che è più della durata di un pulse del fascio. Ridurre il tempo morto di Monopix1, dal punto di vista del fascio della FLASH, è una battaglia persa.
+
+
+
+        To test the linearity of the dead time with the rate, I have 
+        Per verificare l'andamento lineare e valurare quanto fosse il tempo morto in funzione del rate ho effettuato uno scan nel rate (diminuendo il periodo tra gli impulsi) e nel numero di pixel iniettati. 
+
+ 
         Per definre meglio il $\tau$ faccio riferimento alla fig \ref{tempidilettura}: se una hit arriva su un pixel mentre ha il token alto allora la hit viene persa. Se una hit arriva su un pixel che non ha il token alto ma ha il freeze alto, allora non viene persa ma le viene assegnato un timestamp errato. 
         To measure the dead time I've used the injection circuit available on matrix that allows fixing not only the amplitude of the pulse (charge in DAC) but also the period and width. 
 
