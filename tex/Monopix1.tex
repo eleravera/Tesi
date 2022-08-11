@@ -31,84 +31,93 @@ Concerning the sensors, either are based on a p-type substrate, but with slightl
     ENC & 100 $e^-$ & $\sim$ 30 $e^-$\\
     \hline
     \end{tabular}
-    \caption{Main characteristics of Monopix1 produced by TowerJazz and LFoundry \cite{LF-TJ-Monopix}}
+    \caption{Main characteristics of Monopix1 produced by TowerJazz and LFoundry \cite{LF-TJ-Monopix-short}\cite{LF-TJ-Monopix-long}}
     \label{tab:LF-TJ-Monopix}
     \end{center}
  \end{table}
 
+The TJ-Monopix1 chip contains, apart from the pixels matrix, all the required support blocks used for configuration and testing: 
+\begin{itemize}
+    \item  the whole matrix contains 224 $\times$ 448 pixels, yielding a total active area approximately equal to \SI{145}{mm\squared} over a total area of 1$\times$2\si{cm\squared};
+    \item at the chip periphery are placed some 7-bit Digital to Analog Converter (DAC), used to generate the analog bias voltage and current levels and to confiugure the FE; 
+    \item at the EoC is placed a serializer to transferred datas immediately, indeed no trigger memory is implemented in this prototypes;
+    \item the matrix power pads are distributed at the sides
+    \item four pixels which have analog output and which can be monitored with an oscilloscope, and therefore used for testing
+\end{itemize}    
+Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout allows to separate the analog and the digital electronics area in order to reduce the possibile interference between the two parts. In addition it semplifies the routing of data as pixels on double column share the same column-bus to EoC. Therefore pixels can be addressed through the physical column/row or through the logical column/row, as shown in fig. \ref{fig:column_order}: in figure is also highlighted the token propagaion path, whose I will discuss later.
+
+\begin{figure}[h!]
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_2x2pixelsgroup.png}
+    \caption{Layout of a core containing 4 pixels. The analog FE and the digital part are separated in order to reduce cross-talk be}
+    \label{fig:pixels_core}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=.88\linewidth]{figures/Monopix1/column_order.png}
+    \caption{}
+    \label{fig:column_order}
+    \end{subfigure}
+\end{figure}
+
+\begin{table}
+    \begin{center}
+    \begin{tabular}{| c |c |}
+    \hline
+    Parameter & Value\\
+    \hline
+    \hline
+    Matrix size &  1$\times$2\si{cm\squared}\\
+    Pixel size & 36 $\times$ 40 \si{\um\squared}\\
+    Depth & \SI{25}{\um}\\
+    Electrode size & \SI{2}{\um}\\
+    BCID & \SI{40}{MHz} \\
+    ToT-bit & 6 \\
+    Power consumption & $\sim$ 120 \si{mW/cm\squared}\\    
+    \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:LF-TJ-Monopix}
+    \end{center}
+\end{table}
+
 
 \section{The sensor}
+    As already anticipated, TJ-Monopix1 has a p-type epitaxial layer and a n doped small collection electrode (\SI{2}{\um} in diameter); to avoid the n-wells housing the PMOS transistors competing for the charge collection, a deep p-well substrate, common to all the pixel FE area, is used.
     TJ-Monopix1 adopts the modification described in section \ref{chap:a_modified_sensor} that allows to achieve a planar depletion region near the electrode applying a relatively small reverse bias voltage.
-    This modification improves the efficiency of the detector, especially after irradiation, however a TCAD (Technology Computer Aided Design) simulation shows that a nonuniform electric field is still produced in the lateral regions compromising the efficiency at the pixel corner.
-    On a sample of chip, which includes the one in Pisa, a second variation (fig. \ref{fig:Monopix1_section_scheme}) have been made to further enhance the transversal component of electric field: a portion of low dose implant has been removed, creating a step discontinuity in the deep p-well corner. 
-    A side effect of the alteration in the low dose implant is the weaker separation between the deep p-well and the p-substrate, that cannot be biased separately anymore to prevent the punchthrough. 
-    “extra deep p-well”.
-        \begin{figure}[h!]
+    This modification improves the efficiency of the detector, especially after irradiation, however a simulation of the electric field in the sensor, made with the software TCAD (Technology Computer Aided Design), shows that a nonuniform field is still produced in the lateral regions of the pixel compromising the efficiency at the corner.
+    Two variations to the process have been proposed in order to further enhance the transversal component of electric field at the pixel borders: on a sample of chip, which includes the one in Pisa, a portion of low dose implant has been removed, creating a step discontinuity in the deep p-well corner (fig. \ref{fig:Monopix1_section_scheme}); the second solution proposed\cite{MOUSTAKAS THESYS, PAG 58} consists in adding an extra deep p-well near the pixel edge.
+    A side effect of the alteration in the low dose implant is that the separation between the deep p-well and the p-substrate becomes weak to the point that they cannot be biased separately to prevent the punchthrough. 
+
+    \begin{figure}[h!]
         \centering
         \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
         \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix with modified process; additionally in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field. this point in figure  is indicated by a star . transversal component of the electric field drops at the pixel corner}
         \label{fig:Monopix1_section_scheme}
     \end{figure}
 
-    The collection electrode size is \SI{2}{\um} in diameter and its spacing from the electronics area is equal to \SI{3}{\um}, il deep p well è comune a tutti gli NMOS sul pixel
-    Moreover, to investigate the charge collection properties, as the threshold, the noise and the efficiency, pixels within the matrix feature a difference in the doping structure of the deep p-well: rows from 0 to 111 are fully covered by deep p-well (FDPW), while rows from 112 till the last 223 have a portion of deep p-well removed (RDPW).
-
-    The pixel electronics area of pixel belonging to the bottom
-half of each column is fully covered by deep p-well (FDPW), while part of the deep p-well is removed (RDPW)
-for pixels belonging to the top half of each column,
-    The removing enhance the lateral electric field component then resulting in a higher efficiency, as we will see later.\\
-    \red{The collection electrode size is
-    2 \si{\mu m} in diameter and its spacing from the electronics area is equal to 3 \si{\mu m}; In order to reduce possible crosstalk, the digital and analog areas are
-    physically separated}
+    Moreover, to investigate the charge collection properties, pixels within the matrix are split between bottom top half and bottom half and feature a variation in the coverage of the deep p-well: the electronics area can be fully covered or not. In particular the pixels belonging to rows from 0 to 111 are fully covered (FDPW) and pixels belonging to rows from 112 to 223 have a reduced p-well (RDPW), resulting in a enhancement of the lateral component of the electric field.
 
 \section{Front end}
-    \begin{table}
-        \begin{center}
-        \begin{tabular}{| c |c |}
-        \hline
-        Parameter & Value\\
-        \hline
-        \hline
-        Matrix size &  1 2\\
-        Pixel size & 36 $\times$ 40 \si{\um\squared}\\
-        Depth & \SI{25}{\um}\\
-        Electrode size & \SI{2}{\um}\\
-        BCID & \SI{40}{MHz} \\
-        ToT-bit & 6 \\
-        Power consumption & $\sim$ 120 \si{mW/cm\squared}\\    
-        \hline
-        \end{tabular}
+    The matrix is split in four sections, each one corresponding to a different flavor of the FE. The four variation have been implemented in order to test the data-bus readout circuits and the input reset modes.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.8\linewidth]{figures/Monopix1/Monopix1_flavors.png}
         \caption{}
-        \label{tab:LF-TJ-Monopix}
-        \end{center}
-    \end{table}
-    The whole matrix contains 224 $\times$ 448 pixels, with size 36 $\times$ 40 \si{\mu^2} yielding a total active area approximately equal to 145 \si{mm^2} over a total area of 1 $\times$ 2 \si{cm^2}.
-    In the chip periphery are placed all the required support blocks used for configuration and testing, while the matrix power pads are distributed at the sides.
-    In particular, in the chip periphery, there are:  
-    \begin{itemize}        
-        \item some 7-bit Digital to Analog Converter (DAC), used to generate the analog bias voltage and current levels and to confiugure the FE
-        \item a serializer is placed at the EoC to transferred datas immediately; no trigger memory is implemented in this prototypes, hence the R/O if full (continuous)
-        \item four pixels which have analog output and which can be monitored with an oscilloscope, and therefore used for testing
-    \end{itemize}
-   
-    \subsection{Four flavors}
-        Four different flavors have been implemented in order to explore different variations of the data-bus readout circuitry and of the reset: each flavor corresponds to a different sector on the matrix(fig. \ref{fig:Monopix1_flavors}) and thus having a separate readout and data transmission. 
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.8\linewidth]{figures/Monopix1/Monopix1_flavors.png}
-            \caption{}
-            \label{fig:Monopix1_flavors}
-        \end{figure}
-        \red{Flavors B, C and D feature a source-follower column-bus readout derived from the LF-Monopix1 chip, that aims to reduce the crosstalk. However, it leads in a significant amount of static power being drawn at the EoC periphery. To elimnate static power consumption a modified gated source follower readout has been included in a flavor A, which is otherwise identical to flavor B. Flavor B, refereed to as the "PMOS reset", is the standard (reference ) variation and features a DC-couple PMOS input reset. Flavor C incorporates a novel leakage compensation circuit and flavor
-        D, also called the "HV" flavor, explores the possibility of applying a high front-side bias voltage to the
-        collection electrode which in this case is AC-coupled to the front-end input.}
-        R resistenza di reset deve essere abbastanza grande in modo da far si che il ritorno allo zero è abbastanza lento (non devi "interferire" con la tot slope e non devi più corto del tempo del preamplificatore, sennò hai perdita di segnale).\\
-        Baseline reset: all'input solitamente hai un PMOSS o un diodo;  
-        \red{R reset; Voltage amplifier}
-        The FE circuit \ref{fig:Monopix1_FE_circuit} is ALPIDE-like, so it is similar to the one described in \ref{chap:}; a quanto già detto voglio però aggiungere due parole: come viene implementato il mascheramento dei pixels e il reset.\\ 
+        \label{fig:Monopix1_flavors}
+    \end{figure}
 
-    \subsection{ALPIDE-like front end}
-        As I already mentioned, ALICE Pixel Detector (ALPIDE) is the current state-of-art and most of the following chips' FE are inspired by that, making it a standard in the FE design
+    All the flavors implement a source-follower double-column bus readout: the standard variation is the flavor B, that features a PMOS input reset (refered as "PMOS reset"). Flavor A is identical to flavor B except for the realization of the source follower (it is a gated one) that aim to reduce the power consumption.\red{cosa significa?} C instead implements a novel leakage compensation circuit.
+    Moreover the collection electrode in flavors A, B, C is DC-coupled to the front-end input, while in D is AC-coupled, providing to applu a high bias voltage; for this reason flavor D il called "HV flavor".
+
+    \red{R resistenza di reset deve essere abbastanza grande in modo da far si che il ritorno allo zero è abbastanza lento (non devi "interferire" con la tot slope e non devi più corto del tempo del preamplificatore, sennò hai perdita di segnale).
+    Baseline reset: all'input solitamente hai un PMOSS o un diodo;  
+    R reset; Voltage amplifier}
+
+    \subsection{ALPIDE-like}
+        ALPIDE chips, developed by the ALICE collaboration, implemented a standard FE to the point that many CMOS MAPS detectors used a similar FE and are called "ALIPDE-like". 
+        Concidering that both TJ-Monopix1 and ARCADIA-MD1 have an ALPIDE-like FE, I am going to explain the broad principles of the early FE stage. 
         \begin{figure}[h!]
             \begin{subfigure}{.5\textwidth}
             \centering
@@ -123,7 +132,7 @@ for pixels belonging to the top half of each column,
             \label{fig:Monopix1_FE_circuit}
             \end{subfigure}
         \end{figure}
-        The idea of the amplification stage is to transfer the charge from a bigger capacity\cite{ALPIDE-FE}, $C_{source}$, to a smaller one, $C_{out}$: the input transistor M1 with current source IBIAS acts as a source follower and this forces the source of M1 to be equal to the gate input  $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$.
+        The general idea is of the amplification to transfer the charge from a bigger capacity\cite{ALPIDE-FE}, $C_{source}$, to a smaller one, $C_{out}$: the input transistor M1 with current source IBIAS acts as a source follower and this forces the source of M1 to be equal to the gate input  $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$.
         \begin{equation}
             Q_{source} = C_{source} \Delta V_{PIX\_IN}
         \end{equation}
@@ -134,11 +143,10 @@ for pixels belonging to the top half of each column,
         A second branch (M4, M5) is used to generate a low frequency feedback, where VCASN and ITHR set the baseline value of the signal on $C_{OUT\_A}$ and the velocity to goes down to the baseline.\\
         \red{IL RUOLO DI CURVFEED NON L'HO CAPITO.}\\
         Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
-        I've already mentioned ALICE pixel dector talking about the new process modification, now the ALICE name comes up again talking about FE: this is because ALPIDE (ALice PIxel DEtector) is one of the first MAPS detector (TowerJazz 180 nm CMOS) installed \footnote{It was installed in the Inner Tracking System during the second long shut down of the LHC in 2019}, therefore it is the current state-of-art and most of the following chips' FE are inspired by that, making it a standard in the FE design.
-            
-        In order to reduce the hit rate and to avoid saturating the bandwidth, is uttermost important to include in the FE a way to mask noisy pixels, which typically are those with manufacturing defects.
-        In the circuit in fig. \ref{fig:Monopix1_FE_circuit} transistors M8, M9 and M10 have the function of disabling registers with coordinates MASKH, MASKV and MASKD (respectivelly vertical, orizontal and diagonal) from readout: if all three transistors-signals are low, the pixel's discriminator is disabled. 
-        Compared with a configurable masking register which would allow disableing pixels individually, to use a triple redundancy reduces the sensistivity to SEU\footnote{Single Event Upset, in sostanza è quando un bit ti cambia valore (da 0 a 1 o viceversa) perché una particella deposita carica nell'elettronica che fa da memoria registro/RAM/.... Questo tipo di elettronica ha bisogno di un sacco di carica prima che il bit si "flippi" (cambi valore), infatti tipicamente per avere un SEU non basta una MIP che attraversa esattemente quel pezzo di chip in cui è implementata la memoria, ma un adrone che faccia interazione nucleare producendo più carica di quanto farebbe una MIP. Questo metodo pur essendo più comodo richieda less amount of area ha però come drawback che il registro può essere soggetto a SEU problema non trascurabile in acceleratori come HL-LHC adronici} but also gives amount of intentionally masked ("ghost") pixels.
+
+        The actual circuit implemented in TJ-Monopix1 is shown in figure \ref{fig:Monopix1_FE_circuit}: the principal difference lays in the addition of disableing pixels' readout. This possibility is uttermost important in order to reduce the hit rate and to avoid saturating the bandwidth due to the noisy pixels, which typically are those with manufacturing defects.
+        In the circuit transistors M8, M9 and M10 have the function of disabling registers with coordinates MASKH, MASKV and MASKD (respectivelly vertical, orizontal and diagonal) from readout: if all three transistors-signals are low, the pixel's discriminator is disabled. 
+        Compared with a configurable masking register which would allow disableing pixels individually, to use a triple redundancy reduces the sensistivity to SEU\footnote{\red{Single Event Upset, in sostanza è quando un bit ti cambia valore (da 0 a 1 o viceversa) perché una particella deposita carica nell'elettronica che fa da memoria registro/RAM/.... Questo tipo di elettronica ha bisogno di un sacco di carica prima che il bit si "flippi" (cambi valore), infatti tipicamente per avere un SEU non basta una MIP che attraversa esattemente quel pezzo di chip in cui è implementata la memoria, ma un adrone che faccia interazione nucleare producendo più carica di quanto farebbe una MIP. Questo metodo pur essendo più comodo richieda less amount of area ha però come drawback che il registro può essere soggetto a SEU problema non trascurabile in acceleratori come HL-LHC adronici}} but also gives amount of intentionally masked ("ghost") pixels.
         This approach is suitable only for extremely small number N of pixel has to be masked: if two coordinate projection scheme had been implemented, the number of ghost pixels would have scale with $N^2$, if instead three coordinates are used, the N's exponential is lower than 2 (fig. \ref{fig:masking_scheme})
         \begin{figure}[h!]
             \centering
