@@ -155,33 +155,28 @@ Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout
             \label{fig:masking_scheme}
         \end{figure}
 
-
-    \subsection{Front end parameters}
-        Descrivo un po' le misure fatte sul fe e sul significato dei vari parametri.\\
-        it allows injecting pixels with a known charge in DAC units. 
-        the front-end analog
-        output of four special pixels at each side, placed next to the matrix, is buffered and can be monitored
-        for characterization and debugging purposes.
         \begin{table}
             \begin{center}
-            \begin{tabular}{|c | c |}
+            \begin{tabular}{|c | c | c |}
             \hline
-            Parameter & Meaning\\
+            Parameter & Meaning & \\
             \hline
             \hline
-            IBIAS &\\
-            IDB &\\
-            ITHR & \\
-            VCASN &\\
-            VREF &\\
-            IREF &\\
+            IBIAS & \\
+            IDB & sets the discriminator threshold & yes\\
+            ITHR & sets the velocity of the return to the baseline & yes \\
+            ICASN & sets the baseline of the signal & yes\\
+            VRESET & sets the gain of the preamplifier & yes\\
+            IRESET & sets the gain of the preamplifier & no\\
             \hline
             \end{tabular}
-            \caption{}
+            \caption{FE parameters which must be setted through the DAQ. "Function" means that higher parameter implies higher value}
             \label{tab:FE-parameters}
             \end{center}
         \end{table}
     
+
+
 \section{Readout logic}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
     On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing a previous one, the new data get lost.  
@@ -223,8 +218,6 @@ Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout
         \label{fig:pixel_logic}
     \end{figure}
     
-
-    
     The final data must provide all the hits' information: the pixel address, the ToT and the timestamp. All those parts are assigned and appended at different time during the R/O chain:  
     \begin{itemize}
         \item\textbf{Pixel address:} while the double column address (6-bit) is appended by the EoC circuit, the row address (8-bits for each flavor) and the physical column in the doublet (1-bit) are assigned by the in-pixel logic      
@@ -233,31 +226,62 @@ Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout
     \end{itemize}
     When the bits are joined up together the complete hit data packet is 27-bit. 
 
-    \subsection{Dead time measurement}
-        The hit loss can be due to both analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead occurs when a new hit arrives while the information of the previous hit has not yet been transferred to the periphery. 
-        The digital pile-up contribution is the more relevant and the dead time is almost entirely determined by that; as only one hit at a time can be stored on the pixel's RAM, until the data have completed the path to get out, the pixel readout is paralyzed and the $\tau$ corresponds with the time needed to export the data-packets.
-        Since the transmission of data from pixel to the EoC occurs via a \red{?}-bits data bus (this means that only one clock cycle is need to transfer the data to the end of column), the dead time bottleneck is given by the bandwidth of the serializer at the EoC: typically it operates at 40 MHz, and to transmit a data packet (27-bit) at least 675 \si{ns} are needed. 
+    \subsection{Dead time measurements}
+        The hit loss is due to analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead, which is the more relevant contribution, while the information of the previous hit has not yet been transferred to the periphery.  
+        As only one hit at a time can be stored on the pixel's RAM, until the data have completed the path to get out, the pixel is paralyzed and the dead time $\tau$ almost corresponds with the time needed to trasmit the data-packets off-chip.
+        Since the exportation of data from pixel to the EoC occurs via a 21-bits data bus, only one clock cycle is need to transfer the data to the end of column and the dead time bottleneck is given by the bandwidth of the serializer at the EoC. In our setup it operates at 40 MHz, thus to transmit a data packet (27-bit) at least \SI{675}{ns} are needed. 
         For what we have said so far, the R/O is completely sequential and therefore is expected a linear dependence of the reading time on the number of pixels to read:
         \begin{equation}
             \tau =\, 25\: \unit{ns}\, \times\, (\alpha\, N +\, \beta)
+            \label{eq:reading_time}
         \end{equation}
-        where $\alpha$ and $\beta$ are parameters dependent on the readout chain. 
-        In particular, looking at fig. \ref{fig:readout_timing}, $\alpha$ \red{is the time with $\alpha$ (CONF STOP FREEZE-CONF START READ), and $\beta$ ToT + CONF START FREEZE.}
-
-        To measure and to test the linearity of the reading time with the number of pixels firing, I have used the injection mode available on the chip, that allows fixing not only the amplitude of the pulse (charge in DAC, as already seen in the previous section) but also the period and width.
-        I have injected one hundred of pulses 
-        Reducing each time the distance between two consecutive pulses, I have injected until the number of hits counted were less than the injected ones. 
-        \red{Un esempio se leggo un singolo pixel: l'efficienza satura al 50\%}
+        where $\alpha$ and $\beta$ are parameters dependent on the readout chain setting. 
         
+        To measure and test the linearity of the reading time with the number of pixels firing, I have used the injection mode available on the chip. 
+        Indeed, the injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the period and the width.
+        I have injected a fix number of pulses (100) and looked for the rate when the efficiency decreases. 
+        Moreover to test that there is no dependece of the digital readout time from the charge of the pulse, I have try to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
 
-        \red{Per definre meglio il $\tau$ faccio riferimento alla fig \ref{tempidilettura}: se una hit arriva su un pixel mentre ha il token alto allora la hit viene persa. Se una hit arriva su un pixel che non ha il token alto ma ha il freeze alto, allora non viene persa ma le viene assegnato un timestamp errato. PARLO ANCHE DELLA "RISOLUZIONE TEMPORALE?"} 
+        \red{Un esempio se leggo un singolo pixel: LA SLOPE CON CUI L'EFFICIENZA SCENDE È ABBSTANZA UNIFORME? perchè satura a 50?}
+        
+        While the single pixel reading time and the dead time do not depend on the position on the pixel matrix and are equal to \red{106 (46+60)} clock counts within 1 clock count, on the other hand the $\tau$ depends on the pixel position on the matrix when more than one pixel are firing. 
+        In particular the priority chain goes from row 224 to row 0, and from col 0 to 112, that means the last pixels to be read is the one on le bottom right corner of the matrix. 
+
+        In figure \ref{fig:dead_time} is reported the reading time versus the number of pixels injected; the R/O parameters that control the reading time and their default values are reported on table \ref{tab:tab:R/O_param}.
+        \begin{table}
+            \begin{center}
+            \begin{tabular}{|c | c | c |}
+            \hline
+            Parameter & Value [\si{DAC}] & Value [\si{\us}]\\
+            \hline
+            \hline
+            START\_FREEZE & 64 & 1.6\\
+            STOP\_FREEZE & 100 & 2.5\\
+            START\_READ & 66 & 1.65\\
+            STOP\_READ & 68 & 1.7\\
+            \hline
+            \end{tabular}
+            \caption{Default configuation of the R/O parameters}
+            \label{tab:R/O_param}
+            \end{center}
+        \end{table}
+
+        The factor $\alpha$, referring to eq. \ref{eq:reading_time} is proportional to the difference (STOP\_FREEZE - START\_READ), while the offset $\beta$ lies between 5 and 15 clock counts.
+        Since through the injection a random hit rate on the matrix can't be simulated, as the coordinates of the pixels to inject must be specified, for convenience I used the pixels on the same column/row. No difference in the $\alpha$ and $\beta$ coefficients has been observed between the two case. 
         \begin{figure}[h!]
-                \centering
-                \includegraphics[width=.7\linewidth]{figures/Monopix1/dead_time.png}
-                \caption{}
-                \label{fig:dead_time}
-            \end{figure}
-        A tutte le hit di una iniezione che arrivano contemporaneamente viene assegnato lo stesso timestamp; quando le hit iniziano ad essere meno di quelle che mi aspetti.
-        Mappa in funzione delle iniezioni di quali pixel hai letto.
-        NON DIPENDE DALLA CARICA
-    
+            \centering
+            \includegraphics[width=.9\linewidth]{figures/Monopix1/default_line.png}
+            \caption{}
+            \label{fig:dead_time}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.9\linewidth]{figures/Monopix1/parameters_points.png}
+            \caption{}
+            \label{fig:dead_time}
+        \end{figure}        
+
+        \red{A tutte le hit di una iniezione che arrivano contemporaneamente viene assegnato lo stesso timestamp; Risoluzione temporale??}
+
+

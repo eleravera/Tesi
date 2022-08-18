@@ -1,20 +1,38 @@
+Pixel detectors have been firstly developed for particle physics in 1980s and during the past 40 years have transformed particle tracking in experiments.
+
+\red{qualcosa del tipo: I più grandi esperimenti hanno tutti un rivelatore a pixel.}.
+
+During the past 40 years, silicon sensors have transformed particle tracking in high-energy physics experiments
+
+Beside tracking, the development of pixel detectors is a very active field with many applications in medical imaging and \red{astrophysics.}.
+A noteworthy example of detector originally used in particle physics, and later employed mainly for medical imaging, but also in space and for art authentication, is Medipix, a hybrid system developed at CERN within the Medipix collaboration.
+
+\red{In particolare la tecnologia CMOS, comunissima nell'ambito commerciale, basti pensare alle fotocamere. Originariamente erano CCD poi ora CMOS MAPS. }
 A partire dal 2017, i sensori CMOS rappresentano l'89\% delle vendite globali di sensori di immagine. Ma praticamente dal 2010 in poi solo CMOSS e non più CCD.\\
 
 \section{Tracking in HEP}
     Per gli acceleratori la richieste sono molto stringenti e lo saranno sempre di più con l'aumento dell' intensità o della luminosità in termini di radiation hardness (per HL-LHC for example expected in 5 anni 500 Mrad e NIEL di 10 alla 16), efficiency e occupancy (efficienza alta dopo tanta radiazione e noise occupancy bassa), time resolution (bunch crossing 40 Mhz), material budget e power consumption (material budget below 2per cento e power consumption 500 mW/cm2)\\
     Usati come tracciatori per misure di impulso e per misure di energia (per rigettare ) ad esempio dati di fondo (topic fondamentale per BELLE-II).
 
-    \subsubsection{Resolution}
-        Depending on the type of signal reading the spatial resolution is  $\sigma_x = \frac{p}{\sqrt{12}}$ where $p$ is the pitch between pixels, or even better if other 
-        analogica information, as the charge, are read and capacitive charge division method is applied.
+    \subsection{Hybrid pixels: ATLAS, CMS and LHC-b(?)/Belle-II?}
+        From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been established with the specific goal to find a pixel detector suitable for phase II future upgrades of the experiments CMS and ATLAS. Even if the collaboration is specifically focused on design of hybrid pixel readout chips, also monolithic options have been taken in account for ATLAS ITK outer layers. Tra i chip designed for that pourpose there are LF an TJ Monopix.\\
+        \textbf{ATLAS}\\
+        \textbf{CMS}\\
+        \textbf{Belle-II}\\
 
-    \subsection{Hybrid pixels: ATLAS, CMS and LHC-b}
-        From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been established with the specific goal to find a pixel detector suitable for phase II future upgrades of the experiments CMS and ATLAS. Even if the collaboration is specifically focused on design of hybrid pixel readout chips, also monolithic options have been taken in account for ATLAS ITK outer layers. Tra i chip designed for that pourpose there are LF an TJ Monopix.
         
     \subsection{CMOS MAPS: ALICE and STAR}
-         For years ALICE have been pioneering MAPS detectors and its sensors are currently state-of-the art in this sector, to the point that most of today’s CMOS MAPS chips implement the same FE of ALICE Pixel Detector, and in fact they are commonly called ”ALPIDE-like” sensors\footnote{As we'll see TJ-Monopix1 and ARCADIA have an ALPIDE-like front end.}.
-        
-        
+        Experiments such as ALICE at LHC and STAR at RHIC have already introduced the CMOS MAPS technology in their detectors. ALICE Tracking System (ITS2), upgraded during the LHC long shut down in 2019-20, was the first large-area ($\sim$10 \si{m\squared} ) silicon vertex detector based on CMOS MAPS.
+
+        \textbf{ALICE}\\
+        ALICE (A Large Ion Collider Experiment) is a detector dedicated to heavy-ion physics at the LHC.
+        \red{MEtti una cosa generale su com'è fatto tutto il detector di ALICE: tpc ecc.\\}
+        The expected dose is smaller by two order than the one at ATLAS and CMS.(cita libro). The rate of interactions is few \si{MHz}, but the number of particles produced in each interaction is really high. The pixel system must cope with high densisties as high as 100/cm2, ma ha abbastanza tempo tra un interazione e l'altra. 
+        The challenge is recustruct very complicated events and relevant is minimize the amount of material since any kind of secondary interaction will complicate futher the event topology e diminuisce efficenza e risoluzione delle tracce a più basso momento. \\
+        \red{ALICE MAPS: MONOPIX1}
+        \red{COM'è fatto il rivelatore a  pixel di ALICE}
+        Thanks to the reduction of the material budget, ITS2, which uses the ALPIDE chip developed by ALICE collaboration, obtained an amazing improvement both in the position measurement and in the momentum resolution, improving the efficiency pf track reconstruction for particle with very low transverse momentum (by a factor 6 at pT $\sim$ 0.1 GeV/c). Further advancements in CMOS MAPS technology are being aggressively pursued for the ALICE ITS3 and the Belle II vertex detector upgrades (both foreseen around 2026-27) and other experiments, with the goals of further reducing the sensor thickness and improving the readout speed of the devices, while keeping power consumption at a minimum.\\
+        \textbf{STAR}\\
 
 \section{Application in medical imaging}
     \subsection{Medipix and Timepix}
