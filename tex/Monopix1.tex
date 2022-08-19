@@ -178,6 +178,7 @@ Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout
 
 
 \section{Readout logic}
+    \red{ The simplest readout is “rolling shutter”, in which peripheral logic along the chip edge addresses rows in turn, and analogue signals are transmitted by column lines to peripheral logic at the bottom of the imaging area.}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
     On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing a previous one, the new data get lost.  
     After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig:R/O-system}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  

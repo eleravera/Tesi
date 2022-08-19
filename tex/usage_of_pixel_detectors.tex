@@ -1,26 +1,35 @@
-Pixel detectors have been firstly developed for particle physics in 1980s and during the past 40 years have transformed particle tracking in experiments.
+There always was a tight relation between the development of cameras and pixel detectors since 1969, when the idea of CCDs, thanks to whom Boyle and Smith were awarded the Nobel Prize in Physics in 2009\footnote{\red{DUE INFO SU QUESTE PERSONE?}}, revolutionized photography allowing light to be captured electronically instead of on film. 
+Even though
+\red{Sebbene la tecnologia cmos fosse già nota nello stesso periodo dello sviluppo delle CCD, la litografia non era sufficientemente sviluppata per permettere la costruzione di CMOS ugualmente prestanti e la diffusione fu maggiore per le CCD. 
+opening the door to the creation of digital images}
 
-\red{qualcosa del tipo: I più grandi esperimenti hanno tutti un rivelatore a pixel.}.
 
-During the past 40 years, silicon sensors have transformed particle tracking in high-energy physics experiments
+\red{The charge-coupled device CCD provided the first way for a light-sensitive silicon chip to store an image and then digitize it, opening the door to the creation of digital images. \\
+}
 
-Beside tracking, the development of pixel detectors is a very active field with many applications in medical imaging and \red{astrophysics.}.
-A noteworthy example of detector originally used in particle physics, and later employed mainly for medical imaging, but also in space and for art authentication, is Medipix, a hybrid system developed at CERN within the Medipix collaboration.
+The principal use cases of pixel detectors are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
+Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
 
-\red{In particolare la tecnologia CMOS, comunissima nell'ambito commerciale, basti pensare alle fotocamere. Originariamente erano CCD poi ora CMOS MAPS. }
-A partire dal 2017, i sensori CMOS rappresentano l'89\% delle vendite globali di sensori di immagine. Ma praticamente dal 2010 in poi solo CMOSS e non più CCD.\\
+Historically, the first pixel detector employed in particle physics was a CCD: it was installed in the spectrometer at the CERN’s Super Proton Synchrotron (SPS) by the ACCMOR Collaboration (Amsterdam, CERN, Cracow, Munich, Oxford, RAL) at mid 1980s, with the pourpose of studing the recently-discovered charm particles.
+The second famous usage of CCDs took place at SLAC in the Large Detector (SLD) during the two years 1996-98. From that period on particle tracking in experiments have been transformed radically: it was mandatory for HEP experiments to build a inner vertex detector. Today all HEP experiments have a pixel detector: ATLAS, CMS, LHC-b, ALICE and Belle-II are only the more important. 
+
+For scientific imaging, instead, the applications vary from atrophysics and medical imaging to studies of protein dynamics, \red{altro?} and art authentication, for example. 
+The counting mode represents the principal imaging tecnique, a direct 
 
 \section{Tracking in HEP}
     Per gli acceleratori la richieste sono molto stringenti e lo saranno sempre di più con l'aumento dell' intensità o della luminosità in termini di radiation hardness (per HL-LHC for example expected in 5 anni 500 Mrad e NIEL di 10 alla 16), efficiency e occupancy (efficienza alta dopo tanta radiazione e noise occupancy bassa), time resolution (bunch crossing 40 Mhz), material budget e power consumption (material budget below 2per cento e power consumption 500 mW/cm2)\\
     Usati come tracciatori per misure di impulso e per misure di energia (per rigettare ) ad esempio dati di fondo (topic fondamentale per BELLE-II).
 
-    \subsection{Hybrid pixels: ATLAS, CMS and LHC-b(?)/Belle-II?}
+    \subsection{Hybrid pixels at LHC: ATLAS, CMS and LHC-b}
         From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been established with the specific goal to find a pixel detector suitable for phase II future upgrades of the experiments CMS and ATLAS. Even if the collaboration is specifically focused on design of hybrid pixel readout chips, also monolithic options have been taken in account for ATLAS ITK outer layers. Tra i chip designed for that pourpose there are LF an TJ Monopix.\\
         \textbf{ATLAS}\\
         \textbf{CMS}\\
-        \textbf{Belle-II}\\
+        \textbf{LHC-b} \\
+        A noteworthy example of detector originally used in particle physics, and later employed mainly for medical imaging, but also in space and for art authentication, is Medipix, a hybrid system developed at CERN within the Medipix collaboration usato anche da LHC-b (Timepix).\\
 
+    \subsection{A DEPFET example: Belle-II}
         
+
     \subsection{CMOS MAPS: ALICE and STAR}
         Experiments such as ALICE at LHC and STAR at RHIC have already introduced the CMOS MAPS technology in their detectors. ALICE Tracking System (ITS2), upgraded during the LHC long shut down in 2019-20, was the first large-area ($\sim$10 \si{m\squared} ) silicon vertex detector based on CMOS MAPS.
 
