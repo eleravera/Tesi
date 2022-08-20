@@ -49,6 +49,7 @@ ens of ms due to the need to transfer the charge signals pixel by pixel through 
 For photon imaging the need of high assorbtion efficiency 
 
 \section{Hybrid pixels}
+   \red{METTI IN EVIDENZAZ CHE PUOI FARE UN READOUT CON TECNOLOGIA CMOS}
    Hybrid pixels are made of two parts (fig. \ref{fig:hybrid_DEPFET_scheme}a), the sensor and the electronics: for each pixel these two parts are welded together through microconnection (bump bond).\\  
    They provide a practical system where readout and sensor can be optimized separately, although the testing is less easy-to-do since the sensor and the R/O must be connected together before.\\
    In addition, the particular and sophisticated procedure to bond sensor and ASIC (application specific integrated circuit) makes them difficult to produce, delicate, especially when exposed to high levels of radiation, and also expensive. \\
@@ -73,6 +74,7 @@ For photon imaging the need of high assorbtion efficiency
    DEPFET typically have a good S/N ratio: this is principally due the amplification on-pixel and the large depletion region. But, since they need to be connected with ASIC the limiting factor still is the material budget.
 
 \section{CMOS MAPS and DMPAS}
+   \red{With respect to CCDs, the radiation tolerance could be greatly increased by sensing the signal charge within its own pixel, instead of transporting it over thousands of pixels. The readout speed could also be dramatically increased by in-pixel amplitude discrimination, followed by sparse readout of only the hit pixels}
    Monolithic active pixels accommodate on the same wafer both the sensor and the front end electronics, with the second one implanted on top within a depth of about \SI{1}{\um} below the surface. \\
    MAPS have been first proposed and realized in the 1990s and their usage has been enabled by the development of the electronic sector which guarantees the decrease in CMOS transistors dimension at least every two years, as stated by the Moore's law\footnote{Moore's law states that logic density doubles every two years.}.\\
    As a matter of fact the dimension of components, their organization on the pixel area and logic density are important issues for the design and for the layout; typically different decisions are taken for different purposes.

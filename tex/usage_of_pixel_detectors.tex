@@ -1,48 +1,52 @@
-There always was a tight relation between the development of cameras and pixel detectors since 1969, when the idea of CCDs, thanks to whom Boyle and Smith were awarded the Nobel Prize in Physics in 2009\footnote{\red{DUE INFO SU QUESTE PERSONE?}}, revolutionized photography allowing light to be captured electronically instead of on film. 
-Even though
-\red{Sebbene la tecnologia cmos fosse già nota nello stesso periodo dello sviluppo delle CCD, la litografia non era sufficientemente sviluppata per permettere la costruzione di CMOS ugualmente prestanti e la diffusione fu maggiore per le CCD. 
-opening the door to the creation of digital images}
-
-
-\red{The charge-coupled device CCD provided the first way for a light-sensitive silicon chip to store an image and then digitize it, opening the door to the creation of digital images. \\
-}
+There always was a tight relation between the development of cameras and pixel detectors since 1969, when the idea of CCDs, thanks to whom Boyle and Smith were awarded the Nobel Prize in Physics in 2009, revolutionized photography allowing light to be captured electronically instead of on film. 
+Even though the CMOS technology was already known when CCDs spread, the costs of productions were too high to allow the diffusion of these sensors for which needed to wait untill 1990s. From that period on, the fast diffusion of CMOS was mainly due to the less cost than CCD, and the less power required for supply. 
 
 The principal use cases of pixel detectors are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
 Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
-
-Historically, the first pixel detector employed in particle physics was a CCD: it was installed in the spectrometer at the CERN’s Super Proton Synchrotron (SPS) by the ACCMOR Collaboration (Amsterdam, CERN, Cracow, Munich, Oxford, RAL) at mid 1980s, with the pourpose of studing the recently-discovered charm particles.
-The second famous usage of CCDs took place at SLAC in the Large Detector (SLD) during the two years 1996-98. From that period on particle tracking in experiments have been transformed radically: it was mandatory for HEP experiments to build a inner vertex detector. Today all HEP experiments have a pixel detector: ATLAS, CMS, LHC-b, ALICE and Belle-II are only the more important. 
 
 For scientific imaging, instead, the applications vary from atrophysics and medical imaging to studies of protein dynamics, \red{altro?} and art authentication, for example. 
 The counting mode represents the principal imaging tecnique, a direct 
 
 \section{Tracking in HEP}
-    Per gli acceleratori la richieste sono molto stringenti e lo saranno sempre di più con l'aumento dell' intensità o della luminosità in termini di radiation hardness (per HL-LHC for example expected in 5 anni 500 Mrad e NIEL di 10 alla 16), efficiency e occupancy (efficienza alta dopo tanta radiazione e noise occupancy bassa), time resolution (bunch crossing 40 Mhz), material budget e power consumption (material budget below 2per cento e power consumption 500 mW/cm2)\\
-    Usati come tracciatori per misure di impulso e per misure di energia (per rigettare ) ad esempio dati di fondo (topic fondamentale per BELLE-II).
+    Historically, the first pixel detector employed in particle physics was a CCD: it was installed in the spectrometer at the CERN’s Super Proton Synchrotron (SPS) by the ACCMOR Collaboration (Amsterdam, CERN, Cracow, Munich, Oxford, RAL) at mid 1980s, with the pourpose of studing the recently-discovered charm particles.
+    The second famous usage of CCDs took place at SLAC in the Large Detector (SLD) during the two years 1996-98. From that period on particle tracking in experiments have been transformed radically: it was mandatory for HEP experiments to build a inner vertex detector. 
+    In 1991, the more demanding environments led to the development of hybrid pixel detectors: a dedicated collaboration, RD19, was established at CERN with the specific goal to define a semiconductor micropattern detector with an incorporated signal processing at a microscopic level. 
+    In those years a wide set of prototypes of hybrid pixel has been manufactured; among the greatest productions a mention goes to the ATLAS and CMS vertex detector, \red{..}.
+    Infact, from the middle of 2013 a second collaboration, RD 53, has been established with the new goal to find a pixel detector suitable for phase II future upgrades of those experiments. Even if the collaboration is specifically focused on design of hybrid pixel readout chips, also monolithic options have been taken in account for their advantageous charateristics. Requirements imposed by HL-LHC will become tigher in time: for example, a dose and radiation of \SI{5}{Mrad} and \si{10 {16}}{NIEL} are exepcted after 5 years of operation. Time resolution, material budget and power consumption are also issues for the upgrade: a time resolution better than \SI{25}{ns} for a bunch crossing frequency of \SI{40}{MHz}, a material budget lower than 2\% and a power consuption lower than  \SI{500}{mW/cm\squared} are required. 
 
+    Amidst the solutions proposed 3D silicon detector, invented by Sherwood Parker in 1995, and MAPS are the most promising. In 3D sensors the electrode is a narrow column of n-type implanted vertically across the bulk instead of being implanted on the wafer's surface. 
+    The charge produced by the impinging particle is then drifted transversally within the pixel, and, as the mean path between two electrode can be soufficent low, the trap probability is not an issue. 
+    3D pixels have been already proved in ATLAS, for the insertable B layer (IBL),\red{qualcosa? tipo anno e rif a caso.}
+    Even if 3D detector are adequately radiation hard, MAPS architecture looked very promising from the beginning: they overcome both the CCDs long reading time and the hybrid problems (I have already explained in section \ref{sec:} the benefits of MAPS). 
+    Experiments such as ALICE at LHC and STAR at RHIC have already introduced the CMOS MAPS technology in their detectors. ALICE Tracking System (ITS2), upgraded during the LHC long shut down in 2019-20, was the first large-area ($\sim$10 \si{m\squared} ) silicon vertex detector based on CMOS MAPS.
+    \red{ECCO UN MOTIVO 'FISICO' PER CUI SI GUARDA AI MAPS CHE CONTESUALIZZA LA NECESSITÀ DI BASSO SPESSORE: Excess material in the forward region of tracking systems such as time-projection and drift chambers, with their heavy endplate structures, has in the past led to poor track reconstruction efficiency, loss of tracks due to secondary interactions, and excess photon conversions. In colliders at the energy frontier (whether pp or e+e-), however, interesting events for physics are often multi-jet, so there are nearly always one or more jets in the forward region.\\}
     \subsection{Hybrid pixels at LHC: ATLAS, CMS and LHC-b}
-        From the middle of 2013 a dedicated collaboration, RD 53 ('Development of pixel readout integrated circuits for extreme rate and radiation'), has been established with the specific goal to find a pixel detector suitable for phase II future upgrades of the experiments CMS and ATLAS. Even if the collaboration is specifically focused on design of hybrid pixel readout chips, also monolithic options have been taken in account for ATLAS ITK outer layers. Tra i chip designed for that pourpose there are LF an TJ Monopix.\\
         \textbf{ATLAS}\\
-        \textbf{CMS}\\
+        Com'è fatto il rivelatore e vari test per upgrade\\
+        Monopix, 3D sensor\\\\
+        \textbf{CMS}\\\\
         \textbf{LHC-b} \\
-        A noteworthy example of detector originally used in particle physics, and later employed mainly for medical imaging, but also in space and for art authentication, is Medipix, a hybrid system developed at CERN within the Medipix collaboration usato anche da LHC-b (Timepix).\\
+        The latest experiment to upgrade from strips to pixels is LHCb, which has an impressive track record of b and charm physics. Its adventurous Vertex Locator (VELO).
+        he latest experiment to upgrade from strips to pixels is LHCb, which has an impressive track record of b and charm physics. Its adventurous Vertex Locator (VELO)
+        \\\\
+
 
     \subsection{A DEPFET example: Belle-II}
         
 
     \subsection{CMOS MAPS: ALICE and STAR}
-        Experiments such as ALICE at LHC and STAR at RHIC have already introduced the CMOS MAPS technology in their detectors. ALICE Tracking System (ITS2), upgraded during the LHC long shut down in 2019-20, was the first large-area ($\sim$10 \si{m\squared} ) silicon vertex detector based on CMOS MAPS.
-
         \textbf{ALICE}\\
-        ALICE (A Large Ion Collider Experiment) is a detector dedicated to heavy-ion physics at the LHC.
-        \red{MEtti una cosa generale su com'è fatto tutto il detector di ALICE: tpc ecc.\\}
-        The expected dose is smaller by two order than the one at ATLAS and CMS.(cita libro). The rate of interactions is few \si{MHz}, but the number of particles produced in each interaction is really high. The pixel system must cope with high densisties as high as 100/cm2, ma ha abbastanza tempo tra un interazione e l'altra. 
-        The challenge is recustruct very complicated events and relevant is minimize the amount of material since any kind of secondary interaction will complicate futher the event topology e diminuisce efficenza e risoluzione delle tracce a più basso momento. \\
-        \red{ALICE MAPS: MONOPIX1}
-        \red{COM'è fatto il rivelatore a  pixel di ALICE}
-        Thanks to the reduction of the material budget, ITS2, which uses the ALPIDE chip developed by ALICE collaboration, obtained an amazing improvement both in the position measurement and in the momentum resolution, improving the efficiency pf track reconstruction for particle with very low transverse momentum (by a factor 6 at pT $\sim$ 0.1 GeV/c). Further advancements in CMOS MAPS technology are being aggressively pursued for the ALICE ITS3 and the Belle II vertex detector upgrades (both foreseen around 2026-27) and other experiments, with the goals of further reducing the sensor thickness and improving the readout speed of the devices, while keeping power consumption at a minimum.\\
+        ALICE (A Large Ion Collider Experiment) is a detector dedicated to heavy-ion physics and to the study of the condensed phase of the chromodynamics at the LHC.
+        The tracking detector consists of the Inner Tracking System (ITS), the gaseous Time Projection Chamber (TPC) and the Transition Radiation Detector (TRD) and those are embedded in a magnetic field of \SI{0.5}{T}. The ITS is made by six layers of detectors, two for each type, from the interaction point outwards: Silicon Pixel Detector (SPD), Silicon Drift Detector (SDD) and Silicon Strip Detector (SSD).         
+        Contrary to the others LHC experiments, ALICE tracker in placed in a quite different environments: the expected dose is smaller by two order of magnitude and the rate of interactions is few \si{MHz} instead of \SI{40}{MHz}, but the number of particles comes out of each interaction is higher (the SPS is invested by a density of particles of $\sim$\SI{100}{1/cm\squared}).  
+        The reconstruction of very complicated events whit a large number of particle is a challenge, hence to segment and to minimize the amount of material, which may cause secondary interaction complicating futher the event topology, is considered a viable strategy. 
+        
+        \red{Upgrade con Monopix1}
+        Thanks to the reduction of the material budget, ITS2, which uses the ALPIDE chip developed by ALICE collaboration, obtained an amazing improvement both in the position measurement and in the momentum resolution, improving the efficiency pf track reconstruction for particle with very low transverse momentum (by a factor 6 at pT $\sim$ 0.1 GeV/c). Further advancements in CMOS MAPS technology are being aggressively pursued for the ALICE ITS3 vertex detector upgrades (foreseen around 2026-27), with the goals of further reducing the sensor thickness and improving the readout speed of the devices, while keeping power consumption at a minimum.\\\\
         \textbf{STAR}\\
+        MIMOSA-28 devices for the first MAPS-based vertex detector: a 356 Mpixel two-layer barrel system for the STAR experiment at Brookhaven’s Relativistic Heavy Ion Collide
 
 \section{Application in medical imaging}
     \subsection{Medipix and Timepix}
+    A noteworthy example of detector originally used in particle physics, and later employed mainly for medical imaging, but also in space and for art authentication, is Medipix, a hybrid system developed at CERN within the Medipix collaboration usato anche da LHC-b (Timepix).\\
     \subsection{Applicability to FLASH radiotherapy}
