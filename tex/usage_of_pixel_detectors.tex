@@ -53,7 +53,7 @@ Also the demands on detectors performance depends on their usage, in particular 
         The Velopix is made bonding sensors, each measuring 55 $\times$ 55 micrometers, \SI{200}{\um}-thick to a \SI{200}{\um}-thick ASIC specially developed for LHCb and coming from the Medipix family (sec. \ref{sec:}).
         \red{It is capable of handling up to 900 million hits per second per chip, while withstanding the intense radiation environment. The new VeloPix readout chips have a readout speeds of up to 20 Gb/s each, resulting in 3 Tb/s torrent of data }
         Since the detector is operated under vacuum near the beam pipe, the heat removal is particularly difficult and evaporative CO2 microchannel cooling are used. 
-
+        \red{hich appears as a circumstance whereby a imaging-pourpose detector has been adopted in a HEP experiment.}
     \subsection{A DEPFET example: Belle-II}
         
 
@@ -70,33 +70,82 @@ Also the demands on detectors performance depends on their usage, in particular 
         \textbf{STAR}\\
         MIMOSA-28 devices for the first MAPS-based vertex detector: a 356 Mpixel two-layer barrel system for the STAR experiment at Brookhaven’s Relativistic Heavy Ion Collide
 
-\section{Application in imaging}
-    The counting mode represents the principal imaging tecnique used by detectors for that pourpose: \red{l'obiettivo è tipicamente o single particle count, }
-    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed. 
+\section{Applications in imaging}
+    The counting mode represents the principal imaging tecnique used by detectors: \red{l'obiettivo è tipicamente o single particle count, }
 
-    Two noteworthy example of microchips originally meant
-    for detectors in particle physics at the LHC, and later employed in other fields are Medipix and Timepix. They are read-out chips developed by the Medipix Collaborations since early 1990s. Different chips with different imaging process have been produced in the last two decades, up to 2016 when Medipix4 and Timepix4 appeared. 
+    Two noteworthy of microchips originally meant
+    for detectors in particle physics at the LHC, and later employed in other fields are Medipix and Timepix. They are read-out chips developed by the Medipix Collaborations since early 1990s. For two decades, different Medipix generations have been produced, having a rough correlation with the feature size used: Medipix2 (1999) used \SI{250}{nm} feature size CMOS while Medipix3 (2005) \SI{130}{nm}.
+    The aim of the fourth collaboration (2016), instead, is designing pixel read-out chips that prepared for \red{TSV processing and may be tiled on all four sides. }
+    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed: it was for this reason that Medipix2 was bump bonded to identically segmented sensors of both silicon and GaAs.
     The applications in scientific imaging vary from atrophysics and medical imaging to more exotic domains as studies of protein dynamics, art authentication and dosimetry.
 
-    \subsection{Medipix} 
-    The aim of the Medipix4 collaboration is designing pixel read-out chips that for the first time are fully prepared for TSV processing and may be tiled on all four sides. 
-    Two new chips are foreseen:Medipix4, which will target spectroscopic X-ray imaging at rates compatible with medical CT scans, and Timepix4, which will provide particle identification and tracking with higher spatial and timing precision.
+    The most important employment of Medipix is as X-ray single photon counting in industrial and medical radiography and in 3D computed tomography. 
+    Thanks to a New-Zealand company, the MARS Bioimaging detector has been fabricated, which is capable of resolving the photons energy and produce 3D coloured images.
 
-    Utilizzi in medicina: 
-    Radiography and computed tomography (CT) use X-ray photons to study the human body. The Medipix chips that implement on-pixel single photon counting provide many advantages for use in these fields. The technology has been applied in X-ray CT, in prototype systems for digital mammography, in CT imagers for mammography and for beta- and gamma-autoradiography of biological samples. , the images are no longer black and white
+    Besides tracking in HEP (I have already cited the use of Timepix3 is in the beam telescope of the LHCb VELO), the most important uses of Timepix are dosimetry.  
+    \red{Timepix Detector for Imaging in Ion Beam Radiotherapy}
 
-    -First 3D colour X-ray of a human using CERN technology
-
-
-    \subsection{Timepix}
-    Timepix is being exploited for radiation monitoring in NASA's orion rocket and at the International Space Station. 
+    A small-Timepix detector with the dimension of a USB can also be found at the International Space Statio, where it is exploited for radiation, principally made of haevy-ion, monitoring. 
     
-    Timepix Detector for Imaging in Ion Beam Radiotherapy
-
-    NASA, CERN Timepix Technology Advances Miniaturized Radiation Detection  
-
-    As an example, the chips are now being used in the ATLAS experiment to provide independent, real-time information about the radiation environment in the experimental cavern - in principle the same task that Timepix does at the International Space Station. A direct 'spin back' to high-energy physics is VELOpix, based on Timepix3. Benefiting from developments made in the framework of the Medipix3 consortium which were not originally intended for high-energy physics, VELOpix will serve as the read-out chip in the new vertex detector of tje LHCb experiment, which is planned for installation in 2018.
-    
-    Timepix and Timepix3 Optical Cameras 
-
+ 
     \subsection{Applicability to FLASH radiotherapy}
+        The radiological treatment is a commod method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, \red{per cosa sta iort} IORT. 
+        Moreover many different types of radiations can be used to irradiate the affected tissues; high energy photons 
+
+    Un problema dei fotoni ad esempio è che il loro rilascio di dose è lineare, per cui danneggi anche i tessuti sani. Il problema dei protoni invece è che hanno un picco troppo strtto per cui non puoi coprire grosse zone e sorpattuto se sbagli rischi davvero di danneggiare moooolto i tessuti sani.\\
+
+    Curva di efficacia del trattamento in funzione della dose:
+    \begin{equation}
+        \frac{S(D)}{S(0)}=e^{-F(D)}
+    \end{equation} 
+    dove F(D)   
+    \begin{equation}
+        F(D) = \alpha D + \beta D^2
+    \end{equation} 
+    dove $\alpha$ e $\beta$ rappresentano due tipi di danno diversi: coefficients, experimentally determined, characterizing the
+    radiation response of cells. In particularly, alpha represents the rate of cell killing
+    by single ionizing events, while beta indicates the maximal rate of cell killing by
+    double hits observed when the repair mechanisms do not activate during the
+    radiation exposure.
+    Si ottiene una curva di sopravvivenza dove si vede la possibilità delle cellule di autoripararsi. A basse dosi infatti le cellule possono ripararsi.\\
+
+    Per introdurre l'effetto FLASH instroduco prima la therapeutic window.  \\
+
+    TCP è la tumor control Probability che indica la probabilità delle cellule del tumore di essere uccise dopo una certa dose (con in riferimento a dose in acqua)\\
+    Se una media di $\mu(D)$ di cellule di tumore are killed con una dose D, la probabilità che n cellule sopravvivono è data da $P(n|\mu)$ poisson:
+    \begin{equation}
+        P(n|\mu) = \frac{\mu(D)^ne^{-\mu(D)}}{n!}
+    \end{equation}    
+
+    \begin{equation}
+        TPC(D) = P(n=0|\mu(D))= e^{-\mu(D)}
+    \end{equation} 
+    D'altra parte hai una probabilità di fare danno su normal tissue NTCP Normal Tissue Complication Probability, che rappresenta il problema principale e che limita la massima radiazione erogabile\\
+    Una scelta bilanciata si applica guardando a questi due fattori; si usa il therapeutic index definito come TCP/NTCP.\\
+    La cosa ottimale è ampliare la finestra del therapeutic ratio.\\
+
+
+    CONV-RT 0.01-5 Gy/min. A typical RT regime today consists of daily franctions of 1.5 to 3 Gy given over several weeks.\\
+    Nell Intra operative radiation therapy (IORT), where they reach values respectively about
+    20 and 100 times greater than those of conventional radiation therapy.
+
+    FLASH vuole ultrahigh mean dose-rate (maggione di 40 Gy/s) in modo da ridurere anche il trattamento a meno di un secondo. \\
+
+
+    Ci sono due effetti che affect the flsh effect and la sua applicabilità: Dose rate effect e oxygen\\
+    \begin{itemize}
+        \item dose rate effect
+        \item oxygen effect
+    \end{itemize}    
+
+    Cellule che esibiscono hypoxia (cioè cellule che non hanno ossigeno sono radioresistenti); al contrario normoxia e physoxia non lo sono.
+    la presenza di ossigeno rende la curva steeper indicando che lo stesso danno si raggiunge a livelli di dose più bassi rispetto al caso senza ossigeno.\\
+    FIGURA con una curva a confronto con e senza ossigeno.\\
+    Typically, the OER is in the order of 2.5-3.5 for most cellular systems
+
+
+    Quindi si vogliono sfruttare questi effetti per diminuire la tossicità sui tessuti sani\\
+
+
+
+
