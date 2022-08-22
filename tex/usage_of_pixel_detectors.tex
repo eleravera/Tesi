@@ -4,8 +4,6 @@ Even though the CMOS technology was already known when CCDs spread, the costs of
 The principal use cases of pixel detectors are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
 Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
 
-For scientific imaging, instead, the applications vary from atrophysics and medical imaging to studies of protein dynamics, \red{altro?} and art authentication, for example. 
-The counting mode represents the principal imaging tecnique, a direct 
 
 \section{Tracking in HEP}
     Historically, the first pixel detector employed in particle physics was a CCD: it was installed in the spectrometer at the CERN’s Super Proton Synchrotron (SPS) by the ACCMOR Collaboration (Amsterdam, CERN, Cracow, Munich, Oxford, RAL) at mid 1980s, with the pourpose of studing the recently-discovered charm particles.
@@ -73,25 +71,32 @@ The counting mode represents the principal imaging tecnique, a direct
         MIMOSA-28 devices for the first MAPS-based vertex detector: a 356 Mpixel two-layer barrel system for the STAR experiment at Brookhaven’s Relativistic Heavy Ion Collide
 
 \section{Application in imaging}
-    \subsection{Medipix}
-    Medipix is a family of read-out chips for particle imaging and detection developed by the Medipix Collaborations. The original concept is that it works like a camera, detecting and counting each individual particle hitting the pixels when its electronic shutter is open. This enables high-resolution, high-contrast, noise hit free images - making it unique for imaging applications
-    Medipix2 Collaboration was started in 1999, the Medipix3 collaboration in 2005 and finally the Medipix4 collaboration in 2016. 
-    In generale essendo single photon counting ci sono un sacco di applicazioni: fai un elenco. 
+    The counting mode represents the principal imaging tecnique used by detectors for that pourpose: \red{l'obiettivo è tipicamente o single particle count, }
+    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed. 
 
-    Dalla collaborazione Medipix2 è nato anche il chip Timepix
+    Two noteworthy example of microchips originally meant
+    for detectors in particle physics at the LHC, and later employed in other fields are Medipix and Timepix. They are read-out chips developed by the Medipix Collaborations since early 1990s. Different chips with different imaging process have been produced in the last two decades, up to 2016 when Medipix4 and Timepix4 appeared. 
+    The applications in scientific imaging vary from atrophysics and medical imaging to more exotic domains as studies of protein dynamics, art authentication and dosimetry.
 
-    Medipix2 250 mm CMOS process\\
-    Medipix3 chip in 130nm CMOS.\\
+    \subsection{Medipix} 
     The aim of the Medipix4 collaboration is designing pixel read-out chips that for the first time are fully prepared for TSV processing and may be tiled on all four sides. 
     Two new chips are foreseen:Medipix4, which will target spectroscopic X-ray imaging at rates compatible with medical CT scans, and Timepix4, which will provide particle identification and tracking with higher spatial and timing precision.
 
     Utilizzi in medicina: 
     Radiography and computed tomography (CT) use X-ray photons to study the human body. The Medipix chips that implement on-pixel single photon counting provide many advantages for use in these fields. The technology has been applied in X-ray CT, in prototype systems for digital mammography, in CT imagers for mammography and for beta- and gamma-autoradiography of biological samples. , the images are no longer black and white
-    %A noteworthy example of detector originally used in particle physics, and later employed mainly for medical imaging, but also in space and for art authentication, is Medipix, a hybrid system developed at CERN within the Medipix collaboration usato anche da LHC-b (Timepix).\\
 
+    -First 3D colour X-ray of a human using CERN technology
+
+
+    \subsection{Timepix}
     Timepix is being exploited for radiation monitoring in NASA's orion rocket and at the International Space Station. 
+    
+    Timepix Detector for Imaging in Ion Beam Radiotherapy
+
+    NASA, CERN Timepix Technology Advances Miniaturized Radiation Detection  
 
     As an example, the chips are now being used in the ATLAS experiment to provide independent, real-time information about the radiation environment in the experimental cavern - in principle the same task that Timepix does at the International Space Station. A direct 'spin back' to high-energy physics is VELOpix, based on Timepix3. Benefiting from developments made in the framework of the Medipix3 consortium which were not originally intended for high-energy physics, VELOpix will serve as the read-out chip in the new vertex detector of tje LHCb experiment, which is planned for installation in 2018.
     
-    
+    Timepix and Timepix3 Optical Cameras 
+
     \subsection{Applicability to FLASH radiotherapy}
