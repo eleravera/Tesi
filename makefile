@@ -1,5 +1,5 @@
 
-NAME = main
+NAME = Tesi_Ravera
 PDF = $(NAME).pdf
 MAIN = $(NAME).tex
 BBL = $(NAME).bbl

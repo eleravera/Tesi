@@ -1,0 +1,64 @@
+\documentclass[a4paper]{report}
+
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs} % tabelle belle che fa Eugenia!
+\usepackage{etoolbox}
+\usepackage{siunitx} % per fare numeri e unità di misura belle
+\usepackage[dvipsnames]{xcolor}
+\usepackage{lineno} % To obtain line numbers
+\usepackage{hyperref} % To cite other chapters of my thesys
+\usepackage{nameref}
+
+
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}%style=alphabetic 
+\addbibresource{bib/bibliography.bib}
+
+\renewcommand*\contentsname{Summary}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\begin{document}
+\linenumbers
+
+\tableofcontents
+
+%PLURALE pixel detectors. A pixel non ci va la s, diventa come un aggettivo
+Characterization of monolithic CMOS pixel sensors for charged particle detectors and for high intensity dosimetry 
+
+\chapter{Introduction}
+\input{tex/introduction}
+
+\chapter{Pixel detectors}
+\input{tex/Chip}
+
+\chapter{Use of pixel detectors}
+\input{tex/usage_of_pixel_detectors}
+
+\chapter{TJ-Monopix1}
+\input{tex/Monopix1}
+
+\chapter{Arcadia-MD1}
+\input{tex/Arcadia-MD1}
+
+\chapter{Threshold and noise characterization}
+\input{tex/threshold_noise}
+
+\chapter{Test beam measurements}
+\input{tex/test_beam_measurements.tex}
+
+
+\appendix
+\chapter{Pixels detector: a brief overview}
+\input{tex/Pixels_overview}
+
+
+
+\printbibliography[heading=bibintoc, title={Bibliography}] 
+\end{document}
