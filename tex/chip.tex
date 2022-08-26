@@ -31,6 +31,7 @@
         \langle \frac{dE}{dx}\rangle \frac{1}{w_i} \sim 80 \: e/h \sim \frac{1.28 \:10^{-2}fC}{\mu m}
     \end{equation}
     \red{CON UN'INCERTEZZA CHE È RADICE DI N; ED EVENTUALEMTNE SI AGGIUNGE IL FATTORE DI FANO NEL CASO DI ASSORBIMENTO TOTALE. iL FATTORE DI FANO È 0.115 NEL SILICIO. ecc}
+
     It is fundamental that pairs e/h are produced in the depleted region of the semiconductor where the probability of recombination with charge carriers is low to avoid loss of signals. Pixel detectors are then commonly reverse biased: a positive bias is given to the $n$ electrode and a negative to the $p$ to grow the depletion zone in the epitaxial layer below the electrode. The width of the depletion region is related with the external bias $V_{ext}$, the resistivity $\rho$ and also with the dopant:
     \begin{multicols}{2}
         \begin{equation}
@@ -42,14 +43,15 @@
         \label{eq:deplation_d}
     \end{multicols}
     For that reason high resistivity wafers (100 $\Omega cm - k\Omega cm$) are typically preferred because they allow bigger depletion zone with smaller voltage bias. 
-
+   \red{Metto il disegno "standard" di una giunzione}
 
 \section{CCDs}
-ens of ms due to the need to transfer the charge signals pixel by pixel through a single output circuit
-For photon imaging the need of high assorbtion efficiency 
+\red{descrivi come sono fatte e come funziona il readout}
+Tens of \si{ms} due to the need to transfer the charge signals pixel by pixel through a single output circuit
+For photon imaging the need of high assorbtion efficiency, \red{per cui usi materiali con alto Z}
 
 \section{Hybrid pixels}
-   \red{METTI IN EVIDENZAZ CHE PUOI FARE UN READOUT CON TECNOLOGIA CMOS}
+   \red{METTI IN EVIDENZAZ CHE PUOI FARE UN READOUT CON TECNOLOGIA CMOS. Metti in evidenza che sono più veloci}
    Hybrid pixels are made of two parts (fig. \ref{fig:hybrid_DEPFET_scheme}a), the sensor and the electronics: for each pixel these two parts are welded together through microconnection (bump bond).\\  
    They provide a practical system where readout and sensor can be optimized separately, although the testing is less easy-to-do since the sensor and the R/O must be connected together before.\\
    In addition, the particular and sophisticated procedure to bond sensor and ASIC (application specific integrated circuit) makes them difficult to produce, delicate, especially when exposed to high levels of radiation, and also expensive. \\

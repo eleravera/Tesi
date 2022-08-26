@@ -1,4 +1,6 @@
 \section{Threshold and noise: figure of merit for pixel detectors}
+\red{IN QUESTO CAPITOLO HO MESSO SOLO APPUNTI SPARSI DA RIORGANIZZARE, E DEVO AGGIUNGERE POI I PLOT DI MONOPIX1}
+
 The signal to threshold ratio is the figure of merit for pixel detectors.\\
 
 la soglia deve essere abb alta da tagliare il rumore ma abb bassa da non perdere efficienza.\\
@@ -14,8 +16,6 @@ la variabilità della soglia da pixel a pixel.\\
 In questo modo rumore e soglia diventano parenti.\\
 Review pag 26.
 
-The noise requirement can be expressed as:
-
 
 Questo implica tra le altre cose che voglio poter assegnare delle soglie diverse
 a diversi pixel: Drawback è dare spazio per registri e quantaltro.\\
@@ -23,7 +23,6 @@ Questo lascia però ancora aperto il problema temporale delle variazioni del rum
 problema per cui diventano necessarie le misure dei sensori dopo l'irraggiamento.\\
 
 
-Per arcadia i registri (c'è un DAC) per la soglia (VCASN) si trovano in periferia.
 Non fare trimming sulla soglia è uno dei problemi che si sono sempre incontrati: a casusa dei mismatch dei transistor
 le soglie efficaci pixel per pixel cambiano tanto.
 La larghezza della s curve è il noise se assumi che il noise è gaussiano
