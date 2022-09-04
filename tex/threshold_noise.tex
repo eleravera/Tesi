@@ -40,5 +40,20 @@ The ENC can be directly calculated by the Cumulative Distribution Function (CDF)
 
 \section{TJ-Monopix1 characterization}
 
+%python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i parametri dei fit del tot e della s curve
+%python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
+%python3 -i calibration/tot_histo2d.py -f calibration/calibration_data/20220506 per fare l'istogramma 2d del tot
+
+    \subsection{Threshold and noise dispersion}
+    Un plot con s curve e residui (perchè dovrebbe essere migliroe il modello con doppia retta? sul RD53 c'era scritto, trovalo e leggilo)
+    Istogrammi e colormap\\
+    
+    \subsection{Absolute calibration of ToT}
+    Misure con il ferro. Metti un plot di singolo pixel dello spettro del ferro fittato con CB. Perchè CB? rimuovere i cluster comunque lasciava una coda abbastanza grande a sx e fittare con una gaussiana comunque non dava risultati migliori. 
+    
+%python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ per fare il fit    
+%python3 -i acquisition_Fe55/plot_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ -fl 'gauss_line' per fare il plot di single pixel
+
+
 
 \section{ARCADIA-MD1 characterization}

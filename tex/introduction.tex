@@ -1,11 +1,35 @@
-Pixel detectors, members of the semiconductor detector family, have significantly been used since () at the first accelerator experiments for energy and position measurement.
-Because of their dimension (today $\sim$ 30 $\mu m$ or even better) and their spatial resolution ($\sim$ 5-10 $\mu m$), with the availability of technology in 1980s they proved to be perfectly suitable for vertex detector in the inner layer of the detector.\\
-Technological development has been costant from then on and today almost every high energy physics (HEP) experiment employs a pixels detector; hybrid pixel currently constitute the state-of-art for large scale pixel detector but experiments began to look at the more innovative monolitic active pixels (MAPS) as perspective for their future upgrades, as BelleII, or they already have installed them, as ALICE.
+Pixel detectors, members of the semiconductor detector family, have significantly been used at the accelerator experiments for energy and position measurement.
+Because of their dimension (today $\sim$ \SI{30}{\um} or even better) and their spatial resolution ($\sim$ 5-10\si{\um}), with the availability of technology in 1980s they proved to be perfectly suitable for vertex detector in the inner layer of the detector.
 
-Requirement imposed by accelerator are stringent and they will be even more with the increase of luminosity/intensity, in terms of radiation hardness, efficiency and occupancy, time resolution, material budget and power consumption.
+Despite the monolithic pixels came up with CCDs, invented in 1969 and fastly used in cameras, their usage had to wait for microelectronics developement: in MAPS device the readout electronics is build on the pixel's area, then the pixel dimension is limited by the dimension of transistors.
+This constraint favoured the usage in physics  experiment of hybrid pixels, which currently constitute the state-of-art for large scale pixel detector. These ones are made by two different wafer each one containing or the sensor or the ASIC, which are after joined together through microconnection. 
+This structure allows a separate optimization for the two components and makes hybrid pixels flexible and versatile. 
 
-Qual è invece la richiesta per la dosimetria? \\
+Requirement imposed by accelerator are stringent and they will be even more with the increase of luminosity in terms of radiation hardness, efficiency and occupancy, time resolution, material budget and power consumption.
+For this reason experiments (as ATLAS, CMS, BelleII) began to look at the more innovative and well-performing monolitic active pixels (MAPS) as perspective for their future upgrades. 
+
+\red{
+Che condiziona la risoluzione e l'efficienza di ricostruzione della sua traccia, e consumi del detector, sono diventati sempre più rilevanti; molti esperimenti (ATLAS, CMS, BelleII,..) stanno infatti valutando la possibilità di sostituire gli ibridi con i MAPS, che per i temi precedenti offrono prestazioni migliori, a scapito di tempi di lettura mediamente più lunghi, vista anche la positiva esperienza di ALICE ad LHC, primo esperimento ad introdurre un detector a pixel monolitico. }
 
 
 
-While CCDs pioneered the use of silicon pixels for precision tracking, 
+During my thesys I studied and characterised two monolithic active pixel chips, TJ-Monopix1 and MD1; this devices, that are still prototypes, have been conceived and designed for physics experiments at colliders, space experiments and also for medical applications.
+
+
+il primo, TJ-Monopix1, è un prototipo di un modello selezionato per l'upgrade di Belle II durante il LSD nel 2025 (il chip finale si chiamerà OBELIX e avrà come sensore TJ-Monopix2, successore di Monopix1); il secondo chip è stato progettato da ARCADIA che potrà avere, nelle versioni future, applicazioni in fisica medica, in esperimenti nello spazio e ai collider. 
+
+
+Le differenze principali tra i due chip risiedono nel segnale fornito in output (Monopix fornisce il tempo sopra soglia dell'impulso triangolare, proporzionale alla carica rilasciata nel sensore, mentre arcadia fornisce un segnale puramente digitale), nella sequenza di readout dei pixel (monopix ha una lettura puramente sequenziale di tipo "column drain") mentre arcadia ha una lettura più moderna che consente di poter aggregare dati durante la trasmissione (ad esempio nel caso di formazione di cluster e creazione di hti su pixel adiacenti). 
+
+I performed a threshold and noise characterization ($\sim$\SI{400}{e-} and $\sim$\SI{15}{e-}) of TJ-Monopix1 in order 
+
+Tra i test con Monopix1 ho effettuato una caratterizzazione in soglia ($\sim$ 400 e-) e rumore ($\sim$ 15 e-) al fine di visualizzare la dispersione di questi valori sulla matrice; per poter minimizzare la dispersione sulla matrice e avere una più uniforme selezione della soglia (che è globale su tutta la matrice), le versioni successive di TJ-Monopix1 includono e includeranno la possibilità di fare piccole correzioni (3 bit per pixel vengono allocati in Monopix2) di quest'ultima pixel per pixel. 
+Per poter fornire le misure dei segnale fornito, tempo sopra soglia ToT, in elettroni, che assieme alle lacune vengono create dal passaggio della particella incidente e che quindi sono la quantità fisica "importante" nella misura, è stata necessaria una calibrazione assoluta dell'oggetto. Per quest'ultima e per altri test \red{??} mi sono servita di sorgenti radiattive come il ferro 55 (emissione di un fotone gamma a 5.9 kev e dello stronzio 90 il cui spettro dell'eletrtone emesso ha un end point a x) e dei cosmici. 
+Inoltre ho partecipato ai test di Monopix1 su fascio: abbiamo testato il chip in una modalità diversa da quella per cui è stato progettato (tracking) e più simile al funzionamento delle CCD, in cui non si cerca di distinguere il singolo elettrone incidente ma si integra in un singolo segnale di output la carica rilasciata da più elettroni incidenti. Il fascio utilizzato (elettroni da 7-9 MeV) è un fascio ad altissima intensità e verrà utilizzato per fare ricerca su radioterapia ad alto rate (l'acceleratore è in grado di rilasciare dosi -con riferimento in acqua- fino a 40 Gy/s, corrispondenti ad un numero di particelle di ..).
+Per quanto riguarda, invece, le misure sul chip MD1, ho partecipato ai test elettrici e sul front end di un prototipo non ancora completamente funzionante. Un nuovo chip dovrebbe arrivare nei prossimi giorni a Pisa. 
+
+
+
+
+
+
