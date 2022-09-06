@@ -87,11 +87,11 @@ Also the demands on detectors performance depends on their usage, in particular 
     A small-Timepix detector with the dimension of a USB can also be found at the International Space Statio, where it is exploited for radiation, principally made of haevy-ion, monitoring. 
  
     \subsection{Applicability to FLASH radiotherapy}
-        The radiological treatment is a common method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, \red{per cosa sta iort} IORT and many different types of radiations (photons, electrons, protons and ions, which mainly are hydrogen and carbon) can be used to irradiate the affected tissues.
-        Exploiting the ionizating energy loss a biological damage can be delivered to the tissue. \red{nomina il LET.}
+        The radiological treatment is a common method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, (Intra operative radiation therapy-IORT) and many different types of radiations (photons, electrons, protons and ions, which mainly are hydrogen and carbon) can be used to irradiate the affected tissues.
+        Exploiting the ionizating energy loss a biological damage can be delivered to the tissue. \red{nomina il LET.
         If x-ray photons, with energy in $\sim$4-25\si{MeV}, are used, the ionization is caused by the Compton electrons and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
         The hardrons energy loss, instead, is strongly localized in the last region of the track, that is the Bragg peak. 
-        Ion beam enables better focusing of the radiation thereby improves the sparing of the surrounding healthy tissues; on the other hand the delivered dose distribution depends more on the patient's density tissues (e.g. bones, swelling, fat). \red{Questo significa che per non creare un danno là dove non necessario serve una buona conoscenza del percorso in densità fatto dalle particelle.} 
+        Ion beam enables better focusing of the radiation thereby improves the sparing of the surrounding healthy tissues; on the other hand the delivered dose distribution depends more on the patient's density tissues (e.g. bones, swelling, fat). }
 
         \begin{figure}
             \centering
@@ -100,73 +100,98 @@ Also the demands on detectors performance depends on their usage, in particular 
             \label{fig:Bragg-peak}
          \end{figure}
 
-        The Tumor Control Probability (TCP) and the Normal Tissue Complication (NTC) functions parametrize the efficiency of damaging on the tumor after having released a certain dose and the probability of not affecting the healthy tissues respectively: the \red{il caso migliore è quello in cui le problematiche sorgono ad alti dosi mentre il danno è efficace subito. La zona intermedia in cui la NTC è bassa e TC è alta si chiama therapeutic window.  }
-        Una scelta bilanciata si applica guardando a questi due fattori; si usa il therapeutic index definito come TCP/NTCP.
+        Recently\footnote{The first evidences has been observed on a mice experiments in 1966 and in 2014 by the group of Favaudon and Vozenin. After this, many test on cats and pigs have been performed, and also there has been a clinical trial on a cutaneous tumor-patient} a promising method for RT at ultra high dose rate (at least \SI{40}{Gy/s}) and for this reason called FLASH-RT, instead of CONV-RT (\SI{0.03}{Gy/s}), came out. 
+        \begin{table}
+            \begin{center}
+            \begin{tabular}{|c | c |c |}
+            \hline
+            & CONV-RT & FLASH-RT \\
+            \hline
+            \hline
+            Dose rate & \SI{0.03}{Gy/s} & \SI{40}{Gy/s}\\
+            Intra pulse dose rate & \SI{100}{Gy/s}&\SI{10 6}{Gy/s}\\
+            Treatment duration & $\sim$minutes & $\lessapprox$\SI{500}{ms} \\
+            DDP & & \SI{1.5}{Gy}\\
+            N of pulses & & 10 \\
+            \hline
+            \end{tabular}
+            \caption{\red{Esempi di valori tipici di dose in un trattamento}}
+            \label{tab:}
+            \end{center}
+         \end{table}
+        This treatment takes advantages of biological differences between tumors and healthy tissues: it is characterized by reducing normal tissue toxicity and maintaining equivalent tumor damage. 
+        The response to dose can be described by the survival fraction probability, describing the fraction of surviving cell as a function of the dose: 
+        \begin{multicols}{2}
+            \begin{equation}
+                S(D) = S(0)\;e^{-F(D)}
+            \end{equation}\break
+            \begin{equation}
+                F(D) = \alpha D \, + \, \beta D^2
+            \end{equation}
+            \label{eq:survival_curve}
+        \end{multicols}
+        \red{dove F(D) è una funzione che rappresenta il danno alle cellule ed $\alpha$ and $\beta$ are respectively}
+        Hence, at high doses the density of damages increases and the cells repair becomes more difficult. 
+        Even if the FLASH effect is not yet completelly understood, it looks like there are two different recipes which are involved:
+        \begin{itemize}
+            \item the dose rate: come mostrato in figura ad alti dose rate il danno è maggiore.However at lower dose rates and therefore
+            longer irradiation time, other effects such as redistribution of cells through the
+            cell cycle and cell repopulation can also modify the sparing effect.
+            \item oxygen effect:The presence or absence of molecular oxygen O2 within a cell influences
+            the biological effect of ionizing radiation: hypoxic cells are very resistant to
+            radiation, whereas normal oxygenated cells are highly radiosensitive.
+            Cellule che esibiscono hypoxia (cioè cellule che non hanno ossigeno sono radioresistenti); al contrario normoxia e physoxia non lo sono.
+            la presenza di ossigeno rende la curva steeper indicando che lo stesso danno si raggiunge a livelli di dose più bassi rispetto al caso senza ossigeno. Dovuto al fatto che sotto la rad le molecole si rompono e se c'è ossigeno (molto elettronegativo) si possono formare dei radicali dannosi.  
+        \end{itemize}    
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/pixel_detectors_usage/survival_curve.png}
+            \label{fig:}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+                \centering
+                \includegraphics[width=.80\linewidth]{figures/pixel_detectors_usage/survival_curve_oxygen.png}
+                \label{fig:survival_curve_oxygen}
+            \end{subfigure}
+            \caption{(a) Survival curve . (b)}
+            \label{fig:}
+        \end{figure}
 
-        \red{
-        Curva di efficacia del trattamento in funzione della dose:
-        The surviving fraction probability is de
-        \begin{equation}
-            \frac{S(D)}{S(0)}=e^{-F(D)}
-        \end{equation} 
-        dove F(D) è una funzione che rappresenta il danno alle cellule. 
-        Si ottiene una curva di sopravvivenza dove si vede la possibilità delle cellule di autoripararsi. A basse dosi infatti le cellule possono ripararsi.}
-        
-        Si è visto che in modalità flash la finestra si apre. 
-        In figure c'è per la conventional r FLASH. \ref{fig:therapeutic_window}.
+        The Tumor Control Probability (TCP) and the Normal Tissue Complication (NTC) functions parametrize respectively the efficiency of damaging on the tumor after having released a certain dose and the probability of not affecting the healthy tissues. The intermediate zone between the increase of the TC and of the NTC is called therapeutic window, and the wider it is and the more effective the treatment is. 
         \begin{figure}
             \centering
-            \includegraphics[width=.8\linewidth]{figures/pixel_detectors_usage/curve_flash.png}
+            \includegraphics[width=.7\linewidth]{figures/pixel_detectors_usage/curve_flash.png}
             \caption{Illustration of dependence of TCP, NTCP and therapeutic window on dose, for CONV-RT ad FLASH-RT.}
             \label{fig:therapeutic_window}
         \end{figure}
-    
-
-    CONV-RT 0.01-5 Gy/min. A typical RT regime today consists of daily franctions of 1.5 to 3 Gy given over several weeks.\\
-    Nell Intra operative radiation therapy (IORT), where they reach values respectively about
-    20 and 100 times greater than those of conventional radiation therapy.
-    
-    \begin{table}
-        \begin{center}
-        \begin{tabular}{|c | c |c |}
-        \hline
-        & CONV-RT & FLASH \\
-        \hline
-        \hline
-        Dose rate & & \SI{40}{Gy/s}\\
-         & & \\
-         & & \\
-        
-        \end{tabular}
-        \caption{}
-        \label{tab:}
-        \end{center}
-     \end{table}
-
-    FLASH vuole ultrahigh mean dose-rate (maggione di 40 Gy/s) in modo da ridurere anche il trattamento a meno di un secondo. \\
-
-
-    Ci sono due effetti che affect the flsh effect and la sua applicabilità: Dose rate effect e oxygen\\
-    \begin{itemize}
-        \item dose rate effect
-        \item oxygen effect
-    \end{itemize}    
-
-    Cellule che esibiscono hypoxia (cioè cellule che non hanno ossigeno sono radioresistenti); al contrario normoxia e physoxia non lo sono.
-    la presenza di ossigeno rende la curva steeper indicando che lo stesso danno si raggiunge a livelli di dose più bassi rispetto al caso senza ossigeno.\\
-
-    Typically, the OER is in the order of 2.5-3.5 for most cellular systems
-    Quindi si vogliono sfruttare questi effetti per diminuire la tossicità sui tessuti sani
 
     \subsubsection{Dosimetric problems}
-    I dosimetri standard finora hanno esibito problemi di saturazione: in particolare i dosimetri di riferimento per una misura di dose assoluta, cioè le camere a ionizzazione, ad alti campi elettrici mostrano sia problemi di saturazione sia di scariche. 
-    Questo doppio effetto è dato dal fatto che, creandosi tante cariche nella camera, che va ad annullare il campo elettrico di drift. Questo ovviamente paralizza le cariche che non driftano più, ma che anzi si ricombinano ed inoltre facilita la formazione di scariche. 
+        Finding equipment suitable for dosimetry at ultra high dose rate is an issue: FLASH-RT cause a radical change in the beam characteristics, in the delivery time structure and, above all, in the average and     instantaneous dose-rate, which points-out the limits of the current available dosimeters.
+        In fact, the active dosimeters for online monitoring of the beam that are used in daily clinical practice show saturation problem: crucial both for radiobiological studies and for a safe clinical translation.
+        On the other hand passive dosimeters could provide dosimetric data, showing dose-rate independence up to 10 alla nove Gy/s for radiochromic films.
+        Cosa sono i radiochromic films and they do not have the same accuracy of other detectors.\\
+        For online measurements, the available detector are ionization chamber, semiconductors and scintillators, but nevertheless they start to exhibit saturation when the dose-rate/DPP is increased beyond what is used in clinical routine.
+        Le camere a ionizzazione hanno già un po' di problemi a DPP di due ordini di grandezza sotto la DDP della flash (quindi quelle tipiche della iort.)
+        Doppi problemi sia di saturazione sia di scariche: 
+        questo doppio effetto è dato dal fatto che, creandosi tante cariche nella camera, che va ad annullare il campo elettrico di drift. Questo ovviamente paralizza le cariche che non driftano più, ma che anzi si ricombinano ed inoltre facilita la formazione di scariche.
+        Scintillators have reusable, non-exhaustible scintillation centers. However, the system has a total deadtime given by both the crystal scintillation time and the electronics read-out deadtime.
 
-    Un altro grande limite delle camere a ionizzazione è la risoluzione spaziale dato ch non posson essere fatte più piccole di circa un centimetro. Questo limite è principalmente dovuto a problemi meccanici per cui non si può fare una camera con P bassa e con materiali sottili, perchè le pareti si incurvano. 
+        Semiconductors show a nonreversible saturation beyond a threshold around 15 cGy/p. The scintillator used, shows a negligible saturation up to 1 Gy/p, but it increases significantly up to at least 11 Gy/p, and it reaches a cutoff value between 11 and 36 Gy/p.
 
-    Oltre al problema della dose assoluta (la cui misura finora viene fatta con camere a ionizzazione per legge) nell'ambito della radioterapia ad alta intensità esistono altri problemi sperimentali, quali un detector che sia in grado di monitorare la posizione e direzionalità del fascio, quindi detto in altre parole un beam monitor.
-    Questo detector deve essere abbastanza veloce da poter fornire una risposta in real time e avere anche una buona risoluzione temporale. 
+        Scintillator dosimeters are widely used in radiotherapy. They are usually operating in counting-mode where each detected signal is processed by read-out electronics. When a scintillator dosimeter is used in integrator-mode the signal is integrated over the entire irradiation time.A deadtime, due to the decay time of the scintillating material, is considered on average every N recorded pulses, where N is the number of scintillation centres in the dosimeter.
 
+
+        Besides saturation i problemi sono anche altri:
+        The most important dosimetric aspects needed for an active detector are dose rate independence and high temporal resolution.
+
+
+        Concerning spatial resolution: Un altro grande limite delle camere a ionizzazione è la risoluzione spaziale dato ch non posson essere fatte più piccole di circa un centimetro. Questo limite è principalmente dovuto a problemi meccanici per cui non si può fare una camera con P bassa e con materiali sottili, perchè le pareti si incurvano. 
+
+        Monitorare la posizione e direzionalità del fascio, anche per la VHEE quindi detto in altre parole un beam monitor.
+        Questo detector deve essere abbastanza veloce da poter fornire una risposta in real time e avere anche una buona risoluzione temporale. 
+
+    
     
 
 
