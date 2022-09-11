@@ -22,7 +22,7 @@ Also the demands on detectors performance depends on their usage, in particular 
     Even if 3D detector are adequately radiation hard, MAPS architecture looked very promising from the beginning: they overcome both the CCDs long reading time and the hybrid problems (I have already explained in section \ref{sec:} the benefits of MAPS). 
     Experiments such as ALICE at LHC and STAR at RHIC have already introduced the CMOS MAPS technology in their detectors. ALICE Tracking System (ITS2), upgraded during the LHC long shut down in 2019-20, was the first large-area ($\sim$10 \si{m\squared} covered by 2.5 Gpixels) silicon vertex detector based on CMOS MAPS.
 
-    \subsection{Hybrid pixels at LHC: ATLAS, CMS and LHC-b}
+    \subsection{Hybrid pixels at LHC and at SuperKEKB}
         \subsubsection{ATLAS}    
         With CMS, ATLAS is one of two general-purpose detectors at the LHC and has the largest volume detector ever constructed for a particle
         collider (\SI{46}{m} long and \SI{25}{m} in diameter).  
@@ -55,26 +55,51 @@ Also the demands on detectors performance depends on their usage, in particular 
         The Velopix is made bonding sensors, each measuring 55 $\times$ 55 micrometers, \SI{200}{\um}-thick to a \SI{200}{\um}-thick ASIC specially developed for LHCb and coming from the Medipix family (sec. \ref{sec:}), which can handles hit rates up to \SI{900}{MHz} per chip.
         Since the detector is operated under vacuum near the beam pipe, the heat removal is particularly difficult and evaporative CO2 microchannel cooling are used. 
 
-    \subsection{A DEPFET example: Belle-II}
-    \red{da scrivere, Depleted P-channel FET (DEPFET)}
+    \subsubsection{BelleII}
+        The current vertex detector of BelleII, VXD, is made of a pixel detector (PXD), fabricated with 2 layers of DEPFET-based pixels, and 4 layers of a double-sided silicon strip detectors (SVD)\cite{BelleII-DEPFET}.
+        Due to the small capacitance of the collection node, DEPFET presents a high signal-to-noise ratio (in 30-50) thanks to the low instrinsic noise and to the large signal achieved with he fully depleted bulk: pixels are thinned to \SI{75}{\um} in the active region, then a MIP is supposed to create a signal of $\sim$\SI{6000}{e^-}, while the typical noise of DEPFET is around \SI{200}{e^-}.
+        \red{The ASIC read out is still based on a rolling shutter logic, with an integration time of \SI{20}{\us}.}
+        In order to reduce the data-storage memory PXD hits are only used to improve spatial resolution of tracks: the SVD informations are used by the High Level Trigger (HLT) to look for regions of interest in the pixel ladders just by extrapolating back the tracks found in the tracker detector, and this method allows to store only data belonging to these areas; the PXD hits are then used in offline track fit to improve the vertex resolution.
+        
+        MAPS have been proposed for the replacement of VXD during the  Long Shut Down 2 (LSD2) foreseen around 2026-27; the new vertex detector, VTX, should be made of 5 layers fabricated by the optimized Belle II pixel sensor (OBELIX), a detector based on TJ-Monopix have been selected (look at chapter \ref{chapter:Monopix}).    
+        The main advantages VTX should bring are a obvious improving in the track and vertex resolution (\SI{14}{\um} before upgrade, $\lessapprox$\SI{10}{\um} expected after upgrade) and a reduction in the $X_0$ (\red{da.. a..}), a higher background tolerance because of the smaller sensor than strips dimension and a low bandwidth due to the on-chip sparsification. 
 
-    Per l'upgrade LSH2 nel 2026-7 sostituzione di VXD con VTX. VXD è costituito attualmente da PXD e dalle microstips, si sostituiranno le microstrip con un rivelatore a pixel monolitico. 
-    Grande vantaggio introdotto sarà una diminuizione dell'occupancy, molto importante se si vuole raggiungere alte luminosità. Consentirà inoltre una \red{più grande} reiezione del fondo; inoltre verrà introdotto nel flow del trigger l'informazione del pixel detector, cosa che non è vera adesso. 
-    Con la diminuzione del material budget si avrà un miglioramento sulla ricostruzione dei vertici che è un aspetto importante soprattutto nel caso in cui si voglia studiare decadimenti di particelle a vita media breve.
-    The OBELIX chip, selezionato per l'upgrade, is currently under design e sarà basato su TJ-Monopix2, successore di monopix1 se non he conterrà ina memoria. 
+    \subsection{First attempts to MAPS}
+        \subsubsection{MIMOSA at EUDET and STAR}
+        MIMOSA \cite{MIMOSA}\cite{MIMOSA26} (standing for Minimum Ionizing MOS Active pixel sensor), designed in 2008, prefigured the architecture of MAPS for coming vertex detector being the first large scale sensor to be embloyed as detector. MIMOSA-26 equiped the final version of EUDET high resolution  beam telescope both at CERN-SPS and at DESY while the MIMOSA-28 devices are used for the first MAPS-based vertex detector at the STAR experiment.
+        MIMOSA-26 is fabricated in a \SI{350}{nm}, and a module features 1152 columns, split into 18 indipendent groups, and 576 rows, with square pixels having a side of \SI{18.4}{\um} lenght; therefore, beacuse of the small dimension, charge sharing is an issue \red{aggiungi qualcosa}. 
+        The readout is done in a rolling shutter mode: the chip is an Active Pixels (APS) and therefore it incorporates the amplification on pixel, while the signal discrimination and zero-suppression logic are placed at the EoC, where is also placed a memory.
+        The chip is an Active Pixels (APS) and therefore it incorporates the amplification on pixel, while the signal discrimination and zero-suppression logic are placed at the EoC: the readout is done in a rolling shutter mode with a frame integration time that can be lowered down to \SI{85}{ms}, and a memory allowing to store up to six hits is. 
 
-    
-    \subsection{CMOS MAPS: ALICE and STAR}
-        \subsubsection{ALICE}
+        The EUDET telescope, equipped with six sensor planes, requires highly granular and thin pixel detectors in order to achieve an excellent track resolution (around \SI{2}{\um}) even at the rather low particle energies of up to \SI{6}{GeV}.
+        The STAR experiment at the Relativistic Heavy Ion Collide (RHIC) accelerator at the Brookhaven National Laboratory (BNL) is the first to include MAPS in the vertex detector\cite{STAR}.
+        The main tracking detector in STAR is a TPC with radii 60-190 cm  embedded in a \SI{0.5}{T} solenoidal magnetic field, that provides a pointing resolution of approximately \SI{1}{mm}. 
+        The pixel detector, PXL, is a part of a 3-detector system, Heavy Flavor Tracker (HFT), that has been added to the pre-existing STAR apparatus just before the 2014 Run in order to improve the impact parameter resolution and to enable the direct reconstruction of hadronic decays of heavy flavor mesons and baryons.     
+        The Heavy Flavor Tracker (HFT) is composed by the Silicon Strip Detector (SSD), the Intermediate Silicon Tracker (IST) and the Pixel Detector (PXL); the first one is placed at \SI{22}{cm} from the beam pipe and consists of double sided strips with \SI{95}{\um} inter-strip pitch, the second one, placed at \SI{14}{cm}, is made of single sided silicon pads with \SI{600}{\um}$\times$\SI{6}{mm} pitch and the last one made by two layes is placed at \SI{2.8}{cm} and \SI{8}{cm} fabricated with ULTIMATE2 (also known as MIMOSA-28), a successor of MIMOSA-26 sensor, with pitch \SI{20.7}{\um} and thinned down to \SI{50}{\um}.
+        An area of \SI{0.16}{m\squared} are covered by 400 MAPS sensor, corresponding to 356 milions of pixels divided into array size of 928 $\times$ 960.
+        Each pixel includes circuitry for readout, amplification, and Correlated Double Sampling (CDS) for signal extraction and noise subtraction and the frame integration time is \SI{185.6}{\us}; after the subtraction the signal to noise ratio is $\sim$ 30, with a noise between 10-12 electrons and a signal of \SI{1000}{e^-}.
+        Thanks to the HFT system and the PXL, STAR achieved a track pointing resolution \SI{46}{\um} for \SI{750}{MeV/c} kaons, and better than \SI{30}{\um} for particle momenta bigger than \SI{1}{GeV/c}: this performance enabled the study of D-meson production with a high significance signal.
+        \begin{figure}[h!]
+            \begin{subfigure}{.4\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/pixel_detectors_usage/MIMOSA.png}
+            \end{subfigure}
+            \begin{subfigure}{.6\textwidth}
+                \centering
+                \includegraphics[width=.98\linewidth]{figures/pixel_detectors_usage/STAR.png}
+            \end{subfigure}
+            \caption{(a) The HFT PXL detector; (b) Block-diagram of the ULTIMATE-2 sensor}
+            \label{fig:}
+        \end{figure}
+
+        \subsubsection{ALPIDE at ALICE}
         ALICE (A Large Ion Collider Experiment) is a detector dedicated to heavy-ion physics and to the study of the condensed phase of the chromodynamics at the LHC.
         The tracking detector consists of the Inner Tracking System (ITS), the gaseous Time Projection Chamber (TPC) and the Transition Radiation Detector (TRD),  and all those are embedded in a magnetic field of \SI{0.5}{T}. The ITS is made by six layers of detectors, two for each type, from the interaction point outwards: Silicon Pixel Detector (SPD), Silicon Drift Detector (SDD) and Silicon Strip Detector (SSD).         
         Contrary to the others LHC experiments, ALICE tracker in placed in a quite different environments: the expected dose is smaller by two order of magnitude and the rate of interactions is few \si{MHz} instead of \SI{40}{MHz}, but the number of particles comes out of each interaction is higher (the SPS is invested by a density of particles of $\sim$\SI{100}{\per cm\tothe{-2}}).  
         The reconstruction of very complicated events whit a large number of particle is a challenge, hence to segment and to minimize the amount of material, which may cause secondary interaction complicating futher the event topology, is considered a viable strategy. 
-        Thanks to the reduction of the material budget, ITS2, which uses the ALPIDE chip developed by ALICE collaboration, obtained an amazing improvement both in the position measurement and in the momentum resolution, improving the efficiency of track reconstruction for particle with very low transverse momentum (by a factor 6 at pT $\sim$ 0.1 GeV/c). Further advancements in CMOS MAPS technology are being aggressively pursued for the ALICE ITS3 vertex detector upgrades (foreseen around 2026-27), with the goals of further reducing the sensor thickness and improving the readout speed of the devices, while keeping power consumption at a minimum.\\
-        
-        \subsubsection{STAR}
-        MIMOSA-28 devices for the first MAPS-based vertex detector: a 356 Mpixel two-layer barrel system for the STAR experiment at Brookhaven’s Relativistic Heavy Ion Collide
-        \red{da scrivere}
+        The detector employes the ALPIDE chip, developed by ALICE collaboration, fabricated in the 180 nm CMOS Imaging Sensor process of TowerJazz, whose design takes full advantage of process feature which allows full circuitry within the pixel matrix.
+        Thanks to the reduction of the material budget, ITS2 obtained an amazing improvement both in the position measurement and in the momentum resolution, improving the efficiency of track reconstruction for particle with very low transverse momentum (by a factor 6 at pT $\sim$ 0.1 GeV/c). Further advancements in CMOS MAPS technology are being aggressively pursued for the ALICE ITS3 vertex detector upgrades (foreseen around 2026-27), with the goals of further reducing the sensor thickness and improving the readout speed of the devices, while keeping power consumption at a minimum.
+
 \section{Other applications}
     Historically for imaging pourpose the CCDs were the favoured device: they can be used as single photon counter or integrating and collecting the charge released by more impinging particles. The utilisation in the first case is similar to the tracking one, except that the requirements are less tight, so much that two noteworthy of microchips originally meant for detectors in particle physics at the LHC, and later employed in other fields are Medipix and Timepix. They are read-out chips developed by the Medipix Collaborations since early 1990s. For two decades, different Medipix generations have been produced, having a rough correlation with the feature size used: Medipix2 (1999) used \SI{250}{nm} feature size CMOS while Medipix3 (2005) \SI{130}{nm}.
     The aim of the fourth collaboration (2016), instead, is designing pixel read-out chips that prepared for \red{TSV processing and may be tiled on all four sides. DOVREI METTERE DUE RIGHE SU TSV OPPURE TAGLIARE. }
@@ -89,10 +114,11 @@ Also the demands on detectors performance depends on their usage, in particular 
     \subsection{Applicability to FLASH radiotherapy}
         \red{Metti in evidenza il fatto che è più beam monitoring di particelle cariche (elettroni)}   
         The radiological treatment is a common method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, (Intra operative radiation therapy-IORT) and many different types of radiations (photons, electrons, protons and ions, which mainly are hydrogen and carbon) can be used to irradiate the affected tissues.
-        Exploiting the ionizating energy loss a biological damage can be delivered to the tissue. \red{nomina il LET.
+        Exploiting the ionizating energy loss a biological damage can be delivered to the tissue. \red{nomina il LET.}
         If x-ray photons, with energy in $\sim$4-25\si{MeV}, are used, the ionization is caused by the Compton electrons and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
         The hardrons energy loss, instead, is strongly localized in the last region of the track, that is the Bragg peak. 
-        Ion beam enables better focusing of the radiation thereby improves the sparing of the surrounding healthy tissues; on the other hand the delivered dose distribution depends more on the patient's density tissues (e.g. bones, swelling, fat). }
+        Ion beam enables better focusing of the radiation thereby improves the sparing of the surrounding healthy tissues; on the other hand the delivered dose distribution depends more on the patient's density tissues (e.g. bones, swelling, fat). 
+        \red{Vantaggi degli elettroni}
 
         \begin{figure}
             \centering
@@ -112,8 +138,8 @@ Also the demands on detectors performance depends on their usage, in particular 
             Dose rate & \SI{0.03}{Gy/s} & \SI{40}{Gy/s}\\
             Intra pulse dose rate & \SI{100}{Gy/s}&\SI{10 6}{Gy/s}\\
             Treatment duration & $\sim$minutes & $\lessapprox$\SI{500}{ms} \\
-            DDP & & \SI{1.5}{Gy}\\
-            N of pulses & & 10 \\
+            DDP & \SI{0.3}{mGy} & \qtyrange{1}{10}{Gy}\\
+            Pulse width & \SI{3}{\us} & $\sim$\SI{2}{\us} \\
             \hline
             \end{tabular}
             \caption{\red{Esempi di valori tipici di dose in un trattamento}}
@@ -122,41 +148,32 @@ Also the demands on detectors performance depends on their usage, in particular 
          \end{table}
         This treatment takes advantages of biological differences between tumors and healthy tissues: it is characterized by reducing normal tissue toxicity and maintaining equivalent tumor damage. 
         The response to dose can be described by the survival fraction probability, describing the fraction of surviving cell as a function of the dose: 
-        \begin{multicols}{2}
-            \begin{equation}
-                S(D) = S(0)\;e^{-F(D)}
-            \end{equation}\break
-            \begin{equation}
-                F(D) = \alpha D \, + \, \beta D^2
-            \end{equation}
+        \begin{equation}
+            S(D) = S(0)\;e^{-( \alpha D \, + \, \beta D^2)}
             \label{eq:survival_curve}
-        \end{multicols}
-        \red{dove F(D) è una funzione che rappresenta il danno alle cellule ed $\alpha$ and $\beta$ are respectively}
+        \end{equation}
+        where $\alpha$ and $\beta$ respectively represents the rate of cell killing by single ionizing events and by double hits. 
         Hence, at high doses the density of damages increases and the cells repair becomes more difficult. 
         Even if the FLASH effect is not yet completelly understood, it looks like there are two different recipes which are involved:
         \begin{itemize}
-            \item the dose rate: come mostrato in figura ad alti dose rate il danno è maggiore.However at lower dose rates and therefore
-            longer irradiation time, other effects such as redistribution of cells through the
-            cell cycle and cell repopulation can also modify the sparing effect.
-            \item oxygen effect:The presence or absence of molecular oxygen O2 within a cell influences
-            the biological effect of ionizing radiation: hypoxic cells are very resistant to
-            radiation, whereas normal oxygenated cells are highly radiosensitive.
-            Cellule che esibiscono hypoxia (cioè cellule che non hanno ossigeno sono radioresistenti); al contrario normoxia e physoxia non lo sono.
-            la presenza di ossigeno rende la curva steeper indicando che lo stesso danno si raggiunge a livelli di dose più bassi rispetto al caso senza ossigeno. Dovuto al fatto che sotto la rad le molecole si rompono e se c'è ossigeno (molto elettronegativo) si possono formare dei radicali dannosi.  
+            \item \textbf{The dose rate:} 
+            higher dose rate produce bigger damages (fig. \ref{fig:damage_vs_dose}(a)) since this prevent cells from sparing.
+            \item \textbf{The presence or absence of oxygen:} 
+            while hypoxic cells are very resistant to
+            radiation, normal oxygenated cells are highly radiosensitive. 
+            This is because if molecules containing $O_2$ break due to the impinging radiation, then the oxygen can build Reactive Oxygen Species (ROS) (fig.\ref{fig:damage_vs_dose}(b))
         \end{itemize}    
         \begin{figure}[h!]
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/pixel_detectors_usage/survival_curve.png}
-            \label{fig:}
             \end{subfigure}
             \begin{subfigure}{.5\textwidth}
                 \centering
                 \includegraphics[width=.80\linewidth]{figures/pixel_detectors_usage/survival_curve_oxygen.png}
-                \label{fig:survival_curve_oxygen}
             \end{subfigure}
-            \caption{(a) Survival curve . (b)}
-            \label{fig:}
+            \caption{(a) Survival curve for different dose rate and (b) for different oxygen cell content}
+            \label{fig:damage_vs_dose}
         \end{figure}
 
         The Tumor Control Probability (TCP) and the Normal Tissue Complication (NTC) functions parametrize respectively the efficiency of damaging on the tumor after having released a certain dose and the probability of not affecting the healthy tissues. The intermediate zone between the increase of the TC and of the NTC is called therapeutic window, and the wider it is and the more effective the treatment is. 
@@ -168,14 +185,15 @@ Also the demands on detectors performance depends on their usage, in particular 
         \end{figure}
 
     \subsubsection{Dosimetric problems}
-        Finding equipment suitable for dosimetry at ultra high dose rate is an issue: FLASH-RT cause a radical change in the beam characteristics, in the delivery time structure and, above all, in the average and     instantaneous dose-rate, which points-out the limits of the current available dosimeters.
-        In fact, the active dosimeters for online monitoring of the beam that are used in daily clinical practice show saturation problem: crucial both for radiobiological studies and for a safe clinical translation.
-        On the other hand passive dosimeters could provide dosimetric data, showing dose-rate independence up to 10 alla nove Gy/s for radiochromic films.
-        Cosa sono i radiochromic films and they do not have the same accuracy of other detectors.\\
-        For online measurements, the available detector are ionization chamber, semiconductors and scintillators, but nevertheless they start to exhibit saturation when the dose-rate/DPP is increased beyond what is used in clinical routine.
-        Le camere a ionizzazione hanno già un po' di problemi a DPP di due ordini di grandezza sotto la DDP della flash (quindi quelle tipiche della iort.)
+        Finding dosimeters suitable for ultra high dose rate is an issue. 
+        Indeed, \red{mentre il problema non si pone con passive dosimeters}, all the active ones for online monitoring of the beam show saturation problems. 
+        \red{On the other hand passive dosimeters could provide dosimetric data, showing dose-rate independence up to 10 alla nove Gy/s for radiochromic films. Cosa sono i radiochromic films and they do not have the same accuracy of other detectors.}
+
+        The principal detectors for online measurement are ionization chambers, that show saturation issue at dose per pulse (DDP) two orders of magnitude lower than the ones used for FLASH-RT.
+        \red{da qui in poi}
         Doppi problemi sia di saturazione sia di scariche: 
         questo doppio effetto è dato dal fatto che, creandosi tante cariche nella camera, che va ad annullare il campo elettrico di drift. Questo ovviamente paralizza le cariche che non driftano più, ma che anzi si ricombinano ed inoltre facilita la formazione di scariche.
+
         Scintillators have reusable, non-exhaustible scintillation centers. However, the system has a total deadtime given by both the crystal scintillation time and the electronics read-out deadtime.
 
         Semiconductors show a nonreversible saturation beyond a threshold around 15 cGy/p. The scintillator used, shows a negligible saturation up to 1 Gy/p, but it increases significantly up to at least 11 Gy/p, and it reaches a cutoff value between 11 and 36 Gy/p.
@@ -183,14 +201,9 @@ Also the demands on detectors performance depends on their usage, in particular 
         Scintillator dosimeters are widely used in radiotherapy. They are usually operating in counting-mode where each detected signal is processed by read-out electronics. When a scintillator dosimeter is used in integrator-mode the signal is integrated over the entire irradiation time.A deadtime, due to the decay time of the scintillating material, is considered on average every N recorded pulses, where N is the number of scintillation centres in the dosimeter.
 
 
-        Besides saturation i problemi sono anche altri:
-        The most important dosimetric aspects needed for an active detector are dose rate independence and high temporal resolution.
+        Besides saturation two other requirements for online dosimeters are high temporal and space resolutions. 
+        \red{Si potrebbe pensare di poter usare i pixel detector as beam monitor che hanno risoluzioni spaziali anche inferiori al 10 um e ris temporali -qua dare un valore è più difficile perchè per i maps la risoluzione temporale dipende da l occupancy. Uno dei problemi è però il lungo dead time introdotto dal lungo tempo di readout (ricorrdiamo che sopportano circa 100 Mhz/cm2).}
 
-
-        Concerning spatial resolution: Un altro grande limite delle camere a ionizzazione è la risoluzione spaziale dato ch non posson essere fatte più piccole di circa un centimetro. Questo limite è principalmente dovuto a problemi meccanici per cui non si può fare una camera con P bassa e con materiali sottili, perchè le pareti si incurvano. 
-
-        Monitorare la posizione e direzionalità del fascio, anche per la VHEE quindi detto in altre parole un beam monitor.
-        Questo detector deve essere abbastanza veloce da poter fornire una risposta in real time e avere anche una buona risoluzione temporale. 
 
     
     
