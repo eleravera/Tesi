@@ -17,7 +17,7 @@ Il campo elettrico applicato, lo spessore della zona di svuotamento, le modalit√
         \centering
         \includegraphics[width=.8\linewidth]{figures/Pixel_detectors/mobility_in_semiconductor.png}
         \caption{Typical values for electrons and holes mobility 
-        in silicon at room temperature are $\mu _n \sim$ 1450 $cm^2/Vs$, $\mu _h = 500$}
+        in silicon at room temperature are $\mu _n \sim$\SI{1450}{cm\squared/Vs}, $\mu _h$ = 500}
         \label{fig:mobility_drift1}
         \end{subfigure}
         \begin{subfigure}{.5\textwidth}
@@ -29,7 +29,7 @@ Il campo elettrico applicato, lo spessore della zona di svuotamento, le modalit√
         \label{fig:mobility_drift}
     \end{figure}
 
-    The average energy needed to create a pair at 300 K in silicon is $w_i$ = 3.65 eV, that is more than the mean ionization energy because of the interactions with phonon, since for a minimum ionizing particle (MIP) the most probable value (MPV) of charge released in the semiconductor is 0.28 keV/$\mu$, hence the number of e/h pairs is: 
+    The average energy needed to create a pair at \SI{300}{K} in silicon is $w_i$ = \SI{3.65}{eV}, that is more than the mean ionization energy because of the interactions with phonon, since for a minimum ionizing particle (MIP) the most probable value (MPV) of charge released in the semiconductor is \SI{0.28}{keV/\um}, hence the number of electrons-vacuum pairs is: 
     \begin{equation}
         \langle \frac{dE}{dx}\rangle \frac{1}{w_i} \sim 80 \: e/h \sim \frac{1.28 \:10^{-2}fC}{\mu m}
     \end{equation}
@@ -95,9 +95,9 @@ For photon imaging the need of high assorbtion efficiency, \red{per cui usi mate
       \caption{Concept cross-section of CMOS MPAS pixel}
       \label{fig:MAPS_scheme}
    \end{figure}
-   MAPS (figure a \ref{fig:MAPS_scheme}) have typically an epitaxial layer in range 1-20 $\mu m$ and because they are not depleted, the charge is mainly collected by diffusion rather than by drift. This makes the path of charges created in the bulk longer than usual, therefore they are slow (of order of 100 ns) and the collection could be partial expecially after the irradiation of the detector (look at \ref{Appendix:pixels_overview} for radiation damages), when the trapping probability become higher. \\
+   MAPS (figure a \ref{fig:MAPS_scheme}) have typically an epitaxial layer in range \SIrange{1}{20}{\um} and because they are not depleted, the charge is mainly collected by diffusion rather than by drift. This makes the path of charges created in the bulk longer than usual, therefore they are slow (of order of 100 ns) and the collection could be partial expecially after the irradiation of the detector (look at \ref{Appendix:pixels_overview} for radiation damages), when the trapping probability become higher. \\
    In figure \ref{fig:MAPS_scheme} is shown as example of CMOS MAPS: the sensor in the scheme implements an n well as collection diode; to avoid the others n wells (which contain PMOS transistor) of the electronic circuit would compete in charge collection and to shield the CMOS circuit from the substrate, additionally underlying deep p well are needed.
-   DMAPS are instead MAPS depleted with $d$ typically in $\sim$ 25-150 $\mu m$ (eq. \ref{eq:deplation_d}) which extends from the diode to the deep p-well, and sometimes also to the backside (in this case if one wants to collect the signal also on this electrode, additional process must be done).
+   DMAPS are instead MAPS depleted with $d$ typically in $\sim$\SIrange{25}{150}{\um} (eq. \ref{eq:deplation_d}) which extends from the diode to the deep p-well, and sometimes also to the backside (in this case if one wants to collect the signal also on this electrode, additional process must be done).
 
    \subsection{DMAPS: large and small fill factor}\label{sec:small-large-fill-factor}
       There are two different sensor-design approaches (figure \ref{fig:large_small_sensor_scheme})
@@ -128,9 +128,9 @@ For photon imaging the need of high assorbtion efficiency, \red{per cui usi mate
          \caption{$C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$}
          \label{fig:DMAPS_capacity}
       \end{figure}
-      So, larger charge collection electrode sensors provide a uniform electric field in the bulk that results in short drift path and so in good collection properties, especially after irradiation, when trapping probability can become an issue. The drawback of a large fill-factor is the large capacity ($\sim$100 fF): this contributes to the noise and to a speed penalty and to a larger possibility of cross talk.
+      So, larger charge collection electrode sensors provide a uniform electric field in the bulk that results in short drift path and so in good collection properties, especially after irradiation, when trapping probability can become an issue. The drawback of a large fill-factor is the large capacity ($\sim$\SI{100}{fF}): this contributes to the noise and to a speed penalty and to a larger possibility of cross talk.
 
-      The small fill-factor variant, instead, benefits from a small capacity (5-20 fF), but suffers from a not uniform electric field and from all the issue related to that. \red{Ho gi√† detto prima parlando dei MAPS, devo ripetere qui?}\\
+      The small fill-factor variant, instead, benefits from a small capacity (\SIrange{5}{20}{fF}), but suffers from a not uniform electric field and from all the issue related to that. \red{Ho gi√† detto prima parlando dei MAPS, devo ripetere qui?}\\
       As we'll see these two different types of sensor require different amplifier: the large elcrtrode one is coupled with the charge sensitive amplifier, while the small one with voltage amplifier (sec \ref{subsec:preamplifier}).
 
       \begin{table}
@@ -140,10 +140,10 @@ For photon imaging the need of high assorbtion efficiency, \red{per cui usi mate
          & small fill factor & large fill factor\\
          \hline
          \hline
-         small sensor C & $\surd$ ($<$ 5 fF) & $\times$ ($\sim$ 100-200 fF)\\
+         small sensor C & $\surd$ ($<$ \SI{5}{fF}) & $\times$ ($\sim$ \SI{100}{200}{fF})\\
          low noise & $\surd$ & $\times$\\
          low cross talk & $\surd$ & $\times$ \\
-         velocity perfomances & $\surd$ & $\times$ ($\sim$ 100 ns)\\
+         velocity perfomances & $\surd$ & $\times$ ($\sim$\SI{100}{ns})\\
          short drift paths & $\times$ & $\surd$ \\
          radiation hard & $\times$ & $\surd$ \\
          \hline
@@ -192,7 +192,7 @@ For photon imaging the need of high assorbtion efficiency, \red{per cui usi mate
    To store the analogical information (i.e. charge collected, evolution of signal in time, ...) big buffers and a large bandwidth are needed; the problem that doesn't occur, or better occur only with really high rate, if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded). 
 
    A common compromise often made is to save the time over threshold (ToT) of the pulse in clock cycle counts; this needs of relatively coarse requirement as ToT could be trimmer to be a dozen bits but, being correlated and hopefully being linear with the deposited charge by the impinging particle in the detector, it provides a sufficient information.
-   The ToT digitalization usually takes advantage of the distribution of a clock (namely BCID,  bunch crossing identification) on the pixels' matrix. The required timing precision is at least around 25 ns, that corresponds to the period of bunch collisions at LHC; for such reason a reasonable BCID-clock frequency for pixels detector is 40 MHz.\\
+   The ToT digitalization usually takes advantage of the distribution of a clock (namely BCID,  bunch crossing identification) on the pixels' matrix. The required timing precision is at least around \SI{25}{ns}, that corresponds to the period of bunch collisions at LHC; for such reason a reasonable BCID-clock frequency for pixels detector is \SI{40}{MHz}.\\
    Leading and trailing edges' timestamp of the pulse are saved on pixel within a RAM until they have been read,  and then the ToT is obtained from their difference.
    \begin{figure}[h!]
       \centering
@@ -215,7 +215,7 @@ For photon imaging the need of high assorbtion efficiency, \red{per cui usi mate
    P(T > t) = \frac{\mu}{B_W} e^{-( B_W-\mu )t}
    \label{eq:priority_chain_no_buffer}
    \end{equation}
-   To avoid hit loss (let's neglect the contribution to the inefficiency of the dead time $\tau$ due to the AFE), for example imposing $P(T > t)\sim\:$0.001, one obtains $(B_W -\mu)\:t_t\sim\:$6, where $t_t$ is the time needed to transfer the hit; since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth \cite{Garcia-Review}.
+   To avoid hit loss (let's neglect the contribution to the inefficiency of the dead time $\tau$ due to the AFE), for example imposing $P_T > t\sim\:$0.001, one obtains $(B_W -\mu)\:t_t\sim\:$6, where $t_t$ is the time needed to transfer the hit; since $t_t$ is small, one must have $B_W \gg \mu$, that means a high bandwidth \cite{Garcia-Review}.
    \begin{figure}[h!]
       \centering
       \includegraphics[width=.6\linewidth]{figures/Pixel_detectors/pipeline.png}
@@ -252,5 +252,5 @@ For photon imaging the need of high assorbtion efficiency, \red{per cui usi mate
       P(N > 3 | \nu) = 1-\sum_{i=0}^{3} P(N = i | \nu) < 0.1\%  
    \label{eq:efficiency_buffer}
    \end{equation} 
-   Considering the second situation: if the average single pixel rate is still 50 kHz, grouping four pixels the mean number of hits per trigger latency is $\nu = 0.25 \times 4 = 1$. To get an efficiency of 99.9\% (eq. \ref{eq:efficiency_buffer}) a buffer depth of 5 hits in the four-pixels region, instead of 3 per pixels, is needed. 
+   Considering the second situation: if the average single pixel rate is still \SI{50}{kHz}, grouping four pixels the mean number of hits per trigger latency is $\nu = 0.25 \times 4 = 1$. To get an efficiency of 99.9\% (eq. \ref{eq:efficiency_buffer}) a buffer depth of 5 hits in the four-pixels region, instead of 3 per pixels, is needed. 
 

@@ -46,6 +46,8 @@ Also the demands on detectors performance depends on their usage, in particular 
         %sensors is reduced to 150 um in comparison to the previous
         %generation of 230 um thick 3D sensor
         \subsubsection{CMS}
+        \red{da scrivere}
+        124 million pixels; cylindrical layers roughly at 3cm, 7cm, 11cm and 16cm and disks at either end, and so will be vital in reconstructing the tracks of very short-lived particles. Each of these silicon pixels is 100um by 150um,even with  only around 50 microwatts per pixel, the total power output is 7.5kW-
 
         \subsubsection{LHCb}
         LHCb is a dedicated heavy-flavour physics experiment that exploits pp interactions at \SI{14}{TeV} at LHC. 
@@ -112,10 +114,11 @@ Also the demands on detectors performance depends on their usage, in particular 
     A small-Timepix detector with the dimension of a USB can also be found at the International Space Statio, where it is exploited for radiation, principally made of haevy-ion, monitoring. 
  
     \subsection{Applicability to FLASH radiotherapy}
-        \red{Metti in evidenza il fatto che è più beam monitoring di particelle cariche (elettroni)}   
+        A possible new application of pixels detector is dosimetry or beam monitoring of charge particles in high intensity radiography.
         The radiological treatment is a common method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, (Intra operative radiation therapy-IORT) and many different types of radiations (photons, electrons, protons and ions, which mainly are hydrogen and carbon) can be used to irradiate the affected tissues.
-        Exploiting the ionizating energy loss a biological damage can be delivered to the tissue. \red{nomina il LET.}
-        If x-ray photons, with energy in $\sim$4-25\si{MeV}, are used, the ionization is caused by the Compton electrons and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
+        Exploiting the ionizating energy loss, that can be parametrized by the Linear Energy Transfer (LET), a biological damage can be delivered to the tissue: while $\alpha$ and $\beta$ particles are high LET radiations with values in \SIrange{100}{200}{keV/\um}, x-rays and gamma-rays are low LET radiations with values in range \SIrange{0.2}{2}{keV/\um}.
+
+        If x-ray photons, with energy in \SIrange{4}{25}{MeV} are used, the ionization is caused by the Compton electrons and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
         The hardrons energy loss, instead, is strongly localized in the last region of the track, that is the Bragg peak. 
         Ion beam enables better focusing of the radiation thereby improves the sparing of the surrounding healthy tissues; on the other hand the delivered dose distribution depends more on the patient's density tissues (e.g. bones, swelling, fat). 
         \red{Vantaggi degli elettroni}
@@ -142,8 +145,8 @@ Also the demands on detectors performance depends on their usage, in particular 
             Pulse width & \SI{3}{\us} & $\sim$\SI{2}{\us} \\
             \hline
             \end{tabular}
-            \caption{\red{Esempi di valori tipici di dose in un trattamento}}
-            \label{tab:}
+            \caption{Typical value of treatment parameters}
+            \label{tab:dose_parameters}
             \end{center}
          \end{table}
         This treatment takes advantages of biological differences between tumors and healthy tissues: it is characterized by reducing normal tissue toxicity and maintaining equivalent tumor damage. 
@@ -185,6 +188,7 @@ Also the demands on detectors performance depends on their usage, in particular 
         \end{figure}
 
     \subsubsection{Dosimetric problems}
+        \red{da scrivere }
         Finding dosimeters suitable for ultra high dose rate is an issue. 
         Indeed, \red{mentre il problema non si pone con passive dosimeters}, all the active ones for online monitoring of the beam show saturation problems. 
         \red{On the other hand passive dosimeters could provide dosimetric data, showing dose-rate independence up to 10 alla nove Gy/s for radiochromic films. Cosa sono i radiochromic films and they do not have the same accuracy of other detectors.}
