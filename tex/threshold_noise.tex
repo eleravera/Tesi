@@ -1,10 +1,11 @@
 \section{Threshold and noise: figure of merit for pixel detectors}
 \red{IN QUESTO CAPITOLO HO MESSO SOLO APPUNTI SPARSI DA RIORGANIZZARE, E DEVO AGGIUNGERE POI I PLOT DI MONOPIX1}
 
-The signal to threshold ratio is the figure of merit for pixel detectors.\\
+The threshold has to be high enough to cut the noise, but also low enough to mantain a high signal efficiency, and 
+For low enough threshold and/or enough pixels firing at the same time, this positive feedback can set off a chain reaction causing all pixels to fire. For a given instantaneous hit occupancy (fraction of pixels firing atthe same time due to an external stimulus), there will be a minimum stable threshold.
+For this reason the signal to threshold ratio, rather than the signal to noise ratio, can be considered as the figure of merit for pixel detectors.
 
-la soglia deve essere abb alta da tagliare il rumore ma abb bassa da non perdere efficienza.\\
-Invece di prendere il rapporto segnale rumore prendi il rapporto segnale soglia. Perchè?
+
 la soglia è collegato al rumore, nel senso che: supponiamo di volere un occupancy di 10-4
 allora sceglierò la soglia in base a questo. (plot su quaderno)
 Da questo conto trovo la minima soglia mettibile\\
@@ -14,17 +15,22 @@ uno di questi parametri vedo alzarsi molto il rate di rumore. In realtà non è 
 rumore sensibile a diversi fattori, ma anche la soglia: ad esempio la cosa classica è
 la variabilità della soglia da pixel a pixel.\\
 In questo modo rumore e soglia diventano parenti.\\
-Review pag 26.
 
+The front end noise does set a lower bound to the threshold, but does not determine how far above this lower bound is the minimum stable threshold. Assuming a noise occupancy of 10meno4 is acceptable, this corresponds to the Gaussian 1-sided tail fraction for 3.7sigma . Inverting the question, for a 500 e minimum threshold, the noise must be less than 500/3.7=135 e equivalent input charge. But this is just an upper bound. How far below this bound the noise needs to be depends on how the threshold varies with time and how frompixel to pixel.
 
 Questo implica tra le altre cose che voglio poter assegnare delle soglie diverse
-a diversi pixel: Drawback è dare spazio per registri e quantaltro.\\
+a diversi pixel. Non fare trimming sulla soglia è uno dei problemi che si sono sempre incontrati: a casusa dei mismatch dei transistor
+le soglie efficaci pixel per pixel cambiano tanto.
+
+
+ASSEGNAZIONE DELLE SOGLIE IN TJ MONOPIX E ARAVDIA.
+Drawback è dare spazio per registri e quantaltro. Ad esempio per Monopix1 la soglia è locale, poi 3 bit vengono allocati per trimming sul singolo pixel.
+Arcadia invece 
 Questo lascia però ancora aperto il problema temporale delle variazioni del rumore:
 problema per cui diventano necessarie le misure dei sensori dopo l'irraggiamento.\\
 
 
-Non fare trimming sulla soglia è uno dei problemi che si sono sempre incontrati: a casusa dei mismatch dei transistor
-le soglie efficaci pixel per pixel cambiano tanto.
+
 La larghezza della s curve è il noise se assumi che il noise è gaussiano
 
 
@@ -39,10 +45,6 @@ The ENC can be directly calculated by the Cumulative Distribution Function (CDF)
 
 Radiation damages oxide layer causes shift of MOSFET threshold voltage
 \section{TJ-Monopix1 characterization}
-
-%python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i parametri dei fit del tot e della s curve
-%python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
-%python3 -i calibration/tot_histo2d.py -f calibration/calibration_data/20220506 per fare l'istogramma 2d del tot
 
     \subsection{Threshold and noise dispersion}
     Un plot con s curve e residui (perchè dovrebbe essere migliroe il modello con doppia retta? sul RD53 c'era scritto, trovalo e leggilo)

@@ -121,7 +121,9 @@ Also the demands on detectors performance depends on their usage, in particular 
         If x-ray photons, with energy in \SIrange{4}{25}{MeV} are used, the ionization is caused by the Compton electrons and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
         The hardrons energy loss, instead, is strongly localized in the last region of the track, that is the Bragg peak. 
         Ion beam enables better focusing of the radiation thereby improves the sparing of the surrounding healthy tissues; on the other hand the delivered dose distribution depends more on the patient's density tissues (e.g. bones, swelling, fat). 
-        \red{Vantaggi degli elettroni}
+        \red{Ensuring the target coverage is a fundamental objective in radiotherapy and is closely connected to the choice of the particles. Electrons cover the target since they tend to spread out and can cover a field size of a few cm2 at a distance of a few cm from the source. Instead, the limited size of the beam for protons and photons from ultra high dose rate microbeam radiation therapy (MRT), for which FLASH effect was seen, requires the scanning of target.
+        The radiobiological consequences of scanning both in spatial-fractionation and in prolonged exposure, which might not be sufficient to maintain a high mean dose rate to trigger FLASH effect, need to be explored.
+        To date, the FLASH effect has been most commonly demonstrated using low-energy electron linacs}
 
         \begin{figure}
             \centering
@@ -130,7 +132,7 @@ Also the demands on detectors performance depends on their usage, in particular 
             \label{fig:Bragg-peak}
          \end{figure}
 
-        Recently\footnote{The first evidences has been observed on a mice experiments in 1966 and in 2014 by the group of Favaudon and Vozenin. After this, many test on cats and pigs have been performed, and also there has been a clinical trial on a cutaneous tumor-patient} a promising method for RT at ultra high dose rate (at least \SI{40}{Gy/s}) and for this reason called FLASH-RT, instead of CONV-RT (\SI{0.03}{Gy/s}), came out. 
+        Recently\footnote{The first evidences has been observed on a mice experiments in 1966 and in 2014 by the group of Favaudon and Vozenin. After this, many test on cats and pigs have been performed, and also there has been a clinical trial on a cutaneous tumor-patient} a promising method for RT at ultra high dose rate (at least \SI{40}{Gy/s}) and for this reason called FLASH-RT\cite{FLASH_review}, instead of CONV-RT (\SI{0.03}{Gy/s}), came out. 
         \begin{table}
             \begin{center}
             \begin{tabular}{|c | c |c |}
@@ -157,7 +159,7 @@ Also the demands on detectors performance depends on their usage, in particular 
         \end{equation}
         where $\alpha$ and $\beta$ respectively represents the rate of cell killing by single ionizing events and by double hits. 
         Hence, at high doses the density of damages increases and the cells repair becomes more difficult. 
-        Even if the FLASH effect is not yet completelly understood, it looks like there are two different recipes which are involved:
+        Even if the FLASH effect is not yet completelly understood and the underlying mechanisms are not clear, it looks like there are two different recipes which are involved:
         \begin{itemize}
             \item \textbf{The dose rate:} 
             higher dose rate produce bigger damages (fig. \ref{fig:damage_vs_dose}(a)) since this prevent cells from sparing.
@@ -188,21 +190,23 @@ Also the demands on detectors performance depends on their usage, in particular 
         \end{figure}
 
     \subsubsection{Dosimetric problems}
-        \red{da scrivere }
-        Finding dosimeters suitable for ultra high dose rate is an issue. 
-        Indeed, \red{mentre il problema non si pone con passive dosimeters}, all the active ones for online monitoring of the beam show saturation problems. 
-        \red{On the other hand passive dosimeters could provide dosimetric data, showing dose-rate independence up to 10 alla nove Gy/s for radiochromic films. Cosa sono i radiochromic films and they do not have the same accuracy of other detectors.}
-
-        The principal detectors for online measurement are ionization chambers, that show saturation issue at dose per pulse (DDP) two orders of magnitude lower than the ones used for FLASH-RT.
+        Finding dosimeters suitable for online monitoring of the beam at ultra high dose rate is still an open issue since almost all standard online dosimeters show saturation problems.
+        Differently, radiochromic films, which are the standard passive dosimeters, show dose-rate indipendece up to \SI{109}{Gy/s}.
+        \red{ Cosa sono i radiochromic films and they do not have the same accuracy of other detectors.}
+        The principal detectors for reference dosimetry which provide real-time dose measurement are Ionization Chambers (IC), that show saturation issue at dose per pulse (DDP) two orders of magnitude lower than the ones used for FLASH-RT.
         \red{da qui in poi}
-        Doppi problemi sia di saturazione sia di scariche: 
+        ICs devono essere calibrate secondo la metrologia , per cui grazie a protocolli di calibrazione e introducendo dei fattori correttivi si riesce a fare una misura di dose. $k_{sat}$ which accounts for the loss of charge collected due to recombination.
+        Doppi problemi sia di saturazione dovuta a ion recombination sia di scariche, must be carefully accounted for: 
         questo doppio effetto è dato dal fatto che, creandosi tante cariche nella camera, che va ad annullare il campo elettrico di drift. Questo ovviamente paralizza le cariche che non driftano più, ma che anzi si ricombinano ed inoltre facilita la formazione di scariche.
+        Per DDP minori di 1 mGy il fattore correttivo è minore al 5\%, poi però aumenta substantially.
 
         Scintillators have reusable, non-exhaustible scintillation centers. However, the system has a total deadtime given by both the crystal scintillation time and the electronics read-out deadtime.
 
         Semiconductors show a nonreversible saturation beyond a threshold around 15 cGy/p. The scintillator used, shows a negligible saturation up to 1 Gy/p, but it increases significantly up to at least 11 Gy/p, and it reaches a cutoff value between 11 and 36 Gy/p.
 
-        Scintillator dosimeters are widely used in radiotherapy. They are usually operating in counting-mode where each detected signal is processed by read-out electronics. When a scintillator dosimeter is used in integrator-mode the signal is integrated over the entire irradiation time.A deadtime, due to the decay time of the scintillating material, is considered on average every N recorded pulses, where N is the number of scintillation centres in the dosimeter.
+        Scintillator dosimeters are widely used in radiotherapy. They are usually operating in counting-mode where each detected signal is processed by read-out electronics.
+        However, the system has a total deadtime given by both the crystal scintillation time and the electronics read-out deadtime
+        When a scintillator dosimeter is used in integrator-mode the signal is integrated over the entire irradiation time.A deadtime, due to the decay time of the scintillating material, is considered on average every N recorded pulses, where N is the number of scintillation centres in the dosimeter.
 
 
         Besides saturation two other requirements for online dosimeters are high temporal and space resolutions. 

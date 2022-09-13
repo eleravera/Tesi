@@ -298,12 +298,139 @@ Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout
 
         \red{Ci sarebbe da spiegare perchè i parametri che usiamo noi come default non sono quelli che minimizzano il tempo di lettura. La spiegazione è che "Abbiamo copiato i valori dal repositorio di quelli di Bonn". Un'altra domanda potrebbe essere: come mai non ho esplorato una zona più vasta per i parametri del R/O. Cambiando molto i parametri del R/O la lettura non funzionava per niente: ad esempio CONF\_STOP\_FREEZE non può essere impostato nè sopra 105 nè sotto 95}
 
+\section{Injection}
+        \begin{itemize}
+        \item check sul chi quadro: fai un istogramma del chi quadro con fit retta e parabola
+        \item mappe dei parametri per un flavor
+        \end{itemize}
+%python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i gli istogrammi del tot e della s curve
+%python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
+%python3 -i calibration/tot_histo2d.py -f calibration/calibration_data/PMOS/20220506 per fare l'istogramma 2d del tot
+    
+    \begin{equation}
+        f(x, \mu, \sigma) = \frac{1}{2} \; \left(1\,+\,erf\left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right)
+    \end{equation}
+    \begin{equation}
+        erf(z) = \frac{2}{\sqrt{\pi}} e^{-x^2} dx 
+    \end{equation}    
+ 
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.6\linewidth]{figures/Monopix1/plot/ToT_rollover.png}
+        \caption{ToT rollover for pixel (10,10). The ToT is in range 0-64 since it is represented by 6 bit. }
+        \label{fig:ToT_rollover}
+    \end{figure}   
+    
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/Monopix1/plot/scurve.png}
+            \caption{}
+            \label{fig:}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/Monopix1/plot/ToT_injection.png}
+            \caption{}
+            \label{fig:}
+            \end{subfigure}
+        \end{figure}    
+
+        
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.99\linewidth]{figures/Monopix1/plot/threshold_histogram.png}
+            \caption{}
+            \label{fig:}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.99\linewidth]{figures/Monopix1/plot/noise_histogram.png}
+            \caption{}
+            \label{fig:}
+            \end{subfigure}
+        \end{figure}            
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/Monopix1/plot/slope_histogram.png}
+            \caption{}
+            \label{fig:}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.98\linewidth]{figures/Monopix1/plot/intercept_histogram.png}
+            \caption{}
+            \label{fig:}
+            \end{subfigure}
+        \end{figure} 
+
+
+        \begin{table}
+            \begin{center}
+            \begin{tabular}{| c | c | c |}
+            \hline
+             & DAC units & electrons \\
+            \hline
+            \hline
+            Threshold        & 24.529 $\pm$ 0.049 & \\
+                             &u: 24.433 $\pm$ 0.049 & \\ 
+                             &d: 24.623 $\pm$ 0.051 &    \\      
+            Threshold dispersion & 1.848 $\pm$ 0.033 &\\
+                             &u: 1.867 $\pm$ 0.034 & \\ 
+                             &d: 1.825 $\pm$ 0.035 &    \\ 
+            Noise            & 0.8222 $\pm$ 0.0043 & \\
+                             &u: 0.8225 $\pm$ 0.0045 & \\ 
+                             &d: 0.8221 $\pm$ 0.0043 &    \\      
+            Noise dispersion & 0.0975 $\pm$ 0.0030 &\\
+                             &u: 0.0968 $\pm$ 0.0031 & \\ 
+                             &d: 0.0970 $\pm$ 0.0030 &    \\ 
+            \hline
+            \end{tabular}
+            \caption{Flavor PMOS}
+            \label{tab:}
+            \end{center}
+        \end{table}        
+        
+         
+        \begin{table}
+            \begin{center}
+            \begin{tabular}{| c  c | c | c |c |}
+            \hline
+             & PMOS & & HV \\
+            \hline
+            \hline
+            Slope [au/DAC] & 0.57145 $\pm$ 0.00025 \\
+            Slope dispersion [au/DAC] &  0.01685 $\pm$ 0.00016\\
+            Intercept [au] & -10.824 $\pm$ 0.019 \\
+            Intercept dispersion [au] & 1.225 $\pm$ 0.013\\
+            \hline
+            \end{tabular}
+            \caption{}
+            \label{tab:}
+            \end{center}
+        \end{table}                
 
 \section{Measurements with radioactive sources}
     \red{CI metterei i plot con ferro, stronzio e cosmici}
-    Istogrammi, cluster distribution e definizione di cluster, coincidenze casuali con rumore. 
+    %python3 -i acquisition_Fe55/find_cluster.py -d acquisition_Fe55/source_PMOSS/noise_acquisitions_6V -> per cluster dimension e spettro del noise
+    %python3 -i acquisition_Fe55/hit_map.py -f acquisition_Fe55/source_PMOSS/2022-04-07/2022-04-07_10-10-01_acq.h5 -> per le hit map, comprese qualche hitmap dei cluster
+    %python3 -i acquisition_Fe55/Sr90_spectrum.py -d acquisition_Fe55/source_PMOSS/noise_acquisitions_6V/ -> per fare i plot dello stronzio
+    ToT con doppia scala (calibrata in elettroni e non in ToT)
+    hit per cluster
+    dimensione cluster
+    hit map di un paio di tracce?
+    
 
 \section{Calibration of the ToT signal}
     \red{calibrazione con il ferro}
-    Ci metterei un'istogramma del
+    %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/Fe_acquisitions_6V/ per fare i fit. Attenzione che prende i file degli istogrammi npz già
+    Istogramma di singolo pixel del ferro
+    Mappa dei parametri del fit sulla matrice (media e sigma)
+  
+    
+\section{Fe vs bias}
+    rate vs bias 
+    posizione del picco del ferro vs bias    
 
