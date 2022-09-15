@@ -4,49 +4,35 @@
         %python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i gli istogrammi del tot e della s curve
         %python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
         %python3 -i calibration/tot_histo2d.py -f calibration/calibration_data/PMOS/20220506 per fare l'istogramma 2d del tot
- 
-        The threshold has to be high enough to cut the noise, but also low enough to mantain a high signal efficiency, and 
-        For low enough threshold and/or enough pixels firing at the same time, this positive feedback can set off a chain reaction causing all pixels to fire. For a given instantaneous hit occupancy (fraction of pixels firing atthe same time due to an external stimulus), there will be a minimum stable threshold.
-        For this reason the signal to threshold ratio, rather than the signal to noise ratio, can be considered as the figure of merit for pixel detectors.
-
-
-        la soglia è collegato al rumore, nel senso che: supponiamo di volere un occupancy di 10-4
-        allora sceglierò la soglia in base a questo. (plot su quaderno)
-        Da questo conto trovo la minima soglia mettibile\\
-        In realtà quello che faccio è mettere una soglia un po' più grande perchè il rate di rumore
-        dipende da molti fattori quali la temperatura, l anneling ecc, e non voglio che cambiando leggermente
-        uno di questi parametri vedo alzarsi molto il rate di rumore. In realtà non è solo il
-        rumore sensibile a diversi fattori, ma anche la soglia: ad esempio la cosa classica è
-        la variabilità della soglia da pixel a pixel.\\
-        In questo modo rumore e soglia diventano parenti.\\
-
-        The front end noise does set a lower bound to the threshold, but does not determine how far above this lower bound is the minimum stable threshold. Assuming a noise occupancy of 10meno4 is acceptable, this corresponds to the Gaussian 1-sided tail fraction for 3.7sigma . Inverting the question, for a 500 e minimum threshold, the noise must be less than 500/3.7=135 e equivalent input charge. But this is just an upper bound. How far below this bound the noise needs to be depends on how the threshold varies with time and how frompixel to pixel.
-
-        Questo implica tra le altre cose che voglio poter assegnare delle soglie diverse
-        a diversi pixel. Non fare trimming sulla soglia è uno dei problemi che si sono sempre incontrati: a casusa dei mismatch dei transistor
-        le soglie efficaci pixel per pixel cambiano tanto.
-
-
-        ASSEGNAZIONE DELLE SOGLIE IN TJ MONOPIX E ARAVDIA.
-        Drawback è dare spazio per registri e quantaltro. Ad esempio per Monopix1 la soglia è locale, poi 3 bit vengono allocati per trimming sul singolo pixel.
-        Arcadia invece 
-        Questo lascia però ancora aperto il problema temporale delle variazioni del rumore:
-        problema per cui diventano necessarie le misure dei sensori dopo l'irraggiamento.\\
-
-        La larghezza della s curve è il noise se assumi che il noise è gaussiano
-
-
-        Il trimming della soglia avviene con dei DAC: la dispersione della soglia dopo al tuning e dovuta al dac è: 
+        \red{Una caratterizzazione di soglia e rumore è necessaria in quanto questi valori condizionano sia le condizioni di operatività di questi chip, che le performance. }
+        Infact, the signal to threshold ratio may be considered as the figure of merit for pixel detectors rather than the signal to noise ratio.
+        The threshold has to be low enough to mantain a high signal efficiency, but also high enough to cut the noise: for a low threshold many pixels can fire at the same time and a positive feedback can set off a chain reaction eventually, causing all the other pixels to fire. 
+        \red{Thus, the noise sets a lower bound to the threshold: if an occupancy $\leqslant$ $10^{-4}$ is required, for example, this correspond to the Gaussian 1-sided tail fraction for \SI{3.7}{\sigma}.
+        In this case, if the noise is \SI{100}{e-}, for example, the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{e-}.}
+        Typically this argument sets only a minimal bound to the threshold since the variation with time and from pixel to pixel have to be taken into account: the temperature, the anealing (for example, the radiation damages in the oxide layer causes shift of MOSFET threshold voltage) and the process parameters variation across the wafer (as for example process mismatch between transistors). 
+        A requirement for the FE noise (the ENC is the equivalent input charge noise) is: 
         \begin{equation}
-            \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
+            ENC < \sqrt{(T/3.7)^2 - T_{RMS} ^2 (x) - T_{RMS} ^2 (t)}
         \end{equation}
-        dove il numero di bit cambia varia tra 3-7 tipicamente. Monopix è 7 Arcadia 6\\
+        where the T is the threshold set, $T_{RMS}$ is the threshold variation during time (t) and across the matrix (x).
 
-        Each ROIC is different in this respect, but in general the minimum stable threshold was around 2500 electrons (e) in 1st generation ROICs, whereas it will be around 500 e for the 3rd generation. This reduction has been deliberate: required by decreasing input signal values. Large pixels (2  104 um2), thick sensors (maggiore di200 um), and moderate sensor radiation damage for 1st generation detectors translated into expected signals of order 10 ke, while small pixels (0.25  104 um2), thinner sensors (100 um), and heavier sensor radiation damage will lead to signals as low as 2 ke atthe HL-LHC\\
-        The ENC can be directly calculated by the Cumulative Distribution Function (CDF) (scurve) obtained from the discriminator "hit" pulse response to multiple charge injections
+        For this reason is desiderable the possibility of changing and adapting the setting parameters of the FE, both in time and in space: this parameters are usually set by Digital to Analog Converter (DAC) with a number of bit in a typical range of 3-7.
 
-        Radiation damages oxide layer causes shift of MOSFET threshold voltage
+        DAC elements require a lot of space that may be not enough on the pixel area. Therefore, the FE parameters are typically global, which means that they are assigned for the whole chip, or they can be assigned for regions the matrix is divided into. 
+        The former case corresponds to TJ-Monopix1's design in which 7 bits are used for a total 127-DAC possible values, while the latter corresponds to the ARCADIA-MD1's one, \red{where quanti bit??}. 
+        An other possibility, for example implemented in TJ-Monopix2, is allocate the space on each pixel for a subset of bits, then combinig the global threshold with a fine tuning. 
 
+        To measure the threshold and noise of pixels a possible way is a scan with different known injected charge at a fixed threshold, that corresponds to the value where the efficiency of the signal exceeds the 50\%.
+        Therefore, for a fixed threshold (I set IDB = 40 DAC to perform the scan) I have used the injection circuit available on the chip to inject 100 pulses for each input charge. 
+        The injection comes on a capacity at the input of the FE circuit, whose mean value is \SI{230}{aF} (in section \ref{sec:} I'll present the calibration of the signal from which I also found the value of this capacity across the matrix). 
+        For the PMOS flavors: since the DAC are biased at \SI{1.8}{V}, the Least significant Bit (LSB) corresponds to a voltage of \SI{14.7}{mV} from which the charge for LSB \SI{1.43}{e-/mV} and the conversion factor from DAC to electrons \SI{20.3}{e-/DAC} are obtained. 
+        While this value is equivalent for all the PMOS flavor, the HV flavor is expected to have a different conversion factor, $\sim$ \SI{33}{e-/DAC}, beacuse of the different input capacity. 
+    
+        Besides the charge, also the duration and the period of the injection pulse can be set; it is important to make the duration short enough to have the falling edge during thed dead time of the pixel (in particular during the FREEZE signal) in order to avoid the afterpulse, coming at high input charge, triggering the readout and reading spurious hits. 
+        \red{Questo problema è legato solamente all'impulso di iniezione di carica e non si ha invece con acquisizioni con sorgenti, come abbiamo verificato, e anche perchè. Immagine afterpulse oscilloscopio?}
+
+        Assuming a gaussian noise, it can be described through the error function; actually, since the error function has y bounded between -1 and +1, the function I need is a modification of the $erf$: 
+        
         \begin{equation}
             f(x, \mu, \sigma) = \frac{1}{2} \; \left(1\,+\,erf\left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right)
         \end{equation}
@@ -58,11 +44,21 @@
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.6\linewidth]{figures/charaterization/scurve.png}
-            \caption{S curve for pixel (10, 10) of the PMOS flavor}
+            \caption{S curve for pixel (10, 10) of the PMOS flavor. The conversion of charge injected from DAC to electrons has been done assuming a conversion factor of \SI{20}{e-/DAC}.}
             \label{fig:scurve}
         \end{figure}   
+
+        The mean minimum stable threshold modified through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller expected: from \SI{16000}{e-} produced in \SI{200}{\um}, down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this \red{??}, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
+        \red{I successivi prototipi hanno una soglia e un rumore più bassi, ad esempio TJ-Monopix2 ha una soglia e un rumore... }
         
-    
+        
+        La dispersione della soglia dopo al tuning e dovuta al dac è: 
+        \begin{equation}
+            \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
+        \end{equation}
+
+
+
         \begin{figure}[h!]
                 -\begin{subfigure}{.5\textwidth}
                 \centering
@@ -78,6 +74,19 @@
                 \end{subfigure}
         \end{figure}            
            
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.99\linewidth]{figures/charaterization/threshold_map.pdf}
+            \label{fig:}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.99\linewidth]{figures/charaterization/noise_map.pdf}
+            \label{fig:}
+            \end{subfigure}
+            \caption{}
+        \end{figure} 
     
     
         \begin{table}
@@ -106,7 +115,8 @@
                 \end{center}
         \end{table}        
             
-             
+    
+    I also have perfmorm a scan for different IDB value to verified the trend of the threshol.
                    
         
 
@@ -144,9 +154,23 @@
             \end{subfigure}
         \end{figure} 
 
+        \begin{figure}[h!]
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.99\linewidth]{figures/charaterization/slope_map.pdf}
+            \label{fig:}
+            \end{subfigure}
+            \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=.99\linewidth]{figures/charaterization/offset_map.pdf}
+            \label{fig:}
+            \end{subfigure}
+            \caption{}
+        \end{figure} 
+
         \begin{table}
             \begin{center}
-            \begin{tabular}{| c  c | c | c |c |}
+            \begin{tabular}{| c |  c | c | c |c |}
             \hline
              & PMOS & & HV \\
             \hline
@@ -195,9 +219,10 @@
             \end{subfigure}
             \caption{due pixel per far vedere la differenza tra i fit}
         \end{figure}    
-         Mappa dei parametri del fit sulla matrice (media e sigma)
+
+ 
         
-         \section{Fe vs bias}
+         \subsection{Fe vs bias}
          \begin{itemize}
              \item rate vs bias 
              \item posizione del picco del ferro vs bias    
@@ -205,7 +230,7 @@
          \end{itemize}
      
      
-     \section{Measurements with radioactive sources}
+     \subsection{Measurements with radioactive sources}
          \red{CI metterei i plot con ferro, stronzio e cosmici}
          %python3 -i acquisition_Fe55/find_cluster.py -d acquisition_Fe55/source_PMOSS/noise_acquisitions_6V -> per cluster dimension e spettro del noise
          %python3 -i acquisition_Fe55/hit_map.py -f acquisition_Fe55/source_PMOSS/2022-04-07/2022-04-07_10-10-01_acq.h5 -> per le hit map, comprese qualche hitmap dei cluster
