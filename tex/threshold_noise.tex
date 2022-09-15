@@ -33,15 +33,17 @@
         Besides the charge, also the duration and the period of the injection pulse can be set; it is important to make the duration short enough to have the falling edge during thed dead time of the pixel (in particular during the FREEZE signal) in order to avoid the undershoot, coming at high input charge, triggering the readout and reading spurious hits. 
         Since the injection circuit is coupled in AC to the FE, if the falling edge of the pulse is sharp enought to produce ad undershoot, this can be seen as a signal. 
 
-        Assuming a gaussian noise, it can be described through the error function; actually, since the error function has y bounded between -1 and +1, the function I need is a modification of the $erf$: 
-        
+        Assuming a gaussian noise, the efficiency of detecting the signal can be described through the error function, actually, since the error function has y bounded between -1 and +1, the function a modification of the $erf$ is used: 
         \begin{equation}
             f(x, \mu, \sigma) = \frac{1}{2} \; \left(1\,+\,erf\left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right)
+            \label{eq:fit_scurve}
         \end{equation}
+        with: 
         \begin{equation}
             erf(z) = \frac{2}{\sqrt{\pi}} e^{-x^2} dx 
         \end{equation}   
-            
+         
+        Therefore I perform a fit of the counts detected using the function in equation \ref{eq:fit_scurve}. In figure \ref{fig:scurve} there is an example of fit for a pixel belonging to the flavor 1, while in figure \ref{fig:threshold_noise_hist} and \ref{fig:threshold_noise_map} there are the histograms and the maps of the parameters of the scurve-fit for all flavors.
     
         \begin{figure}[h!]
             \centering
@@ -49,9 +51,11 @@
             \caption{S curve for pixel (10, 10) of the PMOS flavor. The conversion of charge injected from DAC to electrons has been done assuming a conversion factor of \SI{20}{e-/DAC}.}
             \label{fig:scurve}
         \end{figure}   
+
         The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this \red{??}, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
-        \red{I successivi prototipi hanno una soglia e un rumore più bassi, ad esempio TJ-Monopix2 ha una soglia e un rumore... }
-        The values of the threshold and the noise for the flavor are reported in tables \ref{tab:}
+        \red{The following prototypes hanno una soglia e un rumore più bassi, ad esempio TJ-Monopix2 ha una soglia e un rumore... }
+        The values of the threshold and the noise for the flavor are reported in tables \ref{tab:}.
+        Even if a difference between the two part of the matrix is expected..
     
         \begin{figure}[h!]
                 -\begin{subfigure}{.5\textwidth}
@@ -64,7 +68,7 @@
                 \centering
                 \includegraphics[width=.99\linewidth]{figures/charaterization/noise_histogram.png}
                 \caption{}
-                \label{fig:}
+                \label{fig:threshold_noise_hist}
                 \end{subfigure}
         \end{figure}            
            
@@ -77,7 +81,7 @@
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.99\linewidth]{figures/charaterization/noise_map.pdf}
-            \label{fig:}
+            \label{fig:threshold_noise_map}
             \end{subfigure}
             \caption{}
         \end{figure} 
@@ -108,6 +112,8 @@
                 \end{center}
         \end{table}        
     
+
+
     \begin{itemize}
         \item disperione della soglia dovuta al DAC e confronta con il valore misurato
         \item dipendenza della soglia da IDB
@@ -135,29 +141,34 @@
     Quindi, as the gain is increased, the discriminator influence in niise an threshold mismatch performance is reduced. Although the discriminator noise is relatively low compared to the preamplifier noise and can be neglected, the contribution to threshold dispersion can be significant due
     to the threshold variation of transistor M11
 
-        
 
-    \subsection{Calibration of the ToT}    
+    \subsection{Linearity of the ToT}    
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ per fare il fit    
         %python3 -i acquisition_Fe55/plot_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ -fl 'gauss_line' per fare il plot di single pixel
-        I have already said in chapter \ref{chap:} that TJ-Monopix1 returns an output signal propo 
+        I have already said in chapter \ref{chap:} that TJ-Monopix1 returns an output signal  proportional to the charge released in the epitaxial layer, which is the Time over Threshold; the ToT is saved as a 6-bit variable and then has a dynamic range equal to 0-64, which corresponds to \SIrange{0}{1.6}{\us} assuming a clock frequency of \SI{40}{MHz}.
+        When a pulse is longer than \SI{1.6}{\us} the counter rolls back to zero and there is no way to distinguish that charge from a lower one with the same ToT: that is the rollover of the ToT (\ref{fig:ToT_vs_charge}(a)).
 
-
-        Abbiamo già detto che Monopix uno fornisce una misura della carica rilasciata dalla particella incidente attraverso il Time over Threshold of a triangular pulse e che il ToT viene salvato come variabile a 6 bit (da cui un range 0-64 escluso) con clock a \SI{40}{MHz}, per cui per un bit si hanno \SI{25}{ns}. 
-        Per poter associare questo tempo ad una carica è necessaria una calibrazione del segnale: utilizzando l'iniezione è possibile studiare l'andamento del ToT con la carica iniettata. 
-        Poichè, come già detto, l'impulso di iniezione dipende dalla C di iniezione, che sarà diversa per ogni pixel, per effettuare una corrispondenza tra tot ad elettroni è necessaria una calibrazione assoluta di questa capacità.
+        In order to associate the ToT (in range 0-64) to the charge a calibration of the signal is necessary. It is important to keep in mind that the main application target of TJ-Monopix1 is in the inner tracker detector of HEP experiments, then the main feature is the efficiency, then a rough calibration of the signal to charge is fine; \red{this information can be used to improve??}. 
+        
+        The study of the output signal is made possibile via the injection: since the pulses are triangular the ToT is expected to be almost linear depending on the injection charge value.
+        To verify this statement and study the deviations from linearity I've fit the ToT versus the charge injected for all pixel within the matrix.
+        In figure \ref{fig:ToT_vs_charge}(b) there is an example of fit for a pixel belonging to the flavor 1, while in figure \ref{fig:ToT_histograms_all_fl} and \ref{fig:ToT_fit_param_map} there are the histograms and the maps of the parameters of the line-fit for all flavors.  
+        Before performing the fit I have calculated the mean value of the ToT of the pulses recorded for each pulse amplitude and I used the mean ToT as value for the fit. 
+        
+        The aim of the calibration obviously is finding a relation only in the range 0-64 without taking into account the rolling over hits: therefore, to prevent the rollover data from reducing the mean ToT introducing a bias in the mean value, I cut them and I did not consider them. 
+        If a signal bigger than the \SI{1.6}{\us} is expected in the usage of the detector, the threshold must be raised or the gain reduced, making the expected output signal in range 0-64.  
+        \red{CONFRONTI TRA I DUE FIT; Commenti sui plot.}
 
         \begin{figure}[h!]
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/charaterization/ToT_rollover.png}
-            \label{fig:}
             \end{subfigure}
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/charaterization/ToT_injection.png}
-            \label{fig:}
             \end{subfigure}
+            \label{fig:ToT_vs_charge}
             \caption{(a) ToT rollover for pixel (10,10). The ToT is in range 0-64 since it is represented by 6 bit; (b)}
         \end{figure}    
 
@@ -165,28 +176,25 @@
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/charaterization/slope_histogram.png}
-            \caption{}
-            \label{fig:}
             \end{subfigure}
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/charaterization/intercept_histogram.png}
-            \caption{}
-            \label{fig:}
             \end{subfigure}
+            \caption{(a); (b)}
+            \label{fig:ToT_histograms_all_fl}
         \end{figure} 
 
         \begin{figure}[h!]
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.99\linewidth]{figures/charaterization/slope_map.pdf}
-            \label{fig:}
             \end{subfigure}
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.99\linewidth]{figures/charaterization/offset_map.pdf}
-            \label{fig:}
             \end{subfigure}
+            \label{fig:ToT_fit_param_map}
             \caption{}
         \end{figure} 
 
@@ -194,13 +202,13 @@
             \begin{center}
             \begin{tabular}{| c |  c | c | c |c |}
             \hline
-             & PMOS & & HV \\
+            & PMOS 0 & PMOS 1 & PMOS 2 & HV \\
             \hline
             \hline
-            Slope [au/DAC] & 0.57145 $\pm$ 0.00025 \\
-            Slope dispersion [au/DAC] &  0.01685 $\pm$ 0.00016\\
-            Intercept [au] & -10.824 $\pm$ 0.019 \\
-            Intercept dispersion [au] & 1.225 $\pm$ 0.013\\
+            Slope [au/DAC] & 0 .75566 $\pm$ 0.00149 & 0.57145 $\pm$ 0.00025 \\
+            Slope dispersion [au/DAC] & 0.03841 $\pm$ 0.00037 & 0.01685 $\pm$ 0.00016\\
+            Intercept [au] & -11.6070 $\pm$ 0.0089 & -10.824 $\pm$ 0.019 \\
+            Intercept dispersion [au] & 1.5176 $\pm$ 0.0063 & 1.225 $\pm$ 0.013\\
             \hline
             \end{tabular}
             \caption{}
@@ -208,17 +216,18 @@
             \end{center}
         \end{table}        
 
-        \subsubsection{Absolute calibration}
-        %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/Fe_acquisitions_6V/ per fare i fit. Attenzione che prende i file degli istogrammi npz già
-        Per effettuare quest'utlima serve un segnale di cui si conosce il valroe in elettroni con una ragionevole precisione: per questo motivo la linea generata da un fotone da \SI{5.9}{keV} di dec del ferro 55 può risultare comoda. 
-        Questo fotone viene assorbito nel silicio con una lamda di.. \\
-        considerando uno spessore dello strato epitassiale svuotato di \SI{25}{\um} quindi la P di essere assorbito è: 
-        Il fotone fa fotoelettrico ed emette un elettrone della stessa energia del fotone; ricordando che una particella carica produce mediamente una coppia electron-vacuum every \SI{3.65}{eV}, then the signal produced by the Fe55 source is expected to be \SI{1616}{e-}. 
-        
-        Il picco del ferro corrisponde agli eventi dove c'è assorbimento totale sul pixel e quindi dove vengono raccolti tutti i 1616 elettroni, mentre nella coda a sx del picco cadono tutti gli eventi con assorbimento parziale e/o incompleto dovuto anche a charge sharing.  
-        Motivo per cui ad esempio in monopix due hanno fatto i pixel più piccoli: per ridurre la charge sharing riducendo così nel segnale la coda a sx. 
-        Notiamo negli istogrammi alle figure \ref{fig:} e \ref{fig:} che tra i pixel ci può essere una visibile differenza tra quanto il picco sia pronunciato. In particolare questa differenza mosgtra che per le righe da 0-111 e 112-224 ..
 
+        \subsection{Calibration of the ToT}
+        %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/Fe_acquisitions_6V/ per fare i fit. Attenzione che prende i file degli istogrammi npz già
+        Considering that the charge injected in the FE goes to fill capacitor which is different from pixel to pixel, the true charge injected does not correspond with what expected assuming C equal to \SI{230}{aF}, the nominal value. 
+        Accordingly to that, a verification of the value provided and an absolute calibration of this capacity is needed to have a correspondence of the signal in electrons. 
+        
+        For this pourpose a Fe55 radioactive source has been employed; the Fe55 emits two x-photons, the first one at \SI{5.9}{keV} with a BR of \red{quanto?}, and the second one at \SI{6}{keV} \red{BF}.
+        The photon, which does photoelectric effect in the silicum, has an  absorption length $\lambda$=\SI{}{\um}, and the probability of being assorbed in the \SI{25}{\um} thick epitaxyal layer is \red{calcola}.
+        The electron emitted has an energy equal to the photon one, so recalling that the mean energy needed to produce a couple electron-vacuum is \SI{3.65}{eV}, the signal produced by the Fe55 source is expected to be \SI{1616}{e-}.
+        In figures \ref{fig:} and \ref{fig:} are shown two histograms of the ToT spectrum of the Fe55 source for two different pixels. The peak corresponds to the events with completely absorption of the charge produced in the depleted region, while the long tail on the left to all the events with partial absorption, both due to charge sharing among neighbors pixels and to \red{threshold.
+        Motivo per cui ad esempio in monopix due hanno fatto i pixel più piccoli: per ridurre la charge sharing riducendo così nel segnale la coda a sx. 
+        Notiamo negli istogrammi alle figure \ref{fig:} e \ref{fig:} che tra i pixel ci può essere una visibile differenza tra quanto il picco sia pronunciato. In particolare questa differenza mosgtra che per le righe da 0-111 e 112-224 .. }
         \red{Parla della differenza tra fit sopra e sotto nella amtrice}
         
         \begin{equation}
