@@ -1,5 +1,8 @@
 
 \section{TJ-Monopix1 characterization}
+    \subsection{Front end parameters}
+
+
     \subsection{Threshold and noise: figure of merit for pixel detectors}
         %python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i gli istogrammi del tot e della s curve
         %python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
@@ -27,9 +30,8 @@
         The injection comes on a capacity at the input of the FE circuit, whose mean value is \SI{230}{aF} (in section \ref{sec:} I'll present the calibration of the signal from which I also found the value of this capacity across the matrix). 
         For the PMOS flavors: since the DAC are biased at \SI{1.8}{V}, the Least significant Bit (LSB) corresponds to a voltage of \SI{14.7}{mV} from which the charge for LSB \SI{1.43}{e-/mV} and the conversion factor from DAC to electrons \SI{20.3}{e-/DAC} are obtained. 
         While this value is equivalent for all the PMOS flavor, the HV flavor is expected to have a different conversion factor, $\sim$ \SI{33}{e-/DAC}, beacuse of the different input capacity. 
-    
-        Besides the charge, also the duration and the period of the injection pulse can be set; it is important to make the duration short enough to have the falling edge during thed dead time of the pixel (in particular during the FREEZE signal) in order to avoid the afterpulse, coming at high input charge, triggering the readout and reading spurious hits. 
-        \red{Questo problema è legato solamente all'impulso di iniezione di carica e non si ha invece con acquisizioni con sorgenti, come abbiamo verificato, e anche perchè. Immagine afterpulse oscilloscopio?}
+        Besides the charge, also the duration and the period of the injection pulse can be set; it is important to make the duration short enough to have the falling edge during thed dead time of the pixel (in particular during the FREEZE signal) in order to avoid the undershoot, coming at high input charge, triggering the readout and reading spurious hits. 
+        Since the injection circuit is coupled in AC to the FE, if the falling edge of the pulse is sharp enought to produce ad undershoot, this can be seen as a signal. 
 
         Assuming a gaussian noise, it can be described through the error function; actually, since the error function has y bounded between -1 and +1, the function I need is a modification of the $erf$: 
         
@@ -47,18 +49,10 @@
             \caption{S curve for pixel (10, 10) of the PMOS flavor. The conversion of charge injected from DAC to electrons has been done assuming a conversion factor of \SI{20}{e-/DAC}.}
             \label{fig:scurve}
         \end{figure}   
-
-        The mean minimum stable threshold modified through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller expected: from \SI{16000}{e-} produced in \SI{200}{\um}, down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this \red{??}, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
+        The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this \red{??}, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
         \red{I successivi prototipi hanno una soglia e un rumore più bassi, ad esempio TJ-Monopix2 ha una soglia e un rumore... }
-        
-        
-        La dispersione della soglia dopo al tuning e dovuta al dac è: 
-        \begin{equation}
-            \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
-        \end{equation}
-
-
-
+        The values of the threshold and the noise for the flavor are reported in tables \ref{tab:}
+    
         \begin{figure}[h!]
                 -\begin{subfigure}{.5\textwidth}
                 \centering
@@ -88,7 +82,6 @@
             \caption{}
         \end{figure} 
     
-    
         \begin{table}
                 \begin{center}
                 \begin{tabular}{| c | c | c |}
@@ -114,29 +107,58 @@
                 \label{tab:}
                 \end{center}
         \end{table}        
-            
     
-    I also have perfmorm a scan for different IDB value to verified the trend of the threshol.
-                   
+    \begin{itemize}
+        \item disperione della soglia dovuta al DAC e confronta con il valore misurato
+        \item dipendenza della soglia da IDB
+        \item dipendenza della soglia dal gain
+    \end{itemize}    
+    La dispersione della soglia dopo al tuning e dovuta al dac è: 
+        \begin{equation}
+            \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
+        \end{equation}
+    
+        I also have perfmorm a scan for different IDB value to verified the trend of the threshold. 
+    \red{MEtti plot della media della gaussiana in funzione di IDB}
+
+    Dipendenza dal guadagno: per valutare l'impatto del discriminarore sul rumore uno dovrebbe convertire il segnale in uscita in segnale in carica all'ingresso. In questo modo si avrebbe:
+    \begin{multicols}{2}
+        \begin{equation}
+            ENC_{DISC} = \frac{V_{noise} ^ {RMS}}{G}
+        \end{equation}\break
+        \begin{equation}
+            ENC_{DISC} = \frac{V_{mis} ^ {RMS}}{G}
+        \end{equation}
+        \label{eq:}
+    \end{multicols}
+    where $V_{noise} ^ {RMS}$ is the RMS noise and $V_{mis} ^ {RMS}$ is the mismatch voltage at the discriminator input and G is the gain of the preamplifier. 
+    Quindi, as the gain is increased, the discriminator influence in niise an threshold mismatch performance is reduced. Although the discriminator noise is relatively low compared to the preamplifier noise and can be neglected, the contribution to threshold dispersion can be significant due
+    to the threshold variation of transistor M11
+
         
 
     \subsection{Calibration of the ToT}    
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ per fare il fit    
         %python3 -i acquisition_Fe55/plot_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ -fl 'gauss_line' per fare il plot di single pixel
+        I have already said in chapter \ref{chap:} that TJ-Monopix1 returns an output signal propo 
+
+
+        Abbiamo già detto che Monopix uno fornisce una misura della carica rilasciata dalla particella incidente attraverso il Time over Threshold of a triangular pulse e che il ToT viene salvato come variabile a 6 bit (da cui un range 0-64 escluso) con clock a \SI{40}{MHz}, per cui per un bit si hanno \SI{25}{ns}. 
+        Per poter associare questo tempo ad una carica è necessaria una calibrazione del segnale: utilizzando l'iniezione è possibile studiare l'andamento del ToT con la carica iniettata. 
+        Poichè, come già detto, l'impulso di iniezione dipende dalla C di iniezione, che sarà diversa per ogni pixel, per effettuare una corrispondenza tra tot ad elettroni è necessaria una calibrazione assoluta di questa capacità.
 
         \begin{figure}[h!]
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/charaterization/ToT_rollover.png}
-            \caption{ToT rollover for pixel (10,10). The ToT is in range 0-64 since it is represented by 6 bit.}
             \label{fig:}
             \end{subfigure}
             \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=.98\linewidth]{figures/charaterization/ToT_injection.png}
-            \caption{}
             \label{fig:}
             \end{subfigure}
+            \caption{(a) ToT rollover for pixel (10,10). The ToT is in range 0-64 since it is represented by 6 bit; (b)}
         \end{figure}    
 
         \begin{figure}[h!]
@@ -188,6 +210,21 @@
 
         \subsubsection{Absolute calibration}
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/Fe_acquisitions_6V/ per fare i fit. Attenzione che prende i file degli istogrammi npz già
+        Per effettuare quest'utlima serve un segnale di cui si conosce il valroe in elettroni con una ragionevole precisione: per questo motivo la linea generata da un fotone da \SI{5.9}{keV} di dec del ferro 55 può risultare comoda. 
+        Questo fotone viene assorbito nel silicio con una lamda di.. \\
+        considerando uno spessore dello strato epitassiale svuotato di \SI{25}{\um} quindi la P di essere assorbito è: 
+        Il fotone fa fotoelettrico ed emette un elettrone della stessa energia del fotone; ricordando che una particella carica produce mediamente una coppia electron-vacuum every \SI{3.65}{eV}, then the signal produced by the Fe55 source is expected to be \SI{1616}{e-}. 
+        
+        Il picco del ferro corrisponde agli eventi dove c'è assorbimento totale sul pixel e quindi dove vengono raccolti tutti i 1616 elettroni, mentre nella coda a sx del picco cadono tutti gli eventi con assorbimento parziale e/o incompleto dovuto anche a charge sharing.  
+        Motivo per cui ad esempio in monopix due hanno fatto i pixel più piccoli: per ridurre la charge sharing riducendo così nel segnale la coda a sx. 
+        Notiamo negli istogrammi alle figure \ref{fig:} e \ref{fig:} che tra i pixel ci può essere una visibile differenza tra quanto il picco sia pronunciato. In particolare questa differenza mosgtra che per le righe da 0-111 e 112-224 ..
+
+        \red{Parla della differenza tra fit sopra e sotto nella amtrice}
+        
+        \begin{equation}
+            f(x, N, \mu, \sigma) = \frac{N}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{(x-\mu)}{\sigma})^2}
+        \end{equation} 
+
         \begin{equation}
             f(x, m, q, N, \mu, \sigma) = m\,x + q + \frac{N}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{(x-\mu)}{\sigma})^2}
         \end{equation}   
