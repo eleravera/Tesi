@@ -1,7 +1,11 @@
 
 \section{TJ-Monopix1 characterization}
-    \subsection{Front end parameters}
-
+    %\subsection{}
+    %Di che con l'hv a parte quando usiamo i valori del FE: riportali, non abbiamo una configurazione stabile e si accendono tanti pixel. 
+    
+    %Con il PMOS la configurazione del FE di default è: e richiama i significati delle variabili. 
+    %threshold scan per sapere il punti di lavoro ok. 
+    %soglia dell'automasking a 10 Hz. 
 
     \subsection{Threshold and noise: figure of merit for pixel detectors}
         %python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i gli istogrammi del tot e della s curve
@@ -15,31 +19,15 @@
         \end{figure}   
 
         \begin{figure}[h!]
-                \begin{subfigure}{.5\textwidth}
-                \centering
-                \includegraphics[width=.99\linewidth]{figures/charaterization/threshold_histogram.png}
-                \end{subfigure}
-                \begin{subfigure}{.5\textwidth}
-                \centering
-                \includegraphics[width=.99\linewidth]{figures/charaterization/noise_histogram.png}
-                \end{subfigure}
-                \label{fig:threshold_noise_hist}
-                \caption{Histograms of the threshold (a) and the noise (b) found fitting the s-curve of \red{all} flavor with IDB fixed at \SI{40}{DAC} }
-            \end{figure}            
+            \centering
+            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_histogram.png}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_histogram.png}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_map.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_map.pdf}            
+            \label{fig:threshold_noise_hist}
+            \caption{Histograms of the threshold (a) and the noise (b) found fitting the s-curve of \red{all} flavor with IDB fixed at \SI{40}{DAC}.Maps of the threshold (a) and the noise (b) found fitting the s-curve with IDB fixed at \SI{40}{DAC}. The white pixels have the injection circuit broken. }
+        \end{figure}            
            
-        \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/threshold_map.pdf}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/noise_map.pdf}
-            \label{fig:threshold_noise_map}
-            \end{subfigure}
-            \caption{Maps of the threshold (a) and the noise (b) found fitting the s-curve with IDB fixed at \SI{40}{DAC}. The white pixels have the injection circuit broken.}
-        \end{figure} 
-        
         A characterization of threshold and noise is typically necessary since these values have an impact on the operating conditions and on the performance of the chips. 
         infact, the signal to threshold ratio may be considered as the figure of merit for pixel detectors rather than the signal to noise ratio.
         The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this \red{??}, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
@@ -152,44 +140,23 @@
         \red{Chiarire la differenze negli istogrammi e come mai ci sono delle bande nelle mappe.}
 
         \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
             \centering
-            \includegraphics[width=.98\linewidth]{figures/charaterization/ToT_rollover.png}            
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.98\linewidth]{figures/charaterization/ToT_injection.pdf}
-            \end{subfigure}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/ToT_rollover.png}            
+            \includegraphics[width=.49\linewidth]{figures/charaterization/ToT_injection.pdf}
             \label{fig:ToT_vs_charge}
             \caption{The figures refer to pixel (10,10) of the PMOS-reset flavor (1) with IDB fixed at \SI{40}{DAC}. (a) Histogram of the injection pulses: the ToT is in range 0-64 since it is represented by 6 bit, so when achieving the 64 it rolls over back to the zero. (b) Mean ToT vs the the charge: the mean has been calculated cutted the rolling hits. }
         \end{figure}    
 
         \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
             \centering
-            \includegraphics[width=.98\linewidth]{figures/charaterization/slope_histogram.png}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.98\linewidth]{figures/charaterization/intercept_histogram.png}
-            \end{subfigure}
-            \caption{Histograms of the calibration parameters, slope (a) and offset (b), found fitting the ToT with a line, for \red{all} flavor and with IDB fixed at \SI{40}{DAC}}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/slope_histogram.png}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/intercept_histogram.png}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/slope_map.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/offset_map.pdf}
+            \caption{Histograms of the calibration parameters, slope (a) and offset (b), found fitting the ToT with a line, for \red{all} flavor and with IDB fixed at \SI{40}{DAC}. Maps of the calibration parameters, slope (a) and offset (b), found fitting the ToT with a line, with IDB fixed at \SI{40}{DAC}}
             \label{fig:ToT_histograms_all_fl}
         \end{figure} 
 
-        \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/slope_map.pdf}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/offset_map.pdf}
-            \end{subfigure}
-            \label{fig:ToT_fit_param_map}
-            \caption{Maps of the calibration parameters, slope (a) and offset (b), found fitting the ToT with a line, with IDB fixed at \SI{40}{DAC}}
-        \end{figure} 
-        
         \red{perchè noise e th sono diverse per diversi flavor? Controlla cos' hanno di diverso.}
         \begin{table}
             \begin{center}
@@ -209,7 +176,15 @@
             \end{center}
         \end{table}        
 
-        \subsection{Calibration of the ToT}
+    \subsection{Calibration of the ToT}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.49\linewidth]{figures/charaterization/fit_gauss_r69.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/fit_line_gauss_r185.pdf}
+            \caption{due pixel per far vedere la differenza tra i fit. Sottolinea che in rosso ci sono i bin fittati. La doppia scala utilizza le info trovate nel paragrafo precedente per il dato pixel in questione. Per avere una corrispondenza grezza in elettroni basta moltiplicare per 20 e- dac. }
+        \end{figure}  
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/Fe_acquisitions_6V/ per fare i fit. Attenzione che prende i file degli istogrammi npz già
         Considering that the charge injected in the FE goes to fill capacitor which is different from pixel to pixel, the true charge injected does not correspond to what expected assuming C equal to \SI{230}{aF}, the nominal value. 
         Accordingly to that, a verification of the value provided and an absolute calibration of this capacity and of the conversion factor F is needed to have a correspondence of the signal in electrons; assuming C \SI{230}{aF}, F is expected to be \SI{20}{e-/DAC}, and is defined as:
@@ -229,102 +204,53 @@
         For the calibration I have need to establish the peak position; to do that I perform a fit of the ToT histogram of each pixels. As fit functions I test both the solutions below:  
         \begin{equation}
             f(x, N, \mu, \sigma) = \frac{N}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{(x-\mu)}{\sigma})^2}
+            \label{eq:gauss}
         \end{equation} 
 
         \begin{equation}
             f(x, m, q, N, \mu, \sigma) = m\,x + q + \frac{N}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}(\frac{(x-\mu)}{\sigma})^2}
+            \label{eq:gauss_line}
         \end{equation}          
-        
         \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
             \centering
-            \includegraphics[width=.99\linewidth]{figures/charaterization/fit_gauss_r69.pdf}
-            \label{fig:}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.99\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}
-            \label{fig:fit_r69}
-            \end{subfigure}
-            \caption{due pixel per far vedere la differenza tra i fit. Sottolinea che in rosso ci sono i bin fittati. La doppia scala utilizza le info trovate nel paragrafo precedente per il dato pixel in questione. Per avere una corrispondenza grezza in elettroni basta moltiplicare per 20 e- dac. }
-        \end{figure}            
-
-        \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.99\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
-            \label{fig:}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.99\linewidth]{figures/charaterization/fit_line_gauss_r185.pdf}
-            \label{fig:fit_r185}
-            \end{subfigure}
-            \caption{due pixel per far vedere la differenza tra i fit}
-        \end{figure}    
-
-
-        \red{Da qui in poi}
-        
-        Nel primo caso ho fittato pochi pixel attorno a picco: il range è stato determinato .. controlla. 
-        Nel secondo caso invece il range è..      
-        Even if the difference in the peak position between the two cases is not really relevant (\ref{fig:delta_fit}) being of the order of 0.8-1.5 \%,  it still introduces a systematic effect 
-
-        Sebbene non molto significativa trattandosi di una differnza minore di 0.5 /64  per cento, la differenza della quantità di coda rispetto al picco tra le due parti della amtrice introduce una differenza e un effetto sistematico nel fit che dipende da quale funzione di fit sia meglio per fittare. 
-        Volendo utilizzare un criterio empirico per stabilire il fit più buono sappiamo che il acso di assorbimento totale del fotone è dovrebbe essere il valore più spostato a destra (esclusi i dati del fotone kbeta) e il cui valore si usa per la calibrazione. 
-        Un modo quindi per aveere un fit che non risente di questo sistematico potrebbe essere usare un algoritmo di search edge. 
-        
-        Un modo per valutare invece la bontà dei due fit potrebbe essere guardare la variabile chi2. Per rendere confrontabili i due valori però  bisogna calcolare la variabile sul solito interllavot di fit, determinato quindi dal fit con ggaussiana singola. 
-        Sottraggo i chi2 e plottO: dove la mappa ha valori positivi allora ho un fit gauss migliroe, ecc. Sottolinea la differenza con la larghezza della gaussiana
-        With the gaussian fit $\sim$ 80 pixels, while with the sum gaussian and the line sim 1000. 
-        \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.99\linewidth]{figures/charaterization/deltam_Fe.pdf}
-            \label{fig:}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.99\linewidth]{figures/charaterization/deltas_Fe.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/deltam_Fe.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/deltas_Fe.pdf}
+            \caption{Here there are shown the defference between the parameters $\mu$ and $\sigma$ fitted with only a gaussian and with a gaussia plus a line. When $\mu<$0 the fit function \ref{eq:gauss} has given a worst peak (shifted on the left); when $\sigma<0$, \ref{eq:gauss_line} has given a worst peak width (larger sigma)}
             \label{fig:delta_fit}
-            \end{subfigure}
-            \caption{}
-        \end{figure}            
+        \end{figure}           
+        \red{Nel primo caso ho fittato pochi pixel attorno a picco: il range è stato determinato .. controlla. 
+        Nel secondo caso invece il range è..  Controlla sullo script  }  
+        Even if the difference in the peak position between the two cases is not really relevant (\ref{fig:delta_fit}) being of the order of 0.8-1.5 \%,  it still introduces a systematic effect moving the peak on the left beacuse of the contribution of the tail. 
+        Indeed, we know that the sharp edge on the right corresponds to the complete absorption of the photon, so excluding the little bump on the right, the more the fitted parameter is on the right, the better the fit is. Moreover, there is also systematic effect on the peak width, infact the worst fit also gives an overestimation of the peak width.  
+        Even looking at the $\chi^2$, the fit function \ref{eq:gauss} seems so be the better choise, except for a sample of pixels on the lower part of the matrix, the one with lower efficiency.
 
-        \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/deltachi2_Fe.pdf}
-            \label{fig:}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/conversion_factor_map.pdf}
-            \label{fig:}
-            \end{subfigure}
-            \caption{}
-        \end{figure}  
-
-       Mappa del ferro da cui, come descritto enll'equazione si ricava la capacity.        
-       La struttura a bande della capacità ha origine nel plot... e quindi nella calibrazione. 
-       Andando a vedere gli istogrammi di queste due variabili si vedono dei picchi. C'è qualche struttura nella matrice che condiziona il funzionamento delle righe?
-       Larghezza della gaussiana: fai il discorso a cosa contribuisce ad un picco così largo. è compatibile con quanto ti aspetti?
-        
-
+        \red{Mappa del ferro da cui, come descritto enll'equazione si ricava la capacity.        
+        La struttura a bande della capacità ha origine nel plot... e quindi nella calibrazione. 
+        Andando a vedere gli istogrammi di queste due variabili si vedono dei picchi. C'è qualche struttura nella matrice che condiziona il funzionamento delle righe?
+        Larghezza della gaussiana: fai il discorso a cosa contribuisce ad un picco così largo. è compatibile con quanto ti aspetti?}
         \begin{figure}[h!]
             \centering
-            \includegraphics[width=.50\linewidth]{figures/charaterization/Fe_width_DAC_hist.pdf}
-            \caption{QUI in realtà voglio il plot calibrato in elettroni.}
-            \label{fig:Fe_width_DAC_hist}
-        \end{figure} 
+            \includegraphics[width=.49\linewidth]{figures/charaterization/conversion_factor_map.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/Fe_width_DAC_hist.pdf}            
+            \label{fig:}
+            \caption{}
+        \end{figure}         
 
 
-    \subsection{Bias}
-            \begin{table}
+
+    \subsection{PMOS flavor: changing the bias}   
+    In order to study the behavior of the sensor changing the bias, I perform some injection scans in different configurations. 
+    The thickness of the depletion has to be considered indeed an important parameters for the efficiency of the signal, and in particular it plays an important role if \red{bho, trova qualcosa da dire}.
+
+    Given that the chip under examination has a gap in the low dose epi-layer (look at chapter \ref{chap:}) we were not able to change independently the bias of the substrate (PSUB) and of the p-well (PWELL), but they must be kept at the same value, differently from other chips, where thay can be changed as reported in figure \ref{fig:gain_vs_bias}.
+    Turning down the bias, the depletion region narrows and the efficiency reduces in particular in the pixel corner; 
+    \red{guarda plot e commenta.}
+
+    \begin{table}
             \begin{center}
             \begin{tabular}{| c |  c | c | c |}
             \hline
-            -\SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
+               & \SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
             \hline
             \hline
             Threshold [DAC] & 20.04 $\pm$ 1.6 & & 24.5 $\pm$ 1.8\\
@@ -333,25 +259,20 @@
             Offset [au] & -10.8 $\pm$ 1.9 & & -11.1 $\pm$ 1.5 \\
             \hline
             \end{tabular}
-            \caption{With IDB 40 DAC }
-            \label{tab:}
+            \caption{The errors are the standard deviations of the corresponding distributions.}
+            \label{tab:parameters_vs_bias}
             \end{center}
         \end{table}  
 
+      
 
 
-        On the flavor PMOS 1 ho cambiato la tensione di p sub e pwell epr studiare i cambiamenti in funzione del cambiamento della zona di svuotamento. 
-        Dal momento che il nostro chip è un ngap non possiamo cambiare indipendentemente psub e p well ma vanno mantenuti alla stessa tensione.
-        La zona di svutamento si assottiglia ma può anche diminuire ai bordi del pixel diminuiendo l'efficienza di raccolta degli elettroni. 
-        Dato che il gain cambia con il bias come visto in questo plot    
-        
         \begin{figure}[h!]
             \centering
-            \includegraphics[width=.90\linewidth]{figures/charaterization/gain_vs_bias.png}
+            \includegraphics[width=.40\linewidth]{figures/charaterization/gain_vs_bias.png}
             \caption{2D map of the output voltage amplitude and gain with respect to the p-well and p-substrate in the case of the PMOS reset front-end }
             \label{fig:gain_vs_bias}
-        \end{figure}  
-        
+        \end{figure}          
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.60\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
@@ -386,6 +307,7 @@
             \item istogrammi in carica, con carica sommata di Sr e Fe, oer il flavor PMOS dove hai fatto la calibrazione o per tutti?
         \end{itemize}
 
+        Spiega che con il flavor HV abbiamo una perdita di sengnale, fai vedere uno spettro di delle misure dell 8 marzo. 
 
        
    

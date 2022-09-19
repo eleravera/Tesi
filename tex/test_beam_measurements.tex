@@ -1,29 +1,90 @@
-\section{Testbeam motivation}
-   Possibilità di integrare carica sul pixel: due elettroni consecutivi su un pixel ogni quanto arrivano?
+The motivation of the testbeam measurements was the testing of TJ-Mopopix1 in condition different from the ones supposed during the design, an in particular testing the possibility of integrating charge released by more particles on the sensor.\red{qualcosa veramente introduttivo sul fatto che non siamo riusciti a testare quello che volevamo.}
 
-   Vogliamo sfruttare l'analog pile up, per fare questo dobbiamo fare attenzione a non finire nel digital pile up
-   Devi avere che il tot dell'elettrone (cioè MIP) è maggiore del deltat medio; in questo caso potresti riuscire ad integrare carica.
-   Non è possibile rivelare singoli elettroni in quanto l'hit rate è troppo alto per le dosi messe a disposizioni con il fascio. Una formula di conversione è: 
-   \begin{equation}
-      R[Hz/cm^2] = \frac{DPP[Gy]}{1.6 \;10^{10} S[g/cm^2]}
-   \end{equation}
-   where S is the stopping power in water, \SI{2.17}{g/cm\squared}
-   The medium is ordinarily water, since dosimetric protocols are based on measurements in water as reference
+The measurements have taken place at the Santa Chiara hospital in Pisa, were a new accelerator for the FLASH-RT strudys have been recently installed. 
+The accelerator is an electron linac of energy in 7-9 MeV  e può arrivare fino a 40 Gy/pulse and it is the only almost the one in the world to access many different beam parameters. Altri accelerati per la flash riescono ad arrivare a... ma non hanno un range di aprametri così grande. \red{ricontrolla sulla review, c'era qualcosa che puoi dire. }
+This charateristic is faundamental for research in FLASH, both for the clinical (specifica che sarà usato in vitro o su animali) and medical studies and for the medical teqnical arrangment. 
+Infatti ci sono sia ancora questioni aperte per quanto riguarda la medicina e il funzionamento in base ai parametri che per il funzionamento di device. 
 
-   La struttura del fascio e le varie quantita che si usano per descriverlo sono riportate in figure \ref{fig:}. Ricordo i valori tipici che stanno in tabella in table \ref{}.
-   \begin{figure}
-      \centering
-      \includegraphics[width=.98\linewidth]{figures/test_beam/dose_param.png}
-      \caption{}
-      \label{fig:}
-   \end{figure}
+The typical beam structure of medical beam is reported in figure \ref{fig:}; in medical physics the parameters used to describe the beam with their description is reported in table \ref{tab:}. 
+\begin{figure}
+   \centering
+   \includegraphics[width=.7\linewidth]{figures/test_beam/beam_structure.pdf}
+   \caption{}
+   \label{fig:}
+\end{figure}
+
+\begin{table}
+   \begin{center}
+   \begin{tabular}{| c | c | c |}
+   \hline
+   \\
+   \hline
+   \hline
+Dose rate & $\bar{D}$ & Mean dose rate for a multi-pulse delivery\\
+Intra pulse dose rate & $\Dot{\bar{D}}$ & Dose rate in a single pulse \\
+Dose per pulse & DDP & Dose in a single pulse \\
+Pulse repetition frequency & PRF & Number of pulses delivered per unit of time\\
+Pulse width & t$_{p}$ & Duration of a single pulse\\
+   \hline
+   \end{tabular}
+   \caption{}
+   \label{tab:}
+   \end{center}
+\end{table}    
+
+In fisica medica si utilizza la dose, il parametro fondamentale per parametrizzare il danno apportato alle cellule. Una parametrizzazione in rate sarebbe però necessaria per avere un confronto sugli strumenti. 
+Per la covnersione si può effettuare un semplice ragionamento ricordando la def di dose, energia assorbita in acqua: 
+\ref{disegno del fascio che incide sul fantoccio d'acqua}
+
+Dunque per una determinata sezione del fascio, considerando una massa d'acqua in cui gli elettroni vengono fermati di X0 per Sezione fascio, si ha :
+
+
+Quindi per avere una conversione di dose in elettroni si usa:
+\begin{equation}
+   R[Hz/cm^2] = \frac{DPP[Gy]}{1.6 \;10^{10} S[g/cm^2]}
+\end{equation}
+where S is the stopping power in water, \SI{2.17}{g/cm\squared}
+The medium is ordinarily water, since dosimetric protocols are based on measurements in water as reference
+
+
+Dunque visti gli altissimi rate in gioco, con i tempi morti del nostro chip , non è possibile avere un segnale di singole particelle, perchè in tal caso si satura completamente. 
+Ricordiamo che i tempi morti dipendono dal rate e anche dalla posizione del pixel nella matrice, in particolare secondo la priority chain l'ultimo pixel che viene letto è qurllo con tau più lungo. Con un tau medio di 1 us per pixel. 
+L'idea è comunque anche se non si riesce a misurare intra pulse e misurare tra i pulse: quindi far sì che la lettura tra l'arrivo di due buch consecutivi. 
+
+Avendo un cut off massimo di hit a 25000 (n of pixel per un flavor), l'idea che si vuole testare è dunque: possibilità di integrare carica sul pixel: due elettroni consecutivi su un pixel ogni quanto arrivano?
+Vogliamo sfruttare il analog pile up tra gli eventi, e la linearità del tot. 
+   \red{conti}
+Devi avere che il tot dell'elettrone (cioè MIP) è maggiore del deltat medio; in questo caso potresti riuscire ad integrare carica.
+
+Purtroppo non è stato possibile effettuare questo test per mancanza di tempo (\red{chiedere a forti}), ma abbiamo effettuato solo un test preliminare, le cui misure sono riportate in sezione. 
+   
 
 \section{Apparatus description}
+   I parametri che l'acceleratore permette di settare sono: TABELLA
+   L'acceleratore è fatto così: ha un tubo di plexiglas (metti una foto) su cui vengono fatti scattereare gli elettroni in modo che all'uscita abbiano una curva di isodose più o meno uniforme. Quindi gli eletrtoni escono con una divergenza.
+   \red{metti plot delle curve di isodose e spiega cosa significa}   
+
+   Per effettuare le misure è stato costruito un carrello su cui mettere il DUT, foto del carrello, con la possibilità di regolare la distanza tra dut e bocca del triodo. 
+
+   per schermare gli elttroni dei collimatori sono stati costruiti: uno con posizione fissa da mettere vicino al triodo e uno da mettere lontano con posizione spostabile in modo da illuminare solo una parte del DUT. 
+   Collimatori di alluminio spessi 3 cm con fori da 1mm. Il collimatore vicino al triodo ha la funzione di fare una sorgente puntiforme se ci si mette lontano dal fascio, in modo da avere possibilità di diminuire il rate a piacimento come 1/l2.
+   Questo ovviamente è reso possibile dal fatto che il fascio ha una divergenza superiore a 1/20, non collimato. 
+   \begin{figure}[h!]
+      \centering
+      \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
+      \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_1cm.pdf}
+      \caption{}
+      \label{fig:dose_profile}
+   \end{figure}     
 
 
 \section{Measurements}
-   Numero di hit in funzione del DDP. Spettri con e senza collimatori. 
 
+   \begin{itemize}
+      \item Fotoni con i collimatori invece che elettroni
+      \item rate in funzione della dose
+      \item problema della saturazione per cui hai comunque due letture diverse 
+   \end{itemize} 
 
 
 
