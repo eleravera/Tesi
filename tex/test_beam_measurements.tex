@@ -59,30 +59,38 @@ The medium is ordinarily water, since dosimetric protocols are based on measurem
       The Device Under Test (DUT) have been then positioned vertically and enclosed in a box with a window on the chip and some holes in order to enable the biasing via cables and for the connection with the DAQ provided via ethernet cable. 
       A signal from the control unity to syncronize the acquisition with the pulses emitted from the beam has been sent to the FPGA. This signal is not a real trigger signal, since the chip in this first version has been designed to be triggerless, but the FPGA saves the timestamp of this trigger signal and assign it to a fake pixel. This allows the reconstruction of the bunch timing during the analysis. 
 
-      In order to 
-      collimatori\\
-      per schermare gli elttroni dei collimatori sono stati costruiti: uno con posizione fissa da mettere vicino al triodo e uno da mettere lontano con posizione spostabile in modo da illuminare solo una parte del DUT. 
+      \red{In order to per schermare gli elttroni dei collimatori sono stati costruiti: uno con posizione fissa da mettere vicino al triodo e uno da mettere lontano con posizione spostabile in modo da illuminare solo una parte del DUT. 
       Collimatori di alluminio spessi 3 cm con fori da 1mm. Il collimatore vicino al triodo ha la funzione di fare una sorgente puntiforme se ci si mette lontano dal fascio, in modo da avere possibilità di diminuire il rate a piacimento come 1/l2.
-      Questo ovviamente è reso possibile dal fatto che il fascio ha una divergenza superiore a 1/20, non collimato. 
-   
-
+      Questo ovviamente è reso possibile dal fatto che il fascio ha una divergenza superiore a 1/20, non collimato. Ordine di grandezza di hit che arrivano sul chip a distanza L}
+      
+      \begin{figure}[h!]
+         \centering
+         \includegraphics[width=.40\linewidth]{figures/test_beam/electron_flash.jpg}
+         \includegraphics[width=.35\linewidth]{figures/test_beam/collimator_box.jpg}\\     
+         \includegraphics[width=.77\linewidth]{figures/test_beam/carrello.jpeg} 
+         \label{fig:}
+         \caption{Experimental set up. (a) Electron flash accelerator: the gun can be rotated and during the utilization the gun is put parallel to the ground. (b) Collimator and DUT box. (c) Whole structure with the DUT connected to the power supply units.}
+      \end{figure}  
 
 \section{Measurements}
-
-   Dunque visti gli altissimi rate in gioco, con i tempi morti del nostro chip , non è possibile avere un segnale di singole particelle, perchè in tal caso si satura completamente. 
-   Ricordiamo che i tempi morti dipendono dal rate e anche dalla posizione del pixel nella matrice, in particolare secondo la priority chain l'ultimo pixel che viene letto è qurllo con tau più lungo. Con un tau medio di 1 us per pixel. 
-   L'idea è comunque anche se non si riesce a misurare intra pulse e misurare tra i pulse: quindi far sì che la lettura tra l'arrivo di due buch consecutivi. 
-
-   Avendo un cut off massimo di hit a 25000 (n of pixel per un flavor), l'idea che si vuole testare è dunque: possibilità di integrare carica sul pixel: due elettroni consecutivi su un pixel ogni quanto arrivano?
+   Because of the dead time of TJ-Monopix1 it is not possible resolving the bunch sub-structure and almost no one pixel can read more than a hit per bunch. I recall, indeed, that the dead time per pixel depends on the position on tha priority chain for the readout and for each pixel \red{minore circa} \SI{1}{\us} (fig. \ref{fig:}) are needed. 
+   If a way of 
+   A way this sensor could be used in such context is  
+   
+   Ricordiamo che i tempi morti dell ordinde di 1 us per pixel, dipendono dal rate e anche dalla posizione del pixel nella matrice: in particolare secondo la priority chain l'ultimo pixel che viene letto è qurllo con tau più lungo ed è quello in basso a dx. 
+   Avendo un cut off massimo di hit a 25000 (n of pixel per un flavor)per impulso, l'idea che si vuole testare è dunque la possibilità di integrare carica sul pixel: due elettroni consecutivi su un pixel ogni quanto arrivano?
    Vogliamo sfruttare il analog pile up tra gli eventi, e la linearità del tot. 
-      \red{conti}
-   Devi avere che il tot dell'elettrone (cioè MIP) è maggiore del deltat medio; in questo caso potresti riuscire ad integrare carica.
+   \red{PEr una data dose ho un dato rate di singolo pixel. Ildelta t medio tra due hit deve essere inferiore al ToT}.
+   Quindi da una parte si vuole ridurre la sensibilità del detector diminuendo l'efficienza e il guadagno e dall'altra si vuole rimanere in un range in cui il ToT sia ancoar lineare e abbastanza piccolo da poter integrare quanti più elettroni possibili. Quindi l'idea è diminuire  il bias che come abbiamo visto nel capitolo \ref{chap:} diminuisce l'efficienza di un fattore x e diminuisce il guadagno di un fattore y, e cambiare IREF VREF in modo da avere un guadagno molto basso. 
+   Purtroppo non è stato possibile effettuare questo test per mancanza di tempo (\red{??}), ma abbiamo effettuato solo un test preliminare, le cui misure sono riportate in sezione.
 
-   Purtroppo non è stato possibile effettuare questo test per mancanza di tempo (\red{chiedere a forti}), ma abbiamo effettuato solo un test preliminare, le cui misure sono riportate in sezione.
+   \red{fai il conto assumendo di avere il rate sul detector.}
 
    We have used the PMOS flavor (1) with the standard configuration with the idea of starting by testing the setup: we have biased the PWELL and PSUB at -\SI{6}{V} and with the default FE parameters reported in table \ref{tab:FE_default}.
    Initially we have used both the collimators and injected smaller dose pulses and only after we have removed the collimators and increased the DDP. 
    During all the acquisitions we have used pulses with t$_p$ of \SI{4}{\um} and with the smallest PRF settable, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up from different pulses. Indeed the readout time for each pixel is $\sim$\SI{1}{\us}, then even if the whole matrix turns on, the readout time corresponds to \SI{25}{ms}. 
+
+   Our maximum value of hits measurable is then $\sim$25000, that is the number of pixels for a fixed flavor, per pulse; if the whole matrix turns on, the readout time is $\sim$\SI{25}{ms} and then  
 
    We encountered a photon background higher than expected: photons are mainly produced via Bremsstrahlung during the transition of electrons through the alluminium collimators.
    \red{qualche numero in più sulla perdita di energia per rad, e magari plot della simulazione}.
