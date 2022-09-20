@@ -1,6 +1,7 @@
-The motivation of the testbeam measurements was the testing of TJ-Mopopix1 in condition different from the ones supposed during the design, an in particular testing the possibility of integrating charge released by more particles on the sensor.\red{qualcosa veramente introduttivo sul fatto che non siamo riusciti a testare quello che volevamo.}
+The motivation of the testbeam measurements are both the testing of TJ-Mopopix1 in condition different from the one forseen during the design and the testing the mechanical and the DAQ setup for other tests in future. I recall that TJ-Monopix1 is supposed to be employed for tracking in HEP experiments while our goal was testing the possibility of integrating charge released by more particles on the sensor at ultra high hit rate .
+\red{Una frase di disclaimer sul fatto che non siamo riusciti a testare quello che volevamo.}
 
-The measurements have taken place at the Santa Chiara hospital in Pisa, were a new accelerator for the FLASH-RT strudys have been recently installed. 
+The measurements have taken place at the Santa Chiara hospital in Pisa, were a new accelerator for reasearch the FLASH-RT strudys have been recently installed. 
 The accelerator is an electron linac of energy in 7-9 MeV  e può arrivare fino a 40 Gy/pulse and it is the only almost the one in the world to access many different beam parameters. Altri accelerati per la flash riescono ad arrivare a... ma non hanno un range di aprametri così grande. \red{ricontrolla sulla review, c'era qualcosa che puoi dire. }
 This charateristic is faundamental for research in FLASH, both for the clinical (specifica che sarà usato in vitro o su animali) and medical studies and for the medical teqnical arrangment. 
 Infatti ci sono sia ancora questioni aperte per quanto riguarda la medicina e il funzionamento in base ai parametri che per il funzionamento di device. 
@@ -8,7 +9,7 @@ Infatti ci sono sia ancora questioni aperte per quanto riguarda la medicina e il
 The typical beam structure of medical beam is reported in figure \ref{fig:}; in medical physics the parameters used to describe the beam with their description is reported in table \ref{tab:}. 
 \begin{figure}
    \centering
-   \includegraphics[width=.7\linewidth]{figures/test_beam/beam_structure.pdf}
+   \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}
    \caption{}
    \label{fig:}
 \end{figure}
@@ -79,14 +80,72 @@ Purtroppo non è stato possibile effettuare questo test per mancanza di tempo (\
 
 
 \section{Measurements}
+   We have used the PMOS flavor (1) with the standard configuration with the idea of starting by testing the setup: we have biased the PWELL and PSUB at -\SI{6}{V} and with the default FE parameters reported in table \ref{tab:FE_default}.
+   Initially we have used both the collimators and injected smaller dose pulses and only after we have removed the collimators and increased the DDP. 
+   During all the acquisitions we have used pulses with t$_p$ of \SI{4}{\um} and with the smallest PRF settable, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up from different pulses. Indeed the readout time for each pixel is $\sim$\SI{1}{\us}, then even if the whole matrix turns on, the readout time corresponds to \SI{25}{ms}. 
 
-   \begin{itemize}
-      \item Fotoni con i collimatori invece che elettroni
-      \item rate in funzione della dose
-      \item problema della saturazione per cui hai comunque due letture diverse 
-   \end{itemize} 
+   We encountered a photon background higher than expected: photons are mainly produced via Bremsstrahlung during the transition of electrons through the alluminium collimators.
+   \red{qualche numero in più sulla perdita di energia per rad, e magari plot della simulazione}.
+
+   Since the long dead time of the matrix, each pixel cannot fire more than a time for each pulses. 
+   Since the readout strarts $\sim$\SI{50}{clk} counts after the first TE of the pixel arrived, we could resolve the pulse in two different part. 
+   The hit which arrives and which goes under the thre. during the first 50 clk counts are classified in the first sub-pulse, while the hits which arrives during the freeze are in the second. In the second pulse there are also the hits arrived in the first but with a longer tot (scendono sotto soglia quando ormai è partito il freeze). 
+   During the freeze possono arrivare hit, su pixel vuoti. Questi verranno letti dopo. 
+   Obviously since the readout of the fist subpulse finished much later the bunch finished, each pixel can be store only one hit. 
+   This constitute our saturation, since we can't read more tha 25 000 hits per bunch. 
+   Actually this is not completely true, since the firsts pixels in the priority chain, which can be read before the bunch finished, can be hit again and can store a new hit. 
+   An example of the two subpulse is shown in figure \ref{fig:}. with a map of the tot of the hit. 
+
+   When we have put aside the collimators, the fluence was too high that the whole matrixs turn on in 50 clock counts; then the 2 pulses substructure no more appears. Also the spectrum change from the previous one. 
+   It is shown in figure \ref{fig:}.
+   Since a MIP should produce e- in the epitaxial layer, it should provide a signal of about \SI{2}{ke-}, so in our condition it shoud have done rollover. 
+   In order to compare the spectrum with the one produced by MIP, in laboratory we have done some acquisitions with cosmic rays. 
+   To be confident with having selected MIPS from cosmic rays and not noise, we have selected only the events with one more hits per timestamp, which we consider are prevalentemente cluster. Dato il rate dei cosmici e il rate del rumore infatti, le coincidenze casuali per il nosrto tempo di acquisizione sono.. Qualche esempio di traccia di muoni. e n of hit cluster. 
+   Un confrontare degli spettri (convertiti in carica). 
+
+
+   \begin{figure}
+      \centering
+      \includegraphics[width=.49\linewidth]{figures/test_beam/Q1_17_11.pdf}
+      \includegraphics[width=.49\linewidth]{figures/test_beam/Q2_17_11.pdf}\\   
+      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq1_17-11.png}
+      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq2_17-11.png} 
+      \caption{Acquisition with both the collimators at DDP=\SI{0.04}{Gy}}
+      \label{fig:}
+   \end{figure}
+
+
+   \begin{figure}
+      \centering
+      \includegraphics[width=.7\linewidth]{figures/test_beam/Qe_17_32.pdf}
+      \caption{Acquisition without any collimator at DDP=\SI{0.04}{Gy}}
+      \label{fig:}
+   \end{figure}
 
 
 
+   \begin{figure}
+      \centering
+      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq1_15-57.png}
+      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq2_15-57.png}  
+      \caption{}
+      \label{fig:}
+   \end{figure}
+
+   \begin{table}
+      \begin{center}
+      \begin{tabular}{| c | c | c |}
+      \hline
+      DDP & Hits per pulse &    \\
+      \hline
+      \hline
+
+
+
+      \end{tabular}
+      \caption{}
+      \label{tab:}
+      \end{center}
+   \end{table}   
 
 
