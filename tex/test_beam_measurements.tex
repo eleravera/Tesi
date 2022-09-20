@@ -1,85 +1,85 @@
 The motivation of the testbeam measurements are both the testing of TJ-Mopopix1 in condition different from the one forseen during the design and the testing the mechanical and the DAQ setup for other tests in future. I recall that TJ-Monopix1 is supposed to be employed for tracking in HEP experiments while our goal was testing the possibility of integrating charge released by more particles on the sensor at ultra high hit rate .
 \red{Una frase di disclaimer sul fatto che non siamo riusciti a testare quello che volevamo.}
+The measurements have taken place in a bunker room at the Santa Chiara hospital in Pisa, were a new accelerator designed for the reasearch of FLASH-RT, and for this reason called "ElectronFlash", have been installed a few months ago. 
 
-The measurements have taken place at the Santa Chiara hospital in Pisa, were a new accelerator for reasearch the FLASH-RT strudys have been recently installed. 
-The accelerator is an electron linac of energy in 7-9 MeV  e può arrivare fino a 40 Gy/pulse and it is the only almost the one in the world to access many different beam parameters. Altri accelerati per la flash riescono ad arrivare a... ma non hanno un range di aprametri così grande. \red{ricontrolla sulla review, c'era qualcosa che puoi dire. }
-This charateristic is faundamental for research in FLASH, both for the clinical (specifica che sarà usato in vitro o su animali) and medical studies and for the medical teqnical arrangment. 
-Infatti ci sono sia ancora questioni aperte per quanto riguarda la medicina e il funzionamento in base ai parametri che per il funzionamento di device. 
-
-The typical beam structure of medical beam is reported in figure \ref{fig:}; in medical physics the parameters used to describe the beam with their description is reported in table \ref{tab:}. 
-\begin{figure}
-   \centering
-   \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}
-   \caption{}
-   \label{fig:}
-\end{figure}
-
-\begin{table}
-   \begin{center}
-   \begin{tabular}{| c | c | c |}
-   \hline
-   \\
-   \hline
-   \hline
-Dose rate & $\bar{D}$ & Mean dose rate for a multi-pulse delivery\\
-Intra pulse dose rate & $\Dot{\bar{D}}$ & Dose rate in a single pulse \\
-Dose per pulse & DDP & Dose in a single pulse \\
-Pulse repetition frequency & PRF & Number of pulses delivered per unit of time\\
-Pulse width & t$_{p}$ & Duration of a single pulse\\
-   \hline
-   \end{tabular}
-   \caption{}
-   \label{tab:}
-   \end{center}
-\end{table}    
-
-In fisica medica si utilizza la dose, il parametro fondamentale per parametrizzare il danno apportato alle cellule. Una parametrizzazione in rate sarebbe però necessaria per avere un confronto sugli strumenti. 
-Per la covnersione si può effettuare un semplice ragionamento ricordando la def di dose, energia assorbita in acqua: 
-\ref{disegno del fascio che incide sul fantoccio d'acqua}
-
-Dunque per una determinata sezione del fascio, considerando una massa d'acqua in cui gli elettroni vengono fermati di X0 per Sezione fascio, si ha :
-
-
-Quindi per avere una conversione di dose in elettroni si usa:
+In medical physics the dose is indeed the standard parameter to charaterize the beam beacause of its obvious relation with the damage caused in the patient. By the point of view of the instrumentation and the testing on it, a more common and usefull parameter is instead the rate or the fluence of particles.  
+The conversion can be find thinking to the definition of dose: \red{definizione di dose e disegno del fascio che incide sul fantoccio d'acqua}
+\begin{equation}
+   Dose = \frac{1}{1}
+\end{equation}
+from which:
 \begin{equation}
    R[Hz/cm^2] = \frac{DPP[Gy]}{1.6 \;10^{10} S[g/cm^2]}
 \end{equation}
 where S is the stopping power in water, \SI{2.17}{g/cm\squared}
-The medium is ordinarily water, since dosimetric protocols are based on measurements in water as reference
+The medium is ordinarily water, since dosimetric protocols are based on measurements in water as reference.
 
-
-Dunque visti gli altissimi rate in gioco, con i tempi morti del nostro chip , non è possibile avere un segnale di singole particelle, perchè in tal caso si satura completamente. 
-Ricordiamo che i tempi morti dipendono dal rate e anche dalla posizione del pixel nella matrice, in particolare secondo la priority chain l'ultimo pixel che viene letto è qurllo con tau più lungo. Con un tau medio di 1 us per pixel. 
-L'idea è comunque anche se non si riesce a misurare intra pulse e misurare tra i pulse: quindi far sì che la lettura tra l'arrivo di due buch consecutivi. 
-
-Avendo un cut off massimo di hit a 25000 (n of pixel per un flavor), l'idea che si vuole testare è dunque: possibilità di integrare carica sul pixel: due elettroni consecutivi su un pixel ogni quanto arrivano?
-Vogliamo sfruttare il analog pile up tra gli eventi, e la linearità del tot. 
-   \red{conti}
-Devi avere che il tot dell'elettrone (cioè MIP) è maggiore del deltat medio; in questo caso potresti riuscire ad integrare carica.
-
-Purtroppo non è stato possibile effettuare questo test per mancanza di tempo (\red{chiedere a forti}), ma abbiamo effettuato solo un test preliminare, le cui misure sono riportate in sezione. 
-   
 
 \section{Apparatus description}
-   I parametri che l'acceleratore permette di settare sono: TABELLA
-   L'acceleratore è fatto così: ha un tubo di plexiglas (metti una foto) su cui vengono fatti scattereare gli elettroni in modo che all'uscita abbiano una curva di isodose più o meno uniforme. Quindi gli eletrtoni escono con una divergenza.
-   \red{metti plot delle curve di isodose e spiega cosa significa}   
+   \subsection{Accelerator}
+      \begin{figure}
+         \centering
+         \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}
+         \caption{}
+         \label{fig:beam_structure}
+      \end{figure}
+      \begin{table}
+         \begin{center}
+         \begin{tabular}{| c | c | c |}
+         \hline
+      $\bar{D}$ & Dose rate (mean dose rate for a multi-pulse delivery) & 0.005-10000 Gy/s\\
+      $\Dot{\bar{D}}$ & Intra pulse dose rate (dose rate in a single pulse) &    \\
+      DDP & Dose in a single pulse & 0.04 Gy\\
+      PRF & Pulse repetition frequency(number of pulses delivered per unit of time) & 1-350 Hz\\
+      t$_{p}$ & Pulse width & 0.2-4 \si{\us}\\
+      n & Number of pulses &  \\
+      \hline
+         \end{tabular}
+         \caption{The parameters that can actually be set by the control unit are the PRF, DDP, t$_p$ and n (in particular singolar irradiation or pulse train), while the other changes consequently.}
+         \label{tab:beam_parameters}
+         \end{center}
+      \end{table}  
+      The accelerator is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (\SI{40}{Gy/pulse}) keeping the possibility of accessing many different beam parameters. This charateristic is faundamental for research in FLASH-RT, both for the medical aspects and for the studies on detectors, infatti ci sono sia ancora questioni aperte per quanto riguarda la medicina e il funzionamento in base ai parametri che per il funzionamento di device. 
+      It is \red{almost the only one} in the world having this charateristic, \red{ricontrolla sulla review, c'era qualcosa che puoi dire. }
+      
+      The accelerator implements a standard beam structure for RT with electrons, that is a macro pulse divided in many micropulses, is reported in figure \ref{fig:beam_structure};a description of the parameters used to describe the beam and their range of values settable by the control unit is reported in table \ref{tab:beam_parameters}. 
+  
+      The accelerator is provided of a set of triod cannons long \SI{1}{m} with diameters from \SI{1}{cm} to \SI{12}{cm} and in addition the field can be produced both in a circle and squircle shape using a beam shaper. 
+      The triode is made by pleaxiglass and through the scattering of electrons with it a uniform dose profile (fig.\ref{fig:dose_profile}) at the output of the triod is produced, which is desired for medical treatment.
+      \begin{figure}[h!]
+         \centering
+         \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
+         \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_1cm.pdf}
+         \caption{Two example of x-y isodose curves for two different triodes, \SI{10}{cm} and \SI{1}{cm} respectively, reported by the producer of the accelerator (S.I.T. - Sordina IORT Technologies S.p.A.). With the smaller collimator the dose rate in pulse is comparatively higher.}
+         \label{fig:dose_profile}
+      \end{figure}  
 
-   Per effettuare le misure è stato costruito un carrello su cui mettere il DUT, foto del carrello, con la possibilità di regolare la distanza tra dut e bocca del triodo. 
+   \subsection{Mechanical carriers}
+      In order to \red{er effettuare le misure è stato costruito un carrello su cui mettere il DUT, foto del carrello, con la possibilità di regolare la distanza tra dut e bocca del triodo. }
+      The Device Under Test (DUT) have been then positioned vertically and enclosed in a box with a window on the chip and some holes in order to enable the biasing via cables and for the connection with the DAQ provided via ethernet cable. 
+      A signal from the control unity to syncronize the acquisition with the pulses emitted from the beam has been sent to the FPGA. This signal is not a real trigger signal, since the chip in this first version has been designed to be triggerless, but the FPGA saves the timestamp of this trigger signal and assign it to a fake pixel. This allows the reconstruction of the bunch timing during the analysis. 
 
-   per schermare gli elttroni dei collimatori sono stati costruiti: uno con posizione fissa da mettere vicino al triodo e uno da mettere lontano con posizione spostabile in modo da illuminare solo una parte del DUT. 
-   Collimatori di alluminio spessi 3 cm con fori da 1mm. Il collimatore vicino al triodo ha la funzione di fare una sorgente puntiforme se ci si mette lontano dal fascio, in modo da avere possibilità di diminuire il rate a piacimento come 1/l2.
-   Questo ovviamente è reso possibile dal fatto che il fascio ha una divergenza superiore a 1/20, non collimato. 
-   \begin{figure}[h!]
-      \centering
-      \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
-      \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_1cm.pdf}
-      \caption{}
-      \label{fig:dose_profile}
-   \end{figure}     
+      In order to 
+      collimatori\\
+      per schermare gli elttroni dei collimatori sono stati costruiti: uno con posizione fissa da mettere vicino al triodo e uno da mettere lontano con posizione spostabile in modo da illuminare solo una parte del DUT. 
+      Collimatori di alluminio spessi 3 cm con fori da 1mm. Il collimatore vicino al triodo ha la funzione di fare una sorgente puntiforme se ci si mette lontano dal fascio, in modo da avere possibilità di diminuire il rate a piacimento come 1/l2.
+      Questo ovviamente è reso possibile dal fatto che il fascio ha una divergenza superiore a 1/20, non collimato. 
+   
 
 
 \section{Measurements}
+
+   Dunque visti gli altissimi rate in gioco, con i tempi morti del nostro chip , non è possibile avere un segnale di singole particelle, perchè in tal caso si satura completamente. 
+   Ricordiamo che i tempi morti dipendono dal rate e anche dalla posizione del pixel nella matrice, in particolare secondo la priority chain l'ultimo pixel che viene letto è qurllo con tau più lungo. Con un tau medio di 1 us per pixel. 
+   L'idea è comunque anche se non si riesce a misurare intra pulse e misurare tra i pulse: quindi far sì che la lettura tra l'arrivo di due buch consecutivi. 
+
+   Avendo un cut off massimo di hit a 25000 (n of pixel per un flavor), l'idea che si vuole testare è dunque: possibilità di integrare carica sul pixel: due elettroni consecutivi su un pixel ogni quanto arrivano?
+   Vogliamo sfruttare il analog pile up tra gli eventi, e la linearità del tot. 
+      \red{conti}
+   Devi avere che il tot dell'elettrone (cioè MIP) è maggiore del deltat medio; in questo caso potresti riuscire ad integrare carica.
+
+   Purtroppo non è stato possibile effettuare questo test per mancanza di tempo (\red{chiedere a forti}), ma abbiamo effettuato solo un test preliminare, le cui misure sono riportate in sezione.
+
    We have used the PMOS flavor (1) with the standard configuration with the idea of starting by testing the setup: we have biased the PWELL and PSUB at -\SI{6}{V} and with the default FE parameters reported in table \ref{tab:FE_default}.
    Initially we have used both the collimators and injected smaller dose pulses and only after we have removed the collimators and increased the DDP. 
    During all the acquisitions we have used pulses with t$_p$ of \SI{4}{\um} and with the smallest PRF settable, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up from different pulses. Indeed the readout time for each pixel is $\sim$\SI{1}{\us}, then even if the whole matrix turns on, the readout time corresponds to \SI{25}{ms}. 
