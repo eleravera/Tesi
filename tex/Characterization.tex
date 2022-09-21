@@ -238,25 +238,25 @@
 
 
 
-    \subsection{PMOS flavor: changing the bias}   
+    \subsection{PMOS flavor: changing the bias}\label{chap:characterization_section:bias}
     In order to study the behavior of the sensor changing the bias, I perform some injection scans in different configurations. 
     The thickness of the depletion has to be considered indeed an important parameters for the efficiency of the signal, and in particular it plays an important role if \red{bho, trova qualcosa da dire}.
 
     Given that the chip under examination has a gap in the low dose epi-layer (look at chapter \ref{chap:}) we were not able to change independently the bias of the substrate (PSUB) and of the p-well (PWELL), but they must be kept at the same value, differently from other chips, where thay can be changed as reported in figure \ref{fig:gain_vs_bias}.
     Turning down the bias, the depletion region narrows and the efficiency reduces in particular in the pixel corner; 
-    \red{guarda plot e commenta.}
+    \red{La soglia si alza di meno di 1/3, mi sarei aspettata un po' di più guardando il plot. Attenzione che il plot non è fatto con un ngap, quindi ci sta che il guadagno lì cali più bruscamente. poi non si capisce benissimo dalla colormap.  Anche la slope diminuisce di circa meno di un terzo. Il noise aumenta leggermente. Il picco del ferro invece si sposta a siniSTRA di un terzo. Lo spostamento è dovuto alla diminuzione del gain, che influisce sul ToT.}
 
     \begin{table}
             \begin{center}
             \begin{tabular}{| c |  c | c | c |}
             \hline
-               & \SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
+               & -\SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
             \hline
             \hline
-            Threshold [DAC] & 20.04 $\pm$ 1.6 & & 24.5 $\pm$ 1.8\\
-            Noise [DAC] & 0.613 $\pm$ 0.075 & & 0.822 $\pm$ 0.098\\
-            Slope [au/DAC] & 0.726 $\pm$ 0.027 & & 0.573 $\pm$ 0.021\\
-            Offset [au] & -10.8 $\pm$ 1.9 & & -11.1 $\pm$ 1.5 \\
+            Threshold [DAC] & 20.04 $\pm$ 1.6 & 21.0 $\pm$ 1.6 & 24.5 $\pm$ 1.8\\
+            Noise [DAC] & 0.613 $\pm$ 0.075 & 0.625 $\pm$ 0.078 & 0.822 $\pm$ 0.098\\
+            Slope [au/DAC] & 0.726 $\pm$ 0.027 & 0.707 $\pm$ 0.028  & 0.573 $\pm$ 0.021\\
+            Offset [au] & -10.8 $\pm$ 1.9 & -11.2 $\pm$ 1.8 & -11.1 $\pm$ 1.5 \\
             \hline
             \end{tabular}
             \caption{The errors are the standard deviations of the corresponding distributions.}
@@ -264,19 +264,11 @@
             \end{center}
         \end{table}  
 
-      
-
-
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.40\linewidth]{figures/charaterization/gain_vs_bias.png}
-            \caption{2D map of the output voltage amplitude and gain with respect to the p-well and p-substrate in the case of the PMOS reset front-end }
-            \label{fig:gain_vs_bias}
-        \end{figure}          
+        
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.60\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
-            \caption{}
+            \caption{With the same acquisition time. }
             \label{fig:Fe_spectrum_bias}
         \end{figure}            
    
