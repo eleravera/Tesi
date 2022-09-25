@@ -1,14 +1,15 @@
-
-\red{rifai il conto della lunghezza di attenuazione. Ho trovato (presentazione Luciano Mus) 29 um per ka e 37 um per kb. }
+%    \red{Measurement of the magnitude of the collected charge has also been generally available for pixel detectors, and has been used to improve the 3D space point precision through interpolation as well as for particle identification through specific ionization measurement.
+\red{\begin{itemize}
+    \item rifai il conto della lunghezza di attenuazione. Ho trovato (presentazione Luciano Mus) 29 um per ka e 37 um per kb. 
+    \item Con il PMOS la configurazione del FE di default è: e richiama i significati delle variabili.
+    \item soglia dell'automasking a 10 Hz. % very low noise hit rate of about 4  10alla8 /25ns per pixel has been
+    %achieved by intentionally masking only 34 pixels of the whole flavor. Due to the projection masking
+    %scheme, 156 additional "ghost" pixels are also masked. Nevertheless, the number of masked pixels
+    %(190) is smaller than 1\% of the total 25088 pixels of the PMOS reset sector.
+    \item parla dell HV
+\end{itemize}}
 
 \section{TJ-Monopix1 characterization}
-    %\subsection{}
-    %Di che con l'hv a parte quando usiamo i valori del FE: riportali, non abbiamo una configurazione stabile e si accendono tanti pixel. 
-    
-    %Con il PMOS la configurazione del FE di default è: e richiama i significati delle variabili. 
-    %threshold scan per sapere il punti di lavoro ok. 
-    %soglia dell'automasking a 10 Hz. 
-
     \subsection{Threshold and noise: figure of merit for pixel detectors}
         %python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i gli istogrammi del tot e della s curve
         %python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
@@ -18,40 +19,28 @@
             \includegraphics[width=.6\linewidth]{figures/charaterization/scurve.pdf}
             \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor 1) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been done assuming a conversion factor of \SI{20}{e-/DAC}. }
             \label{fig:scurve}
-        \end{figure}   
-
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_histogram.png}
-            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_histogram.png}\\
-            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_map.pdf}
-            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_map.pdf}            
-            \label{fig:threshold_noise_hist}
-            \caption{Histograms of the threshold (a) and the noise (b) found fitting the s-curve of \red{all} flavor with IDB fixed at \SI{40}{DAC}.Maps of the threshold (a) and the noise (b) found fitting the s-curve with IDB fixed at \SI{40}{DAC}. The white pixels have the injection circuit broken. }
-        \end{figure}            
-           
-        A characterization of threshold and noise is typically necessary since these values have an impact on the operating conditions and on the performance of the chips. 
-        infact, the signal to threshold ratio may be considered as the figure of merit for pixel detectors rather than the signal to noise ratio.
-        The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this \red{??}, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
-        The following prototypes have lower threshold and noise, for example TJ-Monopix2 has \red{check}, according to the above.
-        The threshold has to be located between the noise peak around the baseline and the signal distribution, in particular it has to be low enough to mantain a high signal efficiency, but also high enough to cut the noise: for a low threshold many pixels can fire at the same time and a positive feedback can set off a chain reaction eventually, causing all the other pixels to fire.
-        \red{Thus, the noise sets a lower bound to the threshold: if an occupancy $\leqslant$ $10^{-4}$ is required, for example, this correspond to the Gaussian 1-sided tail fraction for \SI{3.7}{\sigma}.
-        In this case, if the noise is \SI{100}{e-}, for example, the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{e-}.}
+        \end{figure}              
+        A characterization of threshold and noise is typically necessary since these values have an impact on the operating conditions and on the performance of the chips, so much that the signal to threshold ratio may be considered as the figure of merit for pixel detectors rather than the signal to noise ratio.
+        The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
+ 
+        Obviously the threshold has to be located between the noise peak around the baseline and the signal distribution, in particular it has to be low enough to mantain a high signal efficiency, but also high enough to cut the noise: for a low threshold many pixels can fire at the same time and a positive feedback can set off a chain reaction eventually, causing all the other pixels to fire.
+        Thus, the noise sets a lower bound to the threshold: if an occupancy $\leqslant$ $10^{-4}$ is required, for example, this correspond to the Gaussian 1-sided tail fraction for \SI{3.7}{\sigma}.
+        In this case, if the noise is \SI{100}{e-} (resonable), the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{e-}.
         Typically this argument sets only a minimal bound to the threshold since the variation with time and from pixel to pixel have to be taken into account: the temperature, the anealing (for example, the radiation damages in the oxide layer causes shift of MOSFET threshold voltage) and the process parameters variation across the wafer (as for example process mismatch between transistors). 
         
-        On the other hand the noise is valued at the preamplifier input node given that the first stage of amplification is the most crucial since the signal amplitude is high compared to additional noise introduced by the following stages.
-        The noise is then parameterized as Equivalent Noise Charge (ENC), which is defined as the ratio between the noise N at the output expressed in Volt and the out voltage signal S produced by \SI{1}{e-} entering in the preamplifier:
+        Given that the first stage of amplification is the most crucial, since in the following stages the signal amplitude is high compared to additional noise, the noise is valued at the preamplifier input node.
+        Then, the noise is parameterized as Equivalent Noise Charge (ENC), which is defined as the ratio between the noise N at the output expressed in Volt and the out voltage signal S produced by \SI{1}{e-} entering in the preamplifier:
         \begin{equation}
             ENC\, =\, \frac{N_{out}[V]}{S_{out}[V/e-]}\,=\,\frac{V^{RMS} _{noise}}{G}
         \end{equation} 
         with G expressed in \si{V/e-}; as the gain increases, the noise reduces . 
+        \red{Servirebbe una misura}
 
-        \red{ENC is mainly influenced by the total input capacitance and by the system bandwidth: if the bandwidth is constant, noise can be reduced by increasing the input transistor transconductance (and consequently power consumption).}
         Considering the threshold dispersion a requirement for the ENC is: 
         \begin{equation}
             ENC < \sqrt{(T/3.7)^2 - T_{RMS} ^2 (x) - T_{RMS} ^2 (t)}
         \end{equation}
-        where the T is the threshold set, $T_{RMS}$ is the threshold variation during time (t) and across the matrix (x); a typical reasonable value often chosen is \SI{5}{ENC}.
+        where the T is the threshold setted, $T_{RMS}$ is the threshold variation during time (t) and across the matrix (x); a typical reasonable value often chosen is \SI{5}{ENC}.
 
         Because of the changing of the 'real' threshold, the possibility of changing and adapting the setting parameters of the FE, both in time and in space is desiderable: these parameters are usually set by Digital to Analog Converter (DAC) with a number of bit in a typical range of 3-7.
         Unfortunately DAC elements require a lot of space that may be not enough on the pixel area; therefore, the FE parameters are typically global, which means that they are assigned for the whole chip, or they can be assigned for regions the matrix is divided into. 
@@ -81,8 +70,16 @@
         %    erf(z) = \[ \int_{0}^{z} \frac{2}{\sqrt{\pi}} e^{-x^2} dx  \]
         %\end{equation} 
         where the threshold and the ENC corresponds to the $\mu$ and $\sigma$.
-        Therefore I perform a fit of the counts detected using the function in equation \ref{eq:fit_scurve}. In figure \ref{fig:scurve} there is an example with IDB (look at table \ref{tab:} for the meaning of the parameter) equal to \SI{40}{DAC} of fit for a pixel belonging to the flavor 1, while in table \ref{tab:} and figure \ref{fig:threshold_noise_hist} and \ref{fig:threshold_noise_map} there are the histograms and the maps of the parameters of the scurve-fit. 
-
+        Therefore I perform a fit of the counts detected using the function in equation \ref{eq:fit_scurve}. In figure \ref{fig:scurve} there is an example with IDB equal to \SI{40}{DAC} of fit for a pixel belonging to the flavor B, while in table \ref{tab:Flavor_PMOS_reser} and figure \ref{fig:threshold_noise_hist} there are the histograms and the maps of the parameters of the scurve-fit. As expected, the flavor PMOS reset gated (A), thanks to the transistor which change the baseline value, has a lower threshold and noise
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_histogram.png}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_histogram.png}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_map.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_map.pdf}            
+            \label{fig:threshold_noise_hist}
+            \caption{Histograms of the threshold (a) and the noise (b) found fitting the s-curve of \red{all} flavor with IDB fixed at \SI{40}{DAC}. Below there are the maps of the threshold (a) and the noise (b), respectively, found fitting the s-curve with IDB fixed at \SI{40}{DAC} for the PMOS flavor (B). The white pixels have the injection circuit broken.}
+        \end{figure}      
         \begin{table}
                 \begin{center}
                 \begin{tabular}{| c | c | c |}
@@ -90,33 +87,36 @@
                  & DAC units & electrons \\
                 \hline
                 \hline
-                Threshold        & 24.529 $\pm$ 0.049 & \\
-                                 &u: 24.433 $\pm$ 0.049 & \\ 
-                                 &d: 24.623 $\pm$ 0.051 &    \\      
-                Threshold dispersion & 1.848 $\pm$ 0.033 &\\
-                                 &u: 1.867 $\pm$ 0.034 & \\ 
-                                 &d: 1.825 $\pm$ 0.035 &    \\ 
-                Noise            & 0.8222 $\pm$ 0.0043 & \\
-                                 &u: 0.8225 $\pm$ 0.0045 & \\ 
-                                 &d: 0.8221 $\pm$ 0.0043 &    \\      
-                Noise dispersion & 0.0975 $\pm$ 0.0030 &\\
-                                 &u: 0.0968 $\pm$ 0.0031 & \\ 
-                                 &d: 0.0970 $\pm$ 0.0030 &    \\ 
+                Threshold        & 24.529 $\pm$ 0.049 & 511.0 $\pm$ 1.0 \\
+                Threshold dispersion & 1.848 $\pm$ 0.033 & 36.96$\pm$0.66\\
+                Noise            & 0.8222 $\pm$ 0.0043 & 16.444$\pm$0.086 \\
+                Noise dispersion & 0.0975 $\pm$ 0.0030 & 1.95$\pm$0.06\\
                 \hline
                 \end{tabular}
                 \caption{Flavor PMOS, IDB fixed at \SI{40}{DAC}}
-                \label{tab:}
+                \label{tab:Flavor_PMOS_reser}
                 \end{center}
         \end{table}        
     
-        To verified the trend of the threshold as a function of the front end parameter IDB, I have permormed a scan with different IDBs: I have injected the whole matrix and found the means and the standard deviation of the distributions. The results are shown in figure \ref{fig:threshold_vs_IDB}.
+        %Furthermore the two portion of the chip, with FDPW and with RDPW, have been analyzed separately, because a small difference in the sensor input capacitance was expected: in fact, the deep p-well removal in the RDPW causes a small reduction of the depletion region around the collection electrode, which results in an increase of the sensor capacitance C.
+        %\red{Then  , the charge to voltage conversion gain at the front-end input (Q /C ) is lower and as a result, for the same input charge a lower voltage amplitude is induced at the front-end input. }
+    
+    
+        Small threshold variations has been observed in the first biasing section (columns from 0 to 14) with IDB=\SI{40}{DAC}; the same structure appears more evident both at other IDBs and in the slope and offset distribution at IDB=\SI{40}{DAC} I will talk about in the next section.  
+        \red{metti un plot con IDB 90/100 DAC}
+        The systematic threshold variation across the biasing group can be due, for example, to the transistor mismatch of the biasing DAC register IDB or to the value of the baseline (setted by ICASN).
+        A solution, implemented in TJ-Monopix2, has been to include more columns in each biasing group increasing the effective transistor area.\\
+        %GUARDA A PAGINA 127 DELLA TESI PER GLI ULTIMI DUE FLAVOR
+
+        To verified the trend of the threshold as a function of the front end parameter IDB and find its dynamic range, I have permormed different scans changing the IDB: I have injected the whole matrix and found the means and the standard deviation of the distributions. The results are shown in figure \ref{fig:threshold_vs_IDB}: the blue points are the mean threhsold found whithin the matrix, while in green is shown the width of the threshold distribution, aka the threshold dispersion. 
+        While the threshold increases, the ENC decreases of $\sim$\SI{4}{e-},which is $\sim$1/3 of the noise at IDB=\SI{40}{DAC}. 
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.70\linewidth]{figures/charaterization/thr_vs_IDB.pdf}
-            \caption{}
+            \caption{Flavor PMOS (B) with Psub-Pwell biased at -\SI{6}{V}.Threshold measured in electrons vs the register which sets the threshold, IDB.  }
             \label{fig:threshold_vs_IDB}
         \end{figure}            
-   
+
 
     \subsection{Linearity of the ToT}    
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ per fare il fit    
@@ -129,24 +129,24 @@
             Q\, [DAC] = \frac{(ToT\,[au]\, -\, q\,[au])}{m\, [au/DAC]} 
         \end{equation}
         where m and q are the fitted parameters of the calibration.
-        It is important to keep in mind that the main application target of TJ-Monopix1 is in the inner tracker detector of HEP experiments, then the main feature is the efficiency, then a rough calibration of the signal to charge is fine; \red{this information can be used to improve??}. 
-        
+        It is important to keep in mind that the main application target of TJ-Monopix1 is in the inner tracker detector of HEP experiments, then the main feature is the efficiency, then a rough calibration of the signal to charge is fine. The ToT information can be used both to better reconstruct the charge deposition in cluster in order to improve the track resolution, and for particle identification, especially for low momentum particles which do not reach the proper detectors.
+                        
         The study of the output signal is made possibile via the injection: since the pulses are triangular, the ToT is expected to be almost linear depending on the injection charge value.
         To verify this statement and study the deviations from linearity I've fit the ToT versus the charge injected for all pixel within the matrix.
-        In figure \ref{fig:ToT_vs_charge}(b) there is an example of fit for a pixel belonging to the flavor 1, while in figure \ref{fig:ToT_histograms_all_fl} and \ref{fig:ToT_fit_param_map} there are the histograms and the maps of the parameters of the line-fit for all flavors with IDB fixed at \SI{40}{DAC}.   
+        In figure \ref{fig:ToT_vs_charge}(b) there is an example of fit for a pixel belonging to the flavor B, while in figure \ref{fig:ToT_histograms_all_fl} there are the histograms and the maps of the parameters of the line-fit for all flavors with IDB fixed at \SI{40}{DAC}. Here again a difference between biasing section appears: since the slope of the ToT is related with the gain of the preamplifier (increasing the gain also increases the ToT), the mismatch is probably due to the transistor contributing to the amplification stage.
 
         Before performing the fit I have calculated the mean value of the ToT of the pulses recorded for each pulse amplitude and I used the mean ToT as value for the fit. 
         The aim of the calibration obviously is finding a relation only in the range 0-64 without taking into account the rolling over hits: therefore, to prevent the rollover data from reducing the mean ToT introducing a bias in the mean value, I cut and I did not consider them. 
         If a signal bigger than the \SI{1.6}{\us} is expected in the usage of the detector, the threshold must be raised or the gain reduced, making the expected output signal in range 0-64. 
-        In figure \ref{fig:ToT_vs_charge} (b) are shown both the fits with a line (red) and with a second order polynomial (green): at the bounds of the ToT range values deviate from the line model. Since the deviation is low than \red{controlla quant'era, questo ha un impatto sul valore della calibrazione di tipo .. che è trascurabile al primo ordine. e comunque hai problemi ai bounds mentre al centro hai comunque una buona linearità.}. 
-        \red{Chiarire la differenze negli istogrammi e come mai ci sono delle bande nelle mappe.}
-
+        In figure \ref{fig:ToT_vs_charge} (b) are shown both the fits with a line (red) and with a second order polynomial (green): at the bounds of the ToT range values deviate from the line model. Since the deviation is low than 1\% and it only interest the region near the 0 and the 64, in first approximation it is negligible. 
+        
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.49\linewidth]{figures/charaterization/ToT_rollover.png}            
             \includegraphics[width=.49\linewidth]{figures/charaterization/ToT_injection.pdf}
             \label{fig:ToT_vs_charge}
-            \caption{The figures refer to pixel (10,10) of the PMOS-reset flavor (1) with IDB fixed at \SI{40}{DAC}. (a) Histogram of the injection pulses: the ToT is in range 0-64 since it is represented by 6 bit, so when achieving the 64 it rolls over back to the zero. (b) Mean ToT vs the the charge: the mean has been calculated cutted the rolling hits. }
+            \caption{The figures refer to pixel (10,10) of the PMOS-reset flavor (1) with IDB fixed at \SI{40}{DAC} for the PMOS flavor (B).
+            (a) Histogram of the injection pulses: the ToT is in range 0-64 since it is represented by 6 bit, so when achieving the 64 it rolls over back to the zero. (b) Mean ToT vs the the charge: the mean has been calculated cutted the rolling hits. }
         \end{figure}    
 
         \begin{figure}[h!]
@@ -159,7 +159,7 @@
             \label{fig:ToT_histograms_all_fl}
         \end{figure} 
 
-        \red{perchè noise e th sono diverse per diversi flavor? Controlla cos' hanno di diverso.}
+
         \begin{table}
             \begin{center}
             \begin{tabular}{| c |  c | c | c |c |}
@@ -197,7 +197,7 @@
         For this pourpose a Fe55 radioactive source has been employed; the Fe55 is en extremely important radionuclide in the calibration of X-ray spectrometers, proportional counter and scintillator detector since it emits two two X-photons during the electron capture decay: the first one (K$_\alpha$) at \SI{5.9}{keV} and the second one (K$_\beta$) at \SI{6.5}{keV}.
         The K$_\alpha$ photon, which does photoelectric effect in the silicum, has an absorption length $\lambda$=\SIrange{7}{8}{\um}, and the probability of being assorbed in the \SI{25}{\um} thick epitaxyal layer is $\sim$0.95\.
         The electron emitted has an energy equal to the photon one, so recalling that the mean energy needed to produce a couple electron-vacuum is \SI{3.65}{eV}, the signal produced by the Fe55 source is expected to be \SI{1616}{e-}.
-        In figures \ref{fig:fit_r185} and \ref{fig:fit_r69} are shown two histograms of the ToT spectrum of the Fe55 source for two different pixels. The peak corresponds to the events with completely absorption of the charge produced in the depleted region, while the long tail on the left to all the events with partial absorption due to charge sharing among neighbors pixels. In order to reduce the charge sharing, the pixel dimension in TJ-Monopix2 has been reduced down to \red{check}. 
+        In figures \ref{fig:fit_r185} and \ref{fig:fit_r69} are shown two histograms of the ToT spectrum of the Fe55 source for two different pixels. The peak corresponds to the events with completely absorption of the charge produced in the depleted region, while the long tail on the left to all the events with partial absorption due to charge sharing among neighbors pixels. In order to reduce the charge sharing, the pixel dimension in TJ-Monopix2 has been reduced down to 30$\times$\SI{30}{\um\squared}. 
         The events on the right side of the peak, instead, corresponds to the K$_{\beta}$ photons. 
         Looking at the histograms for pixel (30, 185) and (30,69) a significant difference in the peak to tail ratio leaps out. 
         This difference in the efficiency of detecting the signal can be related with the position of the pixel in the matrix: in particular pixels in the upper part of the matrix (rows 112-224) have a more prominent peak, while in pixels in the lower part (rows 0-111) there is a higher partial absorption. 
@@ -230,6 +230,7 @@
         La struttura a bande della capacità ha origine nel plot... e quindi nella calibrazione. 
         Andando a vedere gli istogrammi di queste due variabili si vedono dei picchi. C'è qualche struttura nella matrice che condiziona il funzionamento delle righe?
         Larghezza della gaussiana: fai il discorso a cosa contribuisce ad un picco così largo. è compatibile con quanto ti aspetti?}
+        The voltage fluctuation around the peak is caused by the number fluctuation of generated carriers (Fano noise) and the noise introduced by the detector (sensor and front-end pre-amplifier).The ENC can be estimated from the standard deviation of the Kalpha voltage distribution. ENC = sqrt(sigma misurata- quella che ti aspetti dal fattore di Fano). E compatibile con quanto trovato? \red{se non fosse compatibile rimaneggia questa frase:tra noise is added from the system (test setup) at the analog monitoring pixel output.}
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.49\linewidth]{figures/charaterization/conversion_factor_map.pdf}
@@ -240,14 +241,21 @@
 
 
 
-    \subsection{PMOS flavor: changing the bias}\label{chap:characterization_section:bias}
-    In order to study the behavior of the sensor changing the bias, I perform some injection scans in different configurations. 
-    The thickness of the depletion has to be considered indeed an important parameters for the efficiency of the signal, and in particular it plays an important role if \red{bho, trova qualcosa da dire}.
+    \subsection{Changing the bias}\label{chap:characterization_section:bias}
+        In order to study the behavior of the sensor changing the bias, I perform some injection scans in different configurations. 
+        The thickness of the depletion has to be considered indeed an important parameters for the efficiency of the signal, and in particular it affects the charge released by a particle which cross the sensor (since the signal is proportional to the thickness of the epitaxial layer).
+        Given that the chip under examination has a gap in the low dose epi-layer (look at chapter \ref{chapter:TJMonopix1_thesensor}) we were not able to change independently the bias of the substrate (PSUB) and of the p-well (PWELL), but they must be kept at the same value, differently from other chips, where on which some test has been performed, as reported in figure \ref{fig:gain_vs_bias}.
+        A 2D map of the measured output voltage amplitude and resulting gain in the case of the PMOS and HV are reported. 
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.45\linewidth]{figures/Monopix1/PMOS_gain_bias.png}
+            \includegraphics[width=.49\linewidth]{figures/Monopix1/HV_gain_bias.png}            
+            \caption{2D map of the output voltage amplitude and gain with respect to the p-well and p-substrate in the case of the PMOS reset front-end (B)}
+            \label{fig:gain_vs_bias}
+        \end{figure}  
 
-    Given that the chip under examination has a gap in the low dose epi-layer (look at chapter \ref{chap:}) we were not able to change independently the bias of the substrate (PSUB) and of the p-well (PWELL), but they must be kept at the same value, differently from other chips, where thay can be changed as reported in figure \ref{fig:gain_vs_bias}.
     Turning down the bias, the depletion region narrows and the efficiency reduces in particular in the pixel corner; 
     \red{La soglia si alza di meno di 1/3, mi sarei aspettata un po' di più guardando il plot. Attenzione che il plot non è fatto con un ngap, quindi ci sta che il guadagno lì cali più bruscamente. poi non si capisce benissimo dalla colormap.  Anche la slope diminuisce di circa meno di un terzo. Il noise aumenta leggermente. Il picco del ferro invece si sposta a siniSTRA di un terzo. Lo spostamento è dovuto alla diminuzione del gain, che influisce sul ToT.}
-
     \begin{table}
             \begin{center}
             \begin{tabular}{| c |  c | c | c |}
@@ -265,19 +273,19 @@
             \label{tab:parameters_vs_bias}
             \end{center}
         \end{table}  
-
         
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.60\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
-            \caption{With the same acquisition time. }
+            \caption{Two acquisition with the Fe55 source at different bias. }
             \label{fig:Fe_spectrum_bias}
         \end{figure}            
-   
+        \red{ Potresti dire che a bias più bassi il picco si allarga perchè hai una C più grande e quindi più rumore. In order to look at the changing in the ... ho guardato alla posizione del picco, alla normalizzazione avendo quantificato con uana retta. Ho normalizzato tutto a quanto trovato nelle acquisizioni standard. Il fatto che il rate abbia dei piccoli bump in negativo è probabilente dovuto al fatto che non ho tenuto ferma la sorgente, ma l ho mossa da acquisizione ad acquisizione.}
+    
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.70\linewidth]{figures/charaterization/Fe_param_vs_bias.pdf}
-            \caption{\red{da rifare tenendo la sorgente ferma tra un'acquisizione e l'altra}}
+            \caption{}
             \label{fig:Fe_param_vs_bias}
         \end{figure}     
 
