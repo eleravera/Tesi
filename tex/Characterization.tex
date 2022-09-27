@@ -71,30 +71,49 @@
         Therefore I perform a fit of the counts detected using the function in equation \ref{eq:fit_scurve}. In figure \ref{fig:scurve} there is an example with IDB equal to \SI{40}{DAC} of fit for a pixel belonging to the flavor B, while in table \ref{tab:Flavor_PMOS_reser} and figure \ref{fig:threshold_noise_hist} there are the histograms and the maps of the parameters of the scurve-fit. As expected, the flavor PMOS reset gated (A), thanks to the transistor which change the baseline value, has a lower threshold and noise
         \begin{figure}[h!]
             \centering
-            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_histogram.png}
-            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_histogram.png}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_histogram.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/noise_histogram.pdf}\\
             \includegraphics[width=.49\linewidth]{figures/charaterization/threshold_map.pdf}
             \includegraphics[width=.49\linewidth]{figures/charaterization/noise_map.pdf}            
             \label{fig:threshold_noise_hist}
             \caption{Histograms of the threshold (a) and the noise (b) found fitting the s-curve of \red{all} flavor with IDB fixed at \SI{40}{DAC}. Below there are the maps of the threshold (a) and the noise (b), respectively, found fitting the s-curve with IDB fixed at \SI{40}{DAC} for the PMOS flavor (B). The white pixels have the injection circuit broken.}
         \end{figure}      
+        %\begin{table}
+        %        \begin{center}
+        %        \begin{tabular}{| c | c | c |}
+        %        \hline
+        %         & DAC units & electrons \\
+        %        \hline
+        %        \hline
+        %        Threshold        & 24.529 $\pm$ 0.049 & 511.0 $\pm$ 1.0 \\
+        %        Threshold dispersion & 1.848 $\pm$ 0.033 & 36.96$\pm$0.66\\
+        %        Noise            & 0.8222 $\pm$ 0.0043 & 16.444$\pm$0.086 \\
+        %        Noise dispersion & 0.0975 $\pm$ 0.0030 & 1.95$\pm$0.06\\
+        %        \hline
+        %        \end{tabular}
+        %        \caption{Flavor PMOS, IDB fixed at \SI{40}{DAC}}
+        %        \label{tab:Flavor_PMOS_reser}
+        %        \end{center}
+        %\end{table}        
+
         \begin{table}
-                \begin{center}
-                \begin{tabular}{| c | c | c |}
-                \hline
-                 & DAC units & electrons \\
-                \hline
-                \hline
-                Threshold        & 24.529 $\pm$ 0.049 & 511.0 $\pm$ 1.0 \\
-                Threshold dispersion & 1.848 $\pm$ 0.033 & 36.96$\pm$0.66\\
-                Noise            & 0.8222 $\pm$ 0.0043 & 16.444$\pm$0.086 \\
-                Noise dispersion & 0.0975 $\pm$ 0.0030 & 1.95$\pm$0.06\\
-                \hline
-                \end{tabular}
-                \caption{Flavor PMOS, IDB fixed at \SI{40}{DAC}}
-                \label{tab:Flavor_PMOS_reser}
-                \end{center}
-        \end{table}        
+            \begin{center}
+            \begin{tabular}{| c |  c | c | c |c |}
+            \hline
+            & PMOS A & PMOS B & PMOS C & HV \\
+            \hline
+            \hline
+            Threshold [\si{e-}] & &\\
+            Threshold dispersion [\si{e-}] &  &\\
+            Noise [\si{e-}] &  &\\
+            Noise dispersion [\si{e-}] & &\\
+            \hline
+            \end{tabular}
+            \caption{Mean threshold and noise parameters for \red{all} flavor and their dispersion on the matrix. }
+            \label{tab:calibration_param}
+            \end{center}
+        \end{table}       
+
     
         %Furthermore the two portion of the chip, with FDPW and with RDPW, have been analyzed separately, because a small difference in the sensor input capacitance was expected: in fact, the deep p-well removal in the RDPW causes a small reduction of the depletion region around the collection electrode, which results in an increase of the sensor capacitance C.
         %\red{Then  , the charge to voltage conversion gain at the front-end input (Q /C ) is lower and as a result, for the same input charge a lower voltage amplitude is induced at the front-end input. }
@@ -150,33 +169,15 @@
 
         \begin{figure}[h!]
             \centering
-            \includegraphics[width=.49\linewidth]{figures/charaterization/slope_histogram.png}
-            \includegraphics[width=.49\linewidth]{figures/charaterization/intercept_histogram.png}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/slope_histogram.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/intercept_histogram.pdf}\\
             \includegraphics[width=.49\linewidth]{figures/charaterization/slope_map.pdf}
             \includegraphics[width=.49\linewidth]{figures/charaterization/offset_map.pdf}
             \caption{Histograms of the calibration parameters, slope (a) and offset (b), found fitting the ToT with a line, for \red{all} flavor and with IDB fixed at \SI{40}{DAC}. Maps of the calibration parameters, slope (a) and offset (b), found fitting the ToT with a line, with IDB fixed at \SI{40}{DAC}}
             \label{fig:ToT_histograms_all_fl}
         \end{figure} 
 
-
-        \begin{table}
-            \begin{center}
-            \begin{tabular}{| c |  c | c | c |c |}
-            \hline
-            & PMOS 0 & PMOS 1 & PMOS 2 & HV \\
-            \hline
-            \hline
-            Slope [au/DAC] & 0 .75566 $\pm$ 0.00149 & 0.57145 $\pm$ 0.00025 \\
-            Slope dispersion [au/DAC] & 0.03841 $\pm$ 0.00037 & 0.01685 $\pm$ 0.00016\\
-            Intercept [au] & -11.6070 $\pm$ 0.0089 & -10.824 $\pm$ 0.019 \\
-            Intercept dispersion [au] & 1.5176 $\pm$ 0.0063 & 1.225 $\pm$ 0.013\\
-            \hline
-            \end{tabular}
-            \caption{Mean calibration parameters for \red{all} flavor and their dispersion on the matrix. }
-            \label{tab:calibration_param}
-            \end{center}
-        \end{table}        
-
+    
     \subsection{Calibration of the ToT}
         \begin{figure}[h!]
             \centering

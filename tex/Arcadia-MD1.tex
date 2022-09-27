@@ -4,46 +4,37 @@
 Breve introduzione analoga a Monopix1 in cui descrivo brevemente la "timeline" da SEED Matisse a Md1 e Md2
 
 Tutti i minid, siano essi v1 o v2, sono Alpide like.
-Le differenze tra Alpide e bulk driven sono un po' più complesse di quanto
-hai scritto.
-Si tratta proprio di due architetture diverse.
-Il primo amplifica il segnale attraverso il trasferimento di carica tra
-due capacità.
-Se sei interessata ai dettagli, è spiegato molto bene in questo articolo:
-"Front end optimization for the monolithic active pixel sensor of the
-ALICE Inner Tracking System upgrade"
-Nel bulk driven invece il guadagno è dato dal rapporto tra due
-transconduttanze. Anche qui, se desideri approfondire te lo posso
-spiegare, ma preferibilmente a voce in una stanza zoom :)
-Inoltre ci sono altre differenze, il bulk driven è più sensibile alle
-cadute di tensione sul ground (che ahimè è esattamente ciò che accade nei
-dimostratori che abbiamo ora, a causa dell'anomalo consumo di corrente dal
-digitale, altro baco che abbiamo corretto nella terza sottomissione).
-Il bulk driven però permette di impostare una tensione al diodo di 1V,
-contro gli 800 mV dell'Alpide, cosa che non saprei ripeterti perché, ma
-Lucio dovrebbe dirci che è un pregio.
-Anche i livelli di tensione nei nodi interni dei due front-end
-differiscono e il meccanismo di clipping che funzionava per l'Alpide non è
-applicabile al bulk driven. Di conseguenza abbiamo un bias in più (ICLIP)
-nel secondo flavour per controllare il clipping.
-Nell'Alpide il clipping c'è, ma l'architettura usata permette di non aver
-bisogno di un bias esterno, anche se in una versione di Alpide di ALICE
-hanno scelto di controllare comunque la corrente di clip esternamente, per
-una maggiore flessibilità.
-Infine alcuni bias che hanno lo stesso nome nei due flavour, perché
-svolgono la stessa funzione, differiscono nel valore di configurazione di
-default.
+Prima SEED si occupa di studiare le prestazioni: oncept study with small-scale test structure (SEED),
+dopo arcadia: technology demonstration with large area sensors
+Small scale demo SEED(sensor with embedded electronic developement)
+Quanto spazio dato all'elettronica sopra il pwell e quanto al diodo. ..
 
-Tra i wafer fabbricati finora ci sono 3 valori di spessore attivo nominale (lo spessore effettivo può variare 
-di qualche micron ripetto a quello nominale):  48um, 100um e 200um. In allegato un'immagine
-con le cross section.
-
+\begin{table}
+    \begin{center}
+    \begin{tabular}{| c |c |}
+    \hline
+    Parameter & Value\\
+    \hline
+    \hline
+    Matrix size &  $\times$ \si{cm\squared}\\
+    Pixel size & 25$\times$25 \si{\um\squared}\\
+    Depth &  \red{?}\si{\um}\\
+    Electrode size & 9$\times$9\si{\um\squared}\\
+    Power consumption & $\sim$  \si{mW/cm\squared}\\    
+    \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:ARCADIA_MD1}
+    \end{center}
+\end{table}
 
 \section{The sensor}
-    ARCADIA-MD1 is an LFoundry chip which implements the technology 110 nm CMOSS node
-    with six metal layer \ref{articolo fully depl}.
-    The standard p-type substrate was replaced with an n-type floating zone material,
-    that is a tecnique to produce purified silicon crystal. (pag 299 K.W.).\\
+    ARCADIA-MD1 is an LFoundry chip which implements the technology 110 nm CMOSS node with six metal layer \ref{articolo fully depl}.
+    The standard p-type substrate was replaced with an n-type floating zone material, that is a tecnique to produce purified silicon crystal. (pag 299 K.W.).
+
+    Tra i wafer fabbricati finora ci sono 3 valori di spessore attivo nominale (lo spessore effettivo può variare 
+    di qualche micron ripetto a quello nominale):  48um, 100um e 200um. In allegato un'immagine
+    con le cross section.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.8\linewidth]{figures/ARCADIA/ARCADIA_substrate.png}
@@ -51,37 +42,48 @@ con le cross section.
         \label{fig:ARCADIA_substrate}
     \end{figure}
 
-    Wafer thinning and backside litography were necessary to introduce a junction
-    at the bottom surface, used to bias the substrate to full depletion while
-    maintaining a low voltage at the front side.  \\
-    C'è un deep pwell per - priority chainseparare l'elettronica dal sensore; per controllare il punchthought
+    Wafer thinning and backside litography were necessary to introduce a junction at the bottom surface, used to bias the substrate to full depletion while maintaining a low voltage at the front side.  \\
+    C'è un deep pwell per - priority chain separare l'elettronica dal sensore; per controllare il punchthought
     è stato aggiunto un n doped epitaxial layer having a resistivity lower than the substrate.
-
-
-
     It is part of the cathegory of DMAPS
     Small electrode to enhance the signal to noise ratio.
-
     It is operated in full depletion with fast charge collection by drift.
 
-    Prima SEED si occupa di studiare le prestazioni: oncept study with small-scale test structure (SEED),
-    dopo arcadia: technology demonstration with large area sensors
-    Small scale demo SEED(sensor with embedded electronic developement)
-    Quanto spazio dato all'elettronica sopra il pwell e quanto al diodo. ..
+    \subsection{Two different FE flavor}
+
+        Le differenze tra Alpide e bulk driven sono un po' più complesse di quanto
+        hai scritto.
+        Si tratta proprio di due architetture diverse.
+        Il primo amplifica il segnale attraverso il trasferimento di carica tra
+        due capacità.
+        Nel bulk driven invece il guadagno è dato dal rapporto tra due
+        transconduttanze. Inoltre ci sono altre differenze, il bulk driven è più sensibile alle cadute di tensione sul ground (che ahimè è esattamente ciò che accade nei dimostratori che abbiamo ora, a causa dell'anomalo consumo di corrente dal digitale, altro baco che abbiamo corretto nella terza sottomissione).
+        Anche i livelli di tensione nei nodi interni dei due front-end differiscono e il meccanismo di clipping che funzionava per l'Alpide non è applicabile al bulk driven. Di conseguenza abbiamo un bias in più (ICLIP) nel secondo flavour per controllare il clipping. Nell'Alpide il clipping c'è, ma l'architettura usata permette di non aver bisogno di un bias esterno, anche se in una versione di Alpide di ALICE hanno scelto di controllare comunque la corrente di clip esternamente, per una maggiore flessibilità. Infine alcuni bias che hanno lo stesso nome nei due flavour, perché svolgono la stessa funzione, differiscono nel valore di configurazione didefault.
+        
+
+        
+
 
 \section{Readout logic and data structure}
+    In order to achieve the lowest possible power consumption, the matrix is clockless, no free-running clock, and to save as much area as possible, it will not buffer any hits, and its readout will thus be triggerless.
+
+    The Periphery has both an analog part, segmented per Section, and a digital part, which is instead shared. The analog part hosts the bias cells for the AFE dei pixel, mentre la parte digitale che è unica per tutti riprocessa le hit che vengono dalle sezioni e 8b10b encode le parole per data transmittion.  
+    %Sections with own 320MHz DDR Output link. The sections will have to have their own output link, in order to ease future up-scaling.-> lo dicono come requirement
+    
+    
     \subsection{Matrix division and data-packets}
         The matrix is divided into an internal physical and logical hierarchy:
-        The 512 columns are divided in 16 section: each section has different voltage-bias + serializzatori.
-        Each section is devided in cores () in modo che in ogni doppia colonna ci siano 1Pacchetto dei dati
-        6 cores. ricordati dei serializzaatori: sono 16 ma possono essere ridotti ad uno in modalità spazio
+        The 512 columns are divided in 16 section: 512$\times$32 pixels, each section has different voltage-bias + serializzatori.
+        Each section is devided 512$\times$2 column, and in 32$\times$2 core: in modo che in ogni doppia colonna ci siano 1Pacchetto dei dati  6 cores. ricordati dei serializzaatori: sono 16 ma possono essere ridotti ad uno in modalità spazio
+        Ed infine regioni da 4$\times$2
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.95\linewidth]{figures/ARCADIA/hierarchy.pdf}
             \caption{}
             \label{fig:hierarchy}
         \end{figure}
-
+        The readout design must be capable of addressing the following matters Enough bus bandwidth for a hit rate of 100 MHz/cm2. Design decisions: Try and send as much data as possible to the periphery (bandwidth)
+        Lowest amount of logic possible (more routability)
         
         \begin{figure}[h!]
             \centering
