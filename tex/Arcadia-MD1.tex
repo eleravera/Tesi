@@ -3,6 +3,42 @@
 
 Breve introduzione analoga a Monopix1 in cui descrivo brevemente la "timeline" da SEED Matisse a Md1 e Md2
 
+Tutti i minid, siano essi v1 o v2, sono Alpide like.
+Le differenze tra Alpide e bulk driven sono un po' più complesse di quanto
+hai scritto.
+Si tratta proprio di due architetture diverse.
+Il primo amplifica il segnale attraverso il trasferimento di carica tra
+due capacità.
+Se sei interessata ai dettagli, è spiegato molto bene in questo articolo:
+"Front end optimization for the monolithic active pixel sensor of the
+ALICE Inner Tracking System upgrade"
+Nel bulk driven invece il guadagno è dato dal rapporto tra due
+transconduttanze. Anche qui, se desideri approfondire te lo posso
+spiegare, ma preferibilmente a voce in una stanza zoom :)
+Inoltre ci sono altre differenze, il bulk driven è più sensibile alle
+cadute di tensione sul ground (che ahimè è esattamente ciò che accade nei
+dimostratori che abbiamo ora, a causa dell'anomalo consumo di corrente dal
+digitale, altro baco che abbiamo corretto nella terza sottomissione).
+Il bulk driven però permette di impostare una tensione al diodo di 1V,
+contro gli 800 mV dell'Alpide, cosa che non saprei ripeterti perché, ma
+Lucio dovrebbe dirci che è un pregio.
+Anche i livelli di tensione nei nodi interni dei due front-end
+differiscono e il meccanismo di clipping che funzionava per l'Alpide non è
+applicabile al bulk driven. Di conseguenza abbiamo un bias in più (ICLIP)
+nel secondo flavour per controllare il clipping.
+Nell'Alpide il clipping c'è, ma l'architettura usata permette di non aver
+bisogno di un bias esterno, anche se in una versione di Alpide di ALICE
+hanno scelto di controllare comunque la corrente di clip esternamente, per
+una maggiore flessibilità.
+Infine alcuni bias che hanno lo stesso nome nei due flavour, perché
+svolgono la stessa funzione, differiscono nel valore di configurazione di
+default.
+
+Tra i wafer fabbricati finora ci sono 3 valori di spessore attivo nominale (lo spessore effettivo può variare 
+di qualche micron ripetto a quello nominale):  48um, 100um e 200um. In allegato un'immagine
+con le cross section.
+
+
 \section{The sensor}
     ARCADIA-MD1 is an LFoundry chip which implements the technology 110 nm CMOSS node
     with six metal layer \ref{articolo fully depl}.

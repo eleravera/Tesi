@@ -1,11 +1,7 @@
 %    \red{Measurement of the magnitude of the collected charge has also been generally available for pixel detectors, and has been used to improve the 3D space point precision through interpolation as well as for particle identification through specific ionization measurement.
 \red{\begin{itemize}
     \item rifai il conto della lunghezza di attenuazione. Ho trovato (presentazione Luciano Mus) 29 um per ka e 37 um per kb. 
-    \item Con il PMOS la configurazione del FE di default è: e richiama i significati delle variabili.
-    \item soglia dell'automasking a 10 Hz. % very low noise hit rate of about 4  10alla8 /25ns per pixel has been
-    %achieved by intentionally masking only 34 pixels of the whole flavor. Due to the projection masking
-    %scheme, 156 additional "ghost" pixels are also masked. Nevertheless, the number of masked pixels
-    %(190) is smaller than 1\% of the total 25088 pixels of the PMOS reset sector.
+    \item Con il PMOS la configurazione del FE di default è: e richiama i significati delle variabili. 
     \item parla dell HV
 \end{itemize}}
 
@@ -13,13 +9,7 @@
     \subsection{Threshold and noise: figure of merit for pixel detectors}
         %python3 -i calibration/scurve_tot_histo.py -f calibration/calibration_data/20220506 -i 1 100 questo script crea i file di output contenenti i gli istogrammi del tot e della s curve
         %python3 -i calibration/tot_charge_plotting.py -f calibration/calibration_data/20220506 per fare il plot della s curve e relativi residui 
-        %python3 -i calibration/tot_histo2d.py -f calibration/calibration_data/PMOS/20220506 per fare l'istogramma 2d del tot
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.6\linewidth]{figures/charaterization/scurve.pdf}
-            \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor 1) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been done assuming a conversion factor of \SI{20}{e-/DAC}. }
-            \label{fig:scurve}
-        \end{figure}              
+        %python3 -i calibration/tot_histo2d.py -f calibration/calibration_data/PMOS/20220506 per fare l'istogramma 2d del tot           
         A characterization of threshold and noise is typically necessary since these values have an impact on the operating conditions and on the performance of the chips, so much that the signal to threshold ratio may be considered as the figure of merit for pixel detectors rather than the signal to noise ratio.
         The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. According with this, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
  
@@ -27,6 +17,7 @@
         Thus, the noise sets a lower bound to the threshold: if an occupancy $\leqslant$ $10^{-4}$ is required, for example, this correspond to the Gaussian 1-sided tail fraction for \SI{3.7}{\sigma}.
         In this case, if the noise is \SI{100}{e-} (resonable), the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{e-}.
         Typically this argument sets only a minimal bound to the threshold since the variation with time and from pixel to pixel have to be taken into account: the temperature, the anealing (for example, the radiation damages in the oxide layer causes shift of MOSFET threshold voltage) and the process parameters variation across the wafer (as for example process mismatch between transistors). 
+
         
         Given that the first stage of amplification is the most crucial, since in the following stages the signal amplitude is high compared to additional noise, the noise is valued at the preamplifier input node.
         Then, the noise is parameterized as Equivalent Noise Charge (ENC), which is defined as the ratio between the noise N at the output expressed in Volt and the out voltage signal S produced by \SI{1}{e-} entering in the preamplifier:
@@ -50,7 +41,8 @@
         \begin{equation}
             \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
         \end{equation}    
-        where $\sigma_{thr}$ is the RMS of the threshold spread before tuning.
+        where $\sigma_{thr}$ 
+        is the RMS of the threshold spread before tuning.
 
         To measure the threshold and noise of pixels a possible way is to make a scan with different known injected charge: the threshold corresponds to the value where the efficiency of the signal exceeds the 50\%, and the ENC is determined from the width of this edge.        
         Following this path, I have used the injection circuit available on the chip to inject 100 pulses for each input charge for a fixed threshold.
@@ -60,12 +52,18 @@
         Besides the charge, also the duration and the period of the injection pulse can be set; it is important to make the duration short enough to have the falling edge during thed dead time of the pixel (in particular during the FREEZE signal) in order to avoid the undershoot, coming at high input charge, triggering the readout and reading spurious hits. 
         Since the injection circuit is coupled in AC to the FE, if the falling edge of the pulse is sharp enought to produce ad undershoot, this can be seen as a signal. 
 
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.6\linewidth]{figures/charaterization/scurve.pdf}
+            \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor 1) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been done assuming a conversion factor of \SI{20}{e-/DAC}. }
+            \label{fig:scurve}
+        \end{figure}   
         Assuming a gaussian noise, the efficiency of detecting the signal can be described through a modification of the error function:
         \begin{equation}
             f(x, \mu, \sigma) = \frac{1}{2} \; \left(1\,+\,erf\left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right)
             \label{eq:fit_scurve}
         \end{equation}
-        with: 
+        \red{with:} 
         %\begin{equation} 
         %    erf(z) = \[ \int_{0}^{z} \frac{2}{\sqrt{\pi}} e^{-x^2} dx  \]
         %\end{equation} 
@@ -102,10 +100,10 @@
         %\red{Then  , the charge to voltage conversion gain at the front-end input (Q /C ) is lower and as a result, for the same input charge a lower voltage amplitude is induced at the front-end input. }
     
     
-        Small threshold variations has been observed in the first biasing section (columns from 0 to 14) with IDB=\SI{40}{DAC}; the same structure appears more evident both at other IDBs and in the slope and offset distribution at IDB=\SI{40}{DAC} I will talk about in the next section.  
-        \red{metti un plot con IDB 90/100 DAC}
-        The systematic threshold variation across the biasing group can be due, for example, to the transistor mismatch of the biasing DAC register IDB or to the value of the baseline (setted by ICASN).
-        A solution, implemented in TJ-Monopix2, has been to include more columns in each biasing group increasing the effective transistor area.\\
+        Small threshold variations has been observed in the first biasing section (columns from 0 to 14) with IDB=\SI{40}{DAC}; the same structure appears more evident at other different IDBs,as for example \SI{100}{DAC}
+        \red{Plot of the average threshold per column al variare di IDB.} 
+        The systematic threshold variation across the biasing group has not a known motivation, but one could certainly be the transistor mismatch of the biasing DAC registers IDB and ICASN, which both adjust the effective threshold (I recall that ICASN regulate the baseline, and in this measurements it was set to the minimin possible value).
+
         %GUARDA A PAGINA 127 DELLA TESI PER GLI ULTIMI DUE FLAVOR
 
         To verified the trend of the threshold as a function of the front end parameter IDB and find its dynamic range, I have permormed different scans changing the IDB: I have injected the whole matrix and found the means and the standard deviation of the distributions. The results are shown in figure \ref{fig:threshold_vs_IDB}: the blue points are the mean threhsold found whithin the matrix, while in green is shown the width of the threshold distribution, aka the threshold dispersion. 
@@ -117,6 +115,7 @@
             \label{fig:threshold_vs_IDB}
         \end{figure}            
 
+        Then, to evaluete the operation and the occupancy of the chip at different threshold I have made long acquisitions of noise at different IDB and check how the number of pixel masked changes with the threshold. The masking algorithm I have used search for pixels with rate $>$\SI{10}{Hz} and mask them. With such algorithm, in our standard condition, IDB=\SI{40}{DAC}, a very low noise hit rate is intentionally achieved masking only \red{dozen of pixels?} of the whole flavor, and other \red{quanti} are unintentionally masked. 
 
     \subsection{Linearity of the ToT}    
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ per fare il fit    
@@ -240,7 +239,6 @@
         \end{figure}         
 
 
-
     \subsection{Changing the bias}\label{chap:characterization_section:bias}
         In order to study the behavior of the sensor changing the bias, I perform some injection scans in different configurations. 
         The thickness of the depletion has to be considered indeed an important parameters for the efficiency of the signal, and in particular it affects the charge released by a particle which cross the sensor (since the signal is proportional to the thickness of the epitaxial layer).
@@ -254,8 +252,13 @@
             \label{fig:gain_vs_bias}
         \end{figure}  
 
-    Turning down the bias, the depletion region narrows and the efficiency reduces in particular in the pixel corner; 
-    \red{La soglia si alza di meno di 1/3, mi sarei aspettata un po' di più guardando il plot. Attenzione che il plot non è fatto con un ngap, quindi ci sta che il guadagno lì cali più bruscamente. poi non si capisce benissimo dalla colormap.  Anche la slope diminuisce di circa meno di un terzo. Il noise aumenta leggermente. Il picco del ferro invece si sposta a siniSTRA di un terzo. Lo spostamento è dovuto alla diminuzione del gain, che influisce sul ToT.}
+        In order to test the behavior of the chip when not completely depleted, I have performed an injection scan with PSUB/PWELL bias at \SI{0}{V}, -\SI{3}{V} and -\SI{6}{V}, and some acquisitions with the Fe55 source.
+        The results of the measurements are reported in table \ref{tab:parameters_vs_bias} and in figure \ref{fig:Fe_spectrum_bias}.
+        Turning down the bias, the depletion region narrows and the efficiency reduces, in particular in the pixel corner; in particular the threshold increases of $\sim$1/4, the noise of $\sim$1/3 and the slope, which parameterizes the linearity of the analog output and strictly depends on the gain, decreases of $\sim$1/4.
+        In figure \ref{fig:Fe_param_vs_bias}(b) are reported the values of the K$_\alpha$ peak position, the normalization of the events above the peak and the rate, everything has been normalized to the value at the reference condition, which is with PSUB/PWELL at -\SI{6}{V}. 
+        In order to evaluete the peak position and the normalization I have fit the spectrum in the region on the right with a gaussian.
+        Looking at the spectrum, an other characteristics seems to appear: at lower bias the peak width is bigger than in a full depletion mode.
+        This could be due at a bigger capacity, which influence the noise.         
     \begin{table}
             \begin{center}
             \begin{tabular}{| c |  c | c | c |}
@@ -269,7 +272,7 @@
             Offset [au] & -10.8 $\pm$ 1.9 & -11.2 $\pm$ 1.8 & -11.1 $\pm$ 1.5 \\
             \hline
             \end{tabular}
-            \caption{The errors are the standard deviations of the corresponding distributions.}
+            \caption{The errors are the standard deviations of the corresponding distributions. The conversion factor from DAC to electrons is $\sim$\SI{20}{e-/DAC}.}
             \label{tab:parameters_vs_bias}
             \end{center}
         \end{table}  
@@ -277,15 +280,8 @@
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.60\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
-            \caption{Two acquisition with the Fe55 source at different bias. }
-            \label{fig:Fe_spectrum_bias}
-        \end{figure}            
-        \red{ Potresti dire che a bias più bassi il picco si allarga perchè hai una C più grande e quindi più rumore. In order to look at the changing in the ... ho guardato alla posizione del picco, alla normalizzazione avendo quantificato con uana retta. Ho normalizzato tutto a quanto trovato nelle acquisizioni standard. Il fatto che il rate abbia dei piccoli bump in negativo è probabilente dovuto al fatto che non ho tenuto ferma la sorgente, ma l ho mossa da acquisizione ad acquisizione.}
-    
-        \begin{figure}[h!]
-            \centering
             \includegraphics[width=.70\linewidth]{figures/charaterization/Fe_param_vs_bias.pdf}
-            \caption{}
+            \caption{Two acquisition with the Fe55 source at different bias. }
             \label{fig:Fe_param_vs_bias}
         \end{figure}     
 
@@ -294,30 +290,73 @@
         %python3 -i acquisition_Fe55/find_cluster.py -d acquisition_Fe55/source_PMOSS/noise_acquisitions_6V -> per cluster dimension e spettro del noise
         %python3 -i acquisition_Fe55/hit_map.py -f acquisition_Fe55/source_PMOSS/2022-04-07/2022-04-07_10-10-01_acq.h5 -> per le hit map, comprese qualche hitmap dei cluster
         %python3 -i acquisition_Fe55/Sr90_spectrum.py -d acquisition_Fe55/source_PMOSS/noise_acquisitions_6V/ -> per fare i plot dello stronzio
-        Signal response characterization using radioactive sources and cosmic rays have been made. 
-        The Sr90 source emits electrons that: lo spettro ha un cutoff a che E?  
+        In order to completely validate the operation of the whole sensor\footnote{As I will explained in chapter \ref{chap:} these measurements are foundamental also to be compared with the spectrum seen at the testbeam}, I have made some acquisitions with radioactive source, in particular I have used Fe55, Sr90, which is a $\beta^-$ emettitor with electron endpoint at \SI{0.546}{MeV}, and cosmic rays, which are supposed to be mostly MIP. 
+        In the acquisitions with Sr90 and cosmic rays, I specifically focused on the events whith charge sharing and with more hits than one per events, that are clusters.
 
-        \red{conto/plot sulla differenza elettrone sr e mip}.
-        The signal generated by electrons is similar to the one generated by minimum ionizing particle (MIPS).
-        The spectrum is expected to follow a Langau-Gauss distribution
+        The definition of cluster I chose is built only on the time of arrival of hit, in particular I established that all particles with the same timestamp belong to the same cluster.
+        This obviously is a coarse requirement but it gave me the opportunity of using a simple and fast clustering algorithm, which is fine when the random coincidence probability is neglibile. 
+        Defining R$_1$ and R$_2$ as the two events rate, and $\tau$ as the dead time of the detector, the random coincidence rate can be found: 
+        \begin{equation}
+            R_{coinc} = R_1 \, \times\, R_2 \, \times \, \tau
+        \end{equation}
+        As I am going to prove in the next section, the dead time strictly depends on the occupancy of the matrix, even through we can assume a dead time of $\sim$\SI{1}{\um}, which corresponds to the mean dead time per pixel. However, if in an event a particle hit two different pixels producing a cluster, the total dead time simply doubles.   
+        Then, assuming a rate of noise of $\sim$\si{Hz} on the whole matrix and being the mean rate of the , the random coincidence of two hits coming from Fe-noise, Sr-noise, CR-noise and noise-noise are respectively 
+        
+        In figure \ref{fig:cluster_dimensions} I report the histograms of the number of pixels in the cluster and of the dimension of clusters, defined in terms of the max and min coordinates on the matrix as:
+        \begin{equation}
+            d = \sqrt{(y_{max}-y_{min})^2 + (x_{max}-x_{min})^2}
+        \end{equation}
+        \red{quello che si nota è che lo Sr  fa cluster più grandi mediamente, che arrivano anche a 22 hit.}
+
+        Below I have also attached a sample of hitmap of events produced by the three different sources. 
+
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/7a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/8a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/9c.png}\\       
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/10a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/11a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/12.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/12b.png}               
+            \caption{ }
+            \label{fig:hit_map_cosmic_rays}
+        \end{figure} 
+
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/9b.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/10b.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/13a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/16a.png}\\
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/18b.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/21a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/22a.png}
+            \includegraphics[width=.24\linewidth]{figures/charaterization/evts/Sr90/25a.png}               
+            \caption{ }
+            \label{fig:hit_map_Sr90}
+        \end{figure}         
 
         \begin{itemize}
-            \item sommato i cluster Spiega la tua definizione di cluster.
-            \item plot dello spettro del ferro convertendo in elettroni per il PMOS flavor e facendo la somma dei cluster. 
-            \item di che la tua definizione di cluster è ok perchè sono quasi tutti vicini: plot con la distanza e qualche stima delle coincidenze casuali.
-            \item mappa di qualche evento di cluster sia per Sr che per FE
-            \item istogrammi in carica, con carica sommata di Sr e Fe, oer il flavor PMOS dove hai fatto la calibrazione o per tutti?
+            \item PLOT delle hit per cluster
+            \item  esempio di hitmap di cluster
+            \item sostituisci in carica in un file del ferro, guarda somma dei cluster, stessa cosa per Sr e MIP
+            \item  Spiega che con il flavor HV abbiamo una perdita di sengnale, fai vedere uno spettro di delle misure dell 8 marzo. 
         \end{itemize}
+        The signal generated by electrons is similar to the one generated by minimum ionizing particle (MIPS) \red{dovrei mettere qualche conto per giustificare questa affermazione}, and the spectrum is expected to follow a Langau-Gauss distribution.
+        \red{nelle acquisizioni dei CR ho selezionato solo i cluster, per tagliare via il rumore.}
+        
+        , looking at the cluster dimension and the cluster charge.  
 
-        Spiega che con il flavor HV abbiamo una perdita di sengnale, fai vedere uno spettro di delle misure dell 8 marzo. 
 
-       
-   
-         
     \subsection{Dead time measurements}
-        The hit loss is due to analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead, which is the more relevant contribution with high rate, while the information of the previous hit has not yet been transferred to the periphery.  
-        As only one hit at a time can be stored on the pixel's RAM, until the data have completed the path to get out, the pixel is paralyzed and the dead time $\tau$ almost corresponds with the time needed to trasmit the data-packets off-chip.
-        Since the exportation of data from pixel to the EoC occurs via a 21-bits data bus, only one clock cycle is need to transfer the data to the end of column and the dead time bottleneck is given by the bandwidth of the serializer at the EoC. In our setup the serializer operates at 40 MHz, thus to transmit a data packet (27-bit considering the addition at the EoC) at least \SI{675}{ns} are needed. 
+        The hit loss is due to analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead when the hit arrives while the information of the previous hit has not yet been transferred to the periphery.  
+        Since the pre-amplifier response has a characteristic time $\sim$ToT, the dead time $\tau_{a}$ introduced by it will be at most \SI{1.6}{\us}; \red{IRESET, puoi diminuire il tempo di scarica.}   
+        Regarding the latter contribution instead, since only one hit at a time can be stored on the pixel's RAM, until the data have completed the path to get out, the pixel is paralyzed. Moreover since there is no storage memory included on TJ-Monopix1 prototypes, the digital dead time $\tau_{d}$ almost corresponds to the time needed to trasmit the data-packets off-chip. 
+
+        The exportation of data from pixel to the EoC occurs via a 21-bits data bus, therefore only one clock cycle is needed and the dead time bottleneck is rather given by the bandwidth of the serializer which trasmits data off-chip from the EoC. In our setup the serializer operates at 40 MHz, thus to transmit a data packet (27-bit considering the addition of 6 bits to identify the double-column at the EoC) at least \SI{675}{ns} are needed. 
         For what we have said so far, the R/O is completely sequential and therefore is expected a linear dependence of the reading time on the number of pixels to read:
         \begin{equation}
             \tau =\, 25\: \unit{ns}\, \times\, (\alpha\, N +\, \beta)
@@ -325,9 +364,7 @@
         \end{equation}
         where $\alpha$ and $\beta$ are parameters dependent on the readout chain setting. 
         
-        To measure and test the linearity of the reading time with the number of pixels firing, I have used the injection mode available on the chip. 
-        Indeed, the injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the period and the width.
-        I have injected a fix number of pulses (100) and looked for the rate when the efficiency decreases. 
+        To test the linearity of the reading time with the number of pixels firing and to measure it, I have used the injection circuit\footnote{The injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the period and the width} which allows me achieving very high rate: I made a scan injecting a fix number of pulses (100) and looked for the decrease in the efficency. 
         Moreover to test that there is no dependece of the digital readout time from the charge of the pulse, I have try to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
 
         \red{Al posto degli esempi con 5 e 10 pixels metterei un esempio dell'efficienza vs il periodo quando leggo un singolo pixel. Una cosa che volevo fare era anche provare a fittare la slope con cui l'efficienza scende: se la slope è uguale per tutti il readout diventa completamente predittivo. }
@@ -385,7 +422,75 @@
         \end{figure}        
 
         \red{Ci sarebbe da spiegare perchè i parametri che usiamo noi come default non sono quelli che minimizzano il tempo di lettura. La spiegazione è che "Abbiamo copiato i valori dal repositorio di quelli di Bonn". Un'altra domanda potrebbe essere: come mai non ho esplorato una zona più vasta per i parametri del R/O. Cambiando molto i parametri del R/O la lettura non funzionava per niente: ad esempio CONF\_STOP\_FREEZE non può essere impostato nè sopra 105 nè sotto 95}
-
-
+       \red{which is the more relevant contribution at high rate,}
 
 \section{ARCADIA-MD1 characterization}
+    Unfortunatly we have found out that the first chip we received was not completely functional, then we have been able to make on it only a few electrical and software test releted with the comunication of the chip with the DAQ, passing through the FPGA and the breackout board (BB) and verifying their operation.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.9\linewidth]{figures/charaterization/ARCADIA/pixel_per_row_per_acq_11_60.png}
+        \caption{Nise in the front end circuit depending on the bias road across the matrix was recorded. }
+        \label{fig:ARCADIA_threshold}
+    \end{figure}  
+    The problem came out at when the chip was biased, in particular the sensor requires too much power and a too high current draw sets when the HV voltage is lowered down \SI{0}{V}. We have discussed the problem with the designers of the chip which helped us indentifying the motivation of the break: the chip we have got has been glued using too much conductive tape and hence have a short-circuit between the sides and the back. 
+    Unfortunately, since the sensor and the FE requires at least -\SI{10}{V} to work, no measurement was possible except the acquisition of the noise in the FE circuit. 
+
+
+    %   Non ero entrata in dettaglio a proposito del baco perché non mi sembrava rilevante, ma non ho nessun problema a farlo ora. Durante la seconda sottomissione ci siamo accorti che il segnale che abilita i drivers LVDS delle sezioni aveva polarità sbagliata. I drivers LVDS sono quei circuiti che pilotano i dati verso il mondo esterno e avere un enable di polarità errata significa che i drivers risultano sempre spenti durante l'acquisizione. Quindi in pratica il chip funziona, ma non è in grado di trasmettere nulla all'esterno. Il segnale di enable viene controllato internamente al chip dalla logica di periferia e non è direttamente accessibile da fuori. Fortunatamente le linee di metallo che pilotano il suddetto segnale sono in una regione del chip poco densa, cioè senza altro metallo sopra e attorno. E' stato quindi possibile intervenire con un fascio di ioni focalizzato per andare a scavare nelle regioni di interesse fino ad accedere ai segnali di enable. Abbiamo quindi tagliato la connessione interna e cortocircuitato l'enable  al valore di tensione corretto.  Nel minid 2 questa correzione è stata fatta sul chip ed è l'unica modifica rispetto alla prima sottomissione.
+
+
+    % Threshold (electrons):
+    %   VCASN  |   e-
+    %----------------
+    %      0    | fe off
+    %      1    |  835
+    %      4    |  625
+    %      7    |  475
+    %      10   |  400
+    %      16   |  360
+    %      25   |  290
+    %      31   |  220
+    %      37   |  145
+    %      ...
+    %      63   |  min
+
+    We received then another chip, a minid2, that a "mini demonstrator" from the second submission. The two chips have the same charateristics but the minid2 is smaller than the MD1, in particular it only have 32$\times$512 pixels, instead of 512$\times$512.  
+    An exhaustive characterization and testing of the new chip have been going on in the clean room on the INFN, and I am going to show only some preliminary results.
+
+    Up to now we used the injection circuit in order to make a threshold scan on a few pixels: differently from the TJ-Monopix1's charaterization where we performed a scan changing the injection charge of the pulse, with the minid2 we have changed the threshold (the register which sets the threshold is VCASN) keeping the charge of the pulse fixed.
+    For each threshold we inject 100 pulses of amplitude \SI{1}{\us}. The dependece of the efficiency on the threshold for two pixels is shown in figure \ref{fig:ARCADIA_threshold}.  
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.7\linewidth]{figures/charaterization/ARCADIA/threshold_0_0.pdf}
+        \caption{}
+        \label{fig:ARCADIA_threshold}
+    \end{figure} 
+    Anche se il comportamento è globalmente ragionevole, con l'efficienza che sale quando si abbassa la soglia, viene il sospetto che non stiamo polarizzando bene il sensore e il FE dato che anche raggiunto i centi conteggi, si hanno delle fluttuazioni intorno a questo valore. Inoltre notiamo che abbassando ulteriormente la soglia si osserva un aumento delle hit, dovuto al fatto che si inizia a triggerare sul rumore. 
+
+    \red{commenta sul fatto che non è stabile anche molto sopra la soglia. Forse è dovuto al bias? oppure l 'impulso ha qualche problema (non abbiamo settato la durata ecc..)? Che valore ha in elettroni?}
+
+    Substantial differences have been observed between the sections, in particular fixing the the same threshold VCASN=\SI{40}{DAC} in all the lanes, some read the hits while other do not. 
+    The hitmap of an acquisition with the Fe55 source is shown in figure \ref{fig:ARCADIA_Fe55}: the whole MD1 matrix with only the bottom region (32 rows) working is represented in (a), while in (b) there is a zoomed hitmap. The rate seen within the region 8 (green region in the figure (a)) is compatible with the rate of the same radioactive source measured with TJ-Monopix1, that it $\sim$\SI{3.3}{kHz}. 
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=.49\linewidth]{figures/charaterization/ARCADIA/Fe55_5min30s.png}
+        \includegraphics[width=.47\linewidth]{figures/charaterization/ARCADIA/Fe55_6min30s.png}
+        \caption{Fe55 acquisition with VCASN=\SI{40}{DAC}. (a) All the matrix 512$\times$512 is plotted even if the minid2 has only the rows in range 0-32. (b) A zoom on the first section (col 0-32).   }
+        \label{fig:ARCADIA_Fe55}
+    \end{figure}  
+    Looking to the Sr90 acquisitions (fig.\ref{fig:ARCADIA_Sr90}) many clusters and tracks can be immidiately distiguished, confirming what observed with TJ-Monopix1. 
+    \begin{figure}[h!]
+        \centering
+        %\includegraphics[width=.49\linewidth]{figures/charaterization/ARCADIA/Fe55_9min.pdf}
+        \includegraphics[width=.7\linewidth]{figures/charaterization/ARCADIA/Sr90_2min.pdf}
+        \caption{Sr90 acquisition with VCASN=\SI{40}{DAC}. The different colours are related with the time of arrival of the hits: in yellow the most recent hits, while in blue the old ones.}
+        \label{fig:ARCADIA_Sr90}
+    \end{figure}  
+
+    %test_play_wip.py,
+    % example/test_initialization.py
+    %example/test_play_triggered_wip.py 
+
+
+
+
