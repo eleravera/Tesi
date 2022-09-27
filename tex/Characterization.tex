@@ -353,7 +353,7 @@
 
     \subsection{Dead time measurements}
         The hit loss is due to analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead when the hit arrives while the information of the previous hit has not yet been transferred to the periphery.  
-        Since the pre-amplifier response has a characteristic time $\sim$ToT, the dead time $\tau_{a}$ introduced by it will be at most \SI{1.6}{\us}; \red{IRESET, puoi diminuire il tempo di scarica.}   
+        Since the pre-amplifier response has a characteristic time $\sim$ToT, the dead time $\tau_{a}$ introduced by it will be at most \SI{1.6}{\us}; using the IRESET and VRESET FE parameters the reset time can be lowered down, but a \red{IRESET, puoi diminuire il tempo di scarica.}   
         Regarding the latter contribution instead, since only one hit at a time can be stored on the pixel's RAM, until the data have completed the path to get out, the pixel is paralyzed. Moreover since there is no storage memory included on TJ-Monopix1 prototypes, the digital dead time $\tau_{d}$ almost corresponds to the time needed to trasmit the data-packets off-chip. 
 
         The exportation of data from pixel to the EoC occurs via a 21-bits data bus, therefore only one clock cycle is needed and the dead time bottleneck is rather given by the bandwidth of the serializer which trasmits data off-chip from the EoC. In our setup the serializer operates at 40 MHz, thus to transmit a data packet (27-bit considering the addition of 6 bits to identify the double-column at the EoC) at least \SI{675}{ns} are needed. 
@@ -364,29 +364,28 @@
         \end{equation}
         where $\alpha$ and $\beta$ are parameters dependent on the readout chain setting. 
         
-        To test the linearity of the reading time with the number of pixels firing and to measure it, I have used the injection circuit\footnote{The injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the period and the width} which allows me achieving very high rate: I made a scan injecting a fix number of pulses (100) and looked for the decrease in the efficency. 
-        Moreover to test that there is no dependece of the digital readout time from the charge of the pulse, I have try to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
+        To test the linearity of the reading time with the number of pixels firing and to measure it, I have used the injection circuit which allows me choosing a specific hit rate: I made a scan injecting a fix number of pulses and each time changing the number of pixels injected.
+        Indeed the injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the time between to consecutive pulses (DELAY) and the width (WIDTH). The hit rate then corresponds to :
+        \begin{equation}
+            R = \frac{\SI{25}{ns}}{(DELAY+WIDTH)}
+        \end{equation}
+        where WIDTH is equal to \SI{60}{counts}. 
 
-        \red{Al posto degli esempi con 5 e 10 pixels metterei un esempio dell'efficienza vs il periodo quando leggo un singolo pixel. Una cosa che volevo fare era anche provare a fittare la slope con cui l'efficienza scende: se la slope è uguale per tutti il readout diventa completamente predittivo. }
+        Unfortunately a high random hit rate on the matrix cannot be simulated by the injection because of the long time ($\sim$\si{ms}) needed to set the pixel registers of the injection; then I was forced to specify at the start of the acquisition the pixels to inject on, and for convenience I chose those on a same column.  
+        In figure \ref{fig:efficiency_VS_delay} is shown the dependence of the efficiency on the DELAY parameter in two different cases. 
+        For the 5 pixels example the efficiency goes down the 90\% at a DELAY of $\sim$185 clock counts, which corresponds to \SI{6.125}{\us} and to a rate of \SI{160}{kHz}, while in the 10 pixels example, the efficiency goes under the 100\% at $\sim$\SI{380}{clock} counts, which corresponds to \SI{11}{\us} and to a rate of \SI{90}{kHz}. 
+        \red{COME MAI SONO DIVERSE LE CURVE?}
         \begin{figure}[h!]
-            \begin{subfigure}{.5\textwidth}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/efficiency_5pixels.png}
             \centering
-            \includegraphics[width=.98\linewidth]{figures/charaterization/efficiency_5pixels.png}
-            \caption{\red{efficiency vs DELAY 5 pixels}}
-            \label{fig:}
-            \end{subfigure}
-            \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=.98\linewidth]{figures/charaterization/efficiency_10pixels.png}
-            \caption{\red{efficiency vs DELAY per 10pixels}}
-            \label{fig:}
-            \end{subfigure}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/efficiency_10pixels.png}
+            \caption{Efficiency vs the DELAY parameters. (a) I made a scan injecting 5 pixels with 50 pulses for each DELAY configuration and (b) 10 pixels with 100 pulses for each DELAY}
+            \label{fig:efficiency_VS_delay}
         \end{figure}
-        
-        While the single pixel reading time and the dead time do not depend on the position on the pixel matrix and are equal to \red{106 (46+60)} clock counts within 1 clock count, on the other hand the $\tau$ depends on the pixel position on the matrix when more than one pixel are firing. 
-        In particular the priority chain goes from row 224 to row 0, and from col 0 to 112, that means the last pixels to be read is the one on le bottom right corner of the matrix. 
-
-        In figure \ref{fig:dead_time} is reported the reading time versus the number of pixels injected; the R/O parameters that control the reading time and their default values are reported on table \ref{tab:tab:R/O_param}.
+        From the efficiency curves I have then looked for the time when the efficency decreases. In figure \ref{fig:dead_time}(a) is shown the dead time per pixels as a function of N with different R/O parameters configuration, the meaning of which is explained in chapter \ref{chap:Monopix_RO}. The default value suggested by the designer of the chip are reported in table \ref{tab:R/O_param}; moving too much the readout parameters from the default ones, the readout does not work properly, and no hits can be read at all. The problem probably stays in the firmware setting of the readout which are specially fixed for our chip \red{Sul repositorio, nei commenti ci sono altri valori possibili per il FREEZE, ma avevamo detto che probabilmente sono relativi ai setting di altri chip.}
+        %Cambiando molto i parametri del R/O la lettura non funzionava per niente: ad esempio CONF\_STOP\_FREEZE non può essere impostato nè sopra 105 nè sotto 95
+        Despite the single pixel reading time does not depend on the position on the pixel matrix, whithin a clock count which is $\sim$\SI{25}{ns}, and it is equal to \SI{106}{clock} counts, since the $\tau_d$ critically depends on the pixel position on the matrix: in particular the reading sequence goes from row 224 to row 0, and from column 0 to column 112, making the pixel on the bottom right corner the one with the longest dead time. 
+       
         \begin{table}
             \begin{center}
             \begin{tabular}{|c | c | c |}
@@ -404,37 +403,31 @@
             \label{tab:R/O_param}
             \end{center}
         \end{table}
-
-        The factor $\alpha$, referring to eq. \ref{eq:reading_time} is proportional to the difference (STOP\_FREEZE - START\_READ), while the offset $\beta$ lies between 5 and 15 clock counts.
-        Since through the injection a random hit rate on the matrix can't be simulated, as the coordinates of the pixels to inject must be specified, for convenience I used the pixels on the same column/row. No difference in the $\alpha$ and $\beta$ coefficients has been observed between the two case. 
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.9\linewidth]{figures/charaterization/default_line.png}
-            \caption{}
-            \label{fig:dead_time}
-        \end{figure}
-
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.9\linewidth]{figures/charaterization/parameters_points.png}
-            \caption{}
+            \includegraphics[width=.9\linewidth]{figures/charaterization/default_line.png}
+            \caption{(a) Readout time per pixel as a function of the number of pixel injected obtained with different FE setup. (b) Readout time as a function of the number of pixels injected obtained injecting pulses with amplitude of \SI{80}{DAC} (green), of \SI{40}{DAC} on the same row (red) and on the same column (blue).}
             \label{fig:dead_time}
-        \end{figure}        
+        \end{figure}
+        Furthermore to test that there is no dependece of the digital readout time from the charge of the pulse, I have try to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
+        No difference in the $\alpha$ and $\beta$ coefficients has been observed between the two case.
+        \red{In realtà non mi torna perchè il FREEZE dovrebbe iniziare n cicli di clock dopo il TE, ed il TE dipende ovviamente dal ToT, quindi mi sarei aspetatta una differenza tra i due.}
+        Referring to eq.\ref{eq:reading_time}, the factor $\alpha$ is proportional to the difference (STOP\_FREEZE - START\_READ), while the offset $\beta$ lies between 5 and 15 clock counts.
 
-        \red{Ci sarebbe da spiegare perchè i parametri che usiamo noi come default non sono quelli che minimizzano il tempo di lettura. La spiegazione è che "Abbiamo copiato i valori dal repositorio di quelli di Bonn". Un'altra domanda potrebbe essere: come mai non ho esplorato una zona più vasta per i parametri del R/O. Cambiando molto i parametri del R/O la lettura non funzionava per niente: ad esempio CONF\_STOP\_FREEZE non può essere impostato nè sopra 105 nè sotto 95}
-       \red{which is the more relevant contribution at high rate,}
+        Per avere una misura veritiera del tempo morto e del hit loss si dovrebbe iniettare casualmente input events are produced by a
+        random hit generator with a specified hit rate, hence following a Poisson distribution. Inoltre faccio notare che il tempo morto è così lungo perchè c'è parallelizzazione e neppure un buffer (cosa tipicamente prevista quando li si inserisce nei rivaltori). Ad esempio Obelix, per l'upgrade di Belle2 avrà un buffer a fine matrice. 
 
 \section{ARCADIA-MD1 characterization}
-    Unfortunatly we have found out that the first chip we received was not completely functional, then we have been able to make on it only a few electrical and software test releted with the comunication of the chip with the DAQ, passing through the FPGA and the breackout board (BB) and verifying their operation.
+    Unfortunatly we have found out that the chip we received was not completely functional, then we have been able to make on it only a few electrical and software test. We have then verified the comunication of the chip with the DAQ, testing the operations of the FPGA and the breackout board (BB).  
+    The problem occurs when the chip is biased, in particular, when the HV voltage is lowered down \SI{0}{V}, the sensor requires too much power and a too high current draw sets. We have discussed the problem with the designers of the chip whose helped us indentifying the motivation of the break: the chip has been glued using too much conductive tape and hence have a short-circuit between the sides and the back, which makes impossible the biasing.     
+    Unfortunately, since both the sensor and the FE require at least -\SI{10}{V} to work properly, no measurement was possible except the acquisition of the noise in the FE circuit. 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=.9\linewidth]{figures/charaterization/ARCADIA/pixel_per_row_per_acq_11_60.png}
-        \caption{Nise in the front end circuit depending on the bias road across the matrix was recorded. }
+        \includegraphics[width=.95\linewidth]{figures/charaterization/ARCADIA/pixel_per_row_per_acq_11_60.png}
+        \caption{Noise in the front end circuit depending on the bias road across the matrix was recorded. }
         \label{fig:ARCADIA_threshold}
-    \end{figure}  
-    The problem came out at when the chip was biased, in particular the sensor requires too much power and a too high current draw sets when the HV voltage is lowered down \SI{0}{V}. We have discussed the problem with the designers of the chip which helped us indentifying the motivation of the break: the chip we have got has been glued using too much conductive tape and hence have a short-circuit between the sides and the back. 
-    Unfortunately, since the sensor and the FE requires at least -\SI{10}{V} to work, no measurement was possible except the acquisition of the noise in the FE circuit. 
-
+    \end{figure}
 
     %   Non ero entrata in dettaglio a proposito del baco perché non mi sembrava rilevante, ma non ho nessun problema a farlo ora. Durante la seconda sottomissione ci siamo accorti che il segnale che abilita i drivers LVDS delle sezioni aveva polarità sbagliata. I drivers LVDS sono quei circuiti che pilotano i dati verso il mondo esterno e avere un enable di polarità errata significa che i drivers risultano sempre spenti durante l'acquisizione. Quindi in pratica il chip funziona, ma non è in grado di trasmettere nulla all'esterno. Il segnale di enable viene controllato internamente al chip dalla logica di periferia e non è direttamente accessibile da fuori. Fortunatamente le linee di metallo che pilotano il suddetto segnale sono in una regione del chip poco densa, cioè senza altro metallo sopra e attorno. E' stato quindi possibile intervenire con un fascio di ioni focalizzato per andare a scavare nelle regioni di interesse fino ad accedere ai segnali di enable. Abbiamo quindi tagliato la connessione interna e cortocircuitato l'enable  al valore di tensione corretto.  Nel minid 2 questa correzione è stata fatta sul chip ed è l'unica modifica rispetto alla prima sottomissione.
 
@@ -454,22 +447,25 @@
     %      ...
     %      63   |  min
 
-    We received then another chip, a minid2, that a "mini demonstrator" from the second submission. The two chips have the same charateristics but the minid2 is smaller than the MD1, in particular it only have 32$\times$512 pixels, instead of 512$\times$512.  
-    An exhaustive characterization and testing of the new chip have been going on in the clean room on the INFN, and I am going to show only some preliminary results.
+    We received then another chip, a minid2, that is a "mini demonstrator" from the second submission. The two chips have the same charateristics but the minid2 is smaller than the MD1, in particular it only have 32$\times$512 pixels, instead of 512$\times$512.  
+    \red{scrivi il problema della prima sottomissione.}
 
-    Up to now we used the injection circuit in order to make a threshold scan on a few pixels: differently from the TJ-Monopix1's charaterization where we performed a scan changing the injection charge of the pulse, with the minid2 we have changed the threshold (the register which sets the threshold is VCASN) keeping the charge of the pulse fixed.
-    For each threshold we inject 100 pulses of amplitude \SI{1}{\us}. The dependece of the efficiency on the threshold for two pixels is shown in figure \ref{fig:ARCADIA_threshold}.  
+
+    An exhaustive characterization and testing of the new chip have been going on in the clean room on the INFN, and I am going to show here only some preliminary results.
+    Up to now we used the injection circuit in order to make a threshold scan on a few pixels: differently from the TJ-Monopix1's charaterization where we performed a scan changing the injection charge of the pulse, with the minid2 we have instead changed the threshold (whose register is VCASN) keeping the charge of the pulse fixed.
+    For each threshold we inject 100 pulses of amplitude \SI{10}{\us}. The dependece of the efficiency on the threshold for two pixels is shown in figure \ref{fig:ARCADIA_threshold}.  
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.7\linewidth]{figures/charaterization/ARCADIA/threshold_0_0.pdf}
         \caption{}
         \label{fig:ARCADIA_threshold}
     \end{figure} 
-    Anche se il comportamento è globalmente ragionevole, con l'efficienza che sale quando si abbassa la soglia, viene il sospetto che non stiamo polarizzando bene il sensore e il FE dato che anche raggiunto i centi conteggi, si hanno delle fluttuazioni intorno a questo valore. Inoltre notiamo che abbassando ulteriormente la soglia si osserva un aumento delle hit, dovuto al fatto che si inizia a triggerare sul rumore. 
+    
+    \red{Anche se il comportamento è globalmente ragionevole, con l'efficienza che sale quando si abbassa la soglia, viene il sospetto che non stiamo polarizzando bene il sensore e il FE dato che anche raggiunto i centi conteggi, si hanno delle fluttuazioni intorno a questo valore. Inoltre notiamo che abbassando ulteriormente la soglia si osserva un aumento delle hit, dovuto al fatto che si inizia a triggerare sul rumore. }
 
     \red{commenta sul fatto che non è stabile anche molto sopra la soglia. Forse è dovuto al bias? oppure l 'impulso ha qualche problema (non abbiamo settato la durata ecc..)? Che valore ha in elettroni?}
 
-    Substantial differences have been observed between the sections, in particular fixing the the same threshold VCASN=\SI{40}{DAC} in all the lanes, some read the hits while other do not. 
+    Substantial differences have been observed in both the efficiency and the threshold among the sections, with VCASN=\SI{40}{DAC}; this suggests that with this particular FE configuration there is a big threshold dispersion on the matrix.  
     The hitmap of an acquisition with the Fe55 source is shown in figure \ref{fig:ARCADIA_Fe55}: the whole MD1 matrix with only the bottom region (32 rows) working is represented in (a), while in (b) there is a zoomed hitmap. The rate seen within the region 8 (green region in the figure (a)) is compatible with the rate of the same radioactive source measured with TJ-Monopix1, that it $\sim$\SI{3.3}{kHz}. 
     \begin{figure}[h!]
         \centering
