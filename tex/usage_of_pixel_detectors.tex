@@ -1,5 +1,5 @@
 The relation between the development of cameras and that of pixel detectors dates back to 1969, when the idea of CCDs, for which Boyle and Smith were awarded the Nobel Prize in Physics in 2009, revolutionized photography allowing light to be captured electronically instead of on film. 
-Even though the CMOS technology already existed at the time the CCDs spread, the costs of productions were too high to allow the diffusion of these sensors for the following 20 years. From that moment on, the fast diffusion of CMOS was mainly due to the less cost than CCD, and the less power supply required. Nowadays CCDs are still prefered over MAPS in astronomy, where the astronomical sources' rate are low enough to cope with slow readout time (tens of \si{ms}).  0
+Even though the CMOS technology already existed at the time the CCDs spread, the costs of productions were too high to allow the diffusion of these sensors for the following 20 years. From that moment on, the fast diffusion of CMOS was mainly due to the less cost than CCD, and the less power supply required. Nowadays CCDs are still prefered over MAPS in astronomy, where the astronomical sources' rate are low enough to cope with slow readout time (tens of \si{ms}).  
 
 The principal use cases of pixel detectors are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
 Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
@@ -8,9 +8,9 @@ Also the demands on detectors performance depends on their usage, in particular 
     At first the physics world overlooked the CCDs, and all pixel in general, as against the gaseous detector for tracking: there was no need to replace these ones which had a sufficient good resolution (\SI{100}{\um}). Sice 1974, with the measurement of the invariant mass of the J/Psi and the affirmation of the quark model, all experiments start to look for better spatial resolutions in order to achieve the possibility of reconstructing short lived particle.  
 
     Historically, the first pixel detector employed in particle physics was a CCD: it was installed in the spectrometer at the CERN’s Super Proton Synchrotron (SPS) by the ACCMOR Collaboration (Amsterdam, CERN, Cracow, Munich, Oxford, RAL) at mid 1980s, with the pourpose of studing the (at the time) recently-discovered charm particles.
-    The second famous usage of CCDs took place at SLAC in the Large Detector (SLD) during the two years 1996-98, where the CCD technology was adopted instead of the microstrip detectors for their excelent spatial resolution (cell size 22$times$22\si{\um\squared} giving a resolution of $\sim$\SI{5}{\um}) thanks to the sufficient time for readout between two successive collisions (\SI{160}{ms}).
+    The second famous usage of CCDs took place at SLAC in the Large Detector (SLD) during the two years 1996-98, where the CCD technology was adopted instead of the microstrip detectors for their excelent spatial resolution (cell size 22$\times$22\si{\um\squared} giving a resolution of $\sim$\SI{5}{\um}) thanks to the sufficient time for readout between two successive collisions (\SI{160}{ms}).
 
-    From that period on particle tracking in experiments have been transformed radically: it was mandatory for HEP experiments to build a inner vertex detector, where the general tasks are:
+    From that period on, particle tracking in HEP experiments have been transformed radically. It became mandatory to build a inner vertex detector, with the following tasks:
     \begin{itemize}
         \item patter recognition with the identification of particle tracks at large backgrounds and pile-up
         \item measurement of vertices (primary and secondary)
@@ -21,12 +21,12 @@ Also the demands on detectors performance depends on their usage, in particular 
 
     In 1991, the more demanding environments led to the development of hybrid pixel detectors: a dedicated collaboration, RD19, was established at CERN with the specific goal of defining a semiconductor micropattern detector with an incorporated signal processing at a microscopic level. 
     In those years a wide set of prototypes of hybrid pixel has been manufactured; among the greatest productions a mention goes to the huge ATLAS and CMS vertex detectors. 
-    From the middle of 2013 a second collaboration, RD53, has been established with the new goal of finding a pixel detector suitable for phase II future upgrades of those experiments. Even if the collaboration is specifically focused on design of hybrid pixel readout chips (aiming to \SI{65}{nm} tecnique so that the electronics fits within the pixel area), also other options have been taken in account and many test have been done on MAPS. Requirements imposed by HL-LHC will become tigher in time: for example, a dose and radiation of \SI{5}{Mrad} and \si{10^{16}}{NIEL} are exepcted after 5 years of operation. Time resolution, material budget and power consumption are also issues for the upgrade: to distinguish different events from different bunches a time resolution better than \SI{25}{ns} for a bunch crossing frequency of \SI{40}{MHz} is required, and also a material budget lower than 2\% and a power consuption lower than \SI{500}{mW/cm\squared} are required. 
+    From the middle of 2013 a second collaboration, RD53, has been established with the new goal of finding a pixel detector suitable for the phase II in future upgrades of those experiments. Even if the collaboration is specifically focused on the design of hybrid pixel readout chips (aiming to \SI{65}{nm} tecnique), also other options have been taken in account and many test have been done on MAPS. Requirements imposed by LHC are stingent and they will become even more with the increase of luminosity at HL-LHC: for example, a dose and radiation of \SI{5}{Mrad} and \si{10^{16}}{NIEL} are exepcted after 5 years of operation. Time resolution, material budget and power consumption are also issues for the upgrade: to distinguish different events from different bunches a time resolution better than \SI{25}{ns} for a bunch crossing frequency of \SI{40}{MHz} is required, a material budget lower than 2\% and a power consuption lower than \SI{500}{mW/cm\squared} are required. 
 
     Amidst the solutions proposed 3D silicon detector, invented by Sherwood Parker in 1995, and MAPS are the most promising.
     In 3D sensors the electrode is a narrow column of n-type implanted vertically across the bulk instead of being implanted on the wafer's surface. 
     The charge produced by the impinging particle is then drifted transversally within the pixel, and, as the mean path between two electrode can be soufficent low, the trap probability is not an issue. 
-    Even if 3D detector are adequately radiation hard and are a strong contender for hybrid pixel modules, especially in the innermost pixel detector layer, the fabrication process is currently low volume, making them unlikely to cover large areas.
+    Even if 3D detector are adequately radiation hard and are a strong contender for hybrid pixel modules, especially in the innermost pixel detector layer, their fabrication process is currently low volume, making them unlikely to cover large areas.
 
 
     \subsection{Hybrid pixels at LHC and at SuperKEKB}
@@ -60,12 +60,11 @@ Also the demands on detectors performance depends on their usage, in particular 
         The time resolution is \SI{25}{ns}, and the information coming from the detector are stored on chip for the Level-1 trigger latency ($\sim$\SI{4}{\us}).   
         The upgrade baseline ROIC was redesigned for the outer 3 layers, replacing analog signal readout with on-chip ADCs and digital readout at higher rate. reads out the pulse height information for each pixel. 
 
-\begin{figure}[h!]
+        \begin{figure}[h!]
             \centering
             \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/ATLAS.png}
-            \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}
-            \caption{(a), (b) Since an accidental beam background enhancement can damage the VXD, diamond detectors are installed in order to monitoring it.}
-            \label{fig:}
+            \caption{ATLAS tracker detector}
+            \label{fig:ATLAS}
         \end{figure}
 
         \subsubsection{LHCb}
@@ -79,7 +78,12 @@ Also the demands on detectors performance depends on their usage, in particular 
     \subsubsection{BelleII}
         Due to the high background level coming from the nanobeam used at SuperKEKB in order to achieve a such high luminosity (4.7$\times$10$^{34}$\si{1/cm\squared/s}), silicon strip cannot be used in the inner layer of the tracker. The occupancy is too high to allow the usage of strips up to \SI{40}{mm} from the beam pipe. 
         Moreover for a precise reconstruction of B-decay vertices, the usage of thin detector is mandatory at the low energy (\SIrange{4}{7}{GeV}) of the beam, in order to minimize the multiple scattering of particles. 
- 
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.75\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}
+            \caption{Belle2 vertex detector.Since an accidental beam background enhancement can damage the VXD, diamond detectors are installed in order to monitoring it.}
+            \label{fig:Belle2_Vertex}
+        \end{figure}
         The current vertex detector of BelleII, VXD, is made of a pixel detector (PXD), fabricated with 2 layers of DEPFET-based pixels, and 4 layers of a double-sided silicon strip detectors (SVD)\cite{BelleII-DEPFET}.
         Due to the small capacitance of the collection node, DEPFET presents a high signal-to-noise ratio (in 30-50) thanks to the low instrinsic noise and to the large signal achieved with he fully depleted bulk: pixels are thinned to \SI{75}{\um} in the active region, then a MIP is supposed to create a signal of $\sim$\SI{6000}{e^-}, while the typical noise of DEPFET is around \SI{200}{e^-}.
         The ASIC read out is still based on a rolling shutter logic, with an integration time of \SI{20}{\us}.
@@ -94,8 +98,8 @@ Also the demands on detectors performance depends on their usage, in particular 
         \centering
             \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/MIMOSA.png}
             \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/STAR.png}
-            \caption{(a) The HFT PXL detector; (b) Block-diagram of the ULTIMATE-2 sensor}
-            \label{fig:}
+            \caption{(a) Block-diagram of the ULTIMATE-2 sensor. (b) The HFT pixel detector of STAR;}
+            \label{fig:MIMOSA}
         \end{figure}
         MIMOSA \cite{MIMOSA}\cite{MIMOSA26} (standing for Minimum Ionizing MOS Active pixel sensor), designed in 2008, prefigured the architecture of MAPS for coming vertex detector being the first large scale sensor to be embloyed as detector. MIMOSA-26 equiped the final version of EUDET high resolution  beam telescope both at CERN-SPS and at DESY while the MIMOSA-28 devices are used for the first MAPS-based vertex detector at the STAR experiment.
         MIMOSA-26 is fabricated in a \SI{350}{nm}, and a module features 1152 columns, split into 18 indipendent groups, and 576 rows, with square pixels having a side of \SI{18.4}{\um} lenght; the epitaxyal layer is not fully depleted and the charge collection is mostly by diffusion, resulting in charge sharing between pixels and collection time bigger than \SI{100}{ns}.
@@ -210,12 +214,18 @@ Also the demands on detectors performance depends on their usage, in particular 
             \end{figure}
 
         \subsubsection{Dosimetric problems}
-            Up to now, all online dosimeters have shown saturation problems at high DDP, differently from radiochromic films, which are the standard passive dosimeters and have shown a dose-rate indipendece up \red{to \SI{109}{Gy/s}}.
-            Even though the linear response in wide dynamic range, they do not provide any online dosimetric informations, since the time required to extract the physical value from the reading is not instantaneous\footnote{\red{COSA sono e più o meno come funzionano}}.
+            Up to now, all online dosimeters have shown saturation problems at high DDP, differently from radiochromic films, which are the standard passive dosimeters and have shown a dose-rate indipendece up to \SI{100}{Gy/s}.
+            Even though the linear response in wide dynamic range, they do not provide any online dosimetric informations, since the time required to extract the physical value from the reading is not instantaneous\footnote{The radiation produces a polymerization of an active layer, resulting in a different density of coloration.}.
 
-            Ionization Chambers (ICs), which are the online reference dosimeter also according to law, at high level of radiation (already at dose per pulse two orders of magnitude lower than the ones used for FLASH-RT) show both probelms of saturation and recombination. When a high density of ions and electrons is produced in the gas, a high counter electric field opposed to the drift one might be generated; if a neutral region build up, both the recombination of i/e pairs, with a subsequent photoemission and abrupt discharge can happen\footnote{This il called Raether-Meek condition}. For low level of radiation a correction factors, $k_{sat}$, can be introduced and a dose measurement can still be done: with Dose Per Pulse (DDP) lower than \SI{1}{mGy} the correction factori is $<$5\%. 
-            \red{Non sono sicurissima di aver capito davvero il punto per quanto riguarda i semiconduttori e gli scintillatori}
-                        
+            Ionization Chambers (ICs), which are the online reference dosimeter also according to law protocols, at high level of radiation (already at dose per pulse two orders of magnitude lower than the ones used for FLASH-RT) show both probelms of saturation and recombination. When a high density of ions and electrons is produced in the gas, a high counter electric field opposed to the drift one might be generated; if a neutral region build up, both the recombination of i/e pairs, with a subsequent photoemission and abrupt discharge can happen. A correction factors, $k_{sat}$, can be introduced for sufficient low level of radiation and in this case a precise dose measurement can still be done: under conventional operation, with Dose Per Pulse (DDP) lower than \SI{1}{mGy} the correction factor is $<$5\%. 
+
+            Concerning the conventional semiconductor, if exposed to high dose rate, they suffer of saturation problems just as the ICs, but thin sensors as silicon MAPS are expected to reduce the saturation problem.  
+            Indeed a thin planar sensor could allow for a constant electric field even at high dose rate which, together with the short mean path the e/h must cover to get the electrode (the epitaxial layer typically is $\sim$\SI{30}{\um}), could result in a non-saturated response of the signal.
+            Besides the thinness, also the small capacity typical of MAPS is beneficial for reducing the readout time: a reduced C$_d$ enables for a fast discharge and then for a fast readout. 
+            Finally, the high spatial resolution requirement obviously imposed by beam monitor is one of the main reasons which makes MAPS attractive.
+            Among the semiconductors, also diamond detectors present a high promising alternative thanks to their high radiation hardness, response stability and linearity in a wide range. 
+            Also other detector types, such as plastic scintillators, optical fiber and alanine dosimeters have been proposed for high dose environments and many groups are going on studies on their applicability on FLASH-RT. 
+
             In reference \cite{FLASH_dosimeters} are presented some results related with saturation problems at high DDP of different types of detectors. The dosimeters tested and their value at which saturation becomes are reported in table \ref{tab:dosimeters_saturation}, while in figure \ref{fig:saturation_dosimeters} are reported the measurements. 
             The DrR is then defined as the ratio between the signal response of each dosimeters at a fixed DDP of \SI{1}{cGy/p} and is called dosimeter reading ratio (DrR): 
             \begin{equation}
@@ -241,13 +251,9 @@ Also the demands on detectors performance depends on their usage, in particular 
             \end{table}
             \begin{figure}
                 \centering
-                \includegraphics[width=.9\linewidth]{figures/pixel_detectors_usage/saturation1.png}
+                \includegraphics[width=.95\linewidth]{figures/pixel_detectors_usage/saturation1.png}
                 %\includegraphics[width=.9\linewidth]{figures/pixel_detectors_usage/saturation2.png}
                 \caption{Saturation problems underlyed in \cite{FLASH_dosimeters}. }
                 \label{fig:saturation_dosimeters}
             \end{figure}            
             
-
-            Besides the linearity of the response, two other important requirements for beam monitoring in radiotherapy are both high temporal and space resolutions. 
-            Concerning time resolution I recall that MAPS could handle with rate up to hundreds of \si{MHz}, so the possibility application of these detectors probably strictly depends on their particular usage.       
-            However MAPS migh be well suited given that their spatial resolution and their thinness (they can be thinned down to about \SI{50}{\um}), which is an obvious requirement for beam monitor.

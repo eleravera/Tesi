@@ -103,10 +103,10 @@
             & PMOS A & PMOS B & PMOS C & HV \\
             \hline
             \hline
-            Threshold [\si{e-}] & &\\
-            Threshold dispersion [\si{e-}] &  &\\
-            Noise [\si{e-}] &  &\\
-            Noise dispersion [\si{e-}] & &\\
+            Threshold [\si{e-}] & 401.70$\pm$0.15 & 511.0$\pm$1.0 & 539.66$\pm$0.58 &  403.87$\pm$0.19\\
+            Threshold dispersion [\si{e-}] & 32.90$\pm$0.11 & 36.96$\pm$0.66 & 55.54$\pm$0.42 & 44.67$\pm$0.15\\
+            Noise [\si{e-}] & 13.006$\pm$0.064 & 16.444$\pm$0.086 & 13.88$\pm$0.11 & 11.68$\pm$0.10\\
+            Noise dispersion [\si{e-}] & 1.608$\pm$0.044 & 1.95$\pm$0.06 & 1.906$\pm$0.072 & 1.580$\pm$0.068\\
             \hline
             \end{tabular}
             \caption{Mean threshold and noise parameters for \red{all} flavor and their dispersion on the matrix. }
@@ -354,7 +354,7 @@
 
     \subsection{Dead time measurements}
         The hit loss is due to analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead when the hit arrives while the information of the previous hit has not yet been transferred to the periphery.  
-        Since the pre-amplifier response has a characteristic time $\sim$ToT, the dead time $\tau_{a}$ introduced by it will be at most \SI{1.6}{\us}; using the IRESET and VRESET FE parameters the reset time can be lowered down, but a \red{IRESET, puoi diminuire il tempo di scarica.}   
+        Since the pre-amplifier response has a characteristic time $\sim$ToT, the dead time $\tau_{a}$ introduced by it will be at most \SI{1.6}{\us}; using the IRESET and VRESET FE parameters the reset time can be lowered down, but a \red{IRESET, puoi diminuire il tempo di scarica ma deve comunque}   
         Regarding the latter contribution instead, since only one hit at a time can be stored on the pixel's RAM, until the data have completed the path to get out, the pixel is paralyzed. Moreover since there is no storage memory included on TJ-Monopix1 prototypes, the digital dead time $\tau_{d}$ almost corresponds to the time needed to trasmit the data-packets off-chip. 
 
         The exportation of data from pixel to the EoC occurs via a 21-bits data bus, therefore only one clock cycle is needed and the dead time bottleneck is rather given by the bandwidth of the serializer which trasmits data off-chip from the EoC. In our setup the serializer operates at 40 MHz, thus to transmit a data packet (27-bit considering the addition of 6 bits to identify the double-column at the EoC) at least \SI{675}{ns} are needed. 
@@ -366,15 +366,11 @@
         where $\alpha$ and $\beta$ are parameters dependent on the readout chain setting. 
         
         To test the linearity of the reading time with the number of pixels firing and to measure it, I have used the injection circuit which allows me choosing a specific hit rate: I made a scan injecting a fix number of pulses and each time changing the number of pixels injected.
-        Indeed the injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the time between to consecutive pulses (DELAY) and the width (WIDTH). The hit rate then corresponds to :
-        \begin{equation}
-            R = \frac{\SI{25}{ns}}{(DELAY+WIDTH)}
-        \end{equation}
-        where WIDTH is equal to \SI{60}{counts}. 
+        Indeed the injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the time between to consecutive pulses (DELAY). The hit rate then corresponds to \SI{25}{ns}/DELAY.
 
         Unfortunately a high random hit rate on the matrix cannot be simulated by the injection because of the long time ($\sim$\si{ms}) needed to set the pixel registers of the injection; then I was forced to specify at the start of the acquisition the pixels to inject on, and for convenience I chose those on a same column.  
         In figure \ref{fig:efficiency_VS_delay} is shown the dependence of the efficiency on the DELAY parameter in two different cases. 
-        For the 5 pixels example the efficiency goes down the 90\% at a DELAY of $\sim$185 clock counts, which corresponds to \SI{6.125}{\us} and to a rate of \SI{160}{kHz}, while in the 10 pixels example, the efficiency goes under the 100\% at $\sim$\SI{380}{clock} counts, which corresponds to \SI{11}{\us} and to a rate of \SI{90}{kHz}. 
+        For the 5 pixels example the efficiency goes down the 90\% at a DELAY of $\sim$185 clock counts, which corresponds to \SI{4.625}{\us} and to a rate of \SI{216}{kHz}, while in the 10 pixels example, the efficiency goes under the 100\% at $\sim$\SI{380}{clock} counts, which corresponds to \SI{9.5}{\us} and to a rate of \SI{105}{kHz}. 
         \red{COME MAI SONO DIVERSE LE CURVE?}
         \begin{figure}[h!]
             \includegraphics[width=.49\linewidth]{figures/charaterization/efficiency_5pixels.png}
@@ -413,7 +409,6 @@
         \end{figure}
         Furthermore to test that there is no dependece of the digital readout time from the charge of the pulse, I have try to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
         No difference in the $\alpha$ and $\beta$ coefficients has been observed between the two case.
-        \red{In realtà non mi torna perchè il FREEZE dovrebbe iniziare n cicli di clock dopo il TE, ed il TE dipende ovviamente dal ToT, quindi mi sarei aspetatta una differenza tra i due.}
         Referring to eq.\ref{eq:reading_time}, the factor $\alpha$ is proportional to the difference (STOP\_FREEZE - START\_READ), while the offset $\beta$ lies between 5 and 15 clock counts.
 
         Per avere una misura veritiera del tempo morto e del hit loss si dovrebbe iniettare casualmente input events are produced by a
