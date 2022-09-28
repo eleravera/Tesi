@@ -1,17 +1,8 @@
-At PRF smaller than 100 Hz, all the dosimeters analyzed have
-a shorter signal collection time with respect to the repetition
-time of the pualses (maggiore uguale 10 ms), and, consequently, the saturation
-is influenced only by the dose-per-pulse (duration of the pulse is
-around 2.5 us)
+During August 2022 a testbeam took place in Santa Chiara hospital in Pisa, where a new accelerator designed for both medical research and R$\&$D on FLASH-RT, and for this reason called "ElectronFlash", have been installed a few months ago. 
+The motivation of the testbeam measurements were testing TJ-Mopopix1 at high dose rate with a focus on investigating the possibility of the application in radiotherapy. Despite this particular device does not seem fitting the requirements imposed for that application, especially regarding the readout time, the measurements have been useful since help us charaterizing the setup for future advance, and also give us the possibility of a complete charaterization of the chip.
 
-
-During August 2022 a testbeam took place in Santa Chiara hospital in Pisa, where a new accelerator designed for both medical research and R$\&$D in FLASH-RT, and for this reason called "ElectronFlash", have been installed a few months ago. 
-
-The motivation of the testbeam measurements were testing TJ-Mopopix1 in condition different from the one forseen during the design and also testing the mechanical and the DAQ setup for other future measurement. TJ-Monopix1 is supposed to be employed for tracking in HEP experiments while our goal was testing the possibility of integrating the charge released by more particles at ultra high hit rate achievable with the accelerator.
-\red{Una frase di disclaimer sul fatto che non siamo riusciti a testare quello che volevamo.}
-
-In medical physics the dose is indeed the standard parameter to charaterize the beam beacause of its obvious relation with the damage caused in the patient: firstly the oncologists prescribe a certain dose taking into account the efficacy of the treatment and then the medical physicists, on the basis of simulations, decide the energy and the intensity of the beams to dispense the prescribed dose amount.
-By the point of view of the instrumentation and the testing on it, a more common and usefull parameter is instead the rate or the fluence of particles.  
+Given that in medical physics the dose is the standard parameter to charaterize the beam, beacause of its obvious relation with the damage caused in the patient, I am going to explain the meaning of it by the point of view of the instrumentation.
+Infact, when interacting with measuring systems a more common and usefull parameter is the rate or the fluence of particles.
 The conversion between the two quantity can be find thinking to the definition of dose: it is the concentration of energy deposited in tissue as a result of an exposure to ionizing radiation. 
 Assuming total absorption of electrons in water, defined by law as the ordinarily reference medium, the dose can be expressed as: 
 \begin{equation}
@@ -24,8 +15,7 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
 
 
 \section{Apparatus description}
-   The accelerator is placed in a bunker inside the hospital: to shield the outdoor from ionizing radiation the bunker has very thick walls of cementum and both the control units of the accelerator and of the detector were placed outside the bunker. 
-   For practicability reasons the power supply were the only device to be placed inside the bunker. 
+   In order to shield the outdoor from ionizing radiation the accelerator is placed in a bunker inside the hospital. The bunker has very thick walls of cementum and both the control units of the accelerator and of the detector were placed outside in a neighbor room. 
    \subsection{Accelerator}
       \begin{figure}
          \centering
@@ -49,11 +39,11 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
          \label{tab:beam_parameters}
          \end{center}
       \end{table}  
-      The ElectronFlash accelerator is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (\SI{40}{Gy/pulse}) keeping the possibility of accessing many different beam parameters and changing them independently from each other. This charateristic is faundamental for research in FLASH-RT, both for the medical aspects and for the studies on detectors; for example is not really clear the dependence of the efficacy of the FLASH effect on the whole dose parameters. ElectronFlash is \red{almost the only one} in the world having this charateristic, \red{ricontrolla sulla review, c'era qualcosa che puoi dire. }    
-      The accelerator implements a standard beam structure for RT with electrons (fig. \ref{fig:beam_structure}), that is a macro pulse divided in many micropulses; the parameters used to set the dose and their range of values settable by the control unit is reported in table \ref{tab:beam_parameters}. 
+      The ElectronFlash accelerator is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (\SI{40}{Gy/pulse}) keeping the possibility of accessing many different beam parameters and changing them independently from each other, a characteristic that makes it almost unique worldwide and which is faundamental for research in FLASH-RT, both for the medical aspects\footnote{For example, it is not yet really clear the dependence of the efficacy of the FLASH effect on the whole beam parameters} and for the studies on detectors. 
+      The accelerator implements the standard beam structure used in RT with electrons (fig. \ref{fig:beam_structure}), that is a macro pulse divided in many micropulses; the parameters used to set the dose and their range of values settable by the control unit is reported in table \ref{tab:beam_parameters}. 
 
-      The accelerator is provided of a set of triod cannons $\sim$\SI{1.2}{m} long and with diameters from \SI{1}{cm} to \SI{12}{cm} and a collimator that can be used as beam shaper to produce a squircle shape.
-      The triode, which is made by plexiglass, must be fix to the gun during the irradiation and is needed for producing an uniform dose profile (fig.\ref{fig:dose_profile}) which is desired for medical pourpose via the scattering of electrons with the plexiglass.
+      The accelerator is also provided of a set of triod cannons $\sim$\SI{1.2}{m} long and with diameters in range from \SI{1}{cm} to \SI{12}{cm} and a collimator that can be used as beam shaper to produce a squircle shape.
+      The triode, which is made by plexiglass, must be fix to the gun during the irradiation and is needed for producing,  via the scattering of electrons with it, an uniform dose profile (fig.\ref{fig:dose_profile}) which is desired for medical pourpose.
       \begin{figure}[h!]
          \centering
          \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
@@ -64,21 +54,19 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
 
    \subsection{Mechanical carriers}
       The tested detector consists in one chip, the Device Under Test (DUT), mounted on a board and connected to FPGA with same arrangement of figure \ref{fig:}.
-      These have been positioned vertically in front of the triode on a table specifically built for the testbeam. The tree board have been enclosed in a box of alluminium with a window on the DUT and with the required holes at the side to enable the biasing via cables and the connection with the DAQ provided via ethernet cable.       
-      A trigger signal coming from the control unity and syncronize with the pulses emitted from the beam has been also sent to the FPGA.
-      This signal cannot be considered a trigger signal, since being a prototypes TJ-Monopix1 has been designed to be triggerless, but the time of arrival of this signal, which is saved by the FPGA, can allow the reconstruction of the of the arrival of the bunch during the analysis.
+      These boards have been positioned vertically in front of the triode on a table specifically built for the testbeam. The tree board have been enclosed in a box of alluminium with a window on the DUT and with the required holes at the side to enable the biasing via cables and the connection with the DAQ provided via ethernet cable.       
+      A trigger signal coming from the control unity and syncronized with the pulses emitted from the beam has been also sent to the FPGA.
+      This digital signal cannot be considered a real trigger, since the TJ-Monopix1 prototype has been designed to be triggerless, but its Time of Arrival (ToA) had allowed the reconstruction of the correct timing during the analysis.
 
-      In order to shield the sensor from the whole particles emitted from the gun, two alluminium collimators have been fabricated: one has been positioned at the triode exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the triode output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^-4}$. The second one, being near the DUT, was instead supposed to shield the sensor from the electrons which have passed the first one, except for a region of \SI{1}{mm\squared} configurable using \red{come si chiamano quei cacciavitini per settare la posizione?}.  
+      In order to shield the sensor from the whole particles emitted from the gun, two alluminium collimators have been fabricated: one has been positioned at the triode exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the triode output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^-4}$. The second one, being near the DUT, was instead supposed to shield the sensor from the electrons which have passed the first one, except for a region of \SI{1}{mm\squared} configurable using \red{come si chiamano quei cacciavitini per settare la posizione? sliding trimmer?}.  
       \begin{figure}[h!]
          \centering
          \includegraphics[width=.40\linewidth]{figures/test_beam/electron_flash.jpg}
          \includegraphics[width=.35\linewidth]{figures/test_beam/collimator_box.jpg}\\     
          \includegraphics[width=.77\linewidth]{figures/test_beam/carrello.jpeg} 
          \label{fig:set_up}
-         \caption{Experimental set up. (a) Electron flash accelerator: 
-         gantry rotante che consente un orientamento del fascio da 0°
-90° (orizzontale /verticale) in tempo reale monitorato da un inclinometro integrato.
-         the gun can be rotated from \SI{90}{\degree} to \SI{0}{\degree} (vertical/orizontal). (b) Collimator and DUT box. (c) Whole structure: we used the \SI{10}{cm} diameter and \SI{1.2}{m} long triode; the DUT which is in the box behind the two collimators is connected to the power supply units.}
+         \caption{Experimental set up. (a) ElectronFlash accelerator: a
+         rotating gantry allows the gun orientation from \SIrange{0}{90}{\degree} (horizontal /vertical). (b) Collimator and DUT box. (c) Whole structure mounted: we used the \SI{10}{cm} diameter and \SI{1.2}{m} long triode; the DUT which is in the box behind the two collimators is connected to the power supply units.}
       \end{figure}  
 
 \section{Measurements}
@@ -130,31 +118,18 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
       \label{fig:without_collimator}
    \end{figure}
 
-   After the testbeam a simulation of the emission of electrons from the accelerator and their path across the triode and the collimators has been developed via Geant-4 \red{come si ringrazia il lavoro di qualcuno in maniera formale?}. 
-   The high background we saw although the collimators were mainly produced by electrons Bremsstrahlung during the transition through the alluminium collimators. \red{dalla simulazione si è visto che nessun elettrone arriva sul chip quando ci sono montati i collimatori, mentre nel caso senza collimatori gli eventi sono sostanzialmente tutti elettroni (frazione di fotoni prodotti in aria è?).}
-   The photons' simulated spectrum in the three configurations are shown in figure \ref{fig:MC_photons_spectrum}. \red{confronto con quello che vedo nello spettro sopra: dati.}
-   \red{
+   %After the testbeam a simulation of the emission of electrons from the accelerator and their path across the triode and the collimators has been developed via Geant-4 \red{come si ringrazia il lavoro di qualcuno in maniera formale?}. 
+   The high background we saw although the collimators were mainly produced by electrons Bremsstrahlung during the transition through the alluminium collimators.
+   \red{Mancano: 
    \begin{itemize}
       \item plot n di eventi che vedo con le diverse configurazioni
-      \item simulazione surya
       \item confronta con misure dello spettro che vediamo senza e con collimatori. 
    \end{itemize}
    }
 
-   \subsection{MIP spectrum using cosmic rays as source}
-      Since a MIP should produce about \SI{2}{ke-} in the epitaxial layer, it should provide a signal that in our conditions (full depletion and high gain) rolls over: in this situation making prediction on the spectrum expected for MIPs becomes hard. 
-      Therefore, in order to compare the spectrum observed at the testbeam with one certainly produced by MIP I have made some acquisitions without any radioactive source, in order to look at the cosmic ray events. 
-      To be confident with having selected MIPs from cosmic rays and cut the noise, I have selected only the events with multiple hits: these events are mainly clusters produced by the same impinging particle since the random coincidence probability is very low. 
-      In fact the cosmic rays and noise rates on the whole matrix are respectively \SI{0.02}{Hz} and $\sim$\si{Hz}, the dead time in such a low occupancy condition can be alway approximated with \SI{1}{\um} (this is not completely true for multiple hits events for which the the priority chain should be considered), the random coincidence rate is 10$^{-8}$\si{Hz}.
-       \begin{figure}
-          \centering
-          \includegraphics[width=.49\linewidth]{figures/test_beam/MIP/all_evts.pdf}
-          \includegraphics[width=.49\linewidth]{figures/test_beam/MIP/only_evts_with_cluster.pdf}\\   
-          \includegraphics[width=.49\linewidth]{figures/test_beam/MIP/hits_per_cluster.pdf}
-          \includegraphics[width=.49\linewidth]{figures/test_beam/MIP/cluster_dimension.pdf} 
-          \caption{\red{plot dei raggi cosmici da rigenerare}}
-          \label{fig:}
-       \end{figure}   
-       \red{Come mai lo spettro in lab è diverso da quello visto con gli elettroni da 9 MeV al santa chiara? Chiedi a Surya il rate visto sul detector senza collimatori. }
+   %\red{At PRF smaller than 100 Hz, all the dosimeters analyzed have
+   %a shorter signal collection time with respect to the repetition
+   %time of the pualses (maggiore uguale 10 ms), and, consequently, the %saturation
+   %is influenced only by the dose-per-pulse (duration of the pulse is
+   %around 2.5 us)}
    
-
