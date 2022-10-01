@@ -1,8 +1,5 @@
 %    \red{Measurement of the magnitude of the collected charge has also been generally available for pixel detectors, and has been used to improve the 3D space point precision through interpolation as well as for particle identification through specific ionization measurement.
-\red{\begin{itemize}
-    \item rifai il conto della lunghezza di attenuazione. Ho trovato (presentazione Luciano Mus) 29 um per ka e 37 um per kb. 
-    \item Con il PMOS la configurazione del FE di default è: e richiama i significati delle variabili. 
-\end{itemize}}
+\red{Rifai il conto della lunghezza di attenuazione. Ho trovato (presentazione Luciano Mus) 29 um per ka e 37 um per kb. }
 
 \section{TJ-Monopix1 characterization}
     \subsection{Threshold and noise: figure of merit for pixel detectors}
@@ -13,7 +10,7 @@
         The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{e-} while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{e-}. This allows in thinner sensors with smaller signals: from \SI{16000}{e-} produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{e-} produced in \SI{25}{\um}. In agreement with this, the threshold of TJ-Monopix1 is around \SI{500}{e-}.
  
         Obviously the threshold has to be located between the noise peak around the baseline and the signal distribution, in particular it has to be low enough to mantain a high signal efficiency, but also high enough to cut the noise: for a low threshold many pixels can fire at the same time and a positive feedback can set off a chain reaction eventually, causing all the other pixels to fire.
-        Thus, the noise sets a lower bound to the threshold: \red{if an occupancy $\leqslant$ $10^{-4}$ is required, for example, this correspond to the Gaussian 1-sided tail fraction for \SI{3.7}{\sigma}}.
+        Thus, the noise sets a lower bound to the threshold: if an occupancy $\leqslant$ $10^{-4}$ is required, for example, a probability of firing lower than that value is needed and this, assuming a gaussian noise, requires that the threshold is set at least \SI{3.7}{\sigma}, with $\sigma$ the RMS of the noise.   
         In this case, if the noise is \SI{100}{e-} (resonable), the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{e-}.
         Typically this argument sets only a minimal bound to the threshold since the variation with time and from pixel to pixel have to be taken into account: the temperature, the anealing (for example, the radiation damages in the oxide layer causes shift of MOSFET threshold voltage) and the process parameters variation across the wafer (as for example process mismatch between transistors). 
 
@@ -63,7 +60,7 @@
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.6\linewidth]{figures/charaterization/scurve.pdf}
-            \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor 1) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been performed using a nominal conversion factor of \SI{20.3}{e-/DAC}}
+            \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor B) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been performed using a nominal conversion factor of \SI{20.3}{e-/DAC} \red{Mi sono resa conto che l'asse superiore è sbagliato. Devo rigenerare il plot}}
             \label{fig:scurve}
         \end{figure}   
         with IDB equal to \SI{40}{DAC}
@@ -234,14 +231,16 @@
         2D maps of the value of the capacity and of the conversion factor found are shown in \ref{fig:capacity_map}. The evident stripe-structure in the matrix shows an evident correlation among the same row; the same structure, which is also visible in the slope map of the calibration of the ToT (fig.\ref{fig:}), may be related with the structure of the bias lines.
         \begin{figure}[h!]
             \centering
-            \includegraphics[width=.5\linewidth]{figures/charaterization/sigma_fe55.pdf}            
-            \caption{Distribution of the Fe55 peak width.}
+            \includegraphics[width=.57\linewidth]{figures/charaterization/sigma_fe55.pdf}            
+            \includegraphics[width=.40\linewidth]{figures/charaterization/Fe_width_au_map.pdf}   
+            \caption{Histogram (a) and map (b) of the fitted Fe55 peak width.}
             \label{fig:Fe55_resolution}
         \end{figure}  
         \begin{figure}[h!]
             \centering
-            \includegraphics[width=.6\linewidth]{figures/charaterization/conversion_factor_map.pdf}
-            \caption{Map of the capacity (calibrated) at the input of the injection circuit. }
+            \includegraphics[width=.49\linewidth]{figures/charaterization/capacity.pdf}
+            \includegraphics[width=.49\linewidth]{figures/charaterization/conversion_factor_map.pdf}
+            \caption{Histogram (a) and map (b) of the calibrated capacity of the injection circuit. }
             \label{fig:capacity_map}
         \end{figure}  
 
@@ -301,7 +300,7 @@
             \centering
             \includegraphics[width=.50\linewidth]{figures/charaterization/Fe_param_vs_bias.pdf}
             \includegraphics[width=.49\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
-            \caption{(a) Peak position, peak amplitude and rate as a function of the bias. Since during the collection of the whole data the source has been moved, it is not guaranteed that it has always had a repositioning in the same exactly place, then small the fluctuation of the rate along the decreasing trend are accettable. The peak position and amplitude are estimated by fitting the spectrum with a gaussian in the region around the peak. (b) Fe55 spectrum at different P$_{sub/well}$ bias. The ToT values have been calibrated as explained in section. }\ref{sec:cal_ToT}.
+            \caption{(a) Peak position, peak amplitude and rate as a function of the bias. Since during the collection of the whole data the source has been moved, it is not guaranteed that it has always had a repositioning in the same exactly place, then small the fluctuation of the rate along the decreasing trend are accettable. The peak position and amplitude are estimated by fitting the spectrum with a gaussian in the region around the peak. (b) Fe55 spectrum at different P$_{sub/well}$ bias. The ToT values have been calibrated as explained in section. \ref{sec:cal_ToT}.}
             \label{fig:Fe_param_vs_bias}
         \end{figure}     
 
@@ -371,56 +370,73 @@
             \label{fig:hit_map_Fr550}
         \end{figure} 
 
-        In figures \ref{fig:spectrum} are shown the distributions per different cluster dimension events, of the charge collected by a single pixel (figures on the left) and the charge collected by summing all the pixels in the cluster (on the right).
-        In order to remove the background, since the rate noise rate is comparable with the ones of cosmic rays and Sr90, in the plots I have cut the single pixel events.
-        \red{DISEGNO}
-        The charge per length covered $Q/l$ released by a particle which crosses more pixels and is not completely absorbed in the sensor (fig.\ref{fig:charge_sharing_cross_section}) can be described by the following relation. Considering that:
+        In figures \ref{fig:spectrum_cosmic_rays}, \ref{fig:spectrum_Sr90}, \ref{fig:spectrum_Fe55} are shown the distributions per different cluster dimension events, of the charge collected by a single pixel (figures on the left) and the charge collected by summing the charge collected by the pixels within the cluster (figures on the right). 
+        Since the noise rate is comparable with the cosmic rays and Sr90 ones, I have removed the single pixel events which are separately shown in figure \ref{fig:single_pixel_cluster}; despite we cannot identify and selecting only the noise events, these distributions, and especially the cosmic rays one, are expected to be mostly populated by noise events.  
+        The distributions have a peak around the threshold, which is compatible with the fact that the noise events typically have a low ToT. 
+    
+        Looking at the spectra of Sr90 instead (fig:\ref{fig:spectrum_Sr90}), the maximum of the distribution of the cluster charge seems to follow a linear dependence on the number of pixels hit (tab.\ref{tab:charge_cluster}); this can be accepted as a first approximation considering that the pitch (\SI{36}{\um} and \SI{40}{\um}) depending on the direction, and the epitaxial layer thickness (25-30\si{\um}) are comparable. 
+        However a more accurate model which takes into account the impact angle of the particle should be developed for a more precise comparison.
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.6\linewidth]{figures/charaterization/background.pdf}
+            \caption{Histograms of the charge released in the pixels in events in which only a single pixel turns on.}
+            \label{fig:single_pixel_cluster}
+        \end{figure}         
+        \red{The charge per length covered $Q/l$ released by a particle which crosses more pixels and is not completely absorbed in the sensor (fig.\ref{fig:charge_sharing_cross_section}) can be described by the following relation. Considering that:
         \begin{equation}
             l = \frac{t}{cos(\lambda)} = \frac{t}{\sqrt{1+tg^2\lambda}} = \frac{t}{\sqrt{1+(x/t)^2}} 
         \end{equation}
         it can be expressed as:
         \begin{equation}
             \frac{Q}{l} = \frac{Q}{t}\, \sqrt{1 \,+\, (n-1)^2 p^2/t^2}
-        \end{equation}
-        where $p/t$ is the ratio between the pitch and the epitaxial layer thickness, and then it is different in the x and y directions (\SI{40}{\um} and \SI{36}{\um} respectively). Taking as value of $p/t$ 1.52, which is the mean on the two axis, the value of $Q/l$ expected by the scaling relation and the charge actually measured in the acquisition with the Sr90 are illustrated in table \ref{tab:charge_cluster}; because of the decision of cutting the single pixel events in order to have a clean sample, the expected value has been obtained by the two hits cluster dividing the charge by 2. The single pixel charge is then expected to be \red{conto.}
-        The measured value has been obtained by the maximum of the distributions in the left plots in \ref{fig:spectrum}
-
-%sungle pixel= [501.91226, 518.3834, 539.0669, 548.4218] pm [22.403399 22.768036 23.217813 23.418407]
+        \end{equation}\label{eq:charge_scaling}
+        where $p/t$ is the ratio between the pitch and the epitaxial layer thickness, and then it is different in the x and y directions (\SI{40}{\um} and \SI{36}{\um} respectively). Taking as value of $p/t$ 1.52, which is the mean on the two axis, the value of $Q/l$ expected by the scaling relation and the charge actually measured in the acquisition with the Sr90 are illustrated in table \ref{tab:charge_cluster}; because of the decision of cutting the single pixel events in order to have a clean sample, the expected value has been obtained by the two hits cluster dividing the charge by 2. By the invertion of the formula \ref{eq.charge_scaling}, the single pixel charge is then expected to be \SI{522}{e-}. FORSE DATO CHE LA MASSIMA CARICA RILASCIATA SCALA LINEARMENTE CON IL NUMERO DI PIXEL NON SCRIVEREI QUESTA COSA? O MAGARI LA METTO COME CORREZIONE?
+        The measured value has been obtained by the maximum of the distributions in the left plots in \ref{fig:spectrum}}
         \begin{table}
             \begin{center}
-            \begin{tabular}{| c |  c | c | c |}
+            \begin{tabular}{| c | c |}
             \hline
-            Pixel per evt & Expected [e-] & Measured [e-]   \\
+            Pixel per evt &  Measured [e-]   \\
             \hline
             \hline
-            2 & & 950 $\pm$ 30\\
-            3 & & 1450 $\pm$ 30\\ 
-            4 & & 2050 $\pm$ 30\\
-            5 & & 2450 $\pm$ 30\\                                   
+            2  & 950 $\pm$ 30\\
+            3  & 1450 $\pm$ 30\\ 
+            4  & 2050 $\pm$ 30\\
+            5  & 2450 $\pm$ 30\\                                   
             \hline
             \end{tabular}
-            \caption{Scaling proved with the events coming from the Sr90}
+            \caption{Position of the maximum of the distributions in figure \ref{fig:} of the summed charge released in the clusters. }
             \label{tab:charge_cluster}
             \end{center}
         \end{table}  
 
-        \red{Bump a sinistra dei cosmici?
-        Per quanto riguarda il ferro mi sarei aspettata che sommando la carica nel cluster la somma rimanesse sempre a 1616. Questo è verificato abbastanza bene da cluster con 2 e 3 hits, invece 4 ha il picco a 1850, questo significa probabilmente che quando hai 4 hit hai sia un fotone che un hit di rumore con basso tot, e che quindi ha carica circa la soglia. 
-        Guardando invece allo spettro di signolo pixel si vede per i clyster da 2 e 3 un piccolo bump a 1600. Probabilnente questo corrisponde a eventi di ferro in cui una delle due hit ha tutta la carica e l'altra invece è un evento di rumore. 3. Invece 4 ha il picco a 1850, questo significa probabilmente che quando hai 4 hit hai sia un fotone che un hit di rumore con basso tot, e che quindi ha carica circa la soglia. 
-        Guardando invece allo spettro di signolo pixel si vede per i clyster da 2 e 3 un piccolo bump a 1600. Probabilnente questo corrisponde a eventi di ferro in cui una delle due hit ha tutta la carica e l'altra invece è un evento di rumore.}
-
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.49\linewidth]{figures/charaterization/cosmic_rays_spectrum_per_pixel.pdf}
-            \includegraphics[width=.49\linewidth]{figures/charaterization/cosmic_rays_spectrum_cluster.pdf}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/cosmic_rays_spectrum_cluster.pdf}
+            \caption{Acquisition of cosmic rays with IDB=\SI{40}{DAC}}
+            \label{fig:spectrum_cosmic_rays}
+        \end{figure}   
+        \begin{figure}[h!]
+            \centering                    
             \includegraphics[width=.49\linewidth]{figures/charaterization/Sr90_spectrum_per_pixel.pdf}
-            \includegraphics[width=.49\linewidth]{figures/charaterization/Sr90_spectrum_cluster.pdf}\\
+            \includegraphics[width=.49\linewidth]{figures/charaterization/Sr90_spectrum_cluster.pdf}
+            \caption{Acquisition of Sr90 with IDB=\SI{40}{DAC}}
+            \label{fig:spectrum_Sr90}
+        \end{figure}     
+
+        \begin{figure}[h!]
+            \centering
             \includegraphics[width=.49\linewidth]{figures/charaterization/Fe55_spectrum_per_pixel.pdf}
             \includegraphics[width=.49\linewidth]{figures/charaterization/Fe55_spectrum_cluster.pdf}
             \caption{Acquisitions with radioactive source and cosmic rays at IDB=\SI{40}{DAC}. }
-            \label{fig:spectrum}
+            \caption{Acquisition of Fe55 with IDB=\SI{40}{DAC}}
+            \label{fig:spectrum_Fe55}
         \end{figure}   
-        \red{spiegazione cosmici.}
+        %sungle pixel= [501.91226, 518.3834, 539.0669, 548.4218] pm [22.403399 22.768036 23.217813 23.418407]
+        Regarding the Fe55, the bump in the cluster spectrum at $\sim$\SI{1616}{e-} corresponds to photons which had converted at the boundary of nearby pixels thus sharing their charge among them. Starting from 4-pixels clusters the peak moves to the right: this is due to the fact that the cluster with more than 3 pixels are principally random coincidence events Fe55-Fe55 or Fe55-noise. Recalling that the noise typically just exceeds the threshold and then has low ToT, the peak position in the spectrum \ref{fig:} of 4-pixel cluster can be explained admitting that one of the four pixel is a noise signal. 
+        The shoulder on the right, istead, which have an edge at about \SI{3200}{e-} corresponds to the events with coincidence of two photons.
+        Looking at the charge on the single pixel spectrum (fig.\ref{fig:}), instead, a small bump can be seen around\SI{1616}{e-}: these events correspond to photons which realeased almost all the charge on one pixel. 
 
     \subsection{Dead time measurements}
         The hit loss is due to analog and digital pile up: the first one occurs when a new hit arrives during the pre-amplifier response, the second instead when the hit arrives while the information of the previous hit has not yet been transferred to the periphery.  
