@@ -34,7 +34,7 @@ A second main demonstrator (ARCADIA-MD2) has been submitted in Summer 2021, feat
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.8\linewidth]{figures/ARCADIA/sensor.png}
-        \caption{}
+        \caption{Cross section of the ARCADIA MD1 sensor}
         \label{fig:ARCADIA_substrate}
     \end{figure}
 
@@ -58,7 +58,7 @@ A second main demonstrator (ARCADIA-MD2) has been submitted in Summer 2021, feat
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.7\linewidth]{figures/ARCADIA/pixel_cfg.pdf}
-            \caption{}
+            \caption{Logic used for each pixel to implement the injection and the masking.}
             \label{fig:pixel_cfg}
         \end{figure}    
         %Inoltre ci sono altre differenze, il bulk driven è più sensibile alle cadute di tensione sul ground (che ahimè è esattamente ciò che accade nei dimostratori che abbiamo ora, a causa dell'anomalo consumo di corrente dal digitale, altro baco che abbiamo corretto nella terza sottomissione).
@@ -88,8 +88,8 @@ A second main demonstrator (ARCADIA-MD2) has been submitted in Summer 2021, feat
         \centering
         \includegraphics[width=.3\linewidth, angle =90 ]{figures/ARCADIA/arcadia_chip_front.jpeg}\\
         \includegraphics[width=.7\linewidth]{figures/ARCADIA/arcadia_FPGA.jpeg}
-        \caption{(a) Board hosting the MD1 and (b) FPGA}
-        \label{fig:}
+        \caption{(a) Board hosting the MD1 chip. (b) FPGA and breakout board. The chip and breakout boards must be connected with the blue cabels}
+        \label{fig:foto_setup}
     \end{figure}
     One of the main ambition of the MD1 is to achieve the lowest possible power consumption, hopefully less than \SI{20}{mW/cm\squared}; this is pricipally due to the hope of application also in space experiment field, where the power consumption and the cooling are for sure an issue. 
     In order to undergo that requirement, the matrix is clockless and the readout is triggerless; moreover the chip can be operated both in the high rate mode and low rate depending on if only one or all serializers, which are placed at the periphery of the matrix are enabled or only one is shared between the sections; in addition, to save as much area as possible, no buffer have been included on the matrix at the expense of the maximum hit rate sustainable. The readout then is completelly data push and when a hit is received immediately starts the readout mechanism to trasmit it off chip.
@@ -102,7 +102,7 @@ A second main demonstrator (ARCADIA-MD2) has been submitted in Summer 2021, feat
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.98\linewidth]{figures/ARCADIA/hierarchy.pdf}
-            \caption{}
+            \caption{Hierarchy of the matrix division}
             \label{fig:hierarchy}
         \end{figure}
         Also the chip structure is meant to optimize the power consumption and the scalability for future up-scaling; in particular it is divide into a physical and logical hierarchy, which also reflects in the way the data pakets are built (tab.\ref{tab:data_packet}).
@@ -136,7 +136,7 @@ A second main demonstrator (ARCADIA-MD2) has been submitted in Summer 2021, feat
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.95\linewidth]{figures/ARCADIA/clustering_logic.pdf}
-            \caption{}
+            \caption{Logic of the circuit to implement the online clustering and deciding if to assign the Slave to the top or bottom Master.}
             \label{fig:clustering_logic}
         \end{figure}
         In figure \ref{fig:clustering_logic} is shown the circuit with the logic of assignment of the Slave to the Master.
