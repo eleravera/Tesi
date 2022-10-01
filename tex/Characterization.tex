@@ -221,7 +221,7 @@
 
         For this reason, when fitting with eq.\ref{eq:gauss_line}, I selected a larger region compared to the fit with eq.\ref{eq:gauss}, for which I used only a small reagion around the peak. The optimal fit region was chosen in both cases through an iterative routine: for the fit with eq.\ref{eq:gauss_line} it starts from an interval including all the pixels above \SI{20}{DAC} and progressively reduces it by increasing the left boundary; for the fit with eq.\ref{eq:gauss}, it starts from an interval of 5 bins around the expected peak position and reduces the interval of 1 bin at each iteration.
     
-        Even if the difference in the peak position between the two fit strategies is not really relevant for the purpose of the calibration, being of the order of 0.8-1.5\% (\ref{fig:delta_fit},it still introduces a systematic bias towards lower values due to the contribution of the tail. 
+        Even if the difference in the peak position between the two fit strategies is not really relevant for the purpose of the calibration, being of the order of 0.8-1.5\% (\ref{fig:delta_fit}),it still introduces a systematic bias towards lower values due to the contribution of the tail. 
         Indeed, we know that the sharp edge on the right must correspond to the case of complete absorption of the photon, so that, in general, the closest to this feature is the fitted peak position, the better the fit is. A poor fit tends also to overestimate the peak width.  
         Even looking at the $\chi^2$, the fit function \ref{eq:gauss} seems to be the better choise, except for a sample of pixels in the lower part of the matrix, the one with lower efficiency.
 
@@ -231,7 +231,7 @@
         \end{equation}
         Since the number of e/h pairs produced in the sensor is 1616, recalling that F for a silicon detector is 0.115 and that the ENC measured with the injection is \SI{12}{e-}, the $\sigma_{Fe}$ is expected to be $\sim$\SI{18}{e-}. Looking at figure \ref{fig:Fe55_resolution} the resolution achieved with the Fe55 source seems to be much higher. A contribution we have not taken into account but is certainly relevant is the systematic overestimation of the standard deviation of the Fe55 peak: this, as I already explained, is principally due to the high background of incomplete charge collection, which broadens the fitted peak. 
          
-        2D maps of the value of the capacity and of the conversion factor found are shown in \ref{fig:capacity_map}. The evident stripe-structure in the matrix has not a \red{non ha una motivazione certa, ma può derivare da come è fatta la slope, in cui si intravedono queste bande.}
+        2D maps of the value of the capacity and of the conversion factor found are shown in \ref{fig:capacity_map}. The evident stripe-structure in the matrix shows an evident correlation among the same row; the same structure, which is also visible in the slope map of the calibration of the ToT (fig.\ref{fig:}), may be related with the structure of the bias lines.
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.5\linewidth]{figures/charaterization/sigma_fe55.pdf}            
@@ -317,8 +317,8 @@
         \begin{equation}
             R_{coinc} = R_1 \, \times\, R_2 \, \times \, \tau
         \end{equation}
-        As I am going to prove in the next section, the dead time strictly depends on the occupancy of the matrix, even though we can assume a dead time of $\sim$\SI{1}{\um}, which corresponds to the mean dead time per pixel. However, if in an event a particle hits two different pixels producing a cluster, the total dead time simply doubles.   
-        Then, assuming a noise rate of $\sim$\si{Hz} on the whole matrix and being the mean rate of the , the random coincidence of two hits coming from Fe-noise, Sr-noise, CR-noise and noise-noise are respectively $\sim$\SI{10}{Hz}, $\sim$\SI{2.5}{mHz}, 
+        As I am going to prove in the next section, the dead time strictly depends on the occupancy of the matrix, even though we can assume a dead time of $\sim$\SI{1}{\um}, which corresponds to the mean dead time per pixel. However, if in an event a particle hits two different pixels producing a cluster, the total dead time simply doubles. 
+        Since the measured rate on the whole matrix of noise, Fe55, Sr90 and cosmic rays are $\sim$\si{Hz}, \SI{3.3}{kHz}, \SI{40}{Hz} and $\sim$\SI{10}{mHz}\footnote{The cosmic rays rate at the sea level is expected to be $\sim$1/cm$^2$/s}, the random coincidence probability are neglibile except the one of two Fe55 events, which is \SI{11}{Hz}.
         
         In figure \ref{fig:cluster_dimension} I report the histograms of the number of pixels in the cluster and of the dimension of clusters, defined in terms of the max and min coordinates on the matrix as:
         \begin{equation}
@@ -371,18 +371,19 @@
             \label{fig:hit_map_Fr550}
         \end{figure} 
 
-        \red{MODELLINO DEL RILASCIO DI CARICA SU PIU PIXEL}
-        \red{Alle figure \ref{fig:} riporto le distribuzioni di carica rilasciata nel pixel e nel cluster in funzione del numero di pixel per evento. DISEGNO}
-        The charge released by a particle which cross more pixels and do not be completely absorbed in the sensor (fig.\ref{fig:charge_sharing_cross_section}) can be described by the following relation. Considering that:
+        In figures \ref{fig:spectrum} are shown the distributions per different cluster dimension events, of the charge collected by a single pixel (figures on the left) and the charge collected by summing all the pixels in the cluster (on the right).
+        In order to remove the background, since the rate noise rate is comparable with the ones of cosmic rays and Sr90, in the plots I have cut the single pixel events.
+        \red{DISEGNO}
+        The charge per length covered $Q/l$ released by a particle which crosses more pixels and is not completely absorbed in the sensor (fig.\ref{fig:charge_sharing_cross_section}) can be described by the following relation. Considering that:
         \begin{equation}
             l = \frac{t}{cos(\lambda)} = \frac{t}{\sqrt{1+tg^2\lambda}} = \frac{t}{\sqrt{1+(x/t)^2}} 
         \end{equation}
-        the charge released per space covered can be expressed as:
+        it can be expressed as:
         \begin{equation}
-            \frac{Q}{l} = \frac{Q}{t}\, \sqrt{1 \,+\, (n-1/2)^2 p^2/t^2}
+            \frac{Q}{l} = \frac{Q}{t}\, \sqrt{1 \,+\, (n-1)^2 p^2/t^2}
         \end{equation}
-        where $p/t$ is the ratio between the pitch and the epitaxial layer thickness, and then it is different in the x and y directions. Taking as value of $p/t$ 1.52, which is the mean on the two axis, the value of charge expected by the scaling relation of the charge per length covered and charge actually measured are illustrated in table \ref{tab:charge_cluster}.
-        The expected value is calculated from the the measured value with two hits per cluser. The measured value has been obtained by the maximum of the distributions in the left plots in \ref{fig:spectrum}
+        where $p/t$ is the ratio between the pitch and the epitaxial layer thickness, and then it is different in the x and y directions (\SI{40}{\um} and \SI{36}{\um} respectively). Taking as value of $p/t$ 1.52, which is the mean on the two axis, the value of $Q/l$ expected by the scaling relation and the charge actually measured in the acquisition with the Sr90 are illustrated in table \ref{tab:charge_cluster}; because of the decision of cutting the single pixel events in order to have a clean sample, the expected value has been obtained by the two hits cluster dividing the charge by 2. The single pixel charge is then expected to be \red{conto.}
+        The measured value has been obtained by the maximum of the distributions in the left plots in \ref{fig:spectrum}
 
 %sungle pixel= [501.91226, 518.3834, 539.0669, 548.4218] pm [22.403399 22.768036 23.217813 23.418407]
         \begin{table}
@@ -403,8 +404,8 @@
             \end{center}
         \end{table}  
 
-        \red{Bump a sinistra dei cosmici? soglia? sto tagliando?
-        Per quanto riguarda il ferro mi sarei aspettata che sommando la carica nel cluster la somma rimanesse semrpe a 1616. Questo è verificato abbastanza bene 2 e    Per quanto riguarda il ferro mi sarei aspettata che sommando la carica nel cluster la somma rimanesse semrpe a 1616. Questo è verificato abbastanza bene 2 e 3. Invece 4 ha il picco a 1850, questo significa probabilmente che quando hai 4 hit hai sia un fotone che un hit di rumore con basso tot, e che quindi ha carica circa la soglia. 
+        \red{Bump a sinistra dei cosmici?
+        Per quanto riguarda il ferro mi sarei aspettata che sommando la carica nel cluster la somma rimanesse sempre a 1616. Questo è verificato abbastanza bene da cluster con 2 e 3 hits, invece 4 ha il picco a 1850, questo significa probabilmente che quando hai 4 hit hai sia un fotone che un hit di rumore con basso tot, e che quindi ha carica circa la soglia. 
         Guardando invece allo spettro di signolo pixel si vede per i clyster da 2 e 3 un piccolo bump a 1600. Probabilnente questo corrisponde a eventi di ferro in cui una delle due hit ha tutta la carica e l'altra invece è un evento di rumore. 3. Invece 4 ha il picco a 1850, questo significa probabilmente che quando hai 4 hit hai sia un fotone che un hit di rumore con basso tot, e che quindi ha carica circa la soglia. 
         Guardando invece allo spettro di signolo pixel si vede per i clyster da 2 e 3 un piccolo bump a 1600. Probabilnente questo corrisponde a eventi di ferro in cui una delle due hit ha tutta la carica e l'altra invece è un evento di rumore.}
 
@@ -440,7 +441,6 @@
         Unfortunately a high random hit rate on the matrix cannot be simulated by the injection because of the long time ($\sim$\si{ms}) needed to set the pixel registers of the injection; then I was forced to specify at the start of the acquisition the pixels to inject on, and for convenience I chose those on a same column.  
         In figure \ref{fig:efficiency_VS_delay} is shown the dependence of the efficiency on the DELAY parameter in two different cases. 
         For the 5 pixels example the efficiency goes down the 90\% at a DELAY of $\sim$185 clock counts, which corresponds to \SI{4.625}{\us} and to a rate of \SI{216}{kHz}, while in the 10 pixels example, the efficiency goes under the 100\% at $\sim$\SI{380}{clock} counts, which corresponds to \SI{9.5}{\us} and to a rate of \SI{105}{kHz}. 
-        \red{COME MAI SONO DIVERSE LE CURVE?}
         \begin{figure}[h!]
             \includegraphics[width=.49\linewidth]{figures/charaterization/efficiency_5pixels.png}
             \centering
