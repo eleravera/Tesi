@@ -1,11 +1,11 @@
-In the following sections I will use terms such as hybrid pixels, monolitich active picel system (MAPS), Charge Coupled Devices (CCDs), Depleted Field Effect Transistor sensors (DEPFET) that will discussed in \ref{chap:pixel} \red{disclaimer}
+This chapter tries to summarize the main applications of pixel detectors while a description of the technological implementation is presented in chapter \ref{chap:pixel}.
+In the following sections I will also use terms such as hybrid pixels, monolitich active picel system (MAPS), Charge Coupled Devices (CCDs), Depleted Field Effect Transistor sensors (DEPFET) that will discussed later. 
 
 The relation between the development of cameras and that of pixel detectors dates back to 1969, when the idea of CCDs, for which Boyle and Smith were awarded the Nobel Prize in Physics in 2009, revolutionized photography allowing light to be captured electronically instead of on film. 
 Even though the CMOS technology already existed at the time the CCDs spread, the costs of productions were too high to allow the diffusion of these sensors for the following 20 years. From that moment on, the fast diffusion of CMOS was mainly due to the less cost than CCD, and the less power supply required. Nowadays CCDs are still prefered over MAPS in astronomy, where the astronomical sources' rate are low enough to cope with slow readout time (tens of \si{ms}).  
 
 The principal use cases of pixel detectors are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
 Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
-This chapter tries to summarize the main applications of pixel detectors, while a description of the technological implementation is presented in \ref{chap:pixel}
 
 \section{Tracking in HEP}
     In the early days of high-energy physics gasoues detector where used for tracking and there was no need to replace them since they had a sufficient spatial resolution (\SI{100}{\um}). Since 1974, with the measurement of the invariant mass of the J/Psi and the affirmation of the quark model, all experiments start to look for better spatial resolutions in order to achieve the possibility of reconstructing short lived particles and measuring their decays lenght.  
@@ -24,7 +24,7 @@ This chapter tries to summarize the main applications of pixel detectors, while 
 
     The more demanding requirements led to the development of hybrid pixel detectors satrting from 1990s: a dedicated collaboration, RD19, was established at CERN with the specific goal of defining a semiconductor micropattern detector with an incorporated signal processing at a microscopic level. 
     In those years a wide set of prototypes of hybrid pixel has been manufactured; among the greatest productions a mention goes to the huge ATLAS and CMS vertex detectors. 
-    From the middle of 2013 a second collaboration, RD53, has been established with the new goal of finding a pixel detector suitable for the phase II in future upgrades of those experiments. Even if the collaboration is specifically focused on the design of hybrid pixel readout chips (aiming to \SI{65}{nm} tecnique), also other options have been taken in account and many test have been done on MAPS. Requirements imposed by LHC are stingent and they will become even more with the increase of luminosity at HL-LHC: for example, a dose and radiation of \red{\SI{5}{Mrad}} and 10$^{16}$~1MeV~n$_{eq}$/cm$^2$ are exepcted after 5 years of operation. Time resolution, material budget and power consumption are also issues for the upgrade: to distinguish different events from different bunches a time resolution better than \SI{25}{ns} for a bunch crossing frequency of \SI{40}{MHz} is required, a material budget lower than 2\% X$_0$ and a power consuption lower than \SI{500}{mW/cm\squared} are required. 
+    From the middle of 2013 a second collaboration, RD53, has been established with the new goal of finding a pixel detector suitable for the phase II in future upgrades of those experiments. Even if the collaboration is specifically focused on the design of hybrid pixel readout chips (aiming to \SI{65}{nm} tecnique), also other options have been taken in account and many test have been done on MAPS. Requirements imposed by LHC are stingent and they will become even more with the increase of luminosity at HL-LHC: for example, a dose and radiation of \SI{500}{Mrad} and 10$^{16}$~1MeV~n$_{eq}$/cm$^2$ are exepcted after 5 years of operation. Time resolution, material budget and power consumption are also issues for the upgrade: to distinguish different events from different bunches a time resolution better than \SI{25}{ns} for a bunch crossing frequency of \SI{40}{MHz} is required, a material budget lower than 2\% X$_0$ and a power consuption lower than \SI{500}{mW/cm\squared} are required. 
 
     Amidst the solutions proposed to improve radiation robustness of the sensor, 3D silicon detector, invented by Sherwood Parker in 1995, are very promising.
     In 3D sensors the electrode is a narrow column of n-type implanted vertically across the bulk instead of being implanted on the wafer's surface. 
@@ -34,7 +34,25 @@ This chapter tries to summarize the main applications of pixel detectors, while 
 
 
     \subsection{Hybrid Pixels at LHC}
-        \subsubsection{ATLAS}    
+    \subsubsection{ATLAS}    
+        \begin{figure}
+                \centering
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/ATLAS.png}                
+                    \caption{ATLAS tracker detector}
+                    \label{fig:ATLAS}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/ATLAS.png} 
+                    \caption{CMS tracker detector}
+                    \label{fig:CMS}
+                \end{subfigure}
+                \caption{CMS}
+                \label{fig:ATLAS_CMS}
+        \end{figure}
         ATLAS is one of two general-purpose detectors at the LHC and has the largest volume detector ever constructed for a particle
         collider (\SI{46}{m} long and \SI{25}{m} in diameter).  
         The Inner Detector (ID) consists of three different systems all immersed in a magnetic field parallel to the beam axis whose main components are: the pixel, the micro-strips and transition radiation trackers. 
@@ -42,7 +60,7 @@ This chapter tries to summarize the main applications of pixel detectors, while 
         92 million pixels are divided in 4 barrel layers and 3 disks in each end-cap region, covering a total area of \SI{1.9}{m\squared} and having a \SI{15}{kW} of power consumption. 
 
         As stated by the ATLAS collaboration the pixel detector is exposed by an extreme particle flux: "By the end of Run 3\footnote{Run 3 start in June 2022}, the number of particles that will have hit the innermost pixel layers will be comparable to the number it would receive if it were placed only a few kilometres from the Sun during a solar flare". Considering that the particle density will increase even more with HL-LHC, radiation hardness is definitively a target to achieve. 
-       Hybrid pixels will be used at the start of high-luminosity application, although an active development of monolitich devices is ongoing for possible future use in the outer pixel layers. The TJ-Monopix1 which I will describe in \ref{chap:Monopix_Arcadia} is part of this development. 
+        Hybrid pixels will be used at the start of high-luminosity application, although an active development of monolitich devices is ongoing for possible future use in the outer pixel layers. The TJ-Monopix1 which I will describe in \ref{chap:Monopix_Arcadia} is part of this development. 
        
         The sensor will be bonded with ITkPix, the first full-scale \SI{65}{nm} hybrid pixel-readout chip developed by the RD53 collaboration.
         Regarding the sensor, a valueable option is using 3D pixels, which have already proved themselves in ATLAS, for the IBL, where they were introduced in a limited acceptance range and introduced a new readout integrated circuit called FE-I4.  
@@ -65,13 +83,6 @@ This chapter tries to summarize the main applications of pixel detectors, while 
         The time resolution is \SI{25}{ns}, and the information coming from the detector are stored on chip for the Level-1 trigger latency ($\sim$\SI{4}{\us}).   
         The upgrade baseline ROIC was redesigned for the outer 3 layers, replacing analog signal readout with on-chip ADCs and digital readout at higher rate. reads out the pulse height information for each pixel. 
 
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/ATLAS.png}
-            \caption{ATLAS tracker detector}
-            \label{fig:ATLAS}
-        \end{figure}
-
         \subsubsection{LHCb}
         LHCb is a dedicated heavy-flavour physics experiment that exploits pp interactions at \SI{14}{TeV} at LHC. 
         It was the last experiment to upgrade the vertex detector, the Vertex Locator (VELO), replacing the silicon-strip with 26 plane pixel detector (beacause of the fixed target geometry) in May 2022. 
@@ -81,14 +92,24 @@ This chapter tries to summarize the main applications of pixel detectors, while 
         Since the detector is operated under vacuum near the beam pipe, the heat removal is particularly difficult and evaporative CO2 microchannel cooling are used. 
 
     \subsection{Monolitich Active Pixels}
-    \subsubsection{MIMOSA at EUDET and STAR}
-        \begin{figure}    
-        \centering
-            \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/MIMOSA.png}
-            \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/STAR.png}
-            \caption{(a) Block-diagram of the ULTIMATE-2 sensor. (b) The HFT pixel detector of STAR;}
-            \label{fig:MIMOSA}
-        \end{figure}
+        \begin{figure}
+            \centering
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/MIMOSA.png}          
+                \caption{Block-diagram of the ULTIMATE-2 sensor}
+                \label{fig:MIMOSA}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/STAR.png}
+                \caption{The HFT pixel detector of STAR}
+                \label{fig:HFT}
+            \end{subfigure}
+            \caption{}
+            \label{fig:EUDET_STAR}
+       \end{figure}
         MIMOSA \cite{MIMOSA}\cite{MIMOSA26} (standing for Minimum Ionizing MOS Active pixel sensor), designed in 2008, prefigured the architecture of MAPS for coming vertex detector being the first large scale sensor to be employed as detector. MIMOSA-26 equiped the final version of EUDET high resolution  beam telescope both at CERN-SPS and at DESY while the MIMOSA-28 devices are used for the first MAPS-based vertex detector at the STAR experiment at RHIC.
         MIMOSA-26 is fabricated in a \SI{350}{nm} CMOS technology, and a module features 1152 columns, split into 18 indipendent groups, and 576 rows, with square pixels having a side of \SI{18.4}{\um} lenght; the epitaxyal layer is not fully depleted and the charge collection is mostly by diffusion, resulting in charge sharing between pixels and collection time bigger than \SI{100}{ns}.
 
@@ -104,12 +125,25 @@ This chapter tries to summarize the main applications of pixel detectors, while 
         Thanks to the HFT system and the PXL, STAR achieved a track pointing resolution of \SI{46}{\um} for \SI{750}{MeV/c} kaons, and better than \SI{30}{\um} for particle momenta bigger than \SI{1}{GeV/c}: this performance enabled the study of D-meson production with a high significance signal.
 
         \subsubsection{ALPIDE at ALICE}
-        \begin{figure}[h!]
+        \begin{figure}
             \centering
-            \includegraphics[width=.7\linewidth]{figures/pixel_detectors_usage/alice.png}
-            \caption{}
-            \label{fig:}
-        \end{figure}
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/alice.png}        
+                \caption{ALICE ITS scheme}
+                \label{fig:ALICE_ITS}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/ALICE_FoCAL.png}
+                \caption{}
+                \label{fig:ALICE_FoCAL}
+            \end{subfigure}
+            \caption{FoCAL prototype fabricated with MAPS}
+            \label{fig:ALICE_RD}
+       \end{figure}
+        
         The ALICE (A Large Ion Collider Experiment) tracking detector consists of the Inner Tracking System (ITS), the gaseous Time Projection Chamber (TPC) and the Transition Radiation Detector (TRD), all embedded in a magnetic field of \SI{0.5}{T}. The ITS is made by six layers of detectors, two for each type, from the interaction point outwards: Silicon Pixel Detector (SPD), Silicon Drift Detector (SDD) and Silicon Strip Detector (SSD).         
         Contrary to the others LHC experiments, ALICE tracker in placed in a quite different environments, which enables the usage of a MAPS-based detector: the expected dose assorbed by the tracker is expected to be smaller by two order of magnitude and the rate of interactions is few \si{MHz} instead of \SI{40}{MHz}, even though the number of particles coming out from each interaction is very high (the SPD is invested by a density of particles of $\sim$\SI{100}{\per cm\tothe{-2}}).  
         The reconstruction of very complicated events with a large number of particle is then a challenge, hence to segment and to minimize the amount of material, which may cause secondary interaction futher complicating the event topology, is considered a viable strategy. 
@@ -118,18 +152,31 @@ This chapter tries to summarize the main applications of pixel detectors, while 
         The detector employes the ALPIDE chip, developed by ALICE collaboration, fabricated in the \SI{180}{nm} CMOS Imaging Sensor process of TowerJazz, whose design takes full advantage of process feature which allows full circuitry within the pixel matrix.
         Thanks to the reduction in the material budget, ITS2 obtained an amazing improvement both in the position measurement and in the momentum resolution, especially improving the efficiency of track reconstruction for particle with very low transverse momentum (by a factor 6 at pT $\sim$ 0.1 GeV/c). Further advancements in CMOS MAPS technology are being aggressively pursued for the ALICE ITS3 vertex detector upgrades (foreseen around 2026-27), with the goals of reducing the sensor thickness and improving the readout speed (which now is completely asynchronous) of the devices, while keeping power consumption at a minimum.
 
-        Beside tracking, ALICE has been studing the possibility of exploiting the extreme granularities of MAPS for calorimeter application. In a detector of this type, the energy measurement would come out from the counts of particles traversing the active layers, resulting then in a digital calorimeter. A prototype of such a calorimeter fabricated with the MIMOSA23 chips and containing 39 million pixels devided in 24 layers, alternated with 24 layers of tungsten, have been tested with electron beams and exhibited an energy resolution better than standard hadronic calorimeters, with a stochastic terms of 30\%/$\sqrt{E(GeV)}$, a constant term of 2.8\% and noise term of \SI{0.063}{GeV}.
+        Beside tracking, ALICE has been studing the possibility of exploiting the extreme granularities of MAPS for calorimeter application. In a such calorimeter, the energy measurement would come out from the counts of particles traversing the active layers, resulting then in a digital calorimeter. A prototype forward calorimeter (FoCAL), fabricated with the MIMOSA23 chips and containing 39 million pixels devided in 24 layers, alternated with 24 layers of tungsten (\ref{fig:ALICE_FoCAL}), have been tested with electron beams and exhibited an energy resolution better than standard hadronic calorimeters, with a stochastic terms of 30\%/$\sqrt{E(GeV)}$, a constant term of 2.8\% and noise term of \SI{0.063}{GeV}.
         Moreover, the passive cooling via the tungsten structure has proven to be sufficient for the higher level of heat produced by the chip with respect the conventional sensor while keeping the structure compact. 
 
         \subsubsection{BelleII}
+        \begin{figure}
+            \centering
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}      
+                \caption{}
+                \label{fig:Belle2_scheme}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/Belle2_vertex.png}
+                \caption{}
+                \label{fig:Belle2_photo}
+            \end{subfigure}
+            \caption{Belle2 vertex detector}
+            \label{fig:Belle2_Vertex}
+       \end{figure}
+
         Due to the high background level coming from the nanobeam used at SuperKEKB in order to achieve a such high luminosity (4.7$\times$10$^{34}$\si{1/cm\squared/s}), silicon strip cannot be used in the inner layer of the tracker. The occupancy is too high to allow the usage of strips up to \SI{40}{mm} from the beam pipe. 
         Moreover for a precise reconstruction of B-decay vertices, the usage of thin detector is mandatory at the low energy (\SIrange{4}{7}{GeV}) of the beam, in order to minimize the multiple scattering of particles. 
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.75\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}
-            \caption{Belle2 vertex detector.Since an accidental beam background enhancement can damage the VXD, diamond detectors are installed in order to monitoring it.}
-            \label{fig:Belle2_Vertex}
-        \end{figure}
         The current vertex detector of BelleII, VXD, is made of a pixel detector (PXD), fabricated with 2 layers of DEPFET-based pixels, and 4 layers of a double-sided silicon strip detectors (SVD)\cite{BelleII-DEPFET}.
         Due to the small capacitance of the collection node, DEPFET presents a high signal-to-noise ratio (in 30-50) thanks to the low instrinsic noise and to the large signal achieved with he fully depleted bulk: pixels are thinned to \SI{75}{\um} in the active region, then a MIP is supposed to create a signal of $\sim$\SI{6000}{e^-}, while the typical noise of DEPFET is around \SI{200}{e^-}.
         The ASIC read out is still based on a rolling shutter logic, with an integration time of \SI{20}{\us}.
@@ -197,19 +244,32 @@ This chapter tries to summarize the main applications of pixel detectors, while 
             Even if the FLASH effect is not yet completelly understood and the underlying mechanisms are not clear, it looks like there are two different recipes which are involved:
             \begin{itemize}
                 \item \textbf{The dose rate:} 
-                higher dose rate produce bigger damages (fig. \ref{fig:damage_vs_dose}(a)) since this prevent cells from sparing.
+                higher dose rate produce bigger damages (fig. \ref{fig:survival_dose}) since this prevent cells from sparing.
                 \item \textbf{The presence or absence of oxygen:} 
                 while hypoxic cells are very resistant to
                 radiation, normal oxygenated cells are highly radiosensitive. 
-                This is because if molecules containing $O_2$ break due to the impinging radiation, then the oxygen can build Reactive Oxygen Species (ROS) (fig.\ref{fig:damage_vs_dose}(b))
+                This is because if molecules containing $O_2$ break due to the impinging radiation, then the oxygen can build Reactive Oxygen Species (ROS) (fig.\ref{fig:survival_oxygen})
             \end{itemize} 
-            \begin{figure}[h!]
+            \begin{figure}
                 \centering
-                \includegraphics[width=.49\linewidth]{figures/pixel_detectors_usage/survival_curve.png}
-                \includegraphics[width=.45\linewidth]{figures/pixel_detectors_usage/survival_curve_oxygen.png}
-                \caption{(a) Survival curve for different dose rate and (b) for different oxygen cell content}
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/survival_curve.png}                    
+                    \caption{}
+                    \label{fig:survival_dose}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.39\textwidth}
+                    \centering
+                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/survival_curve_oxygen.png}                    
+                    \caption{}
+                    \label{fig:survival_oxygen}
+                \end{subfigure}
+                \caption{(a) Survival curve for different dose rate and (b) for different oxygen cell content }
                 \label{fig:damage_vs_dose}
-            \end{figure}               
+           \end{figure}
+
+
             The Tumor Control Probability (TCP) and the Normal Tissue Complication (NTC) functions parametrize respectively the efficiency of damaging on the tumor after having released a certain dose and the probability of not affecting the healthy tissues. The intermediate zone between the increase of the TC and of the NTC is called therapeutic window, and the wider it is and the more effective the treatment is. 
             \begin{figure}
                 \centering

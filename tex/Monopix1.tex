@@ -1,5 +1,6 @@
-%In questo capitolo tratterò ... 
+This chapter presents a brief description of the two DMAPS devices that I have tested during the thesis work: the TJ-Monopix1 device, originating developments connected to the ATLAS upgrade, and the ARCADIA Main Demonstrator device, developed by INFN ARCADIA collaboration as a multipurpose chip for accelerator and space applications.
 
+\section{TJ-Monopix1}
 TJ-Monopix1 is a small electrode DMAPS with fast R/O capability, fabricated by TowerJazz foundry in 180 nm CMOS imaging process.
 It is part, together with prototypes from other series such as TJ-MALTA, of the ongoing R$\&$D efforts aimed at developing DMAPS in commercial CMOS processes, that could cope with the requirements at accelerator experiments.
 Both TJ-Monopix and TJ-MALTA series \cite{MALTA}, produced with the same technology by TowerJazz (the timeline of the foundry products is shown in figure \ref{fig:TJ180nm}), are small electrode demonstrators and principally differ in the readout design: while Monopix implements a column-drain R/O, an asynchronous R/O without any distribution of BCID has been used by TJ-Malta in order to reduce power consumption.
@@ -86,7 +87,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
 \end{table}
 
 
-\section{The sensor}\label{chapter:TJMonopix1_thesensor}
+\subsection{The sensor}\label{chapter:TJMonopix1_thesensor}
     As already anticipated, TJ-Monopix1 has a p-type epitaxial layer and a n doped small collection electrode (\SI{2}{\um} in diameter); to avoid the n-wells housing the PMOS transistors competing for the charge collection, a deep p-well substrate, common to all the pixel FE area, is used.
     TJ-Monopix1 adopts the modification described in section \ref{chap:a_modified_sensor} that allows to achieve a planar depletion region near the electrode applying a relatively small reverse bias voltage.
     This modification improves the efficiency of the detector, especially after irradiation, however a simulation of the electric field in the sensor, made with the software TCAD (Technology Computer Aided Design), shows that a nonuniform field is still produced in the lateral regions of the pixel compromising the efficiency at the corner.
@@ -102,7 +103,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
 
     Moreover, to investigate the charge collection properties, pixels within the matrix are split between bottom top half and bottom half and feature a variation in the coverage of the deep p-well: the electronics area can be fully covered or not. In particular the pixels belonging to rows from 0 to 111 are fully covered (FDPW) and pixels belonging to rows from 112 to 223 have a reduced p-well (RDPW), resulting in a enhancement of the lateral component of the electric field.
 
-    \section{Front end}
+    \subsection{Front end}\label{sec:ALPIDE-like}
         One of the main advantage of this chip is the small collection electrode, which results in a small capacitance (C$_{in}$=\SI{3}{fF}) allowing for high input signal amplitude and single stage of amplification, which obviously improves the signal to noise ratio performance of the FE. Assuming a fully depleted epitaxyal layer of \SI{25}{\um}, which corresponds approximately to a \SI{20}{\um} of deep sensing volume, a MIP should produce $\sim$\SI{1600}{e-}, then:
         \begin{equation}
             V_{in} = \frac{1600\,e^-\times1.6\,10^{-19}\,C }{3\,fF} = 85\,mV
@@ -133,7 +134,6 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
         Unfortunately the "HV" suffer from a signal loss, which can achieve even the 50\%, due to the additional parasitic capacity introduced at the input node.  
         The HV voltage above which the breakdown begins is $\sim$\SI{50}{V}; however at values bigger than \SI{20}{V}, the gain does not increase anymore, since the depletion zone is already fully depleted. 
 
-        \subsection{ALPIDE-like}\label{sec:ALPIDE-like}
             ALPIDE chips, developed by the ALICE collaboration, implemented a standard FE to the point that many CMOS MAPS detectors used a similar FE and are called "ALIPDE-like". 
             Considering that both TJ-Monopix1 and ARCADIA-MD1 have an ALPIDE-like FE, I am going to explain the broad principles of the early FE stage.
             \begin{figure}[h!]
@@ -152,7 +152,8 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
                 \Delta V_{OUT\_A} = \frac{Q_{source}}{C_{OUT\_A}} = \frac{C_{source}\Delta V_{PIX\_IN}}{C_{OUT\_A}}  = \frac{C_{Source}}{C_{OUT\_A}}\frac{Q_{IN}}{C_{IN}}
             \end{equation}
             A second branch (M4, M5) is used to generate a low frequency feedback, where VCASN and ITHR set the baseline value of the signal on $C_{OUT\_A}$ and the velocity to goes down to the baseline.
-            \red{IL RUOLO DI CURVFEED NON L'HO CAPITO.}
+            The CURFEED transistor is then used to control the current in the input branch and also determines the current that flows at the discriminator input. 
+
             Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
 
     
@@ -191,7 +192,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
 
 
 
-\section{Readout logic}\label{chap:Monopix_RO}
+\subsection{Readout logic}\label{chap:Monopix_RO}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
     On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing a previous one, the new data get lost.  
     After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig:R/O-system}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  
@@ -232,7 +233,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
         \label{fig:pixel_logic}
     \end{figure}
     
-    The final data must provide all the hits' information: the pixel address, the ToT and the timestamp. All those parts are assigned and appended at different time during the R/O chain:  
+    The final data must provide all the hits information: the pixel address, the ToT and the timestamp. All those parts are assigned and appended at different time during the R/O chain:  
     \begin{itemize}
         \item\textbf{Pixel address:} while the double column address (6-bit) is appended by the EoC circuit, the row address (8-bits for each flavor) and the physical column in the doublet (1-bit) are assigned by the in-pixel logic      
         \item \textbf{ToT:} is obtained offline from the difference of 6-bits TE and 6-bits LE, stored by the edge detector in-pixel; since a 40 MHz BCID is distributed across the matrix, the ToT value is range 0-64 clock cycle which corresponds to 0-1.6 \si{\us}  
