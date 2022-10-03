@@ -57,7 +57,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         \begin{figure}
             \centering
             \includegraphics[width=.6\linewidth]{figures/charaterization/scurve.pdf}
-            \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor B) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been performed using a nominal conversion factor of \SI{20.3}{e-/DAC} \red{Mi sono resa conto che l'asse superiore è sbagliato. Devo rigenerare il plot}}
+            \caption{S-curve for pixel (10, 10) of the PMOS flavor (flavor B) with IDB fixed at \SI{40}{DAC}. The conversion of charge injected from DAC to electrons has been performed using a nominal conversion factor of \SI{20.3}{e-/DAC} }
             \label{fig:scurve}
         \end{figure}   
 
@@ -220,10 +220,14 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         
     \subsection{Calibration of the ToT}\label{sec:cal_ToT}
     %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/Fe_acquisitions_6V/ per fare i fit. Attenzione che prende i file degli istogrammi npz già    
-        \red{Finding a calibration for the ToT means defining a way to pass from the ToT values (0-64 clock counts) to a spectrum expressed in electrons collected. 
-        The principles of the calibration are the following: the ToT in clock counts maps (eq.\ref{eq:calibration}) a DAC range between the threshold and a value which depends on the pixel and generally is around 90-100~\si{DAC}. Assuming that a \SI{0}{DAC} signal corresponds to \SI{0}{\elementarycharge}$^-$, if another reference point is fixed, a linear calibration function can be defined. 
-        After the calibration the ToT goes to map a charge range between the threshold and Q$_{max}$ which is a function of the pixel and is around \SI{2}{ke-}. } 
-
+        For the calibration of the Time over Threshold signal I have used both the injection and a radioactive source in order to fix an absolute scale of the charge detected. 
+        The calibration is based on the following assumptions:
+        \begin{itemize}
+            \item the ToT linearly depends on the charge released
+            \item \SI{0}{DAC} corresponds to \SI{0}{\elementarycharge}$^-$
+            \item a ToT of \SI{1}{clock} count corresponds to a charge produced in the bulk equal to the threshold  
+        \end{itemize}
+        
         \begin{figure}
             \centering
             \begin{subfigure}[b]{0.49\textwidth}
@@ -256,7 +260,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \label{fig:Fe55_spectrum_pixels}
        \end{figure}
 
-        Moreover, considering that the charge injected in the FE depends on the value of the C$_{inj}$ (Q$_{inj}$=C$_{inj}$V$_{inj}$) which is different from pixel to pixel, the true charge injected does not correspond to the nominal value expected assuming C$_{inj}$=\SI{230}{aF}.
+        Considering that the charge injected in the FE depends on the value of the C$_{inj}$ (Q$_{inj}$=C$_{inj}$V$_{inj}$) which is different from pixel to pixel, the true charge injected does not correspond to the nominal value expected assuming C$_{inj}$=\SI{230}{aF}.
         Accordingly to that, a measurement of the injection capacitance provides both an absolute calibration of C$_{inj}$ and a conversion factor K to have a correspondence of the DAC signal in electrons. 
         K and C$_{inj}$ are defined respectively as:
         \begin{equation}
@@ -736,14 +740,14 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \centering
             \includegraphics[width=\linewidth]{figures/charaterization/ARCADIA/Fe55_5min30s.png}
             \caption{}
-            \label{fig:}
+            \label{fig:ARCADIA_Fe55a}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.49\textwidth}
             \centering
             \includegraphics[width=\linewidth]{figures/charaterization/ARCADIA/Fe55_6min30s.png}
             \caption{}
-            \label{fig:}
+            \label{fig:ARCADIA_Fe55b}
         \end{subfigure}
         \caption{Fe55 acquisitions with VCASN=\SI{40}{DAC}. (a) All the matrix 512$\times$512 is plotted even if the minid2 has only the rows in range 0-32. (b) A zoom on the first section (col 0-32). }
         \label{fig:ARCADIA_Fe55}
