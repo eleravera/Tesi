@@ -31,7 +31,7 @@ Concerning the sensors, either are based on a p-type substrate, but with slightl
     ToT & 8 bits & 6 bits\\
     Consumption & $\sim$  300\si{mW/cm\squared}& $\sim$  120\si{mW/cm\squared} \\
     Threshold & 1500 $e^-$ & $\sim$ 270 $e^-$ \\
-    ENC & 100 $e^-$ & $\sim$ 30 $e^-$\\
+    ENC & 100 $e^-$ & $\sim$ 9 $e^-$\\
     \hline
     \end{tabular}
     \caption{Main characteristics of Monopix1 produced by TowerJazz and LFoundry \cite{LF-TJ-Monopix-short}\cite{LF-TJ-Monopix-long}}
@@ -54,13 +54,13 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=.98\linewidth]{figures/Monopix1/Monopix1_2x2pixelsgroup.png}
-    \caption{Layout of a core containing 4 pixels. The analog FE and the digital part are separated in order to reduce cross-talk be}
+    \caption{}
     \label{fig:pixels_core}
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=.88\linewidth]{figures/Monopix1/column_order.png}
-    \caption{}
+    \caption{(a) Layout of a core containing 4 pixels: the analog FE and the digital part are separated in order to reduce crosstalk. (b) Propagation logic of signals along the double column buses}
     \label{fig:column_order}
     \end{subfigure}
 \end{figure}
@@ -81,7 +81,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
     Power consumption & $\sim$ 120 \si{mW/cm\squared}\\    
     \hline
     \end{tabular}
-    \caption{}
+    \caption{Charateristics of TJ-Monopix1 chip}
     \label{tab:LF-TJ-Monopix}
     \end{center}
 \end{table}
@@ -97,7 +97,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
-        \caption{(a) The cross-section of a monolithic pixel in the TJ-Monopix with modified process; additionally in (b) a gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field. this point in figure  is indicated by a star . transversal component of the electric field drops at the pixel corner}
+        \caption{On the left the cross-section of a monolithic pixel in the TJ-Monopix with modified process; in the scheme on the right an additional gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field. The point indicated by a star at the pixel corner correspsonds to the region where the transversal component of the electric field drops; introducing the gap then, a transversal component is restored and the collection becomes more efficient also in that region. }
         \label{fig:Monopix1_section_scheme}
     \end{figure}
 
@@ -106,7 +106,7 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
     \subsection{Front end}\label{sec:ALPIDE-like}
         One of the main advantage of this chip is the small collection electrode, which results in a small capacitance (C$_{in}$=\SI{3}{fF}) allowing for high input signal amplitude and single stage of amplification, which obviously improves the signal to noise ratio performance of the FE. Assuming a fully depleted epitaxyal layer of \SI{25}{\um}, which corresponds approximately to a \SI{20}{\um} of deep sensing volume, a MIP should produce $\sim$\SI{1600}{e-}, then:
         \begin{equation}
-            V_{in} = \frac{1600\,e^-\times1.6\,10^{-19}\,C }{3\,fF} = 85\,mV
+            V_{in} = \frac{1600\,e^-\times1.6\,10^{-19}\,\si{C} }{\SI{3}{fF}} = \SI{85}{mV}
         \end{equation}
 
         Secondly, a reset machanism which slowly discharges the detector capacitance must be inlcuded in the circuit:
@@ -117,7 +117,6 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
         Traditionally the reset can be implemented in two different way: with a forward biased diode, that might be implemented by a simple p+ diffusion inside the well of the collection electrode n, or with a PMOS transistor. 
         Despite of the semplicity of the diode reset, since it is a non-linear element, the discharge would depend on the quantity of charge Q generated on the n electrode, prejudicing the linearity of the analog output (Q-ToT). To solve the issue, a PMOS reset is the method preferred in design such TJ-Monopix1 with analog output; the PMOS transistor, indeed, can acts as a constant current source and then used to discharge the sensor. 
         Although the PMOS reset is capable of providing a constant current, it has to be manually re-tuned every time in order to restore the input DC baseline voltage; to do that a low-frequency feedback is used. 
-
 
         The matrix is split in four sections, each one corresponding to a different flavor of the FE, implemented in order to test more options. 
         \begin{figure}[h!]
@@ -136,13 +135,26 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
 
             ALPIDE chips, developed by the ALICE collaboration, implemented a standard FE to the point that many CMOS MAPS detectors used a similar FE and are called "ALIPDE-like". 
             Considering that both TJ-Monopix1 and ARCADIA-MD1 have an ALPIDE-like FE, I am going to explain the broad principles of the early FE stage.
-            \begin{figure}[h!]
+            
+            \begin{figure}
                 \centering
-                \includegraphics[width=.49\linewidth]{figures/Monopix1/ALPIDE_FE.png}
-                \includegraphics[width=.49\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=.49\linewidth]{figures/Monopix1/ALPIDE_FE.png}
+                    \caption{}
+                    \label{fig:ALPIDE}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=.49\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}
+                    \caption{}
+                    \label{fig:Monopix}
+                \end{subfigure}
                 \caption{}
                 \label{fig:Monopix1_FE_circuit}
-            \end{figure}
+                \end{figure} 
+            
             The general idea is of the amplification to transfer the charge from a bigger capacity\cite{ALPIDE-FE}, $C_{source}$, to a smaller one, $C_{out}$: the input transistor M1 with current source IBIAS acts as a source follower and this forces the source of M1 to be equal to the gate input  $\Delta V_{PIX\_IN} = Q_{IN}/C_{IN}$.
             \begin{equation}
                 Q_{source} = C_{source} \Delta V_{PIX\_IN}
