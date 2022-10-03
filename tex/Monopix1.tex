@@ -60,9 +60,10 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
     \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=.88\linewidth]{figures/Monopix1/column_order.png}
+    \end{subfigure}
+
     \caption{(a) Layout of a core containing 4 pixels: the analog FE and the digital part are separated in order to reduce crosstalk. (b) Propagation logic of signals along the double column buses}
     \label{fig:column_order}
-    \end{subfigure}
 \end{figure}
 
 \begin{table}
@@ -91,7 +92,7 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
     As already anticipated, TJ-Monopix1 has a p-type epitaxial layer and a n doped small collection electrode (\SI{2}{\um} in diameter); to avoid the n-wells housing the PMOS transistors competing for the charge collection, a deep p-well substrate, common to all the pixel FE area, is used.
     TJ-Monopix1 adopts the modification described in section \ref{chap:a_modified_sensor} that allows to achieve a planar depletion region near the electrode applying a relatively small reverse bias voltage.
     This modification improves the efficiency of the detector, especially after irradiation, however a simulation of the electric field in the sensor, made with the software TCAD (Technology Computer Aided Design), shows that a nonuniform field is still produced in the lateral regions of the pixel compromising the efficiency at the corner.
-    Two variations to the process have been proposed in order to further enhance the transversal component of electric field at the pixel borders: on a sample of chip, which includes the one in Pisa, a portion of low dose implant has been removed, creating a step discontinuity in the deep p-well corner (fig. \ref{fig:Monopix1_section_scheme}); the second solution proposed\cite{MOUSTAKAS THESYS, PAG 58} consists in adding an extra deep p-well near the pixel edge.
+    Two variations to the process have been proposed in order to further enhance the transversal component of electric field at the pixel borders: on a sample of chip, which includes the one in Pisa, a portion of low dose implant has been removed, creating a step discontinuity in the deep p-well corner (fig. \ref{fig:Monopix1_section_scheme}); the second solution proposed consists in adding an extra deep p-well near the pixel edge.
     A side effect of the alteration in the low dose implant is that the separation between the deep p-well and the p-substrate becomes weak to the point that they cannot be biased separately to prevent the punchthrough. 
 
     \begin{figure}[h!]
