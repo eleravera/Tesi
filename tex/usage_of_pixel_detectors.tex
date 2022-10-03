@@ -186,17 +186,17 @@ The principal use cases of pixel detectors in physics are particle tracking and 
 
 \section{Other applications}
     Pixel detectors are widely used also for photon detection: they can be used as single photon counter or integrating and collecting the charge released by more impinging particles. The utilisation in the first case is similar to the tracking one, except that the requirements are less tight, so much that two noteworthy of microchips originally meant for detectors in particle physics at the LHC, and later employed in other fields are Medipix and Timepix. They are read-out chips developed by the Medipix Collaborations since early 1990s. For two decades, different Medipix generations have been produced, having a rough correlation with the feature size used: Medipix2 (1999) used \SI{250}{nm} feature size CMOS while Medipix3 (2005) \SI{130}{nm}.
-    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed: it was for this reason that Medipix2 was bump bonded to identically segmented sensors of both silicon and GaAs.
+    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed: it was for this reason that Medipix2 was bump bonded to identically segmented sensors of both silicon and GaAs.\red{Referenza?}
     
     The applications in scientific imaging vary from atrophysics and medical imaging and dosimetry to more exotic domains as studies of protein dynamics, material scince, art authentication and archaeology.
     One of the most important employment of Medipix is as X-ray single photon counting in industrial and medical radiography and in 3D computed tomography\footnote{The analysis of the direction dependence of X-ray absorption is perform, for example, in order to obtain an image in Computed Tomography (CT)}. Thanks to a New-Zealand company, the MARS Bioimaging detector has been fabricated, which is capable of resolving the photons energy and produce 3D coloured images.
     Besides tracking in HEP (I have already cited the use of Timepix3 is in the beam telescope of the LHCb VELO), an important use of Timepix is in dosimetry.
     \red{Timepix Detector for Imaging in Ion Beam Radiotherapy- articolo e qualche info.}
-    A small-Timepix detector with the dimension of a USB can also be found at the International Space Statio, where it is exploited for radiation, principally made of haevy-ion, monitoring. 
+    A small-Timepix detector with the dimension of a USB can also be found at the International Space Station, where it is exploited for radiation, principally made of haevy-ion, monitoring. 
  
     \subsection{Applicability to FLASH radiotherapy}
-        A possible new application of pixels detector is dosimetry or beam monitoring of charge particles in high intensity radiography.
-        Recently\footnote{The first evidences has been observed on a mice experiments in 1966 and in 2014 by the group of Favaudon and Vozenin. After this, many test on cats and pigs have been performed, and also there has been a clinical trial on a cutaneous tumor-patient} a promising method for RT at ultra high dose rate (at least \SI{40}{Gy/s}) and for this reason called FLASH-RT\cite{FLASH_review}, instead of CONV-RT (\SI{0.03}{Gy/s}), came out. However, finding dosimeters suitable at ultra high dose rate is still an open issue since almost all standard online dosimeters have shown saturation problems.
+        A possible new application of pixels detector is dosimetry or beam monitoring of charge particles in high intensity radiotherapy (RT).
+        Recently\footnote{The first evidences has been observed on a mice experiments in 1966 and in 2014 by the group of Favaudon and Vozenin. After this, many test on cats and pigs have been performed, and also there has been a clinical trial on a cutaneous tumor-patient} a promising method for radiotherapy at ultra high dose rate (at least \SI{40}{Gy/s}) and for this reason called FLASH-RT\cite{FLASH_review}, instead of CONV-RT (\SI{0.03}{Gy/s}), came out. However, finding dosimeters suitable at ultra high dose rate is still an open issue since almost all standard online dosimeters have shown saturation problems. In table \ref{tab:dose_parameters} are listed the typical value of operation which distinguish  between CONV-RT and FLASH-RT.
 
         \subsubsection{Radiotherapy}
             \begin{figure}
@@ -205,12 +205,12 @@ The principal use cases of pixel detectors in physics are particle tracking and 
                 \caption{The Spread Out Bragg Peak (SOBP) curve (green), which is a constant dose distribution, is obtained from the superposition of many Bragg peak of hadrons with different energy.}
                 \label{fig:Bragg-peak}
             \end{figure}
-            The radiological treatment is a common method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, (Intra operative radiation therapy-IORT) and many different types of radiations (photons, electrons, protons and ions, which mainly are hydrogen and carbon) can be used to irradiate the affected tissues.
-            Exploiting the ionizating energy loss, that can be parametrized by the Linear Energy Transfer (LET), a biological damage can be delivered to the tissue: while $\alpha$ and $\beta$ particles are high LET radiations with values in \SIrange{100}{200}{keV/\um}, x-rays and gamma-rays are low LET radiations with values in range \SIrange{0.2}{2}{keV/\um}.
-            If x-ray photons, with energy in \SIrange{4}{25}{MeV} are used, the ionization is caused by the Compton electrons and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
-            The hardrons energy loss, instead, is strongly localized in the last region of the track, that is the Bragg peak, such as the the treatement typically requires the scanning of the target. The Relative Biological Effectiveness (RBE) of ions near th Bragg peak depends on their mass, and in particular it increases with the ion's mass; even though, too heavy ions generally increases the damage produced also in the entrance region. Carbon is considered the optimum between the two trends.
+            The radiological treatment is a common method used in 60\% of tumors both as palliative care and as treatment. It can be given before, after or during a surgery, (Intra operative radiation therapy-IORT) and many different types of radiations (photons, electrons, protons and ions, which mainly are carbon ions) can be used to irradiate the affected tissues.
+            Exploiting the ionizating energy loss, that can be parametrized by the Linear Energy Transfer (LET), a biological damage can be delivered to the tissue: while protons, alpha particle and light ions are high LET radiations with values in \SIrange{100}{200}{keV/\um}, x-rays and gamma-rays are low LET radiations with values in range \SIrange{0.2}{2}{keV/\um}.
+            If x-ray photons, with energy in \SIrange{4}{25}{MeV} are used, the ionization is caused by the Compton electrons and pair production, and is more in the superficial layers of the tissue due to the exponential attenuation of the beam. 
+            The heavy charged particles energy loss, instead, is strongly localized in the final region of the track, that is the Bragg peak, such as the the treatement typically requires the scanning of the target.
             
-            Electrons, instead, of energy in range of a dozen of \si{MeV} tend to spread out on a bigger region of a few centimeters in both the diameter and thickness. Using Very High Energy Electrons (VHEE) has been taken into account for irradiation of deeper tissues, however, to date, the FLASH effect has been tested and demostrated only using low-energy electrons.
+            Electrons, instead, of energy in range of a dozen of \si{MeV} tend to spread out on a bigger region of a few centimeters in both the diameter and thickness and for this reason using Very High Energy Electrons (VHEE) has been taken into account for irradiation of deeper tissues.
 
         \begin{table}
             \begin{center}
@@ -226,12 +226,18 @@ The principal use cases of pixel detectors in physics are particle tracking and 
             Pulse width & \SI{3}{\us} & $\sim$\SI{2}{\us} \\
             \hline
             \end{tabular}
-            \caption{Typical value of treatment parameters}
+            \caption{Typical range of values used in a CONV radiotherapeutic treatement made with pulsed beam, compared to the range in which the FLASH effect has been observed.}
             \label{tab:dose_parameters}
             \end{center}
         \end{table}
-        
+
         \subsubsection{FLASH effect}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.7\linewidth]{figures/pixel_detectors_usage/curve_flash.png}
+                \caption{Illustration of dependence of TCP, NTCP and therapeutic window on dose, for CONV-RT ad FLASH-RT.}
+                \label{fig:therapeutic_window}
+            \end{figure}
             This treatment takes advantages of biological differences between tumors and healthy tissues: it is characterized by reducing normal tissue toxicity and maintaining equivalent tumor damage. 
             The response to dose can be described by the survival fraction probability, describing the fraction of surviving cell as a function of the dose: 
             \begin{equation}
@@ -240,62 +246,39 @@ The principal use cases of pixel detectors in physics are particle tracking and 
             \end{equation}
             where $\alpha$ and $\beta$ respectively represents the rate of cell killing by single ionizing events and by double hits. 
             Hence, at high doses the density of damages increases and the cells repair becomes more difficult. 
-            Even if the FLASH effect is not yet completelly understood and the underlying mechanisms are not clear, it looks like there are two different recipes which are involved:
-            \begin{itemize}
-                \item \textbf{The dose rate:} 
-                higher dose rate produce bigger damages (fig. \ref{fig:survival_dose}) since this prevent cells from sparing.
-                \item \textbf{The presence or absence of oxygen:} 
-                while hypoxic cells are very resistant to
-                radiation, normal oxygenated cells are highly radiosensitive. 
-                This is because if molecules containing $O_2$ break due to the impinging radiation, then the oxygen can build Reactive Oxygen Species (ROS) (fig.\ref{fig:survival_oxygen})
-            \end{itemize} 
-            \begin{figure}
-                \centering
-                \begin{subfigure}[b]{0.49\textwidth}
-                    \centering
-                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/survival_curve.png}                    
-                    \caption{}
-                    \label{fig:survival_dose}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[b]{0.39\textwidth}
-                    \centering
-                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/survival_curve_oxygen.png}                    
-                    \caption{}
-                    \label{fig:survival_oxygen}
-                \end{subfigure}
-                \caption{(a) Survival curve for different dose rate and (b) for different oxygen cell content }
-                \label{fig:damage_vs_dose}
-           \end{figure}
+            The FLASH effect is not yet completelly understood and the underlying mechanisms are not yet clear, but many ideas have been proposed; among the most debated there are the fact that the high dose rate would prevent cells from reparing, or that the cell oxygen content and the immune response play a role.
+            However what has been noticed is that the FLASH-RT allows to widen the therapeutic window, defined as below. 
+            The Tumor Control Probability (TCP) and the Normal Tissue Complication (NTC) functions parametrize respectively the efficiency of damaging on the tumor after having released a certain dose and the probability of affecting the healthy tissues. The intermediate zone between the increase of the TC and of the NTC is called therapeutic window, and the wider it is and the more effective the treatment. 
 
-
-            The Tumor Control Probability (TCP) and the Normal Tissue Complication (NTC) functions parametrize respectively the efficiency of damaging on the tumor after having released a certain dose and the probability of not affecting the healthy tissues. The intermediate zone between the increase of the TC and of the NTC is called therapeutic window, and the wider it is and the more effective the treatment is. 
-            \begin{figure}
-                \centering
-                \includegraphics[width=.7\linewidth]{figures/pixel_detectors_usage/curve_flash.png}
-                \caption{Illustration of dependence of TCP, NTCP and therapeutic window on dose, for CONV-RT ad FLASH-RT.}
-                \label{fig:therapeutic_window}
-            \end{figure}
 
         \subsubsection{Dosimetric problems}
-            Up to now, all online dosimeters have shown saturation problems at high Dose Per Pulse, differently from radiochromic films, which are the standard passive dosimeters and have shown a dose-rate indipendece up to \SI{100}{Gy/s}.
-            In spite of the linear response in wide dynamic range, they do not provide any online dosimetric informations, since the time required to extract the physical value from the reading is not long, requiring a measurement of the film density\footnote{The radiation produces a polymerization of an active layer, resulting in a different density of coloration.}.
+            Since the dosimeters problems are strictly related with the time structure of the beam used for the treatement, let consider the case of a pulsed electron beam (fig.\ref{fig:beam_structure}), where a high quantity of dose ($\gtrsim$\SI{1}{Gy/pulse}) is released in a very short time (macropulses).            
+            At small macro-pulse frequency the signal collection time is shorter than the time between pulses, and, consequently, the saturation is influenced only by the Dose Per Pulse.
+            \begin{figure}
+                \centering
+                \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}
+                \caption{Typical beam structure of a beam used in electron radiotherapy}
+                \label{fig:beam_structure}
+            \end{figure} 
+                    
+            Up to now, all online dosimeters have shown saturation problems at high DPP, differently from radiochromic films, which are the standard passive dosimeters and have shown a dose-rate indipendece up to \SI{100}{Gy/s}.
+            In spite of the response is linear in a wide dynamic range, they do not provide any online dosimetric informations, since the time required to extract the physical value from the reading is not long, requiring a measurement of the film density\footnote{The radiation produces a polymerization of an active layer, resulting in a different density of coloration.}.
 
             Ionization Chambers (ICs), which are the online reference dosimeter also according to law protocols, at high level of radiation (already at dose per pulse two orders of magnitude lower than the ones used for FLASH-RT) show both problems of saturation and recombination. When a high density of ions and electrons is produced in the gas, a high counter electric field opposed to the drift one might be generated; if a neutral region build up, both the recombination of i/e pairs, with a subsequent photoemission and abrupt discharge can happen. A correction factors, $k_{sat}$, can be introduced for sufficient low level of radiation and in this case a precise dose measurement can still be done: under conventional operation, with Dose Per Pulse lower than \SI{1}{mGy} the correction factor is $<$5\%. 
 
             Concerning the conventional semiconductor, if exposed to high dose rate, they suffer of saturation problems just as the ICs, but the development of fast MAPS devices, with rate capability of \SI{100}{MHz/cm\squared} or more, might open the possibility of using these detectors as dosimeters at high dose rates. 
             The idea is to use the high readout speed to split the dose per pulse in many buckets to reduce the saturation effect.
             Indeed a thin planar sensor could allow for the preservation of an enough strong electric field even at high dose rate which, together with the short mean path the e/h must cover to get the electrode (the epitaxial layer typically is $\sim$\SI{30}{\um}), could result in a fast collection of electrons by drift and in a non-saturated response.
-            Besides the thinness, also the small capacity typical of MAPS is beneficial for reducing the readout time: a reduced C$_d$ enables for a fast discharge and then for a fast readout. 
+            Besides, also the small capacity typical of MAPS is beneficial for reducing the readout time: a reduced C$_d$ enables for a fast discharge and then for a fast readout. 
             Finally, MAPS devices would provide good time and space resolutions compared to other dosimeter technologies, and since they can be thinned down to about \SI{50}{\um}, could also be employed in monitoring the beam position with minimal disturbance.
             
             Among  other detectors, optical fiber and alanine dosimeters have been proposed for high dose environments and many groups are going on studies on their applicability on FLASH-RT.  
             In reference \cite{FLASH_dosimeters} are presented some results related with saturation problems at high DDP of different types of detectors. The dosimeters tested and their value at which saturation becomes are reported in table \ref{tab:dosimeters_saturation}, while in figure \ref{fig:saturation_dosimeters} are reported the measurements. 
-            The DrR is then defined as the ratio between the signal response of each dosimeters at a fixed DDP of \SI{1}{cGy/p} and is called dosimeter reading ratio (DrR): 
+            The DrR is then defined as the ratio between the signal response of each dosimeters at a fixed DPP of \SI{1}{cGy/p} and is called dosimeter reading ratio (DrR): 
             \begin{equation}
                 DrR = \frac{R}{R|_{Dp = 1cGy/p}} = \frac{R}{R_{ref}}
             \end{equation} 
-            Then, for a saturation not affected by saturation problems DrR should be a straight line with a slope equal to 1; since the  reference measurements of dose has been performed with radiochromic films (GAFCHROMIC EBT-XD), whose dose indipendece has been tested\footnote{The radiochromic films calibration has been obtained by irradiating the films with dose values in range from \SIrange{0}{15}{Gy}, by positioning the films in a polymethylmethacrylate (PMMA) phantom at R$_{100}$ depth, corresponding to \SI{10}{cm}} in range from \SIrange{0}{15}{Gy}, the dotted black line in figure \ref{fig:saturation_dosimeters} represents the reference measurment done with it. 
+            Then, for a saturation not affected by saturation problems DrR should be a straight line with a slope equal to 1; since the  reference measurements of dose has been performed with radiochromic films (GAFCHROMIC EBT-XD), whose dose indipendece has been tested\footnote{The radiochromic films calibration has been obtained by irradiating the films with dose values in range from \SIrange{0.01}{15}{Gy}, by positioning the films in a polymethylmethacrylate (PMMA) phantom at R$_{100}$ depth, corresponding to \SI{10}{cm}} in range from \SIrange{0}{15}{Gy}, the dotted black line in figure \ref{fig:saturation_dosimeters} represents the reference measurment done with it. 
             \begin{table}
                 \begin{center}
                 \begin{tabular}{|c | c |c |}

@@ -68,44 +68,32 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
    The collected charges are moved stepwise from electrode to electrode (thus so called 'bucket chain') by applying a potential with a clock with frequency of $\sim$\si{MHz}; the readout chain is completely sequential and this makes the entire process comparatively slow (tens of \si{ms}), despite of such high frequency.
    A particular type of CCD, the pnCCDs, are typically used to detect low energy ($<$\SI{10}{keV}) x-ray photons for their homogeneous spatial detection efficiency of photons. The pnCCDs have a sideward depletion similar to silicon drift chambers that makes the electric field stronger, compared with the normal CCDs. 
    The pnCCDs designed for photon imaging are often fabricated with high Z materials, to increase assorbtion efficacy.
-
-
    \begin{figure}
       \centering
-      \begin{subfigure}[b]{0.49\textwidth}
-          \centering
           \includegraphics[width=\linewidth]{figures/Pixel_detectors/CCD.png}
           \caption{CCD cross section scheme}
           \label{fig:CCD_scheme}
-      \end{subfigure}
-      \hfill
-      \begin{subfigure}[b]{0.49\textwidth}
-          \centering
-          \includegraphics[width=\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}  
-          \caption{MAPS cross section scheme}
-          \label{fig:MAPS_scheme}
-      \end{subfigure}
    \end{figure}
 
 
+
+\section{Hybrid pixels}
    \begin{figure}
       \centering
       \begin{subfigure}[b]{0.49\textwidth}
-          \centering
-          \includegraphics[width=\linewidth]{figures/Pixel_detectors/DEPFET_scheme.png}
-          \caption{DEPFET cross section scheme}
-          \label{fig:DEPFET_scheme}
+         \centering
+         \includegraphics[width=\linewidth]{figures/Pixel_detectors/DEPFET_scheme.png}
+         \caption{DEPFET cross section scheme}
+         \label{fig:DEPFET_scheme}
       \end{subfigure}
       \hfill
       \begin{subfigure}[b]{0.49\textwidth}
-          \centering
-          \includegraphics[width=\linewidth]{figures/Pixel_detectors/hybrid_scheme.png} 
-          \caption{Hybrid cross section scheme}
-          \label{fig:hybrid_scheme}
+         \centering
+         \includegraphics[width=\linewidth]{figures/Pixel_detectors/hybrid_scheme.png} 
+         \caption{Hybrid cross section scheme}
+         \label{fig:hybrid_scheme}
       \end{subfigure}
    \end{figure}
-
-\section{Hybrid pixels}
    In hybrid pixels, which currently are the state-of-art technology for large scale pixel detectors in most particle physics experiments, the sensors and the electronics are realized on separate wafers and connected together a bump of conductive material, typically In or Sn  (fig. \ref{fig:hybrid_scheme}). 
    They provide a practical system where the sensor and the ASIC (application specific integrated circuit) can be optimized separately, allowing the fabrication of radiation-hard devices capable of operating at \si{GHz} rates.
    However hybrid pixel have also some disadvantages: the bump-bonding interconnet technology is expensive and delicate; the separate substrates for electronics and sensor lead to an increase in the material budget; the pixel dimension must be long enought for the bump-bonding technology, with a current limit of about \SI{50}{\um}.
@@ -122,6 +110,12 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
    
 
 \section{CMOS MAPS and DMAPS}\label{sec:MAPS_DMAPS}
+   \begin{figure}[b]
+      \centering
+      \includegraphics[width=\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}  
+      \caption{MAPS cross section scheme}
+      \label{fig:MAPS_scheme}
+   \end{figure}
    Monolithic active pixels (fig \ref{fig:MAPS_scheme}) accommodate on the same wafer both the sensor and the FE electronics, with the second one implanted on top within a depth of about \SI{1}{\um} below the surface. 
    MAPS have been first proposed and realized in the 1990s and their practical usage has been enabled by the development of the consumer electronics sector, which guarantees the halving of CMOS transistors dimension at least every two years, as stated by the Moore's law.
    As a matter of fact the dimension of components, their organization on the pixel area and logic density are important issues for the design and for the layout.

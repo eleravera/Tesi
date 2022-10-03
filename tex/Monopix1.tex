@@ -49,7 +49,7 @@ The TJ-Monopix1 chip contains, apart from the pixels matrix, all the required su
 \end{itemize}    
 Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout allows to separate the analog and the digital electronics area in order to reduce the possibile interference between the two parts. In addition it semplifies the routing of data as pixels on double column share the same column-bus to EoC. Therefore pixels can be addressed through the physical column/row or through the logical column/row, as shown in fig. \ref{fig:column_order}: in figure is also highlighted the token propagaion path, whose I will discuss later.
 
-Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 chips have been wire-bonded on a dedicated carrier board , the Printed Circuit Board (PCB). Two other board between the DAQ and the chip: the General Purpose Analog Card (GPAC), which provides power supply channels, current/voltage bias sources and I/O buffer, and the MIO3 FPGA, which strictly interacts with the DAQ.
+Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have been wire-bonded on a dedicated carrier board , the Printed Circuit Board (PCB). Two other board between the DAQ and the chip: the General Purpose Analog Card (GPAC), which provides power supply channels, current/voltage bias sources and I/O buffer, and the MIO3 FPGA, which strictly interacts with the DAQ \ref{fig:R/O-system}.
 \begin{figure}[h!]
     \begin{subfigure}{.5\textwidth}
     \centering
@@ -167,7 +167,8 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
             The CURFEED transistor is then used to control the current in the input branch and also determines the current that flows at the discriminator input. 
 
             Finally IDB defines the charge threshold with which the signal $OUT\_A$ must be compared: depending on if the signal is higher than the threshold or not, the $OUT\_D$ is high or low respectively.
-
+            In table \ref{tab:FE-parameters} are listed the FE parameters settable by the DAQ, while in figure \ref{fig:oscilloscope} are shown some photos of the oscilloscope of the analog output available on the TJ-Monopix1 board; in the acquisitions we have used the injection mode to inject pulses of a fixed charge and look at the response at different values of the parameters of the FE.
+            \\  
     
             The actual circuit implemented in TJ-Monopix1 is shown in figure \ref{fig:Monopix1_FE_circuit}: the principal difference lays in the addition of disableing pixels' readout. This possibility is uttermost important in order to reduce the hit rate and to avoid saturating the bandwidth due to the noisy pixels, which typically are those with manufacturing defects.
             In the circuit transistors M8, M9 and M10 have the function of disabling registers with coordinates MASKH, MASKV and MASKD (respectivelly vertical, orizontal and diagonal) from readout: if all three transistors-signals are low, the pixel's discriminator is disabled. 
@@ -191,8 +192,8 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
                 IDB & sets the discriminator threshold & yes\\
                 ITHR & sets the velocity of the return to the baseline & yes \\
                 ICASN & sets the baseline of the signal & yes\\
-                VRESET & sets the gain of the preamplifier & yes\\
-                IRESET & sets the gain of the preamplifier & no\\
+                VRESET & sets the return to the baseline & yes\\
+                IRESET & sets the return to the baseline & no\\
                 \hline
                 \end{tabular}
                 \caption{FE parameters which must be setted through the DAQ. "Function" means that higher parameter implies higher value}
@@ -200,9 +201,13 @@ Concerning the integration\ref{fig:} of the chip in a readout path, TJ-Monopix1 
                 \end{center}
             \end{table}
     
-            \red{Foto dell'oscilloscopio per far vedere cosa fanno i parametri}
 
-
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=\linewidth]{figures/Monopix1/oscilloscopio.pdf}
+                \caption{Some photos of the analog output available on the TJ-Monopix1 board. The parameters have been sweep in the following range: VRESET in 10-60 DAC, ITHR in 5-15 DAC, IRESET in 0-127 DAC, VCASN in 0-15 DAC.}
+                \label{fig:oscilloscope}
+            \end{figure}
 
 \subsection{Readout logic}\label{chap:Monopix_RO}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      

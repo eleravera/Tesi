@@ -2,12 +2,6 @@ During August 2022 a beamtest took place in Santa Chiara hospital in Pisa, where
 The motivation of the testbeam measurements were testing TJ-Mopopix1 at high dose rate with a focus on investigating the possibility of the application in radiotherapy. Despite this particular device does not seem fitting the requirements imposed for that application, especially regarding the readout time, the measurements have been useful since help us charaterizing the setup for future developments, and also give us the possibility of a complete charaterization of the chip.
 In this chapter I will describe the setup and some preliminary results.  
 
-\begin{figure}
-   \centering
-   \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}
-   \caption{Typical beam structure of a beam used in electron radiotherapy}
-   \label{fig:beam_structure}
-\end{figure}
 
 Given that in medical physics the dose is the standard parameter to charaterize the beam, beacause of its obvious relation with the damage caused in the patient, I am going to explain the meaning of it by the point of view of the instrumentation.
 In fact, when interacting with measuring systems a more common and usefull parameter is the rate or the fluence of particles.
@@ -15,7 +9,8 @@ The conversion between the two quantity can be find thinking to the definition o
 Assuming total absorption of electrons in water, defined by law as the reference medium, the dose can be expressed as: 
 \begin{equation}
    D[\si{Gy}] = \frac{N E[\si{eV}]}{\rho[\si{g/cm}^3] A[\si{cm\squared}] x[\si{cm}]}
-\end{equation}
+\end{equation} 
+%\red{in realta' la dose varia con la profondita' e dipende apprssimativamente dallo stopping power massimo per il nuemro di aprtcielle epr unita' di superficie}
 where N is the number of incoming particless, E is their energy,  x is their range, A is the section of the beam and finally $\rho$ is the density of the absorbing medium.  
 
 After having applyed the conversion of the energy from \si{eV} to \si{J} and noticed that E/$\rho$x$\approxeq$dE/$\rho$dx for MIP electrons and roughly corresponds to the stopping power S of electrons of energy E in water, and defining $N_{A}$ as the fluence of particle on an area A (beam section), a simple estimation of the dose released is:
@@ -33,26 +28,26 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
          \hline
       $\bar{D}$ & Dose rate (mean dose rate for a multi-pulse delivery) & 0.005-10000 Gy/s\\
       $\Dot{\bar{D}}$ & Intra pulse dose rate (dose rate in a single pulse) &  0.01-1 10$^6$ Gy/s  \\
-      DDP & Dose in a single pulse & 0.04-40 Gy\\
+      DPP & Dose in a single pulse & 0.04-40 Gy\\
       PRF & Pulse repetition frequency & 1-350 Hz\\
       t$_{p}$ & Pulse width & 0.2-4 \si{\us}\\
       n & Number of pulses & single/pulse train \\
       \hline
          \end{tabular}
-         \caption{The parameters that can actually be set by the control unit are the PRF, DDP, t$_p$ and n (in particular the modality of singolar irradiation or pulse train), while the other changes consequently.}
+         \caption{The parameters that can actually be set by the control unit are the PRF, DPP, t$_p$ and n (in particular the modality of singolar irradiation or pulse train), while the other changes consequently.}
          \label{tab:beam_parameters}
          \end{center}
       \end{table}  
-      The ElectronFlash accelerator, fabricated by S.I.T. - Sordina IORT Technologies S.p.A, is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (\SI{40}{Gy/pulse}) keeping the possibility of accessing many different beam parameters and changing them independently from each other, a characteristic that makes it almost unique worldwide and which is fundamental for research in FLASH-RT, both for the medical aspects and for the studies on detectors. 
+      The ElectronFlash accelerator, fabricated by S.I.T. - Sordina IORT Technologies S.p.A, is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (over \SI{5000}{Gy/s}) keeping the possibility of accessing many different beam parameters and changing them independently from each other, a characteristic that makes it almost unique worldwide and which is fundamental for research in FLASH-RT, both for the medical aspects and for the studies on detectors. 
       The accelerator implements the standard beam structure used in RT with electrons (fig. \ref{fig:beam_structure}), that is a macro pulse divided in many micropulses; the parameters used to set the dose and their range of values settable by the control unit is reported in table \ref{tab:beam_parameters}. 
 
-      The accelerator is also equipped with a set of plexiglass cannons $\sim$\SI{1.2}{m} long and with diameters in range from \SI{1}{cm} to \SI{12}{cm} and a collimator that can be used as beam shaper to produce a squircle (between square and circle) shape.
-      The plexiglass gun, which is made of plexiglass, must be fixed to the gun during the irradiation and is needed for producing,  via the scattering of electrons with it, an uniform dose profile (fig.\ref{fig:dose_profile}) which is desired for medical pourpose.
+      The accelerator is also equipped with a set of plexiglass applicators with diameters in range from \SI{1}{cm} to \SI{12}{cm} and a collimator that can be used as beam shaper to produce a squircle (between square and circle) shape.
+      The plexiglass applicators, which are made of plexiglass, must be fixed to the gun during the irradiation and is needed for producing,  via the scattering of electrons with it, an uniform dose profile (fig.\ref{fig:dose_profile}) which is desired for medical pourpose.
       \begin{figure}[h!]
          \centering
          \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
          \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_1cm.pdf}
-         \caption{Two example of x-y isodose curves for two differene plexiglass guns, \SI{10}{cm} and \SI{1}{cm} respectively, reported by the producer in the manual with the specific of the accelerator (S.I.T. - Sordina IORT Technologies S.p.A.). With the smaller collimator the dose rate in pulse is comparatively higher.}
+         \caption{Two example of x-y isodose curves for two differene plexiglass applicators, \SI{10}{cm} and \SI{1}{cm} respectively, reported by the producer in the manual with the specific of the accelerator (S.I.T. - Sordina IORT Technologies S.p.A.). With the smaller applicator the dose rate in pulse is comparatively higher.}
          \label{fig:dose_profile}
       \end{figure}  
 
@@ -68,12 +63,12 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
       \begin{table}
          \begin{center}
          \begin{tabular}{ c |c | c}
-         DPP [\si{Gy}] & N$_{acc.\_exit}$ $\times$ 10$^{11}$ & N$_{on\_collB}$ 10$^{4}$\\
+         DPP [\si{Gy}] & N$_{acc.\_exit}$ $\times$ 10$^{9}$ [\si{1/cm\squared}] & N$_{on\_collB}$ 10$^{5}$ [\si{1/cm\squared}]\\
          \hline
-         1 & 9.1 &  60.1\\ 
-         0.6 & 5.46 & 34.8\\
-         0.07 & 0.637 & 4.06\\
-         0.04 & 0.364 & 2.32\\
+         1 & 2.88 & 11.52 \\ 
+         0.6 & 1.73 & 6.92 \\
+         0.07 & 0.20 & 0.8\\
+         0.04 & 0.12 & 0.48\\
          \end{tabular}
          \caption{To obtain N$_{acc.\_exit}$ I have used the equation \ref{eq:DOSE_N_counts}, while to obtain N$_{on\_DUT}$ I have taken into account the attenuation factor due to the collimator A.}
          \label{tab:Dose_N}
@@ -165,10 +160,4 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
 
 
 
-
-   %\red{At PRF smaller than 100 Hz, all the dosimeters analyzed have
-   %a shorter signal collection time with respect to the repetition
-   %time of the pualses (maggiore uguale 10 ms), and, consequently, the %saturation
-   %is influenced only by the dose-per-pulse (duration of the pulse is
-   %around 2.5 us)}
    
