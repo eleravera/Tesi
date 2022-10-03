@@ -16,7 +16,7 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
    When a charged particle passes through a semiconductor and loses energy by ionization, only a part of that energy is used to generate electron-hole pairs, since another part is used for other processes, as lattice excitation.
    The average energy needed to create a pair at \SI{300}{K} in silicon is $w_i$ = \SI{3.65}{eV}, that is more than the mean ionization energy because of the interactions with phonons. For a minimum ionizing particle (MIP) the most probable value (MPV) of charge released in the semiconductor is \SI{0.28}{keV/\um}, hence the number of electrons-hole pairs is: 
    \begin{equation}
-       \langle \frac{dE}{dx}\rangle \frac{1}{w_i} \sim 80 \: \frac{e/h}{\si{\um}} \sim \frac{1.28 \:10^{-2}fC}{\si{\um} m}
+       \langle \frac{dE}{dx}\rangle \frac{1}{w_i} \sim 80 \: \frac{e/h}{\si{\um}} \sim \frac{1.28 \:10^{-2}\si{fC}}{\si{\um}}
    \end{equation}
    Because of the splitting of the energy depositon between the two different processes, the number $N_{e/h}$ of couples generated undergoes fluctuations that usually follow a Poisson distribution;
    thus the fluctuations of $N_{e/h}$ is equal to  $\sigma_{e/h} =\sqrt{N_{e/h}}$. Since the energy loss is not a purely statistical fact, because of the energy the particle can lose is obviously $\leqslant$E and the energy need for ionization must be $\geqslant$ of the mean ionization energy, the resolution actually is lower by a factor $\sqrt{F}$, where F is called the Fano factor. F is a function of the material and temperature and for silicon is equal to $\sim$0.115.
@@ -62,25 +62,51 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
  
     
 \section{Charge Coupled Devices}
-   Charge Coupled Devices are one of the first pixel detectors initially developed to detect visible light and then adapted for charged particles and x-rays. 
+   Charge Coupled Devices (fig.\ref{fig:CCD_scheme}) are one of the first pixel detectors initially developed to detect visible light and then adapted for charged particles and x-rays. 
    In CCDs the charge is created in a very thin active epitaxyal layer (typically \SI{10}{\um}, maximally about \SI{30}{\um}) and then locally stored in a potential minimum which is created by a MOS structure. 
    The size of the CCD cells is typically in the range \SIrange{10}{20}{\um} such that spatial resolutions are of the order of a few micrometres.
    The collected charges are moved stepwise from electrode to electrode (thus so called 'bucket chain') by applying a potential with a clock with frequency of $\sim$\si{MHz}; the readout chain is completely sequential and this makes the entire process comparatively slow (tens of \si{ms}), despite of such high frequency.
    A particular type of CCD, the pnCCDs, are typically used to detect low energy ($<$\SI{10}{keV}) x-ray photons for their homogeneous spatial detection efficiency of photons. The pnCCDs have a sideward depletion similar to silicon drift chambers that makes the electric field stronger, compared with the normal CCDs. 
    The pnCCDs designed for photon imaging are often fabricated with high Z materials, to increase assorbtion efficacy.
 
+
    \begin{figure}
       \centering
-      \includegraphics[width=.54\linewidth]{figures/Pixel_detectors/CCD.png}
-      \includegraphics[width=.44\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}\\
-      \includegraphics[width=.54\linewidth]{figures/Pixel_detectors/DEPFET_scheme.png}
-      \includegraphics[width=.44\linewidth]{figures/Pixel_detectors/hybrid_scheme.png}
-      \caption{Concept cross-section of hybrid pixel (a) and of a DEPFET (b)}
-      \label{fig:hybrid_DEPFET_scheme}
+      \begin{subfigure}[b]{0.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{figures/Pixel_detectors/CCD.png}
+          \caption{CCD cross section scheme}
+          \label{fig:CCD_scheme}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}  
+          \caption{MAPS cross section scheme}
+          \label{fig:MAPS_scheme}
+      \end{subfigure}
+   \end{figure}
+
+
+   \begin{figure}
+      \centering
+      \begin{subfigure}[b]{0.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{figures/Pixel_detectors/DEPFET_scheme.png}
+          \caption{DEPFET cross section scheme}
+          \label{fig:DEPFET_scheme}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.49\textwidth}
+          \centering
+          \includegraphics[width=\linewidth]{figures/Pixel_detectors/hybrid_scheme.png} 
+          \caption{Hybrid cross section scheme}
+          \label{fig:hybrid_scheme}
+      \end{subfigure}
    \end{figure}
 
 \section{Hybrid pixels}
-   In hybrid pixels, which currently are the state-of-art technology for large scale pixel detectors in most particle physics experiments, the sensors and the electronics are realized on separate wafers and connected together a bump of conductive material, typically In or Sn  (fig. \ref{fig:hybrid_DEPFET_scheme}a). 
+   In hybrid pixels, which currently are the state-of-art technology for large scale pixel detectors in most particle physics experiments, the sensors and the electronics are realized on separate wafers and connected together a bump of conductive material, typically In or Sn  (fig. \ref{fig:hybrid_scheme}). 
    They provide a practical system where the sensor and the ASIC (application specific integrated circuit) can be optimized separately, allowing the fabrication of radiation-hard devices capable of operating at \si{GHz} rates.
    However hybrid pixel have also some disadvantages: the bump-bonding interconnet technology is expensive and delicate; the separate substrates for electronics and sensor lead to an increase in the material budget; the pixel dimension must be long enought for the bump-bonding technology, with a current limit of about \SI{50}{\um}.
    %For reasons related with the historical development, the n$^+$-in-n sensors were the first to be used; they demanded double-sided processing which guardanties the detector functionality both before and after the type inversion of the n$^-$ doped bulk into p-type after high quantity of radiation.
@@ -89,14 +115,14 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
    %However, the particular and sophisticated procedure to bond sensor and ASIC makes them difficult to produce, delicate (especially when exposed to high levels of radiation) and also expensive. 
 
    DEPFETs are the first attempt towards the integration of the front end (FE) on the same substrate of the sensor.
-   Each pixel implements a MOSFET (metal-oxide-semiconductor field-effect transistor) transistor (a p-channel in fig. \ref{fig:hybrid_DEPFET_scheme}b): the hole current flows from source to drain is controlled by the external gate and the internal gate together. The internal gate is made by a deep $n+$ implant towards which electrons drift after being created in the depletion region; the accumulation of electrons in the region underneath the n implant changes the gate potential and controls the transistor current, resuling in an internal amplification, the removal of the signal charge from the internal gate is called "Clear". 
+   Each pixel implements a MOSFET (metal-oxide-semiconductor field-effect transistor) transistor (a p-channel in fig. \ref{fig:DEPFET_scheme}): the hole current flows from source to drain is controlled by the external gate and the internal gate together. The internal gate is made by a deep $n+$ implant towards which electrons drift after being created in the depletion region; the accumulation of electrons in the region underneath the n implant changes the gate potential and controls the transistor current, resuling in an internal amplification, the removal of the signal charge from the internal gate is called "Clear". 
    DEPFET typically have a good S/N ratio: thanks to the on-pixel amplification, to the thick depletion region. 
    As in CCDs, DEPFET require a serial readout of the pixel signal, and are therefore relatively slow devices, but they can be made very think (\SI{50}{\um}).
    In recent years, the sensor development was driven by an intensive R$\&$D and prototyping for x-ray imagers and the ILC vertex detector. 
    
 
 \section{CMOS MAPS and DMAPS}\label{sec:MAPS_DMAPS}
-   Monolithic active pixels accommodate on the same wafer both the sensor and the FE electronics, with the second one implanted on top within a depth of about \SI{1}{\um} below the surface. 
+   Monolithic active pixels (fig \ref{fig:MAPS_scheme}) accommodate on the same wafer both the sensor and the FE electronics, with the second one implanted on top within a depth of about \SI{1}{\um} below the surface. 
    MAPS have been first proposed and realized in the 1990s and their practical usage has been enabled by the development of the consumer electronics sector, which guarantees the halving of CMOS transistors dimension at least every two years, as stated by the Moore's law.
    As a matter of fact the dimension of components, their organization on the pixel area and logic density are important issues for the design and for the layout.
    Compared to CCDs, the readout time is dramatically reduced by the in-pixel amplification and discrimination, typically followed by a sparsified readout selecting only over threshold pixels and avoiding the need for signal transporation over thousands of pixels.
@@ -113,7 +139,7 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
 
    The charge is mainly collected by diffusion rather than by drift, making the path of created charges in the bulk longer resulting in relatively slow collection (of order of \SI{100}{ns}). 
    Moreover, the collection can be partial, expecially after irradiation of the detector, when the trapping probability becomes higher. 
-   In DMAPS instead, a modified process is employed allowing the creation of a much thiker depletion layer, thus increasing significantly the collected charges. This requires the addition deep implanted areas, as shown in figure \ref{fig:}. The charge released in the epi layer is very small (few thousands of electrons) but the extremely small electrode capacitance allows the formation of a detectable voltage signal V=Q/C.
+   In DMAPS instead, a modified process is employed allowing the creation of a much thiker depletion layer, thus increasing significantly the collected charges. This requires the addition deep implanted areas, as shown in figure \ref{fig:MAPS_scheme}. The charge released in the epi layer is very small (few thousands of electrons) but the extremely small electrode capacitance allows the formation of a detectable voltage signal V=Q/C.
    
    In figure \ref{fig:MAPS_scheme} it is shown as example of CMOS MAPS: the sensor implements an n well as collection diode; to prevent the others n wells (which contain PMOS transistor) of the electronic circuit competing in charge collection and to shield the CMOS circuit from the substrate, additional underlying deep p well are needed.
    
@@ -128,7 +154,7 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
       \end{itemize}
       \begin{figure}
          \centering\includegraphics[width=15cm]{figures/Pixel_detectors/large_small_sensor_scheme.png}
-         \caption{Concept cross-section with large and small fill factor}
+         \caption{Concept cross-section of CMOS MAPS with large and small fill factor}
          \label{fig:large_small_sensor_scheme}
       \end{figure}
       To implement a uniform and stronger electric field, DMAPS often uses large electrode design that requires multiple wells (typically four including deep n and p wells); with this layout the total capacity of the sensor increases because of the addition of a new term (fig. \ref{fig:DMAPS_capacity}), which contributes to the total amplifier input capacity ($\sim$\SI{100}{fF}). In addition to the capacity between pixels ($C_{pp}$) and between the pixel and the backside ($C_{b}$), a non-negligible contribution comes from the capacities between wells ($C_{SW}$ and $C_{WW}$) needed to shield the embedded electronics. These capacities affect the thermal and 1/f noise of the charge amplifier and the $ \tau_{CSA}$ too:
@@ -142,7 +168,7 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
       Among the disadvantages coming from this large input capacity there is a coupling between the sensor and the electronics resulting in cross talk noise on neighbouring electrodes; indeed, since digital switching in the FE electronics does a lot of oscillations, this problem is especially connected with the intra wells capacities.
       \begin{figure}[h!]
          \centering\includegraphics[width=12cm]{figures/Pixel_detectors/DMAPS_capacity.png}
-         \caption{$C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$}
+         \caption{DMAPS scheme with shown the capacity terms ($C_{pp}$, $C_{b}$, $C_{WW}$, $C_{SW}$) which contribute to the total detctor capacity C$_{D}$}
          \label{fig:DMAPS_capacity}
       \end{figure}
       So, larger charge collection electrode sensors provide a uniform electric field in the bulk that results in short drift path and so in good collection properties, especially after irradiation, when trapping probability can become an issue.
@@ -180,9 +206,22 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
       The doping concentration is an optimization parameter: it must be high enough to be larger than that in the epitaxial layer to prevent the punchthrough between p-well and the substrate, but it must also be low enough to allow the depletion for reasonable bias values.
       \begin{figure}
          \centering
-         \includegraphics[width=.7\linewidth]{figures/Pixel_detectors/modified_process.png}
-         \caption{A modified process for ALICE tracker detector: a low dose n implant is used to create a planar junction. In (a) the depletion is partial, while in (b) the pixel is fully depleted.}
+         \begin{subfigure}[b]{0.52\textwidth}
+             \centering
+             \includegraphics[width=\linewidth]{figures/Pixel_detectors/ALPIDE_before_PM.png}
+             \caption{}
+             \label{fig:ALPIDE_before_PM}
+         \end{subfigure}
+         \hfill
+         \begin{subfigure}[b]{0.47\textwidth}
+             \centering
+             \includegraphics[width=\linewidth]{figures/Pixel_detectors/ALPIDE_after_PM.png} 
+             \caption{}
+             \label{fig:ALPIDE_after_PM}
+         \end{subfigure}
          \label{fig:modified_process}
+         \caption{A modified process for ALICE tracker detector: a low dose n implant is used to create a planar junction. In (a) it is difficult to deplete the epitaxial layer over its full
+         width (b) the pixel is fully depleted.}
       \end{figure}
 
 \section{Analog front end}

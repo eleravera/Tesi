@@ -1,11 +1,10 @@
-This chapter tries to summarize the main applications of pixel detectors while a description of the technological implementation is presented in chapter \ref{chap:pixel}.
-In the following sections I will also use terms such as hybrid pixels, monolitich active picel system (MAPS), Charge Coupled Devices (CCDs), Depleted Field Effect Transistor sensors (DEPFET) that will discussed later. 
+This chapter tries to summarize the main applications of pixel detectors, while a description of the technological implementation is presented in chapter \ref{chap:pixel}; in the following sections I will also use terms such as hybrid pixels, monolitich active pixel systems (MAPS), Charge Coupled Devices (CCDs), Depleted Field Effect Transistor sensors (DEPFET) that will discussed later. 
 
 The relation between the development of cameras and that of pixel detectors dates back to 1969, when the idea of CCDs, for which Boyle and Smith were awarded the Nobel Prize in Physics in 2009, revolutionized photography allowing light to be captured electronically instead of on film. 
 Even though the CMOS technology already existed at the time the CCDs spread, the costs of productions were too high to allow the diffusion of these sensors for the following 20 years. From that moment on, the fast diffusion of CMOS was mainly due to the less cost than CCD, and the less power supply required. Nowadays CCDs are still prefered over MAPS in astronomy, where the astronomical sources' rate are low enough to cope with slow readout time (tens of \si{ms}).  
 
-The principal use cases of pixel detectors are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
-Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
+The principal use cases of pixel detectors in physics are particle tracking and imaging: in the former case individual charged particles have to be identified, in the latter instead an image is obtained by the usually un-triggered accumulation of the impinging radiation. 
+%Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
 
 \section{Tracking in HEP}
     In the early days of high-energy physics gasoues detector where used for tracking and there was no need to replace them since they had a sufficient spatial resolution (\SI{100}{\um}). Since 1974, with the measurement of the invariant mass of the J/Psi and the affirmation of the quark model, all experiments start to look for better spatial resolutions in order to achieve the possibility of reconstructing short lived particles and measuring their decays lenght.  
@@ -46,11 +45,11 @@ Also the demands on detectors performance depends on their usage, in particular 
                 \hfill
                 \begin{subfigure}[b]{0.49\textwidth}
                     \centering
-                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/ATLAS.png} 
-                    \caption{CMS tracker detector}
+                    \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/cms.png} 
+                    \caption{CMS barrel pixel detector}
                     \label{fig:CMS}
                 \end{subfigure}
-                \caption{CMS}
+                \caption{}
                 \label{fig:ATLAS_CMS}
         \end{figure}
         ATLAS is one of two general-purpose detectors at the LHC and has the largest volume detector ever constructed for a particle
@@ -80,7 +79,7 @@ Also the demands on detectors performance depends on their usage, in particular 
         124 million pixels are divided between the barrel pixel detector (BPIX) and the forward disks (FPIX), with sensors which are different from each other and produced by different foundryes. 
         The sensors have an area equal to \SI{100}{\um} by \SI{150}{\um} and have been produced on \SIrange{285}{300}{\um} thick wafers.
     
-        The time resolution is \SI{25}{ns}, and the information coming from the detector are stored on chip for the Level-1 trigger latency ($\sim$\SI{4}{\us}).   
+        The time resolution is \SI{25}{ns}, the rate capability  \SI{600}{MHz/cm\squared}, and the information coming from the detector are stored on chip for the Level-1 trigger latency ($\sim$\SI{4}{\us}).   
         The upgrade baseline ROIC was redesigned for the outer 3 layers, replacing analog signal readout with on-chip ADCs and digital readout at higher rate. reads out the pulse height information for each pixel. 
 
         \subsubsection{LHCb}
@@ -137,10 +136,10 @@ Also the demands on detectors performance depends on their usage, in particular 
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/ALICE_FoCAL.png}
-                \caption{}
+                \caption{FoCAL prototype fabricated with MAPS}
                 \label{fig:ALICE_FoCAL}
             \end{subfigure}
-            \caption{FoCAL prototype fabricated with MAPS}
+            \caption{}
             \label{fig:ALICE_RD}
        \end{figure}
         
@@ -158,18 +157,18 @@ Also the demands on detectors performance depends on their usage, in particular 
         \subsubsection{BelleII}
         \begin{figure}
             \centering
-            \begin{subfigure}[b]{0.49\textwidth}
-                \centering
-                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}      
-                \caption{}
-                \label{fig:Belle2_scheme}
-            \end{subfigure}
-            \hfill
-            \begin{subfigure}[b]{0.49\textwidth}
+            \begin{subfigure}[b]{0.45\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/Belle2_vertex.png}
                 \caption{}
                 \label{fig:Belle2_photo}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.53\textwidth}
+                \centering
+                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}      
+                \caption{}
+                \label{fig:Belle2_scheme}
             \end{subfigure}
             \caption{Belle2 vertex detector}
             \label{fig:Belle2_Vertex}

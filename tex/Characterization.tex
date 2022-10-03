@@ -1,5 +1,4 @@
 %    \red{Measurement of the magnitude of the collected charge has also been generally available for pixel detectors, and has been used to improve the 3D space point precision through interpolation as well as for particle identification through specific ionization measurement.
-\red{Rifai il conto della lunghezza di attenuazione. Ho trovato (presentazione Luciano Mus) 29 um per ka e 37 um per kb. }
 In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD1; firstly I will describe the characterization of TJ-Monopix1, in terms of threshold, noise, dead time, and also provide a calibration of the output signal, and then I will show some preliminary results obtained with ARCADIA-MD1.
 
 \section{TJ-Monopix1 characterization}
@@ -268,7 +267,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         \end{equation}
         where \SI{1616}{\elementarycharge}$^-$ is the number of electrons produced in the detector by the calibration source (Fe55) and \SI{14.06}{mV} is the voltage value of a DAC (LSB). 
         K is expected to be \SI{20}{e-/DAC}, assuming the nominal value of C equal to \SI{230}{aF}, and where 1616 is the expected number of electrons produced by the calibration source used, Fe55. Fe55 is en extremely important radionuclide in the calibration of X-ray spectrometers, proportional counter and scintillator detector since it emits two two X-photons during the electron capture decay: the first one (K$_\alpha$) at \SI{5.9}{keV} and the second one (K$_\beta$) at \SI{6.5}{keV}.
-        The K$_\alpha$ photon, which does photoelectric effect in silicon, has an absorption length $\lambda$=\SIrange{7}{8}{\um}, and the probability of being assorbed in the \SI{25}{\um} thick epitaxyal layer is $\sim$0.95\%.
+        The K$_\alpha$ photon, which does photoelectric effect in silicon, has an absorption length $\sim$$\lambda$=\SI{29}{\um}, and the probability of being assorbed in the \SI{25}{\um} thick epitaxyal layer is $\sim$0.58\%.
         The electron emitted has an energy equal to the photon, so recalling that the mean energy needed to produce a couple electron-vacuum is \SI{3.65}{eV}, the signal produced by the Fe55 source is expected to be \SI{1616}{\elementarycharge}$^-$.
         In figures \ref{fig:Fe55_spectrum_pixels} are shown two histograms of the ToT spectrum of the Fe55 source for two different pixels. The peak on the right corresponds to the events with complete absorption of the charge in the depleted region, while the long tail on the left to all the events with partial absorption due to charge sharing among neighbors pixels. In order to reduce the consistent charge sharing, the pixel dimension in TJ-Monopix2 has been reduced down to 30$\times$\SI{30}{\um\squared}. 
         The events on the right side of the peak, instead, corresponds to the K$_{\beta}$ photons. 
