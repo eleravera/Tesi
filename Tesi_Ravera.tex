@@ -39,12 +39,14 @@
 \renewcommand{\baselinestretch}{1.22} 
 
 %\textcolor{red}{#1}
-\newcommand{\red}[1]{\%}
+\newcommand{\red}[1]{}
 \begin{document}
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
 \fancyhead[R]{}
-\fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
+\fancyhead[L]{\ifnum\value{chapter}=0\else\chaptername\ \thechapter\ \fi \ \leftmark}
+
+%\fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
 %\linenumbers
 \input{tex/frontespizio}
 

@@ -144,6 +144,13 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \caption{Flavor PMOS (B) with Psub-Pwell biased at -\SI{6}{V}.Threshold measured in electrons vs the register which sets the threshold, IDB.  }
             \label{fig:threshold_vs_IDB}
         \end{figure}            
+        Then, to evaluete the operation and the occupancy of the chip at different threshold I have checked how the number of pixel masked changes with the threshold (fig.\ref{fig:noisy_pixels}). The masking algorithm I have used search for pixels with rate $>$\SI{10}{Hz} and mask them. In our standard condition a very low noise hit rate is intentionally achieved masking a dozen of pixels of the whole flavor.
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.70\linewidth]{figures/charaterization/noisy.png}
+            \caption{Number of noisy pixels masked at different IDB}
+            \label{fig:noisy_pixels}
+        \end{figure}   
 
         \red{Then, to evaluete the operation and the occupancy of the chip at different threshold I have made long acquisitions of noise at different IDB and check how the number of pixel masked changes with the threshold. The masking algorithm I have used search for pixels with rate $>$\SI{10}{Hz} and mask them. With such algorithm, in our standard condition, IDB=\SI{40}{DAC}, a very low noise hit rate is intentionally achieved masking a dozen of pixels of the whole flavor.}
 
