@@ -1,5 +1,7 @@
-During August 2022 a testbeam took place in Santa Chiara hospital in Pisa, where a new accelerator designed for both medical research and R$\&$D on FLASH-RT, and for this reason called "ElectronFlash", have been installed a few months ago. 
-The motivation of the testbeam measurements were testing TJ-Mopopix1 at high dose rate with a focus on investigating the possibility of the application in radiotherapy. Despite this particular device does not seem fitting the requirements imposed for that application, especially regarding the readout time, the measurements have been useful since help us charaterizing the setup for future advance, and also give us the possibility of a complete charaterization of the chip.
+During August 2022 a beamtest took place in Santa Chiara hospital in Pisa, where a new accelerator designed for both medical research and R$\&$D on FLASH-RT, and for this reason called "ElectronFlash", was installed a few months ago. 
+The motivation of the testbeam measurements were testing TJ-Mopopix1 at high dose rate with a focus on investigating the possibility of the application in radiotherapy. Despite this particular device does not seem fitting the requirements imposed for that application, especially regarding the readout time, the measurements have been useful since help us charaterizing the setup for future developments, and also give us the possibility of a complete charaterization of the chip.
+In this chapter I will describe the setup and some preliminary results.  
+
 \begin{figure}
    \centering
    \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}
@@ -8,19 +10,22 @@ The motivation of the testbeam measurements were testing TJ-Mopopix1 at high dos
 \end{figure}
 
 Given that in medical physics the dose is the standard parameter to charaterize the beam, beacause of its obvious relation with the damage caused in the patient, I am going to explain the meaning of it by the point of view of the instrumentation.
-Infact, when interacting with measuring systems a more common and usefull parameter is the rate or the fluence of particles.
-The conversion between the two quantity can be find thinking to the definition of dose: it is the concentration of energy deposited in tissue as a result of an exposure to ionizing radiation. 
-Assuming total absorption of electrons in water, defined by law as the ordinarily reference medium, the dose can be expressed as: 
+In fact, when interacting with measuring systems a more common and usefull parameter is the rate or the fluence of particles.
+The conversion between the two quantity can be find thinking to the definition of dose: it is defined as energy per unit areas deposited in a material as a result of an exposure to ionizing radiation. 
+Assuming total absorption of electrons in water, defined by law as the reference medium, the dose can be expressed as: 
 \begin{equation}
-   D[Gy] = \frac{N E[eV]}{\rho[g/cm^3] A[cm^2] x[cm]}
+   D[\si{Gy}] = \frac{N E[\si{eV}]}{\rho[\si{g/cm}^3] A[\si{cm\squared}] x[\si{cm}]}
 \end{equation}
-After having applyed the conversion of the energy from \si{eV} to \si{J} and noticed that E/$\rho$x roughly corresponds to the stopping power S of electrons in water, a simple estimation of the dose released in water is:
+where N is the number of incoming particless, E is their energy,  x is their range, A is the section of the beam and finally $\rho$ is the density of the absorbing medium.  
+
+After having applyed the conversion of the energy from \si{eV} to \si{J} and noticed that E/$\rho$x$\approxeq$dE/$\rho$dx for MIP electrons and roughly corresponds to the stopping power S of electrons of energy E in water, a simple estimation of the dose released is:
 \begin{equation}
-   D[Gy] = 1.602\;10^{-10}\,N[cm^{-2}]\,S[MeV cm^2/g]
+   D[\si{Gy}] = 1.602\;10^{-10}\,N[\si{cm\squared}]\,S[\si{MeV cm\squared /g}]
 \end{equation}
+\red{e quindi in rate a quanto corrisponde??}
 
 \section{Apparatus description}
-   In order to shield the outdoor from ionizing radiation the accelerator is placed in a bunker inside the hospital. The bunker has very thick walls of cementum and both the control units of the accelerator and of the detector were placed outside in a neighbor room. 
+   In order to shield the environment from ionizing radiation the accelerator is placed in a bunker inside the hospital. The bunker has very thick walls of concrete and both the control units of the accelerator and of the detector are placed outside in a neighboring room. 
    \subsection{Accelerator}
       \begin{table}
          \begin{center}
@@ -38,11 +43,11 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
          \label{tab:beam_parameters}
          \end{center}
       \end{table}  
-      The ElectronFlash accelerator is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (\SI{40}{Gy/pulse}) keeping the possibility of accessing many different beam parameters and changing them independently from each other, a characteristic that makes it almost unique worldwide and which is faundamental for research in FLASH-RT, both for the medical aspects\footnote{For example, it is not yet really clear the dependence of the efficacy of the FLASH effect on the whole beam parameters} and for the studies on detectors. 
+      The ElectronFlash accelerator, fabricated by S.I.T. - Sordina IORT Technologies S.p.A, is an electron Linear Accelerator (LINAC) with two energy configurations, at \SI{7}{MeV} and \SI{9}{MeV}, and it can reach ultra high intensity (\SI{40}{Gy/pulse}) keeping the possibility of accessing many different beam parameters and changing them independently from each other, a characteristic that makes it almost unique worldwide and which is fundamental for research in FLASH-RT, both for the medical aspects and for the studies on detectors. 
       The accelerator implements the standard beam structure used in RT with electrons (fig. \ref{fig:beam_structure}), that is a macro pulse divided in many micropulses; the parameters used to set the dose and their range of values settable by the control unit is reported in table \ref{tab:beam_parameters}. 
 
-      The accelerator is also provided of a set of triod cannons $\sim$\SI{1.2}{m} long and with diameters in range from \SI{1}{cm} to \SI{12}{cm} and a collimator that can be used as beam shaper to produce a squircle shape.
-      The triode, which is made by plexiglass, must be fix to the gun during the irradiation and is needed for producing,  via the scattering of electrons with it, an uniform dose profile (fig.\ref{fig:dose_profile}) which is desired for medical pourpose.
+      The accelerator is also equipped with a set of plexiglass cannons $\sim$\SI{1.2}{m} long and with diameters in range from \SI{1}{cm} to \SI{12}{cm} and a collimator that can be used as beam shaper to produce a squircle (between square and circle) shape.
+      The triode, which is made of plexiglass, must be fixed to the gun during the irradiation and is needed for producing,  via the scattering of electrons with it, an uniform dose profile (fig.\ref{fig:dose_profile}) which is desired for medical pourpose.
       \begin{figure}[h!]
          \centering
          \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
@@ -53,11 +58,12 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
 
    \subsection{Mechanical carriers}
       The tested detector consists in one chip, the Device Under Test (DUT), mounted on a board and connected to FPGA with same arrangement of figure \ref{fig:}.
-      These boards have been positioned vertically in front of the triode on a table specifically built for the testbeam. The tree board have been enclosed in a box of alluminium with a window on the DUT and with the required holes at the side to enable the biasing via cables and the connection with the DAQ provided via ethernet cable.       
+      These boards have been positioned vertically in front of the triode on a table specifically built for the testbeam. The three boards have been enclosed in a box of alluminium with a window on the DUT and with the required holes at the side to enable the biasing via cables and the connection with the DAQ provided via ethernet cable.       
       A trigger signal coming from the control unity and syncronized with the pulses emitted from the beam has been also sent to the FPGA.
       This digital signal cannot be considered a real trigger, since the TJ-Monopix1 prototype has been designed to be triggerless, but its Time of Arrival (ToA) had allowed the reconstruction of the correct timing during the analysis.
 
-      In order to shield the sensor from the whole particles emitted from the gun, two alluminium collimators have been fabricated: one has been positioned at the triode exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the triode output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^-4}$. The second one, being near the DUT, was instead supposed to shield the sensor from the electrons which have passed the first one, except for a region of \SI{1}{mm\squared} configurable using \red{come si chiamano quei cacciavitini per settare la posizione? sliding trimmer?}.  
+      In order to reduce the particle flux on the sensor, two alluminium collimators have been fabricated: one has been positioned at the triode exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the triode output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^{-4}}$. The second one, being near the DUT, was instead supposed to shield the sensor from the electrons which have passed the first one, except for a region of \SI{1}{mm\squared} configurable using micrometers screws. 
+      It must be said that this collimators arrangment was not optimized. Simulations performed after the beam test indicate that multiple scattering in air plays an important role and the back of the envelope calculation of the flux was not correct.    
       \begin{figure}[h!]
          \centering
          \includegraphics[width=.40\linewidth]{figures/test_beam/electron_flash.jpg}
@@ -69,16 +75,16 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
       \end{figure}  
 
 \section{Measurements}\label{sec:Santa_chiara_measurement}
-   Because of the dead time of TJ-Monopix1 it is not possible resolving the bunch sub-structure and almost no one pixel can read more than a hit per bunch. I recall, indeed, that the dead time per pixel depends on the location on the readout priority chain and for each pixel $\lesssim$\SI{1}{\us} are needed; therefore, assuming a pulse duration of \SI{4}{\us}, only a few pixels at the top of the priority chain (placed at the upper left on the matrix) can fire a second time, as they can be read a first time before the end of the pulse and then can be hit again.
+   Because of the dead time of TJ-Monopix1 it is not possible to resolve the bunch sub-structure and almost no pixel can read more than a hit per bunch. This is unfortunately a major limitation to operate the sensor as dosimeter, since the dead time per pixel depends on the location on the readout priority chain and for each pixel $\lesssim$\SI{1}{\us} are needed. Assuming a pulse duration of \SI{4}{\us}, only a few pixels at the top of the priority chain (placed at the upper left on the matrix) can fire a second time, as they can be read a first time before the end of the pulse and then can be hit again.
 
    Since resolving the single electron track is impossible, a way this sensor could be used in such context is reducing its efficiency and taking advantage of the analog pile up and of the linearity of the analog output (ToT), in order to see a signal produced not by the single particle but by more electrons. 
-   Reducing the efficiency and the sensibility of the sensor is essential in order to decrease the high charge signal produced in the epitaxial layer and mitigating the saturation limit: the smaller the output signal produced by a particle and the higher the fluence the detector can cope with.
+   Reducing the efficiency and the sensibility of the sensor is essential in order to decrease the high charge signal produced in the epitaxial layer and mitigating the saturation limit: the smaller the output signal produced by a particle, the higher the fluence the detector can cope with.
    There is an obious limit in this context that is the ToT rollover, indeed, the signal stop giving information when this value has been overridden and is no more bijective.
    With the standard configuration of the FE parameters and the epitaxial layer completely depleted, a MIP produces a charge at the limit of representation with a 6-bit ToT; to obtain smaller output signals one can operate on the reduction of the gain.
 
    Recalling the results in section \ref{chap:characterization_section:bias}, I have shown that concerning the PMOS flavor B, reducing the bias from -\SI{6}{V} to \SI{0}{V} brings a reduction of efficiency down to \SI{40}{\%}, and a reduction in the gain of a factor $\sim$1/3, while the reduction of the gain of the preamplifier allows a reduction of \red{circa 10, ma da controllare}.
    
-   In order to taking advantage of the analog pile up and integrating the charge, for semplicity assume of two electrons, the second one must hit the pixel before the ToT goes under the threshold. The general condition is then $\overline{\Delta T}<\overline{ToT}$, but if a high P$_\mu$($n\geqslant$1) is required, a lower $\overline{\Delta T}$ may be desired:
+   \red{To taking advantage of the analog pile up and integrating the charge, for semplicity assume of two electrons, the second one must hit the pixel before the ToT goes under the threshold. The general condition is then $\overline{\Delta T}<\overline{ToT}$, but if a high P$_\mu$($n\geqslant$1) is required, a lower $\overline{\Delta T}$ may be desired:}
    \begin{equation}
       P(n\geqslant1) = \sum\limits_{n=1}^n \frac{e^{-\mu\;\mu^n}}{n!} = 1\;-\;P(0) = 1\;-\;e^{-\mu}
    \end{equation}
@@ -88,24 +94,25 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
    If a P$_\mu$($n\geqslant$1) = 99\% then the $\overline{\Delta T}$ must be $\sim$0.22 $\overline{ToT}$. The ToT is in range [0,64] but since the rollover must be avoided, the $\overline{ToT}$ must be lower than 32, and then the minimum rate on the pixel must be \SI{1.25}{\MHz}. \\
 
    During the testbeam many runs have been performed, spanning the energy, the dose per pulse and the four possible configurations with/without the collimators. 
-   We have collected data with the PMOS flavor A in the standard configuration: with the PWELL and PSUB biased at -\SI{6}{V} and set the standard default FE parameters reported in table \ref{tab:FE_default}.
-   During all the data acquisitions we have selected on the control unit of the accelerator pulses with t$_p$ of \SI{4}{\um} and with the smallest PRF settable, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up of events from different bunch.with In this conditions, even if the whole matrix turns on, the total readout time corresponds to 25000$\times$\SI{1}{\us}=\SI{25}{ms} is still lower than the time between two consecutive pulses.
+   We have collected data with the PMOS flavor B in the standard configuration: with the PWELL and PSUB biased at -\SI{6}{V} and we have used the default configuration of the FE parameters (the same used for the calibration and for the acquisition of spectrum in section \ref{sec:sources}).
+   
+   During all the data acquisitions we have selected pulses with t$_p$ of \SI{4}{\us} and with the smallest settable Pulse Repetition Frequency, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up of events from different bunch. In this conditions, even if the whole matrix turns on, the total readout time corresponds to 25000$\times$\SI{1}{\us}=\SI{25}{ms} is still lower than the time between two consecutive pulses.
    In figure \ref{fig:hits_FLASH} is shown the mean number of hits read during one accelerator pulse in different setup condition.
    \begin{figure}
       \centering
       \includegraphics[width=.49\linewidth]{figures/test_beam/hits.pdf}
-      \caption{Mean number of hits read per bunch at DDP=\SI{0.07}{Gy}, with all the possible setup condition: with both the collimator, with only the collimator far from the chip (A), with only the collimator near the chip (B), and without any collimator.}
+      \caption{Mean number of hits read per bunch at DDP=\SI{0.07}{Gy}, with all the possible setup condition: with both the collimator, with only the collimator far from the chip (A), with only the collimator near the chip (B), and without any collimator. With the configuration B and without any collimator all pixels in the matrix fire.}
       \label{fig:hits_FLASH}
    \end{figure}
 
-   The readout starts with the trailing edge of the first pulse going down the threshold: about \SI{50}{clk}=\SI{1.25}{\us} after this moment the FREEZE signal is sent to the whole matrix, and the trasmittion of the data to the EoC begins.
-   The hits read during the FREEZE signal are the ones whose TE occurred before the start of the FREEZE and which have the TOKEN signal high; the ones, instead, whose TE occur during the FREEZE are stored in the pixel memory until the end of the FREEZE. At this point a second readout starts and a second FREEZE is sent to the matrix.  
+   The readout starts with the trailing edge (TE) of the first pulse going below the threshold: about \SI{50}{clk}=\SI{1.25}{\us} after this moment the FREEZE signal is sent to the whole matrix, and the trasmittion of the data to the EoC begins.
+   The hits read during the FREEZE signal are the ones whose TE occurred before the start of the FREEZE and which have the TOKEN signal high; instead, the ones whose TE occur during the FREEZE are stored in the pixel memory until the end of the FREEZE. At this point a second readout starts and a second FREEZE is sent to the matrix.  
    An example of the two sub-pulses corresponding to an electron bunch is shown in figure \ref{fig:with_collimator}: in the acquisition we injected 5 pulses with both the collimators mounted on the table. 
    Looking at the spectrum we can see that the second sub-pulse has a populated tail on the right; this is due to the fact that the hits which arrive before the start of the first FREEZE but have a long ToT that falls during the FREEZE, are read at the second sub-pulse. 
    
-   The 2D histograms in figure \ref{fig:with_collimator}, reveal an important charateristics of our setup: in fact, being uniform and not showing disomogenities, it follows that the collimators do not shield all the particles.
+   No effect of the collimator can be seen (fig. \ref{fig:with_collimator}) and the distribution is uniform, indicating that the collimators do not shield particles as expected.
    We supposed that this was due to a Bremsstrahlung photon background higher than expected but a full verification of that and the analysis of the data is still going on. 
-   In figure \ref{fig:hit_map_full_matrix}, instead, the histograms with a higher DDP value is shown; in the example the matrix turns on completely, but again this happens in two different consecutive read chain. 
+   In figure \ref{fig:hit_map_full_matrix}, instead, the histograms with a higher Dose Per Pulse value is shown; in the example the matrix turns on completely, but again this happens in two different consecutive read out steps. 
    \begin{figure}
       \centering
       \includegraphics[width=.49\linewidth]{figures/test_beam/Q1_17_11.pdf}
@@ -125,7 +132,7 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
 
 
 
-   When we have put aside the collimators, instead, the fluence increase a lot and the two-pulses substructure no more appears (fig. \ref{fig:without_collimator}), but, beacuse of the high attivity of the matrix, after each readout new hits with a fixed ToT were induced due to crosstalk.  
+   When we have put aside the collimators, instead, the fluence increased a lot and the two-pulses substructure no more appears (fig. \ref{fig:without_collimator}), but, because of the high activity of the matrix, after each readout new hits with a fixed ToT were induced due to crosstalk.  
    This problem had already been observed on other prototypes of TJ-Monopix1, and thanks to a simulation it has been observed that the main source of crosstalk is the voltage drop of the pre-amplifier ground as a result of the accumulated current that is drawn from the discriminator.   
    \begin{figure}
       \centering
@@ -134,7 +141,7 @@ After having applyed the conversion of the energy from \si{eV} to \si{J} and not
       \caption{Acquisition without any collimator: 5 pulses at DDP=\SI{0.04}{Gy}.}
       \label{fig:without_collimator}
    \end{figure}
-
+   Unfortunately the available beam time was limited and we could not perform futher tests. Clearly TJ-Monopix1 is not well suited for dosimetry at high rates. Possible directions of improvements are: 1) significant reduction of the dead time with a fast readout allowing separeting the pulse substructure and 2) a biasing sheme that reduces the response od the sensor (the opposite of what is done for MIP detection) to reduce the saturation effect at high dose rate. 
 
 
 
