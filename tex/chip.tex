@@ -112,7 +112,7 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
 \section{CMOS MAPS and DMAPS}\label{sec:MAPS_DMAPS}
    \begin{figure}[b]
       \centering
-      \includegraphics[width=\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}  
+      \includegraphics[width=0.6\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}  
       \caption{MAPS cross section scheme}
       \label{fig:MAPS_scheme}
    \end{figure}
@@ -129,11 +129,11 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
    On the other hand MAPS are still in the development phase, and although they have been used in several experiments as discussed in chapter \ref{chap:usage_of_pixels}, their potential remains to be fully exploited.
 
    Monolithic active pixel can be distinguished between two main categories: MAPS and depleted MAPS (DMAPS).
-   In the initial CMOS MAPS (\ref{fig:}) an ummodified CMOS process was used that presented the full depletion of the \SIrange{1}{20}{\um} epitaxial layer.
+   In the initial CMOS MAPS (\ref{fig:MAPS_scheme}) an ummodified CMOS process was used that presented the full depletion of the \SIrange{1}{20}{\um} epitaxial layer.
 
    The charge is mainly collected by diffusion rather than by drift, making the path of created charges in the bulk longer resulting in relatively slow collection (of order of \SI{100}{ns}). 
    Moreover, the collection can be partial, expecially after irradiation of the detector, when the trapping probability becomes higher. 
-   In DMAPS instead, a modified process is employed allowing the creation of a much thiker depletion layer, thus increasing significantly the collected charges. This requires the addition deep implanted areas, as shown in figure \ref{fig:MAPS_scheme}. The charge released in the epi layer is very small (few thousands of electrons) but the extremely small electrode capacitance allows the formation of a detectable voltage signal V=Q/C.
+   In DMAPS instead, a modified process is employed allowing the creation of a much thiker depletion layer, thus increasing significantly the collected charges. This requires the addition deep implanted areas, as shown in figure \ref{fig:large_small_sensor_scheme}. The charge released in the epi layer is very small (few thousands of electrons) but the extremely small electrode capacitance allows the formation of a detectable voltage signal V=Q/C.
    
    In figure \ref{fig:MAPS_scheme} it is shown as example of CMOS MAPS: the sensor implements an n well as collection diode; to prevent the others n wells (which contain PMOS transistor) of the electronic circuit competing in charge collection and to shield the CMOS circuit from the substrate, additional underlying deep p well are needed.
    
@@ -213,30 +213,26 @@ A p-n junction is built by bringing in contact two n and p doped silicon crystal
              \caption{}
              \label{fig:ALPIDE_after_PM}
          \end{subfigure}
-         \label{fig:modified_process}
          \caption{A modified process for ALICE tracker detector: a low dose n implant is used to create a planar junction. In (a) it is difficult to deplete the epitaxial layer over its full
          width (b) the pixel is fully depleted.}
+         \label{fig:modified_process}
       \end{figure}
 
-\section{Analog front end}
+\section{Analog front end}\label{subsec:preamplifier}
    After the collection on the electrode, the signal enters the front end amplification circuit (fig.\ref{fig:readout_scheme}), ready to be shaped and transmitted out of chip. Low noise amplification, fast hit discrimination and an efficient, high-speed readout architecture, consuming as low power as possible, are the goal of the readout integrated electronics (ROIC).
+
+   The first generation of pixel ROIC chip were typically designed in \SI{0.25}{\um} CMOS process and the main part of the processing were done in the chip periphery; over the years the technological development has allowed the decrease in the dimension of the transistors, allowing the usage of \SI{0.13}{\um} technology. The third generation of ROIC developed in \SI{65}{nm} is going on in order to meet the challenges of the HL-LHC.
    \begin{figure}
       \centering
       \includegraphics[width=1.\linewidth]{figures/Pixel_detectors/readout_scheme.png}
       \caption{Readout FE scheme: in this example the preamplifier is a charge sensitive one (CSA) but changing the capacitive feedback into a resistive one, this can be converted in a voltage or current amplifier.}
       \label{fig:readout_scheme}
    \end{figure}
-   The main parts of the analog front end chain are a preamplifier (that often is the only amplification stage) with a reset to the baseline mechanism and a leakage current compensation, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio. It is very important both not to have a large noise before the amplification stage to avoid amplifying that noise, and to choose a reasonable threshold of the discriminator to cut noise-hits much as possible.
+   The main parts of the analog front end chain are a preamplifier (that often is the only amplification stage) with a reset to the baseline mechanism (often realized by a constant current reset circuit) and a leakage current compensation, a shaper (a band-pass filter) and finally a discriminator. The whole chain must be optimized and tuned to improve the S/N ratio. It is very important both not to have a large noise before the amplification stage to avoid amplifying that noise, and to choose a reasonable threshold of the discriminator to cut noise-hits much as possible.
 
-   \subsection{Preamplifier}\label{subsec:preamplifier}
-      The a preamplifier can be designed as an operational amplifier (OpAmp) where the gain is determined by the input and feedback impedance (first step in figure \ref{fig:readout_scheme}):
-      \begin{equation}
-         G = \frac{v_{out}}{v_{in}} = \frac{Z_{f}}{Z_{in}}
-      \end{equation}
-      Depending on if a capacity or a resistance is used as feedback, respectively a charge or a voltage amplifier is used: if the voltage input signal is large enough and has a sharp rise time, the voltage sensitive preamplifier is preferred. Consequently, this flavor does not suit to large fill factor MAPS whose signal is small: $v_{in} = Q/C_{D} \approx$ \SI{3}{fC}/\SI{100}{pF} = \SI{0.03}{mV}, but it's fine for the small fill factor ones: $v_{in} = Q/C_{D} \approx$ \SI{3}{fC}/\SI{3}{pF} = \SI{1}{mV}.
-
-      In the case of a resistor feedback, if the signal duration is longer than the discharge time ($\tau=R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmitted to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.
-      
+   Depending on if a capacity or a resistance is used as feedback, respectively a charge or a voltage amplifier is used: if the voltage input signal is large enough and has a sharp rise time, the voltage sensitive preamplifier is preferred. Consequently, this flavor does not suit to large fill factor MAPS whose signal is small: $v_{in} = Q/C_{D} \approx$ \SI{3}{fC}/\SI{100}{pF} = \SI{0.03}{mV}, but it's fine for the small fill factor ones: $v_{in} = Q/C_{D} \approx$ \SI{3}{fC}/\SI{3}{pF} = \SI{1}{mV}.
+   In the case of a resistor feedback, if the signal duration is longer than the discharge time ($\tau=R_S C_D$) of the detector the system works as current amplifier, as the signal is immediately trasmitted to the amplifier; in the complementary case (signal duration longer than the discharge time) the system integrates the current on the $C_D$ and operates as a voltage amplifier.
+   
 \section{Readout logic}
    The readout logic includes the part of the circuit which takes the FE output signal, processes it and then transmit it out of pixel and/or out of chip; depending on the situation of usage different readout characteristics must be provided. 
    To store the analogical information (i.e. charge collected, evolution of signal in time, ...) big buffers and a large bandwidth are needed; the problem that doesn't occur, or better occur only with really high rate, if one wants record only digital data (if one pixel is hit 1 is recorded, and if not 0 is recorded). 

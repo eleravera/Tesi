@@ -228,7 +228,7 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
     \end{figure}
 
 
-    The access to the pixels' memory and the transmission of the data to the EoC, following a priority chain, is managed by control signals and is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). The readout sequence (\ref{fig:readout_schematics}) starts with the TE of a pulse: the pixel immediately tries to grab the column-bus turning up a hit flag signal called \textit{token}.   
+    The access to the pixels' memory and the transmission of the data to the EoC, following a priority chain, is managed by control signals and is based on a Finite State Machine (FSM) composed by four state: no-operation (NOP), freeze (FRZ), read (RD) and data transfer (DTA). The readout sequence (\ref{fig:readout_timing}) starts with the TE of a pulse: the pixel immediately tries to grab the column-bus turning up a hit flag signal called \textit{token}.   
     The token is used to control the priority chain and propagates across the column indicating what pixel that must be read. To start the readout and avoid that the arrival of new hits disrupt the priority logic, a \textit{freeze} signal is activated, and then a \textit{read} signal controls the readout and the access to memory.
     During the freeze, the state of the token for all pixels on the matrix remains settled: this does not forbid new hits on other pixels from being recorded, but forbids pixels hit from turning on the token until the freeze is ended. 
     The freeze stays on until the token covers the whole priority chain and gets the EoC: during that time new token cannot be turned on, and all hits arrived during a freeze will turn on their token at the end of the previous freeze.  
@@ -257,3 +257,12 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
         \item \textbf{Timestamp:} The timestamp of the hit correspond to the time when the pixel set up the token; it is assigned by the FPGA, that uses the LE, TE and a 640 MHz clock to derive it. For all those hits which arrived while the matrix is frozen, the timestamp is no more correlated with the time of arrival of the particle         
     \end{itemize}
     When the bits are joined up together the complete hit data packet is 27-bit. 
+    
+    The fact that the ToT is represented with a 6-bits variable implies that, for a very high charge, when the ToT is very long and exceeds the maximum value (64 clock counts), it comes back to zero (fig.\ref{fig:ToT_rollover_scheme}). 
+    While the minimum and maximum values of the ToT are equal to all the pixels in the matrix (0 and 64 respectively), the corresponding charge when rollover happens is different from pixel to pixel and, as I will clarify in section \ref{sec:cal_ToT}. 
+   \begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\linewidth]{figures/Monopix1/rollover.pdf}                 
+    \caption{ToT rollover scheme}
+    \label{fig:ToT_rollover_scheme}
+\end{figure}

@@ -147,7 +147,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
 
         \red{Then, to evaluete the operation and the occupancy of the chip at different threshold I have made long acquisitions of noise at different IDB and check how the number of pixel masked changes with the threshold. The masking algorithm I have used search for pixels with rate $>$\SI{10}{Hz} and mask them. With such algorithm, in our standard condition, IDB=\SI{40}{DAC}, a very low noise hit rate is intentionally achieved masking a dozen of pixels of the whole flavor.}
 
-    \subsection{Linearity of the ToT}    
+    \subsection{Linearity of the ToT}
         %python3 -i acquisition_Fe55/fit_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ per fare il fit    
         %python3 -i acquisition_Fe55/plot_tot_single_pixel.py -f acquisition_Fe55/source_PMOSS/ -fl 'gauss_line' per fare il plot di single pixel
         I have already stated in chapter \ref{chap:Monopix_Arcadia} that TJ-Monopix1 returns an output signal proportional to the charge released by a particle in the epitaxial layer, which is the Time over Threshold; the ToT is saved as a 6-bit variable and therefor its dynamic range is 0-64, which corresponds to \numrange[range-phrase = --]{0}{1.6}\si{\us} assuming a clock frequency of \SI{40}{MHz}.
@@ -165,7 +165,8 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
 
         I fitted the average ToT of all the pulses recorded as a function of the pulse amplitude; data affected by rollover have been removed in order to avoid introducing a bias in the mean values.
         In figure \ref{fig:ToT_vs_charge} are shown both the fits with a line (red) and with a second order polynomial (green): at the bounds of the ToT range values deviate from the line model. Since the deviation is lower than 1\% and it only interests the region near the 0 and the 64, in first approximation it is negligible. 
-        
+
+
         \begin{figure}
             \centering
             \begin{subfigure}[b]{0.49\textwidth}
@@ -374,9 +375,9 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         The thickness of the depletion region, which extends with higher bias voltage, has to be considered an important parameters affecting the signal efficiency, and in particular it affects the charge released by a particle which crosses the sensor, since the signal is proportional to the thickness of the epitaxial layer.
         
         Another important benefit of operating the FE with higher bias is the reduction of the capacitance of the collecting diode C$_{in}$, and the corresponding increase of the gain of the first stage of the FE, which goes as $\sim$1/C$_{in}$ (as explained in sec. \ref{sec:ALPIDE-like}). 
-        \red{With higher gain the ENC is reduced (eq 5.1)   as well as the discriminator threshold and its dispertion that are again reported to equivalent input charge with the usual conversions}\\
-        $THR_{DISC} (e-) = V_{disc} (mV)/gain (mV/e-).$\\
-        $sigma_{THR_DISC} (e-) = V_{rms_disc} (mV) / gain (mV/e-)$
+        %{With higher gain the ENC is reduced (eq 5.1)   as well as the discriminator threshold and its dispertion that are again reported to equivalent input charge with the usual conversions}\\
+        %$THR_{DISC} (e-) = V_{disc} (mV)/gain (mV/e-).$\\
+        %$sigma_{THR_DISC} (e-) = V_{rms_disc} (mV) / gain (mV/e-)$
     
         An example of expected change of gain with increased bias is shown in fig.\ref{fig:gain_vs_bias}, that reports the output voltage amplitude and gain for the PMOS and HV flavours for chips characterized by other groups.
         Given that the chip under examination has a gap in the low dose epi-layer, we were not able to change independently the bias of the substrate (PSUB) and of the p-well (PWELL), but they must be kept at the same value, differently from other chips of the same submission.
@@ -649,7 +650,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
 
         From the efficiency curves I have then looked for the time when the efficency decreases. In figure \ref{fig:dead_time}(a) is shown the dead time per pixels as a function of N with different R/O parameters configuration, the meaning of which is explained in chapter \ref{chap:Monopix_RO}. The default value suggested by the designer of the chip are reported in table \ref{tab:R/O_param}; moving too much the readout parameters from the default ones, the readout does not work properly, and no hits can be read at all. The problem probably comes from the firmware setting of the readout which are specially fixed for our chip.
         %Cambiando molto i parametri del R/O la lettura non funzionava per niente: ad esempio CONF\_STOP\_FREEZE non può essere impostato nè sopra 105 nè sotto 95
-        The single pixel readout time is indipendent of its position in the matrix, and it is equal to \red{???}$\pm$1 clock counts. However if many pixels are fire, the dead time $\tau_d$ depends on the position because the reading sequence goes from row 224 to row 0, and from column 0 to column 112, making the pixel on the bottom right corner the one with the longest dead time. 
+        The single pixel readout time is indipendent of its position in the matrix, and it is equal to 37.5$\pm$1 clock counts. However if many pixels are fire, the dead time $\tau_d$ depends on the position because the reading sequence goes from row 224 to row 0, and from column 0 to column 112, making the pixel on the bottom right corner the one with the longest dead time. 
        
         \begin{table}
             \begin{center}
@@ -736,16 +737,16 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
     The hitmap of an acquisition with the Fe55 source is shown in figure \ref{fig:ARCADIA_Fe55}: the whole MD1 matrix with only the bottom region (32 rows) working is represented in (a), while in (b) there is a zoomed hitmap. The rate seen within the region 8 (green region in the figure (a)) is compatible with the rate of the same radioactive source measured with TJ-Monopix1, that it $\sim$\SI{3.3}{kHz}. 
     \begin{figure}
         \centering
-        \begin{subfigure}[b]{0.49\textwidth}
+        \begin{subfigure}[b]{0.45\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{figures/charaterization/ARCADIA/Fe55_5min30s.png}
+            \includegraphics[width=0.8\linewidth]{figures/charaterization/ARCADIA/Fe55_5min30s.png}
             \caption{}
             \label{fig:ARCADIA_Fe55a}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.49\textwidth}
+        \begin{subfigure}[b]{0.45\textwidth}
             \centering
-            \includegraphics[width=\linewidth]{figures/charaterization/ARCADIA/Fe55_6min30s.png}
+            \includegraphics[width=0.8\linewidth]{figures/charaterization/ARCADIA/Fe55_6min30s.png}
             \caption{}
             \label{fig:ARCADIA_Fe55b}
         \end{subfigure}
@@ -758,7 +759,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
     \begin{figure}[h!]
         \centering
         %\includegraphics[width=.49\linewidth]{figures/charaterization/ARCADIA/Fe55_9min.pdf}
-        \includegraphics[width=.7\linewidth]{figures/charaterization/ARCADIA/Sr90_2min.pdf}
+        \includegraphics[width=0.6\linewidth]{figures/charaterization/ARCADIA/Sr90_2min.pdf}
         \caption{Sr90 acquisition with VCASN=\SI{40}{DAC}. The different colours are related with the time of arrival of the hits: in yellow the most recent hits, while in blue the old ones.}
         \label{fig:ARCADIA_Sr90}
     \end{figure}  

@@ -112,7 +112,7 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
    During the testbeam many runs have been performed, spanning the energy, the dose per pulse and the four possible configurations with/without the collimators. 
    We have collected data with the PMOS flavor B in the standard configuration: with the PWELL and PSUB biased at -\SI{6}{V} and we have used the default configuration of the FE parameters (the same used for the calibration and for the acquisition of spectrum in section \ref{sec:sources}).
    Meanwhile, we have selected pulses with t$_p$ of \SI{4}{\us} and with the smallest settable Pulse Repetition Frequency, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up of events from different bunch. In this conditions, even if the whole matrix turns on, the total readout time corresponds to 25000$\times$\SI{1}{\us}=\SI{25}{ms} is still lower than the time between two consecutive pulses.
-   In figure \ref{fig:hits_FLASH} is shown the mean number of hits read during one accelerator pulse in different setup condition.
+   In figure \ref{fig:hits_FLASH} is shown the mean number of hits read during one accelerator pulse in different setup conditions.
    \begin{figure}
       \centering
       \includegraphics[width=.49\linewidth]{figures/test_beam/hits.pdf}
@@ -120,42 +120,97 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
       \label{fig:hits_FLASH}
    \end{figure}
 
+   
+  I will briefly discuss a few details of how the readout of the chip works (for a complete description look section \ref{chap:Monopix_RO}), since it has a direct consequence on how the were collected. 
+
    The readout starts with the trailing edge (TE) of the first pulse going below the threshold: about \SI{50}{clk}=\SI{1.25}{\us} after this moment the FREEZE signal is sent to the whole matrix, and the trasmittion of the data to the EoC begins.
-   The hits read during the FREEZE signal are the ones whose TE occurred before the start of the FREEZE and which have the TOKEN signal high; instead, the ones whose TE occur during the FREEZE are stored in the pixel memory until the end of the FREEZE. At this point a second readout starts and a second FREEZE is sent to the matrix.  
+   The hits read during the FREEZE signal are the ones whose TE occurred before the start of the FREEZE; instead, the ones whose TE occur during the FREEZE are stored in the pixel memory until the end of the first FREEZE signal. At this point, after $\sim$\SI{50}{clk}, a second readout starts and a second FREEZE is sent to the matrix.  
+   A time scheme of the sequence of the signal is shown in figure \ref{fig:time_scheme}.
+   \begin{figure}
+      \centering
+      \includegraphics[width=0.8\linewidth]{figures/test_beam/time.pdf}
+      \caption{Readout sequence fot two consecutive pulses which arrives at the same time but are read in two different FREEZE.}
+      \label{fig:time_scheme}
+   \end{figure}
+
    An example of the two sub-pulses corresponding to an electron bunch is shown in figure \ref{fig:with_collimator}: in the acquisition we injected 5 pulses with both the collimators mounted on the table. 
    Looking at the spectrum we can see that the second sub-pulse has a populated tail on the right; this is due to the fact that the hits which arrive before the start of the first FREEZE but have a long ToT that falls during the FREEZE, are read at the second sub-pulse. 
    
    No effect of the collimator can be seen (fig. \ref{fig:with_collimator}) and the distribution is uniform, indicating that the collimators do not shield particles as expected.
    We supposed that this was due to a Bremsstrahlung photon background higher than expected but a full verification of that and the analysis of the data is still going on. 
    In figure \ref{fig:hit_map_full_matrix}, instead, the histograms with a higher Dose Per Pulse value is shown; in the example the matrix turns on completely, but again this happens in two different consecutive read out steps. 
+
    \begin{figure}
-      \centering
-      \includegraphics[width=.49\linewidth]{figures/test_beam/Q1_17_11.pdf}
-      \includegraphics[width=.49\linewidth]{figures/test_beam/Q2_17_11.pdf}\\   
-      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq1_17-11.png}
-      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq2_17-11.png} 
-      \caption{Acquisition with both the collimators: 5 pulses at DDP=\SI{0.07}{Gy}. (a) Spectrum of the charge released in the sensor: to apply the conversion I used the information found in the previous chapter. (b) 2D histogram of the ToT of the hits arrived in the sub-pulses. }
-      \label{fig:with_collimator}
-   \end{figure}
+       \centering
+       \begin{subfigure}[b]{0.49\textwidth}
+           \centering
+           \includegraphics[width=\linewidth]{figures/test_beam/Q1_17_11.pdf}        
+           \caption{}
+           \label{fig:sa}
+       \end{subfigure}
+       \hfill
+       \begin{subfigure}[b]{0.49\textwidth}
+           \centering
+           \includegraphics[width=\linewidth]{figures/test_beam/Q2_17_11.pdf}
+           \caption{}
+           \label{fig:sb}
+       \end{subfigure}\\
+       \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\linewidth]{figures/test_beam/tot_mapq1_17-11.png}    
+         \caption{}
+         \label{fig:ha}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\linewidth]{figures/test_beam/tot_mapq2_17-11.png} 
+         \caption{}
+         \label{fig:hb}
+     \end{subfigure}
+       \caption{Acquisition with both the collimators: 5 pulses at DDP=\SI{0.07}{Gy}. In (a) and (b) the spectra of the charge released in the sensor and read during the first and the second FREEZE respectively. In (c) and (d) the 2D histogram of the ToT of the hits arrived in the sub-pulses.}
+       \label{fig:with_collimator}
+  \end{figure}
+
    \begin{figure}
-      \centering
-      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq1_15-57.png}
-      \includegraphics[width=.49\linewidth]{figures/test_beam/tot_mapq2_15-57.png}  
-      \caption{Acquisition with both the collimators: 5 pulses at DDP=\SI{0.6}{Gy}. 2D histogram of the ToT of the hits arrived in the sub-pulses. Compared with the previous maps, since the DDP is much higher, more pixels turn on.}
+      \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\linewidth]{figures/test_beam/tot_mapq1_15-57.png}   
+         \caption{}
+         \label{fig:aa1}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\linewidth]{figures/test_beam/tot_mapq2_15-57.png}  
+         \caption{}
+         \label{fig:aa2}
+     \end{subfigure}
+      \caption{Acquisition with both the collimators: 5 pulses at DDP=\SI{0.6}{Gy}. In (a) and (b) the 2D histogram of the ToT of the hits read in the two FREEZE. Compared with the previous maps, more pixels turn on since the DDP is much higher.}
       \label{fig:hit_map_full_matrix}
-   \end{figure}
-
-
+  \end{figure}
 
    When we have put aside the collimators, instead, the fluence increased a lot and the two-pulses substructure no more appears (fig. \ref{fig:without_collimator}), but, because of the high activity of the matrix, after each readout new hits with a fixed ToT were induced due to crosstalk.  
    This problem had already been observed on other prototypes of TJ-Monopix1, and thanks to a simulation it has been observed that the main source of crosstalk is the voltage drop of the pre-amplifier ground as a result of the accumulated current that is drawn from the discriminator.   
+   
    \begin{figure}
-      \centering
-      \includegraphics[width=.49\linewidth]{figures/test_beam/Qe_17_32.pdf}
-      \includegraphics[width=.49\linewidth]{figures/test_beam/noise_Qe_17_32.pdf}
+      \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\linewidth]{figures/test_beam/Qe_17_32.pdf}  
+         \caption{}
+         \label{fig:aa1}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\linewidth]{figures/test_beam/noise_Qe_17_32.pdf}
+         \caption{}
+         \label{fig:aa2}
+     \end{subfigure}
       \caption{Acquisition without any collimator: 5 pulses at DDP=\SI{0.04}{Gy}.}
       \label{fig:without_collimator}
-   \end{figure}
+  \end{figure}
+
    Unfortunately the available beam time was limited and we could not perform futher tests. Clearly TJ-Monopix1 is not well suited for dosimetry at high rates. Possible directions of improvements are: 1) significant reduction of the dead time with a fast readout allowing separeting the pulse substructure and 2) a biasing sheme that reduces the response od the sensor (the opposite of what is done for MIP detection) to reduce the saturation effect at high dose rate. 
 
 
