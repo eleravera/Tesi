@@ -14,7 +14,7 @@ Both TJ-Monopix and TJ-MALTA series \cite{MALTA}, produced with the same technol
 
 Another Monopix series, but in 150 nm CMOS technology, has been produced by LFoundry~\cite{LF-Monopix}.
 The main differences between the LF-Monopix1 and the TJ-Monopix1 (summarized in table \ref{tab:LF-TJ-Monopix}), lay in the sensor rather than in the readout architecture, as both chips implements a fast column drain R/O with ToT capability \cite{LF-TJ-Monopix-short}\cite{LF-TJ-Monopix-long}.
-Concerning the sensors, either are based on a p-type substrate, but with slightly different resistivities; in addition LFoundry pixels are larger, thicker and have a large fill factor (the very deep n-well covers $\sim$55$\%$ of the pixel area). The primary consequence is that LF-Monopix1 pixels have a higher capacity resulting in higher consumption and noise. As I discussed in section \ref{sec:small-large-fill-factor},  the fact that LF-Monopix has a large fill factor electrode is expected to improve its radiation hardness. Indeed, a comparison of the perfomance of the two chips showed that TJ-Monopix suffers a comparatively larger degradation of efficiency after irradiation, due to the low electric field in the pixel corner; on the other hand, a drawback of the large fill factor in LF-Monopix is a significant cross-talk.
+Concerning the sensors, either are based on a p-type substrate, but with slightly different resistivity; in addition LFoundry pixels are larger, thicker and have a large fill factor (the very deep n-well covers $\sim$55$\%$ of the pixel area). The primary consequence is that LF-Monopix1 pixels have a higher capacity resulting in higher consumption and noise. As I discussed in section \ref{sec:small-large-fill-factor},  the fact that LF-Monopix has a large fill factor electrode is expected to improve its radiation hardness. Indeed, a comparison of the perfomance of the two chips showed that TJ-Monopix suffers a comparatively larger degradation of efficiency after irradiation, due to the low electric field in the pixel corner; on the other hand, a drawback of the large fill factor in LF-Monopix is a significant cross-talk.
 \begin{table}
     \begin{center}
     \begin{tabular}{|c | c |c |}
@@ -43,11 +43,11 @@ The TJ-Monopix1 chip contains, apart from the pixels matrix, all the required su
 \begin{itemize}
     \item  the whole matrix contains 224 $\times$ 448 pixels, yielding a total active area approximately equal to \SI{145}{mm\squared} over a total area of 1$\times$2\si{cm\squared};
     \item at the chip periphery are placed some 7-bit Digital to Analog Converter (DAC), used to generate the analog bias voltage and current levels and to confiugure the FE; 
-    \item at the EoC is placed a serializer to transferred datas immediately, indeed no trigger memory is implemented in this prototypes;
+    \item at the EoC is placed a serializer to transferred data immediately, indeed no trigger memory is implemented in this prototypes;
     \item the matrix power pads are distributed at the sides
     \item four pixels which have analog output and which can be monitored with an oscilloscope, and therefore used for testing
 \end{itemize}    
-Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout allows to separate the analog and the digital electronics area in order to reduce the possibile interference between the two parts. In addition it semplifies the routing of data as pixels on double column share the same column-bus to EoC. Therefore pixels can be addressed through the physical column/row or through the logical column/row, as shown in fig. \ref{fig:column_order}: in figure is also highlighted the token propagaion path, whose I will discuss later.
+Pixels are grouped in 2$\times$2 cores (fig. \ref{fig:pixels_core}): this layout allows to separate the analog and the digital electronics area in order to reduce the possible interference between the two parts. In addition it simplifies the routing of data as pixels on double column share the same column-bus to EoC. Therefore pixels can be addressed through the physical column/row or through the logical column/row, as shown in fig. \ref{fig:column_order}: in figure is also highlighted the token propagation path, whose I will discuss later.
 
 Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have been wire-bonded on a dedicated carrier board , the Printed Circuit Board (PCB). Two other board between the DAQ and the chip: the General Purpose Analog Card (GPAC), which provides power supply channels, current/voltage bias sources and I/O buffer, and the MIO3 FPGA, which strictly interacts with the DAQ \ref{fig:R/O-system}.
 \begin{figure}[h!]
@@ -89,34 +89,34 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
 
 
 \subsection{The sensor}\label{chapter:TJMonopix1_thesensor}
-    As already anticipated, TJ-Monopix1 has a p-type epitaxial layer and a n doped small collection electrode (\SI{2}{\um} in diameter); to avoid the n-wells housing the PMOS transistors competing for the charge collection, a deep p-well substrate, common to all the pixel FE area, is used.
+    As already anticipated, TJ-Monopix1 has a p-type epitaxial layer and a n doped small collection electrode (\SI{2}{\um} in diameter); to prevent the n-wells housing the PMOS transistors from competing for the charge collection, a deep p-well substrate, common to all the pixel FE area, is used.
     TJ-Monopix1 adopts the modification described in section \ref{chap:a_modified_sensor} that allows to achieve a planar depletion region near the electrode applying a relatively small reverse bias voltage.
     This modification improves the efficiency of the detector, especially after irradiation, however a simulation of the electric field in the sensor, made with the software TCAD (Technology Computer Aided Design), shows that a nonuniform field is still produced in the lateral regions of the pixel compromising the efficiency at the corner.
     Two variations to the process have been proposed in order to further enhance the transversal component of electric field at the pixel borders: on a sample of chip, which includes the one in Pisa, a portion of low dose implant has been removed, creating a step discontinuity in the deep p-well corner (fig. \ref{fig:Monopix1_section_scheme}); the second solution proposed consists in adding an extra deep p-well near the pixel edge.
-    A side effect of the alteration in the low dose implant is that the separation between the deep p-well and the p-substrate becomes weak to the point that they cannot be biased separately to prevent the punchthrough. 
+    A side effect of the alteration in the low dose implant is that the separation between the deep p-well and the p-substrate becomes weak to the point that they must be biased together to avoid punch-through.
 
     \begin{figure}[h!]
         \centering
         \includegraphics[width=.9\linewidth]{figures/Monopix1/Monopix1_section_scheme.png}
-        \caption{On the left the cross-section of a monolithic pixel in the TJ-Monopix with modified process; in the scheme on the right an additional gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field. The point indicated by a star at the pixel corner correspsonds to the region where the transversal component of the electric field drops; introducing the gap then, a transversal component is restored and the collection becomes more efficient also in that region. }
+        \caption{On the left the cross-section of a monolithic pixel in the TJ-Monopix with modified process; in the scheme on the right an additional gap in the low dose implant is created to improve the collection of charge due to a bigger lateral component of the electric field. The point indicated by a star at the pixel corner corresponds to the region where the transversal component of the electric field drops; introducing the gap then, a transversal component is restored and the collection becomes more efficient also in that region. }
         \label{fig:Monopix1_section_scheme}
     \end{figure}
 
     Moreover, to investigate the charge collection properties, pixels within the matrix are split between bottom top half and bottom half and feature a variation in the coverage of the deep p-well: the electronics area can be fully covered or not. In particular the pixels belonging to rows from 0 to 111 are fully covered (FDPW) and pixels belonging to rows from 112 to 223 have a reduced p-well (RDPW), resulting in a enhancement of the lateral component of the electric field.
 
     \subsection{Front end}\label{sec:ALPIDE-like}
-        One of the main advantage of this chip is the small collection electrode, which results in a small capacitance (C$_{in}$=\SI{3}{fF}) allowing for high input signal amplitude and single stage of amplification, which obviously improves the signal to noise ratio performance of the FE. Assuming a fully depleted epitaxyal layer of \SI{25}{\um}, which corresponds approximately to a \SI{20}{\um} of deep sensing volume, a MIP should produce $\sim$\SI{1600}{e-}, then:
+        One of the main advantage of this chip is the small collection electrode, which results in a small capacitance (C$_{in}$=\SI{3}{fF}) allowing for high input signal amplitude and single stage of amplification, which obviously improves the signal to noise ratio performance of the FE. Assuming a fully depleted epitaxial layer of \SI{25}{\um}, which corresponds approximately to a \SI{20}{\um} of deep sensing volume, a MIP should produce $\sim$\SI{1600}{e-}, then:
         \begin{equation}
             V_{in} = \frac{1600\,e^-\times1.6\,10^{-19}\,\si{C} }{\SI{3}{fF}} = \SI{85}{mV}
         \end{equation}
 
-        Secondly, a reset machanism which slowly discharges the detector capacitance must be inlcuded in the circuit:
+        Secondly, a reset mechanism which slowly discharges the detector capacitance must be included in the circuit:
         \begin{equation}
             V_{in } = \frac{Q_s}{C_{in}}e^{-t/R_bC_{in}}
         \end{equation}
-        where $R_b$ is the equivalent reset element. The general constraint which must be satisfied is that the discharge time $\tau=R_bC_{in}$ must be slower than the characteristic time of the amplificator, otherwise a signal loss could occurs.
+        where $R_b$ is the equivalent reset element. The general constraint which must be satisfied is that the discharge time $\tau=R_bC_{in}$ must be slower than the characteristic time of the amplifier, otherwise a signal loss could occurs.
         Traditionally the reset can be implemented in two different way: with a forward biased diode, that might be implemented by a simple p+ diffusion inside the well of the collection electrode n, or with a PMOS transistor. 
-        Despite of the semplicity of the diode reset, since it is a non-linear element, the discharge would depend on the quantity of charge Q generated on the n electrode, prejudicing the linearity of the analog output (Q-ToT). To solve the issue, a PMOS reset is the method preferred in design such TJ-Monopix1 with analog output; the PMOS transistor, indeed, can acts as a constant current source and then used to discharge the sensor. 
+        Despite of the simplicity of the diode reset, since it is a non-linear element, the discharge would depend on the quantity of charge Q generated on the n electrode, prejudicing the linearity of the analog output (Q-ToT). To solve the issue, a PMOS reset is the method preferred in design such TJ-Monopix1 with analog output; the PMOS transistor, indeed, can acts as a constant current source and then used to discharge the sensor. 
         Although the PMOS reset is capable of providing a constant current, it has to be manually re-tuned every time in order to restore the input DC baseline voltage; to do that a low-frequency feedback is used. 
 
         The matrix is split in four sections, each one corresponding to a different flavor of the FE, implemented in order to test more options. 
@@ -128,7 +128,7 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
             \label{fig:Monopix1_flavors}
         \end{figure}    
         
-        All the flavors implement a source-follower double-column bus readout: the standard variation is the flavor B, that features a PMOS input reset (refered as "PMOS reset"). Flavor A is identical to flavor B except for the realization of the source follower (it is a gated one): in the circuit of the gated versione there is a transistor more that operates on the baseline and on the feedback mechaninsm; this aim to reduce the power consumption and results in a higher signal baseline, and then in a lower effective threshold.
+        All the flavors implement a source-follower double-column bus readout: the standard variation is the flavor B, that features a PMOS input reset (referred as "PMOS reset"). Flavor A is identical to flavor B except for the realization of the source follower (it is a gated one): in the circuit of the gated version there is a transistor more that operates on the baseline and on the feedback mechanism; this aim to reduce the power consumption and results in a higher signal baseline, and then in a lower effective threshold.
         C instead implements a novel leakage compensation circuit, with a PMOS reset configuration. 
         Moreover the collection electrode can be either DC-coupled to the readout electronics, as in flavors A, B, C, or AC-coupled through a metal-oxide-metal (MOM) capacitor, as in D is AC-coupled. The latter one allows applying a high bias voltage to the electrode n and for this reason the flavor D is also called "HV flavor".
         Unfortunately the "HV" suffer from a signal loss, which can achieve even the 50\%, due to the additional parasitic capacity introduced at the input node.  
@@ -171,9 +171,9 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
             In table \ref{tab:FE-parameters} are listed the FE parameters settable by the DAQ, while in figure \ref{fig:oscilloscope} are shown some photos of the oscilloscope of the analog output available on the TJ-Monopix1 board; in the acquisitions we have used the injection mode to inject pulses of a fixed charge and look at the response at different values of the parameters of the FE.
             \\  
     
-            The actual circuit implemented in TJ-Monopix1 is shown in figure \ref{fig:Monopix1_FE_circuit}: the principal difference lays in the addition of disableing pixels' readout. This possibility is uttermost important in order to reduce the hit rate and to avoid saturating the bandwidth due to the noisy pixels, which typically are those with manufacturing defects.
-            In the circuit transistors M8, M9 and M10 have the function of disabling registers with coordinates MASKH, MASKV and MASKD (respectivelly vertical, orizontal and diagonal) from readout: if all three transistors-signals are low, the pixel's discriminator is disabled. 
-            Compared with a configurable masking register which would allow disableing pixels individually, to use a triple redundancy reduces the sensistivity to SEU but also gives amount of intentionally masked ("ghost") pixels.
+            The actual circuit implemented in TJ-Monopix1 is shown in figure \ref{fig:Monopix1_FE_circuit}: the principal difference lays in the addition of disabling pixels' readout. This possibility is uttermost important in order to reduce the hit rate and to avoid saturating the bandwidth due to the noisy pixels, which typically are those with manufacturing defects.
+            In the circuit transistors M8, M9 and M10 have the function of disabling registers with coordinates MASKH, MASKV and MASKD (respectively vertical, horizontal and diagonal) from readout: if all three transistors-signals are low, the pixel's discriminator is disabled. 
+            Compared with a configurable masking register which would allow disabling pixels individually, to use a triple redundancy reduces the sensitivity to SEU but also gives amount of intentionally masked ("ghost") pixels.
             This approach is suitable only for extremely small number N of pixel has to be masked: if two coordinate projection scheme had been implemented, the number of ghost pixels would have scale with $N^2$, if instead three coordinates are used, the N's exponential is lower than 2 (fig. \ref{fig:masking_scheme})
             \begin{figure}[h!]
                 \centering
@@ -212,7 +212,7 @@ Concerning the integration of the chip in a readout path, TJ-Monopix1 chips have
 
 \subsection{Readout logic}\label{chap:Monopix_RO}
     TJ-Monopix1 has a triggerless, fast and with ToT capability R/O which is based on a column-drain architecture.      
-    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 hasn't any other buffer: if a hit arrives while the pixel is already storing a previous one, the new data get lost.  
+    On the pixel are located two Random Access Memory (RAM) cells to store the 6-bit LE and 6-bit TE of the pulse, and a Read-Only Memory (ROM) containing the 9-bit pixel address. Excluded these memories, TJ-Monopix1 has not any other buffer: if a hit arrives while the pixel is already storing a previous one, the new data get lost.  
     After being read, the data packet is sent to the EoC periphery of the matrix, where a serializer transfers it off-chip to an FPGA (\ref{fig:R/O-system}). There a FIFO is used to temporarily stored the data, which is transmitted to a computer through an ethernet cable in a later time.  
     \begin{figure}
         \begin{subfigure}{\textwidth}

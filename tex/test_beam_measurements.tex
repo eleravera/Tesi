@@ -3,21 +3,21 @@ The motivation of the testbeam measurements were testing TJ-Mopopix1 at high dos
 In this chapter I will describe the setup and some preliminary results.  
 
 
-Given that in medical physics the dose is the standard parameter to charaterize the beam, beacause of its obvious relation with the damage caused in the patient, I am going to explain the meaning of it by the point of view of the instrumentation.
-In fact, when interacting with measuring systems a more common and usefull parameter is the rate or the fluence of particles.
+Given that in medical physics the dose is the standard parameter to charaterize the beam, because of its obvious relation with the damage caused in the patient, I am going to explain the meaning of it by the point of view of the instrumentation.
+In fact, when interacting with measuring systems a more common and useful parameter is the rate or the fluence of particles.
 The conversion between the two quantity can be find thinking to the definition of dose: it is defined as energy per unit areas deposited in a material as a result of an exposure to ionizing radiation. 
 Assuming total absorption of electrons in water, defined by law as the reference medium, the dose can be expressed as: 
 \begin{equation}
    D[\si{Gy}] = \frac{N E[\si{eV}]}{\rho[\si{g/cm}^3] A[\si{cm\squared}] x[\si{cm}]}
 \end{equation} 
 %\red{in realta' la dose varia con la profondita' e dipende apprssimativamente dallo stopping power massimo per il nuemro di aprtcielle epr unita' di superficie}
-where N is the number of incoming particless, E is their energy,  x is their range, A is the section of the beam and finally $\rho$ is the density of the absorbing medium.  
+where N is the number of incoming particles, E is their energy,  x is their range, A is the section of the beam and finally $\rho$ is the density of the absorbing medium.  
 
-After having applyed the conversion of the energy from \si{eV} to \si{J} and noticed that E/$\rho$x$\approxeq$dE/$\rho$dx for MIP electrons and roughly corresponds to the stopping power S of electrons of energy E in water, and defining $N_{A}$ as the fluence of particle on an area A (beam section), a simple estimation of the dose released is:
+After having applied the conversion of the energy from \si{eV} to \si{J} and noticed that E/$\rho$x$\approxeq$dE/$\rho$dx for MIP electrons and roughly corresponds to the stopping power S of electrons of energy E in water, and defining $N_{A}$ as the fluence of particle on an area A (beam section), a simple estimation of the dose released is:
 \begin{equation}
    D[\si{Gy}] = 1.602\;10^{-10}\,N_{A}[\si{cm\squared}]\,S[\si{MeV cm\squared /g}]
 \end{equation}\label{eq:DOSE_N_counts}
-Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is the reference medium for dose measurements because of it is equivalent-tissue} is \SI{2.17}{MeV cm\squared/g}, a dose of \SI{1}{Gy} corresponds to a fluence of 2.9~10$^{9}$\si{1/cm\squared}; if we assume a beam section of \SI{10}{cm}, then the number of particle expected at the exit of the accelerator is 9.1~10$^{11}$.
+Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is the reference medium for dose measurements because of it is equivalent-tissue} is \SI{2.17}{MeV cm\squared/g}, a dose of \SI{1}{Gy} corresponds to a fluence of 2.9~10$^{9}$\si{/cm\squared}; if we assume a beam section of \SI{10}{cm}, then the number of particle expected at the exit of the accelerator is 9.1~10$^{11}$.
 
 \section{Apparatus description}
    In order to shield the environment from ionizing radiation the accelerator is placed in a bunker inside the hospital. The bunker has very thick walls of concrete and both the control units of the accelerator and of the detector are placed outside in a neighboring room. 
@@ -34,7 +34,7 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
       n & Number of pulses & single/pulse train \\
       \hline
          \end{tabular}
-         \caption{The parameters that can actually be set by the control unit are the PRF, DPP, t$_p$ and n (in particular the modality of singolar irradiation or pulse train), while the other changes consequently.}
+         \caption{The parameters that can actually be set by the control unit are the PRF, DPP, t$_p$ and n (in particular the modality of single irradiation or pulse train), while the other changes consequently.}
          \label{tab:beam_parameters}
          \end{center}
       \end{table}  
@@ -47,14 +47,14 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
          \centering
          \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_10cm.pdf}
          \includegraphics[width=.49\linewidth]{figures/test_beam/dose_profile_1cm.pdf}
-         \caption{Two example of x-y isodose curves for two differene plexiglass applicators, \SI{10}{cm} and \SI{1}{cm} respectively, reported by the producer in the manual with the specific of the accelerator (S.I.T. - Sordina IORT Technologies S.p.A.). With the smaller applicator the dose rate in pulse is comparatively higher.}
+         \caption{Two example of x-y isodose curves for two different plexiglass applicators, \SI{10}{cm} and \SI{1}{cm} respectively, reported by the producer in the manual with the specific of the accelerator (S.I.T. - Sordina IORT Technologies S.p.A.). With the smaller applicator the dose rate in pulse is comparatively higher.}
          \label{fig:dose_profile}
       \end{figure}  
 
    \subsection{Mechanical carriers} 
       The tested detector consists in one chip, the Device Under Test (DUT), mounted on a board and connected to FPGA with same arrangement of figure \ref{fig:R/O-system}.
       These boards have been positioned vertically in front of the plexiglass gun on a table specifically built for the testbeam. The three boards have been enclosed in a box of alluminium with a window on the DUT and with the required holes at the side to enable the biasing via cables and the connection with the DAQ provided via ethernet cable.       
-      A trigger signal coming from the control unity and syncronized with the pulses emitted from the beam has been also sent to the FPGA.
+      A trigger signal coming from the control unity and synchronized with the pulses emitted from the beam has been also sent to the FPGA.
       This digital signal cannot be considered a real trigger, since the TJ-Monopix1 prototype has been designed to be triggerless, but its Time of Arrival (ToA) had allowed the reconstruction of the correct timing during the analysis.
 
       In order to reduce the particle flux on the sensor, two alluminium collimators have been fabricated: one has been positioned at the plexiglass gun exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the plexiglass gun output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^{-4}}$. In table \ref{tab:Dose_N} are reported, as a function of the Dose Per Pulse (DPP) setted by the control unit of the accelerator,the number of electrons which exit from the gun, the number of electrons which are expected arrive on the DUT if the collimator B is not mounted. 
@@ -63,7 +63,7 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
       \begin{table}
          \begin{center}
          \begin{tabular}{ c |c | c}
-         DPP [\si{Gy}] & N$_{acc.\_exit}$ $\times$ 10$^{9}$ [\si{1/cm\squared}] & N$_{on\_collB}$ 10$^{5}$ [\si{1/cm\squared}]\\
+         DPP [\si{Gy}] & N$_{acc.\_exit}$ $\times$ 10$^{9}$ [\si{/cm\squared}] & N$_{on\_collB}$ 10$^{5}$ [\si{/cm\squared}]\\
          \hline
          1 & 2.88 & 11.52 \\ 
          0.6 & 1.73 & 6.92 \\
@@ -102,16 +102,16 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
 
    Since resolving the single electron track is impossible, a way this sensor could be used in such context is reducing its efficiency and taking advantage of the analog pile up and of the linearity of the analog output (ToT), in order to see a signal produced not by the single particle but by more electrons. 
    Reducing the efficiency and the sensibility of the sensor is essential in order to decrease the high charge signal produced in the epitaxial layer and mitigating the saturation limit: the smaller the output signal produced by a particle, the higher the fluence the detector can cope with.
-   There is an obious limit in this context that is the ToT rollover, indeed, the signal stop giving information when this value has been overridden and is no more bijective.
+   There is an obvious limit in this context that is the ToT rollover, indeed, the signal stop giving information when this value has been overridden and is no more bijective.
    With the standard configuration of the FE parameters and the epitaxial layer completely depleted, a MIP produces a charge at the limit of representation with a 6-bit ToT; to obtain smaller output signals one can operate on the reduction of the gain.
 
    Recalling the results in section \ref{chap:characterization_section:bias}, I have shown that concerning the PMOS flavor B, decreasing the bias from -\SI{6}{V} to \SI{0}{V} brings a reduction of efficiency down to \SI{40}{\%}, and in the gain of a factor $\sim$1/3.\red{, while the reduction of the gain of the preamplifier allows a reduction of circa 10, ma da controllare.}
    
-   To taking advantage of the analog pile up and integrating the charge two subsequent electrons must hit the pixel in a releatively small time. In fact, as already explained in section \ref{chap:Monopix_RO}, the pixel completely paralyzes when its pulse goes under the threshold (TE); then the rate of arrival of electrons must be enough high to prevent the second electron arriving after the TE of the first pulse. Since the typical ToT of a particle depends on the FE settings, care must be taken on this point. 
+   To taking advantage of the analog pile up and integrating the charge two subsequent electrons must hit the pixel in a relatively small time. In fact, as already explained in section \ref{chap:Monopix_RO}, the pixel completely paralyzes when its pulse goes under the threshold (TE); then the rate of arrival of electrons must be enough high to prevent the second electron arriving after the TE of the first pulse. Since the typical ToT of a particle depends on the FE settings, care must be taken on this point. 
    
    During the testbeam many runs have been performed, spanning the energy, the dose per pulse and the four possible configurations with/without the collimators. 
    We have collected data with the PMOS flavor B in the standard configuration: with the PWELL and PSUB biased at -\SI{6}{V} and we have used the default configuration of the FE parameters (the same used for the calibration and for the acquisition of spectrum in section \ref{sec:sources}).
-   Meanwhile, we have selected pulses with t$_p$ of \SI{4}{\us} and with the smallest settable Pulse Repetition Frequency, which is \SI{1}{Hz}, in order to start in the most conservative working point exluding the digital pile up of events from different bunch. In this conditions, even if the whole matrix turns on, the total readout time corresponds to 25000$\times$\SI{1}{\us}=\SI{25}{ms} is still lower than the time between two consecutive pulses.
+   Meanwhile, we have selected pulses with t$_p$ of \SI{4}{\us} and with the smallest settable Pulse Repetition Frequency, which is \SI{1}{Hz}, in order to start in the most conservative working point excluding the digital pile up of events from different bunch. In this conditions, even if the whole matrix turns on, the total readout time corresponds to 25000$\times$\SI{1}{\us}=\SI{25}{ms} is still lower than the time between two consecutive pulses.
    In figure \ref{fig:hits_FLASH} is shown the mean number of hits read during one accelerator pulse in different setup conditions.
    \begin{figure}
       \centering
@@ -123,13 +123,13 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
    
   I will briefly discuss a few details of how the readout of the chip works (for a complete description look section \ref{chap:Monopix_RO}), since it has a direct consequence on how the were collected. 
 
-   The readout starts with the trailing edge (TE) of the first pulse going below the threshold: about \SI{50}{clk}=\SI{1.25}{\us} after this moment the FREEZE signal is sent to the whole matrix, and the trasmittion of the data to the EoC begins.
+   The readout starts with the trailing edge (TE) of the first pulse going below the threshold: about \SI{50}{clk}=\SI{1.25}{\us} after this moment the FREEZE signal is sent to the whole matrix, and the transmittion of the data to the EoC begins.
    The hits read during the FREEZE signal are the ones whose TE occurred before the start of the FREEZE; instead, the ones whose TE occur during the FREEZE are stored in the pixel memory until the end of the first FREEZE signal. At this point, after $\sim$\SI{50}{clk}, a second readout starts and a second FREEZE is sent to the matrix.  
    A time scheme of the sequence of the signal is shown in figure \ref{fig:time_scheme}.
    \begin{figure}
       \centering
       \includegraphics[width=0.8\linewidth]{figures/test_beam/time.pdf}
-      \caption{Readout sequence fot two consecutive pulses which arrives at the same time but are read in two different FREEZE.}
+      \caption{Readout sequence for two consecutive pulses which arrives at the same time but are read in two different FREEZE.}
       \label{fig:time_scheme}
    \end{figure}
 

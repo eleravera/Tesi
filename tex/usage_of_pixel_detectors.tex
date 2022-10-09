@@ -7,7 +7,7 @@ The principal use cases of pixel detectors in physics are particle tracking and 
 %Also the demands on detectors performance depends on their usage, in particular tracking requires high spatial resolution, fast readout and radiation hardness. 
 
 \section{Tracking in HEP}
-    In the early days of high-energy physics gasoues detector where used for tracking and there was no need to replace them since they had a sufficient spatial resolution (\SI{100}{\um}). Since 1974, with the measurement of the invariant mass of the J/Psi and the affirmation of the quark model, all experiments start to look for better spatial resolutions in order to achieve the possibility of reconstructing short lived particles and measuring their decays lenght.  
+    In the early days of high-energy physics gaseous detector where used for tracking and there was no need to replace them since they had a sufficient spatial resolution (\SI{100}{\um}). Since 1974, with the measurement of the invariant mass of the J/Psi and the affirmation of the quark model, all experiments start to look for better spatial resolutions in order to achieve the possibility of reconstructing short lived particles and measuring their decays length.  
 
     Historically\cite{cern_courier_2021}, the first pixel detector employed in particle physics was a CCD: it was installed in the spectrometer at the CERN’s Super Proton Synchrotron by the ACCMOR Collaboration (Amsterdam, CERN, Cracow, Munich, Oxford, RAL) in the mid 1980s, with the purpose of studying the (at the time) recently-discovered charmed particles.
     The second famous usage of CCDs took place in the SLAC Large Detector at SLAC linear collider in the years 1996-98, where the CCD technology was adopted instead of the microstrip detectors for their excellent spatial resolution (cell size 22$\times$22\si{\um\squared} giving a resolution of $\sim$\SI{5}{\um}) thanks to the sufficient time for readout between two successive collisions (\SI{160}{ms}).
@@ -21,11 +21,11 @@ The principal use cases of pixel detectors in physics are particle tracking and 
         \item momentum measurement combining with the information from other detectors 
     \end{itemize}
 
-    The more demanding requirements led to the development of hybrid pixel detectors satrting from 1990s: a dedicated collaboration, RD19, was established at CERN with the specific goal of defining a semiconductor micropattern detector with an incorporated signal processing at a microscopic level. 
+    The more demanding requirements led to the development of hybrid pixel detectors starting from 1990s: a dedicated collaboration, RD19, was established at CERN with the specific goal of defining a semiconductor micropattern detector with an incorporated signal processing at a microscopic level. 
     In those years a wide set of prototypes of hybrid pixel has been manufactured; among the greatest productions a mention goes to the huge ATLAS and CMS vertex detectors. 
     From the middle of 2013 a second collaboration, RD53, has been established with the new goal of finding a pixel detector suitable for the phase II in future upgrades of those experiments. Even if the collaboration is specifically focused on the design of hybrid pixel readout chips (aiming to \SI{65}{nm} tecnique), also other options have been taken in account and many test have been done on MAPS. Requirements imposed by LHC are stingent and they will become even more with the increase of luminosity at HL-LHC: for example, a dose and radiation of \SI{500}{Mrad} and 10$^{16}$~1MeV~n$_{eq}$/cm$^2$ are exepcted after 5 years of operation. Time resolution, material budget and power consumption are also issues for the upgrade: to distinguish different events from different bunches a time resolution better than \SI{25}{ns} for a bunch crossing frequency of \SI{40}{MHz} is required, a material budget lower than 2\% X$_0$ and a power consuption lower than \SI{500}{mW/cm\squared} are required. 
 
-    Amidst the solutions proposed to improve radiation robustness of the sensor, 3D silicon detector, invented by Sherwood Parker in 1995, are very promising.
+    Among the solutions proposed to improve radiation robustness of the sensor, 3D silicon detector, invented by Sherwood Parker in 1995, are very promising.
     In 3D sensors the electrode is a narrow column of n-type implanted vertically across the bulk instead of being implanted on the wafer's surface. 
     The charge produced by the impinging particle is then drifted transversally within the pixel, and, as the mean path between two electrode can be soufficent low, the trap probability is not an issue. 
     Even if 3D detector are adequately radiation hard and are a possible solution for hybrid pixel modules, especially in the innermost pixel detector layer, their fabrication process is currently low volume, making them unlikely to cover large areas.
@@ -152,29 +152,29 @@ The principal use cases of pixel detectors in physics are particle tracking and 
         Beside tracking, ALICE has been studing the possibility of exploiting the extreme granularities of MAPS for calorimeter application\cite{review_calo}. In a such calorimeter, the energy measurement would come out from the counts of particles traversing the active layers, resulting then in a digital calorimeter. A prototype forward calorimeter (FoCAL), fabricated with the MIMOSA23 chips and containing 39 million pixels devided in 24 layers, alternated with 24 layers of tungsten (\ref{fig:ALICE_FoCAL}), have been tested with electron beams and exhibited an energy resolution better than standard hadronic calorimeters, with a stochastic terms of 30\%/$\sqrt{E(GeV)}$, a constant term of 2.8\% and noise term of \SI{0.063}{GeV}.
 
         \subsubsection{BelleII}
-        \begin{figure}
+        \
+        \begin{figure}        
+        \begin{subfigure}[b]{1.\textwidth}
             \centering
-            \begin{subfigure}[b]{0.45\textwidth}
+            \includegraphics[width=0.6\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}      
+            \caption{}
+            \label{fig:Belle2_scheme}
+        \end{subfigure}\\
+            \centering
+            \begin{subfigure}[b]{1.\textwidth}
                 \centering
-                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/Belle2_vertex.png}
+                \includegraphics[width=0.65\linewidth]{figures/pixel_detectors_usage/Belle2_vertex.png}
                 \caption{}
                 \label{fig:Belle2_photo}
-            \end{subfigure}
-            \hfill
-            \begin{subfigure}[b]{0.53\textwidth}
-                \centering
-                \includegraphics[width=\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}      
-                \caption{}
-                \label{fig:Belle2_scheme}
             \end{subfigure}
             \caption{Belle2 vertex detector}
             \label{fig:Belle2_Vertex}
        \end{figure}
 
-        Due to the high background level coming from the nanobeam used at SuperKEKB in order to achieve a such high luminosity (4.7$\times$10$^{34}$\si{1/cm\squared/s}), silicon strip cannot be used in the inner layer of the tracker. The occupancy is too high to allow the usage of strips up to \SI{40}{mm} from the beam pipe. 
+        Due to the high background level coming from the nanobeam used at SuperKEKB in order to achieve a such high luminosity (6$\times$10$^{35}$\si{/cm\squared/s}), silicon strip cannot be used in the inner layer of the tracker. The occupancy is too high to allow the usage of strips up to \SI{40}{mm} from the beam pipe. 
         Moreover for a precise reconstruction of B-decay vertices, the usage of thin detector is mandatory at the low energy (\SIrange{4}{7}{GeV}) of the beam, in order to minimize the multiple scattering of particles. 
         The current vertex detector of BelleII, VXD, is made of a pixel detector (PXD), fabricated with 2 layers of DEPFET-based pixels, and 4 layers of a double-sided silicon strip detectors (SVD)\cite{BelleII-DEPFET}.
-        Due to the small capacitance of the collection node, DEPFET presents a high signal-to-noise ratio (in 30-50) thanks to the low instrinsic noise and to the large signal achieved with he fully depleted bulk: pixels are thinned to \SI{75}{\um} in the active region, then a MIP is supposed to create a signal of $\sim$\SI{6000}{e^-}, while the typical noise of DEPFET is around \SI{200}{e^-}.
+        Due to the small capacitance of the collection node, DEPFET presents a high signal-to-noise ratio (in 30-50) thanks to the low instrinsic noise and to the large signal achieved with he fully depleted bulk: pixels are thinned to \SI{75}{\um} in the active region, then a MIP is expected to create a signal of $\sim$\SI{6000}{e^-}, while the typical noise of DEPFET is around \SI{200}{e^-}.
         The ASIC read out is still based on a rolling shutter logic, with an integration time of \SI{20}{\us}.
         In order to reduce the data-storage memory PXD hits are only used to improve spatial resolution of tracks: the SVD informations are used by the High Level Trigger (HLT) to look for regions of interest in the pixel ladders just by extrapolating back the tracks found in the tracker detector, and this method allows to store only data belonging to these areas; the PXD hits are then used in offline track fit to improve the vertex resolution.
         
@@ -183,9 +183,9 @@ The principal use cases of pixel detectors in physics are particle tracking and 
 
 \section{Other applications}
     Pixel detectors are widely used also for photon detection: they can be used as single photon counter or integrating and collecting the charge released by more impinging particles. The utilisation in the first case is similar to the tracking one, except that the requirements are less tight, so much that two noteworthy of microchips originally meant for detectors in particle physics at the LHC, and later employed in other fields are Medipix and Timepix. They are read-out chips developed by the Medipix Collaborations since early 1990s. For two decades, different Medipix generations have been produced, having a rough correlation with the feature size used: Medipix2 (1999) used \SI{250}{nm} feature size CMOS while Medipix3 (2005) \SI{130}{nm}.
-    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed: it was for this reason that Medipix2 was bump bonded to identically segmented sensors of both silicon and GaAs.\cite{KOSTAMO2008174}\red{Referenza?}
+    For photons imaging other materials with higher atomic charge than silicon could be prefered, as a high photon absorption efficiency is needed: it was for this reason that Medipix2 was bump bonded to identically segmented sensors of both silicon and GaAs.\cite{KOSTAMO2008174}
     
-    The applications in scientific imaging vary from atrophysics and medical imaging and dosimetry to more exotic domains as studies of protein dynamics, material scince, art authentication and archaeology.
+    The applications in scientific imaging vary from astrophysics and medical imaging and dosimetry to more exotic domains as studies of protein dynamics, material scince, art authentication and archaeology.
     One of the most important employment of Medipix is as X-ray single photon counting in industrial and medical radiography and in 3D computed tomography\footnote{The analysis of the direction dependence of X-ray absorption is perform, for example, in order to obtain an image in Computed Tomography (CT)}. Thanks to a New-Zealand company, the MARS Bioimaging detector has been fabricated, which is capable of resolving the photons energy and produce 3D coloured images.
     Besides tracking in HEP (I have already cited the use of Timepix3 is in the beam telescope of the LHCb VELO), an important use of Timepix is in dosimetry.
     \red{Timepix Detector for Imaging in Ion Beam Radiotherapy- articolo e qualche info.}
@@ -250,7 +250,7 @@ The principal use cases of pixel detectors in physics are particle tracking and 
 
         \subsubsection{Dosimetric problems}
             Since the dosimeters problems are strictly related with the time structure of the beam used for the treatement, let's consider the case of a pulsed electron beam (fig.\ref{fig:beam_structure}), where a high quantity of dose ($\gtrsim$\SI{1}{Gy/pulse}) is released in a very short time (macropulses).            
-            At small macro-pulse frequency the signal collection time is shorter than the time between pulses, and, consequently, the saturation is influenced only by the Dose Per Pulse.
+            At small macro-pulse frequency the signal collection time is shorter than the time between pulses, and, consequently, the saturation is influenced only by the Dose Per Pulse (DPP).
             \begin{figure}
                 \centering
                 \includegraphics[width=.9\linewidth]{figures/test_beam/beam_structure.pdf}

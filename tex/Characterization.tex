@@ -9,10 +9,10 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         A characterization of threshold and noise is typically necessary since these values have an impact on the operating conditions and on the performance of the chips, so much that the signal to threshold ratio may be considered as the figure of merit for pixel detectors rather than the signal to noise ratio.
         The mean minimum stable threshold evolved through different generation of chips: in the 1st generation it was around \SI{2500}{\elementarycharge}$^-$ while in the 3rd (corresponding to nowadays chips) is less than \SI{500}{\elementarycharge}$^-$. This allows for thinner sensors with smaller signals: from \SI{16000}{\elementarycharge}$^-$ produced in \SI{200}{\um}, the signal expected moved down to \SI{2000}{\elementarycharge}$^-$ produced in \SI{25}{\um}. In agreement with this, the threshold of TJ-Monopix1 is around \SI{500}{\elementarycharge}$^-$.
  
-        The threshold should be located between the noise peak around the baseline and the signal distribution, in particular it has to be low enough to mantain a high signal efficiency, but also high enough to cut the noise: for a low threshold many pixels can fire at the same time and a positive crosstalk feedback can set off a chain reaction eventually, causing all the other pixels to fire.
+        The threshold should be located between the noise peak around the baseline and the signal distribution, in particular it has to be low enough to maintain a high signal efficiency, but also high enough to cut the noise: for a low threshold many pixels can fire at the same time and a positive crosstalk feedback can set off a chain reaction eventually, causing all the other pixels to fire.
         Thus, the noise sets a lower bound to the threshold: if an occupancy $\leqslant$ $10^{-4}$ is required, for example, a probability of firing lower than that value is needed and this, assuming a gaussian noise, requires that the threshold is set at least \SI{3.7}{\sigma}, with $\sigma$ the RMS of the noise.   
-        In this case, if the noise is \SI{100}{\elementarycharge}$^-$ (resonable), the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{\elementarycharge}$^-$.
-        Typically this argument sets only a minimal bound to the threshold since the variation with time and from pixel to pixel have to be taken into account: the temperature, the shift in MOSFET threshold voltage caused by radiation damage in the oxide layer and the process parameters variation across the wafer (as for examplt process mismatch between transistors).
+        In this case, if the noise is \SI{100}{\elementarycharge}$^-$ (reasonable), the threshold must be higher than \SI[parse-numbers=false]{3.7\times100}{\elementarycharge}$^-$.
+        Typically this argument sets only a minimal bound to the threshold since the variation with time and from pixel to pixel have to be taken into account: the temperature, the shift in MOSFET threshold voltage caused by radiation damage in the oxide layer and the process parameters variation across the wafer (as for example process mismatch between transistors).
             
         The noise is parameterized as Equivalent Noise Charge (ENC), which is defined as the ratio between the noise N at the output expressed in Volt and the out voltage signal S produced by \SI{1}{\elementarycharge}$^-$ entering in the preamplifier:
         \begin{equation}
@@ -25,11 +25,11 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         \end{equation}
         where $T_{RMS}$ is the threshold variation during time (t) and across the matrix (x), and $n$ corresponds to the number of $\sigma$ of noise from which the threshold must set in order to obtain a firing probability lower than a certain value; for example, assuming a gaussian distribution, if n equal to 3.7, the probability that the pixel fires is less than 10$^{-4}$.
 
-        Because of the changing of the 'real' threshold, the possibility of changing and adapting the setting parameters of the FE, both in time and in space is desiderable: these parameters are usually set by Digital to Analog Converter (DAC) with a number of bits in a typical range of 3-7.
+        Because of the changing of the 'real' threshold, the possibility of changing and adapting the setting parameters of the FE, both in time and in space is desirable: these parameters are usually set by Digital to Analog Converter (DAC) with a number of bits in a typical range of 3-7.
         Unfortunately DAC elements require a lot of space that may be not available on the pixel area; therefore, the FE parameters are typically global, which means that they are assigned for the whole chip, or they can be assigned for regions the matrix is divided into. 
         The former case corresponds to TJ-Monopix1's design in which 7 bits are used for a total 127-DAC possible values, while the latter corresponds to the ARCADIA-MD1's one, 6-bits. 
-        Another possibility, for example implemented in TJ-Monopix2, is to allocate the space on each pixel for a subset of bits, then combinig the global threshold with a fine tuning. 
-        If so, the threshold dispersion after tuning is expected to decrease depening on the number of bits available for tuning:
+        Another possibility, for example implemented in TJ-Monopix2, is to allocate the space on each pixel for a subset of bits, then combining the global threshold with a fine tuning. 
+        If so, the threshold dispersion after tuning is expected to decrease depending on the number of bits available for tuning:
         \begin{equation}
             \sigma_{THR, tuned} = \frac{\sigma_{THR}}{2^{n bit}}
         \end{equation}    
@@ -50,7 +50,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         I used the injection circuit available on the chip to inject 100 pulses for each input charge for a fixed threshold.
         The charge injection is realized sending a voltage step V$_{inj}$(DAC) on an injection capacitance implemented at the input of the FE circuit (Q$_{inj}$=C$_{inj}$V$_{inj}$). Knowing the nominal value of the C$_{inj}$ (\SI{230}{aF} for the PMOS flavor) one can calculate the conversion factor for the signal injected from DAC to e$^-$. 
         Since the DAC are biased at \SI{1.8}{V}, the Least significant Bit (LSB) corresponds to a voltage of \SI{14.06}{mV} from which (for the PMOS flavor) the charge for LSB \SI{1.4375}{\elementarycharge/mV} and the conversion factor therefore is \SI{20.2}{\elementarycharge/DAC}.     
-        While this value is equivalent for all the PMOS flavor, the HV flavor is expected to have a different conversion factor, $\sim$ \SI{33}{e-/DAC}, beacuse of the different injection capacitance. 
+        While this value is equivalent for all the PMOS flavor, the HV flavor is expected to have a different conversion factor, $\sim$ \SI{33}{e-/DAC}, because of the different injection capacitance. 
         Besides the charge, also the duration and the period of the injection pulse can be set; it is important to make the duration short enough to have the falling edge during the dead time of the pixel (in particular during the FREEZE signal) in order to avoid the undershoot, coming at high input charge, triggering the readout and creating spurious hits. 
         Since the injection circuit is coupled in AC to the FE, if the falling edge of the pulse is sharp enough to produce an undershoot, this can be seen as a signal. 
 
@@ -61,7 +61,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \label{fig:scurve}
         \end{figure}   
 
-        Therefore I fitted the counts detected using the function in equation \ref{eq:fit_scurve}. Figure \ref{fig:scurve} shows an example of such fit for a pixel belonging to the flavor B with the register IDB, which sets the discriminator threhsold, fixed at \SI{40}{DAC}; in figure \ref{fig:threshold_noise_hist} are shown the 1D and 2D distributions of the parameters found for the PMOS B flavor. Then I fitted the 1D-histograms with a gaussian function to found the average and RMS of the noise and the threshold across the matrix. The results for each flavor are reported in table \ref{tab:threshold_noise_param}; no relevant differences among the flavors have been observed regarding the noise, which results to be $\lesssim$\SI{15}{\elementarycharge}$^-$, while the threshold has been found to be $\sim$\SI{400}{\elementarycharge}$^-$ except fot the PMOS C flavor, where, with the same FE settings, it is $\sim$\SI{540}{\elementarycharge}$^-$.
+        Therefore I fitted the counts detected using the function in equation \ref{eq:fit_scurve}. Figure \ref{fig:scurve} shows an example of such fit for a pixel belonging to the flavor B with the register IDB, which sets the discriminator threshold, fixed at \SI{40}{DAC}; in figure \ref{fig:threshold_noise_hist} are shown the 1D and 2D distributions of the parameters found for the PMOS B flavor. Then I fitted the 1D-histograms with a gaussian function to found the average and RMS of the noise and the threshold across the matrix. The results for each flavor are reported in table \ref{tab:threshold_noise_param}; no relevant differences among the flavors have been observed regarding the noise, which results to be $\lesssim$\SI{15}{\elementarycharge}$^-$, while the threshold has been found to be $\sim$\SI{400}{\elementarycharge}$^-$ except for the PMOS C flavor, where, with the same FE settings, it is $\sim$\SI{540}{\elementarycharge}$^-$.
         \begin{figure}
             \centering
             \begin{subfigure}[b]{0.49\textwidth}
@@ -134,9 +134,9 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         %Furthermore the two portion of the chip, with FDPW and with RDPW, have been analyzed separately, because a small difference in the sensor input capacitance was expected: in fact, the deep p-well removal in the RDPW causes a small reduction of the depletion region around the collection electrode, which results in an increase of the sensor capacitance C.
         %\red{Then  , the charge to voltage conversion gain at the front-end input (Q /C ) is lower and as a result, for the same input charge a lower voltage amplitude is induced at the front-end input. }
         Although a slightly lower threshold is visible in the first biasing section (columns from 0 to 14) in the map in figure \ref{fig:threshold_map}; similar structures, but extended to the entire matrix, appear more evidently when using different IDB values. 
-        The systematic threshold variation across the biasing group has not a well estabilished explanation, but one could certainly be the transistor mismatch of the biasing DAC registers IDB and ICASN, which both adjust the effective threshold (ICASN regulates the baseline and in the presented measurement has been set at the minimum value, that is \SI{0}{DAC}).
+        The systematic threshold variation across the biasing group has not a well established explanation, but one could certainly be the transistor mismatch of the biasing DAC registers IDB and ICASN, which both adjust the effective threshold (ICASN regulates the baseline and in the presented measurement has been set at the minimum value, that is \SI{0}{DAC}).
 
-        To verified the trend of the threshold as a function of the front end parameter IDB and find its dynamic range, I have performed different scans changing the FE register IDB. For each value I have injected the whole matrix and searched for the mean and the standard deviation of the threshold and noise distributions. The results are shown in figure \ref{fig:threshold_vs_IDB}: the blue points are the mean threhsold found whithin the matrix, while in green is shown the width (threshold $\pm \sigma$) of the threshold distribution, i.e. the threshold dispersion. 
+        To verify the trend of the threshold as a function of the front end parameter IDB and find its dynamic range, I have performed different scans changing the FE register IDB. For each value I have injected the whole matrix and searched for the mean and the standard deviation of the threshold and noise distributions. The results are shown in figure \ref{fig:threshold_vs_IDB}: the blue points are the mean threshold found within the matrix, while in green is shown the width (threshold $\pm \sigma$) of the threshold distribution, i.e. the threshold dispersion. 
         While the threshold increases at higher IDB, the ENC decreases of $\sim$\SI{4}{\elementarycharge}$^-$,which is $\sim$1/3 of the noise at IDB=\SI{40}{DAC}. \red{Ma ora che ci penso forse del noise ci dovrei mettere un plot? }
         \begin{figure}[h!]
             \centering
@@ -167,7 +167,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         where m and q are the fitted parameters of the calibration.
         It is important to keep in mind that the main application target of TJ-Monopix1 is in the inner tracker detector of HEP experiments, then the main feature is the efficiency, then a rough calibration of the signal to charge is fine. The ToT information can be used both to better reconstruct the charge deposition in cluster in order to improve the track resolution, and for particle identification, through $\frac{dE}{dx}$, especially for low momentum particles which do not reach the dedicated detectors.
                         
-        The study of the output signal has been possibile via the injection: I fitted the ToT versus the charge injected for all the pixels within the matrix.
+        The study of the output signal has been possible via the injection: I fitted the ToT versus the charge injected for all the pixels within the matrix.
         In figure \ref{fig:ToT_vs_charge} there is an example of fit for a pixel belonging to the flavor B, while in figure \ref{fig:ToT_histograms} there are the histograms and the maps of the parameters of the line-fit for all flavors with IDB fixed at \SI{40}{DAC}. Here again a difference among the biasing section appears: since the slope of the ToT is related to the gain of the preamplifier (increasing the gain also increases the ToT), the mismatch is probably due to the transistor contributing to the amplification stage.
 
         I fitted the average ToT of all the pulses recorded as a function of the pulse amplitude; data affected by rollover have been removed in order to avoid introducing a bias in the mean values.
@@ -278,10 +278,10 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             C_{inj}\,[\si{F}] =\, K\,[\si{\elementarycharge}^-/\si{DAC}] \, \frac{1.6\,10^{-19}\,[\si{C}]}{14.06\,[\si{mV}]}
         \end{equation}
         where \SI{1616}{\elementarycharge}$^-$ is the number of electrons produced in the detector by the calibration source (Fe55) and \SI{14.06}{mV} is the voltage value of a DAC (LSB). 
-        K is expected to be \SI{20}{e-/DAC}, assuming the nominal value of C equal to \SI{230}{aF}, and where 1616 is the expected number of electrons produced by the calibration source used, Fe55. Fe55 is en extremely important radionuclide in the calibration of X-ray spectrometers, proportional counter and scintillator detector since it emits two two X-photons during the electron capture decay: the first one (K$_\alpha$) at \SI{5.9}{keV} and the second one (K$_\beta$) at \SI{6.5}{keV}.
+        K is expected to be \SI{20}{e-/DAC}, assuming the nominal value of C equal to \SI{230}{aF}, and where 1616 is the expected number of electrons produced by the calibration source used, Fe55. Fe55 is en extremely important radionucleotide in the calibration of X-ray spectrometers, proportional counter and scintillator detector since it emits two two X-photons during the electron capture decay: the first one (K$_\alpha$) at \SI{5.9}{keV} and the second one (K$_\beta$) at \SI{6.5}{keV}.
         The K$_\alpha$ photon, which does photoelectric effect in silicon, has an absorption length $\sim$$\lambda$=\SI{29}{\um}, and the probability of being assorbed in the \SI{25}{\um} thick epitaxyal layer is $\sim$0.58\%.
         The electron emitted has an energy equal to the photon, so recalling that the mean energy needed to produce a couple electron-vacuum is \SI{3.65}{eV}, the signal produced by the Fe55 source is expected to be \SI{1616}{\elementarycharge}$^-$.
-        In figures \ref{fig:Fe55_spectrum_pixels} are shown two histograms of the ToT spectrum of the Fe55 source for two different pixels. The peak on the right corresponds to the events with complete absorption of the charge in the depleted region, while the long tail on the left to all the events with partial absorption due to charge sharing among neighbors pixels. In order to reduce the consistent charge sharing, the pixel dimension in TJ-Monopix2 has been reduced down to 30$\times$\SI{30}{\um\squared}. 
+        In figure \ref{fig:Fe55_spectrum_pixels} are shown two histograms of the ToT spectrum of the Fe55 source for two different pixels. The peak on the right corresponds to the events with complete absorption of the charge in the depleted region, while the long tail on the left to all the events with partial absorption due to charge sharing among neighbors pixels. In order to reduce the consistent charge sharing, the pixel dimension in TJ-Monopix2 has been reduced down to 30$\times$\SI{30}{\um\squared}. 
         The events on the right side of the peak, instead, corresponds to the K$_{\beta}$ photons. 
         Looking at the histograms for pixel (30, 185) and (30, 68) respectively at top and bottom of figure \ref{fig:Fe55_spectrum_pixels}, a significant difference in the peak to tail ratio leaps out, which can be related with the position of the pixel in the matrix.
         In particular, because of a different charge collection property, pixels in the upper part of the matrix (rows 112-224) have a more prominent peak, while in pixels in the lower part (rows 0-111) there is a higher partial absorption.
@@ -476,7 +476,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \label{fig:cluster_dimension}
             \end{figure}  
 
-        Below I have also attached a sample of hitmap of events produced by the three different sources (fig.\ref{fig:hit_map_cosmic_rays}, \ref{fig:hit_map_Sr90} and \ref{fig:hit_map_Fr550}). 
+        A sample of hitmap of events produced by the three different sources is shown in figures \ref{fig:hit_map_cosmic_rays}, \ref{fig:hit_map_Sr90} and \ref{fig:hit_map_Fr550}. 
         \begin{figure}[h!]
             \centering
             \includegraphics[width=.24\linewidth]{figures/charaterization/evts/cosmic_rays/7a.png}
@@ -560,14 +560,14 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/charaterization/cosmic_rays_spectrum_per_pixel.pdf}
-                \caption{Distribution of the charge released on pixels}
+                \caption{Distribution of the charge collected on individual pixels}
                 \label{fig:CR_pixel}
             \end{subfigure}
             \hfill
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/charaterization/cosmic_rays_spectrum_cluster.pdf}
-                \caption{and of the charge released on clusters}
+                \caption{and of the charge collected on clusters}
                 \label{fig:CR_cluster}
             \end{subfigure}
             \caption{Acquisition of cosmic rays with the PMOS B flavor with the same FE setting of the calibration (in particular IDB=\SI{40}{DAC})}
@@ -579,14 +579,14 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/charaterization/Sr90_spectrum_per_pixel.pdf}
-                \caption{Distribution of the charge released on pixels}
+                \caption{Distribution of the charge collected on individual pixels}
                 \label{fig:Sr90_pixel}
             \end{subfigure}
             \hfill
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/charaterization/Sr90_spectrum_cluster.pdf}
-                \caption{and of the charge released on clusters}
+                \caption{and of the charge collected on clusters}
                 \label{fig:Sr90_cluster}
             \end{subfigure}
             \caption{Acquisition of the Sr90 with the PMOS B flavor with the same FE setting of the calibration (in particular IDB=\SI{40}{DAC})}
@@ -599,14 +599,14 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/charaterization/Fe55_spectrum_per_pixel.pdf}
-                \caption{Distribution of the charge released on pixels}
+                \caption{Distribution of the charge collected on individual pixels}
                 \label{fig:Fe55_pixel}
             \end{subfigure}
             \hfill
             \begin{subfigure}[b]{0.49\textwidth}
                 \centering
                 \includegraphics[width=\linewidth]{figures/charaterization/Fe55_spectrum_cluster.pdf}
-                \caption{and of the charge released on clusters}
+                \caption{and of the charge collected on clusters}
                 \label{fig:Fe55_cluster}
             \end{subfigure}
             \caption{Acquisition of the Fe55 with the PMOS B flavor with the same FE setting of the calibration (in particular IDB=\SI{40}{DAC})}
