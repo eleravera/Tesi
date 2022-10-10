@@ -62,18 +62,23 @@
                 ToT varies in range 0-63
 
         \end{columns}
-
-
     \end{frame}    
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 4: <ToT calibration>  %%
+    %%  Slide 4: <ToT vs charge>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{ToT vs charge }
         \begin{beamercolorbox}[sep=0em,wd=0.85\textwidth,ht=1.5ex, dp=0.1ex, rounded=true, center]{lightbluebox}
-            Fe$^{55}$ $\rightarrow$ Mn$^{55}$ + K$_\alpha$ (SI{5.9}{keV}) or K$_\beta$ (\SI{6.5}{keV})
+            Fe$^{55}$ $\rightarrow$ Mn$^{55}$ + K$_\alpha$ (\SI{5.9}{keV}) or K$_\beta$ (\SI{6.5}{keV})
         \end{beamercolorbox}
+
+        \begin{tikzpicture}[overlay]
+            \draw[decorate,decoration={brace}]
+                (3.5,0) -- (5.5,0);
+        \end{tikzpicture}
+
+
         with K$_\alpha$:
         \begin{itemize}
             \item $\lambda$=\SI{29}{\um}$\rightarrow$ P$_{abs}$=
