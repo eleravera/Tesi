@@ -16,36 +16,35 @@
     %%  Slide 2: <CMOS MAPS concept>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{CMOS MAPS}
+        \frametitle{CMOS Monolitich Active Pixel Sensors}
         %forse anche la terza parentesi con minore circa 100 um
         \begin{columns}
             \column{0.4\textwidth}
-                \centering
-                \includegraphics[width=.99\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}
+                \includegraphics[width=1.1\linewidth]{figures/Pixel_detectors/MAPS_scheme.png}
             \column{0.6\textwidth}  
-                %\begin{tikzpicture}[overlay]
-                %    \draw[decorate,decoration={brace}]
-                %        (0,-0.4) -- node[xshift=2pt,anchor=west] {$\lesssim$\SI{5}{\um} electronics}(0,-0.5);
-                %\medskip
-                %    \draw[decorate,decoration={brace}]
-                %        (0,-1) -- node[xshift=2pt,anchor=west] {$\lesssim$\SI{50}{\um} sensor}(0,-1.7);
-                %\end{tikzpicture}
+                \begin{tikzpicture}[overlay]
+                    \draw[decorate,decoration={brace}]
+                        (0,-0.4) -- node[xshift=2pt,anchor=west] {$\lesssim$\SI{5}{\um} electronics}(0,-0.5);
+                \medskip
+                    \draw[decorate,decoration={brace}]
+                        (0,-1) -- node[xshift=2pt,anchor=west] {$\lesssim$\SI{50}{\um} sensor}(0,-1.7);
+                \end{tikzpicture}
                 \bigskip
                 \begin{equation*}
-                    \hspace{75pt} d \propto \sqrt{\rho V}
+                    \hspace{80pt} d \propto \sqrt{\rho V}
                 \end{equation*}   
                 \begin{equation*}
                     %\hspace{75pt} ENC^2 \propto \frac{4}{3} \frac{kT}{g_m} \frac{C_D ^2}{\tau_{sh}}
-                    \hspace{75pt} ENC^2 \propto C_D ^2
+                    \hspace{80pt} ENC^2 \propto C_D ^2
                 \end{equation*}  
                 \begin{equation*}
                     %\hspace{75pt} \tau \propto \frac{1}{g_m}\frac{C_D}{C_f}
-                    \hspace{75pt} \tau \propto C_D
+                    \hspace{80pt} \tau \propto C_D
                 \end{equation*}  
-            \end{columns} 
-        %\begin{equation*}
-        %    \hspace{75pt} d \propto \sqrt{\rho V}
-        %\end{equation*}     
+                \begin{equation*}
+                    \hspace{80pt} Q_{MIP} \sim 80 e^-/\si{\um}
+                \end{equation*}  
+            \end{columns}   
         \medskip 
         \begin{itemize}
             \item Electronics is low resistivity $\rho$ while sensor needs high $\rho$, special technologies for the sensor. Next slide!  High resistivity allows for depleted epi-layer DMAPS
