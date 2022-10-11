@@ -169,31 +169,40 @@
     %%  Slide 5: <ToT bias>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{Bias}
-        \begin{table}
-            \tiny
-            \begin{center}
-            \begin{tabular}{| c |  c | c | c |}
-            \hline
-            & -\SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
-            \hline
-            \hline
-            Threshold [DAC] & 20 $\pm$ 2 & 21 $\pm$ 2 & 24 $\pm$ 2\\
-            Noise [DAC] & 0.61 $\pm$ 0.08 & 0.62 $\pm$ 0.08 & 0.82 $\pm$ 0.1\\
-            Slope [au/DAC] & 0.73 $\pm$ 0.03 & 0.71 $\pm$ 0.03  & 0.57 $\pm$ 0.02\\
-            Offset [au] & -11 $\pm$ 2 & -11 $\pm$ 2 & -11 $\pm$ 2 \\
-            \hline
-            \end{tabular}
-            \end{center}
-        \end{table} 
+        \frametitle{Changing the bias}
+        \begin{columns}
+            \column{0.3\textwidth} 
+                Acquisitions with:
+                \begin{itemize}
+                    \item Injection
+                    \item Fe$^{55}$ source
+                \end{itemize}
+            \column{0.7\textwidth} 
+                %Maximum bias suggested
+                \begin{table}
+                    \begin{center}
+                    \scalebox{0.75}{
+                    \begin{tabular}{| c |  c | c | c |}
+                    \hline
+                    & -\SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
+                    \hline
+                    \hline
+                    Threshold [DAC] & 20 $\pm$ 2 & 21 $\pm$ 2 & 24 $\pm$ 2\\
+                    Noise [DAC] & 0.61 $\pm$ 0.08 & 0.62 $\pm$ 0.08 & 0.82 $\pm$ 0.1\\
+                    \hline
+                    \end{tabular}}
+                    \end{center}
+                \end{table}
+        \end{columns}
+ 
         \begin{columns}
             \column{0.4\textwidth}          
             \includegraphics[width=1.2\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
         \column{0.6\textwidth}
-            Reduction of the below quantity in the Fe$^{55}$ spectrum: 
+            Reducing the bias from -\SI{6}{V} to \SI{0}{V} eduction of the below quantity in the Fe$^{55}$ spectrum: 
             \begin{itemize}
-                \item ToT value of the peak of $\sim$30\%
-                \item N of events under the peak of $\sim$60\%
+                \item ToT value of the peak $\sim$30\%
+                \item N of events under the peak $\sim$60\%
                 \item hit rate $\sim$60\%
             \end{itemize}
           
@@ -205,15 +214,19 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Readout time}
+        \textbf{Injection} allows injecting pulses at different rate. 
+        \begin{itemize}
+            \item no memory on pixel: 
+            \item readout is completely sequential: one serializer @ \SI{40}{MHz}
+            \item each hit is a 27-bits data packet, at least \SI{675}{ns} needed
+        \end{itemize}
+
+        \medskip
         \begin{columns}
-            \column{0.6\textwidth}              
-                \includegraphics[width=1.\linewidth]{figures/charaterization/default_line.pdf}
-            \column{0.4\textwidth}  
-            \begin{itemize}
-                \item no memory on pixel
-                \item completely sequential
-                \item each hit is 32 bits
-            \end{itemize}
-            THEN readout time is 32 x 25 ns with the serializer working at \SI{40}{MHz}
+            \column{0.55\textwidth}              
+                \includegraphics[width=1.07\linewidth]{figures/charaterization/default_line.pdf}
+            \column{0.45\textwidth}  
+            Readout time \textbf{slightly} depends on the FE status and can be reduced down to \SI{31}{clk.}cnts = \SI{775}{ns} per pixels 
+
         \end{columns}            
     \end{frame}          
