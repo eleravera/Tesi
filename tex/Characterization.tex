@@ -393,7 +393,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         \end{figure}  
 
         In order to test the behavior of the chip when not completely depleted, I have performed an injection scan with PSUB/PWELL bias at \SI{0}{V}, -\SI{3}{V} and -\SI{6}{V} (results in tab.\ref{tab:parameters_vs_bias}); passing from -\SI{6}{V} to a smaller depletion at \SI{0}{V}, the slope of the output signal reduces of $\sim$1/4, which is smaller than the reduction in gain reported in figure \ref{fig:gain_vs_bias}, that is $\sim$1/3. Morover the increase in the threshold and noise at smaller bias is due to the fact that diffusion becomes a competing collection mechaninsm, with all the consequences described in section \ref{sec:MAPS_DMAPS}. 
-        Figure \ref{fig:Fe_param_vs_bias} shows the values of the K$_\alpha$ peak position, the normalization of the events above the peak that is the normalization coming from the gaussian fit of the peak, and the rate as a function of the PSUB/PWELL biases. These quantity have been normalized to their value at -\SI{6}{V}, which is then defined as the reference condition. 
+        Figure \ref{fig:Fe_param_vs_bias} shows the values of the K$_\alpha$ peak position, the normalization of the events above the peak that is the normalization coming from the gaussian fit of the peak, and the rate as a function of the PSUB/PWELL biases. These quantities have been normalized to their value at -\SI{6}{V}, which is then defined as the reference condition. 
         As expected with reduced bias two effects occur: firstly the position of the Fe55 peak moves to lower values due to a lower gain (the reduction of $\sim$1/3 is in agreement with the value measured in \ref{fig:gain_vs_bias}), secondly the number of events in the Fe55 peak and rate both become smaller since the depletion region is reduced.    
         So, what happens is the decrease of both the number of events with full collection (of the \SI{1616}{\elementarycharge}$^-$ from the Fe55 photon) in a single pixel, which contributes to the normalization of the peak, but also the reduction of the events with charge sharing among neighbours pixels. 
     \begin{table}
@@ -621,7 +621,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
         \end{equation}
         where $\alpha$ and $\beta$ are parameters dependent on the readout chain setting. 
         
-        To test the linearity of the reading time with the number of pixels firing and to measure it, I have used the injection circuit which allows me choosing a specific hit rate: I made a scan injecting a fix number of pulses and each time changing the number of pixels injected.
+        To test the linearity of the reading time with the number of pixels firing and to measure it, I have used the injection circuit which allows me choosing a specific hit rate: I made a scan injecting a fixed number of pulses and each time changing the number of pixels injected.
         Indeed the injection mode allows fixing not only the amplitude of the pulse, which corresponds to the charge in DAC units, but also the time between to consecutive pulses (DELAY). The hit rate then corresponds to \SI{25}{ns}/DELAY.
 
         Unfortunately a high random hit rate on the matrix cannot be simulated by the injection because of the long time ($\sim$\si{ms}) needed to set the pixel registers of the injection; then I was forced to specify at the start of the acquisition the pixels to inject on, and for convenience I chose those on a same column.  
@@ -648,7 +648,7 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
 
         From the efficiency curves I have then looked for the time when the efficency decreases. In figure \ref{fig:dead_time}(a) is shown the dead time per pixels as a function of N with different R/O parameters configuration, the meaning of which is explained in chapter \ref{chap:Monopix_RO}. The default value suggested by the designer of the chip are reported in table \ref{tab:R/O_param}; moving too much the readout parameters from the default ones, the readout does not work properly, and no hits can be read at all. The problem probably comes from the firmware setting of the readout which are specially fixed for our chip.
         %Cambiando molto i parametri del R/O la lettura non funzionava per niente: ad esempio CONF\_STOP\_FREEZE non può essere impostato nè sopra 105 nè sotto 95
-        The single pixel readout time is indipendent of its position in the matrix, and it is equal to 37.5$\pm$1 clock counts. However if many pixels are fire, the dead time $\tau_d$ depends on the position because the reading sequence goes from row 224 to row 0, and from column 0 to column 112, making the pixel on the bottom right corner the one with the longest dead time. 
+        The single pixel readout time is indipendent of its position in the matrix, and it is equal to 37.5$\pm$1 clock counts. However if many pixels are fired, the dead time $\tau_d$ depends on the position because the reading sequence goes from row 224 to row 0, and from column 0 to column 112, making the pixel on the bottom right corner the one with the longest dead time. 
        
         \begin{table}
             \begin{center}
@@ -676,8 +676,8 @@ In this chapter I will present the tests performed on TJ-Monopix1 and ARCADIA-MD
             \caption{(a) Readout time per pixel as a function of the number of pixel injected obtained with different FE setup. (b) Readout time as a function of the number of pixels injected obtained injecting pulses with amplitude of \SI{80}{DAC} (green), of \SI{40}{DAC} on the same row (red) and on the same column (blue).}
             \label{fig:dead_time}
         \end{figure}
-        Furthermore to test that there is no dependece of the digital readout time from the charge of the pulse, I have try to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
-        No difference in the $\alpha$ and $\beta$ coefficients has been observed between the two case.
+        Furthermore to test that there is no dependence of the digital readout time from the charge of the pulse, I have tried to change the amplitude of the pulse injected, but the parameters found were consistent with the default configuration ones.
+        No difference in the $\alpha$ and $\beta$ coefficients has been observed between the two cases.
         Referring to eq.\ref{eq:reading_time}, the factor $\alpha$ is proportional to the difference (STOP\_FREEZE - START\_READ), while the offset $\beta$ lies between 5 and 15 clock counts.
 
         The readout time found by this test is so long because in the prototypes no parallelization of the informations (with the instroduction of more serializer for example) and no storage memory are included; this feature are typically added in the final prototypes. An example closely linked to TJ-Monopix1 is OBELIX: it will include on the chip a storage buffer to optimize the dead time and to keep a low occupancy even at high fluence. 
