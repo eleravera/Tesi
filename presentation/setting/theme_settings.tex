@@ -26,6 +26,7 @@
 \setbeamercolor{palette secondary}{bg=bluUnits80,fg=bluUnits25}
 \setbeamercolor{palette tertiary}{bg=bluUnits50,fg=bluUnits100}
 \setbeamercolor{palette quaternary}{bg=bluUnits40,fg=white}
+\setbeamercolor{palette quaternary blue}{bg=bluUnits40,fg=bluUnits100}
 \setbeamercolor{palette light primary}{bg=bluUnits25,fg=bluUnits100}
 \setbeamercolor{palette titleframe}{bg=bluUnits10, fg=bluUnits80}
 
@@ -43,7 +44,8 @@
 \setbeamertemplate{enumerate item}[circle]
 \setbeamertemplate{itemize subitem}[ball]
 % Valutare a secoda del contesto se sostituire con 
-% \setbeamertemplate{items}[circle]
+%\setbeamertemplate{items}[circle]
+\setbeamertemplate{items_circ}[circle]
 \setbeamercolor{alerted text}{fg=bluUnits50}
 
 %% 	Colore delle scritte nella presentazione
@@ -110,13 +112,9 @@
 		
 		%  Commentare il seguente ambiente {center} e decommentare {flushright} quello successivo in caso
 		%	si voglia usare solo il logo dell'UNI
-		
 		\begin{center}
-			\begin{multicols}{2}
-				\includegraphics[width=0.25\textwidth]{\LogoDipartimento}
-			\columnbreak
-				\includegraphics[width=0.25\textwidth]{\LogoUniversita}		
-			\end{multicols}
+			\medskip
+			\includegraphics[width=0.25\textwidth]{\LogoUniversita}
 		\end{center}
 	
 		%	\begin{flushright}
@@ -135,12 +133,13 @@
 			\begin{multicols}{2}
 				\begin{tabular}{c}
 					\usebeamerfont{normal text}{\relatoreLabel} \\
-					\usebeamerfont{author}{\relatore}
-					
-						% Decommentare in caso siano presenti dei correlatori
-					\\
-					\usebeamerfont{normal text}{\correlatoreLabel} \\
+					\usebeamerfont{author}{\relatore}\\
 					\usebeamerfont{author}{\correlatore}
+
+						% Decommentare in caso siano presenti dei correlatori
+					%\\
+					%\usebeamerfont{normal text}{\correlatoreLabel} \\
+					%\usebeamerfont{author}{\correlatore}
 						
 				\end{tabular}					
 				\columnbreak
