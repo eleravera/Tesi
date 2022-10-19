@@ -3,35 +3,18 @@
 	%%  Slide 1: <> %%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{Charaterization}
-        \begin{enumerate}
-            \item Threshold and noise
-            \item Calibration of the ToT
-            \item Characterization with radioactive sources
-            \item Study of the collection properties varing the bias
-            \item Study of the readout time \bigskip\bigskip
-            \item test on beam
-        \end{enumerate}
-   
-    \end{frame}
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%  Slide 1: <> %%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
         \frametitle{Threshold and noise}
-        The threshold and the noise are \textbf{strictly} related with the \textbf{FE} status, and in particular with the threshold of the \textbf{discriminator}.\\
-        \medskip
         The lower the threshold, the lower the minium detectable signal, allowing for thinner detector (Q$_{MIP}\propto$d). \\
+        \medskip
+        The threshold and the noise are \textbf{strictly} related with the \textbf{FE} status\\
         \medskip
         What determins the minimum stable threshold?
         \begin{itemize}
             \item the \textbf{ENC} 
             \item the \textbf{threshold dispersion} 
-            \item threshold variation in \textbf{time}
         \end{itemize}
         \medskip
+        Numeri attesi da simulazione with optimal FE settings
         \begin{center}
         \begin{beamercolorbox}[rounded=true, center]{palette light primary}
             Noise \hspace*{1.2cm} Threshold \hspace*{1.2cm} Threshold dispersion
@@ -49,18 +32,18 @@
     \begin{frame}
         \frametitle{Threshold and noise: how to measure them?}
         \begin{itemize}
-            \item\textbf{Injection circuit}: allows injecting a fixed charge Q, setted by a register, on a capacity C$_{inj}$ at the FE input
+            \item\textbf{Iinternal injection circuit}: allows sending a voltage step on an injecting capacitance C$_{inj}$ at the FE input
         \end{itemize}
         \bigskip
         \begin{columns}
-            \column{0.45\textwidth}           
-                  \includegraphics[width=1.1\linewidth]{figures/charaterization/scurve.pdf}
+            \column{0.45\textwidth}  
+                Efficiency vs injected charge at fix threshold
+                \includegraphics[width=1.1\linewidth]{figures/charaterization/scurve.pdf}
             \column{0.55\textwidth} 
-                %\begin{center}
+                By design:
                 \begin{beamercolorbox}[ rounded=true, center]{lightbluebox}
-                    C$_{inj}$=\SI{230}{fF} $\rightarrow$ F=\SI{20}{\elementarycharge}$^-$/DAC
+                    C$_{inj}$=\SI{230}{fF} $\rightarrow$ Q$_{inj}$=\SI{20}{\elementarycharge}$^-$/DAC
                 \end{beamercolorbox}
-                %\end{center}                    
                 \\
                 \bigskip
                 Assuming a gaussian noise:
@@ -78,63 +61,19 @@
         \end{columns}
     \end{frame}
 
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 2: <Threshold_noise>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-        \frametitle{Threshold and noise}
-        \begin{columns}
-            \column{0.45\textwidth}        
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/threshold_histogram.pdf}
-            \column{0.45\textwidth}        
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/noise_histogram.pdf} 
-        \end{columns}                  
-        \begin{table}[h!]
-            \tiny
-            \begin{center}
-            \begin{tabular}{| c |  c | c | c |c |}
-            \hline
-            & PMOS A & PMOS B & PMOS C & HV \\
-            \hline
-            \hline
-            Threshold [\si{\elementarycharge}$^-$] & 401.7$\pm$0.2 & 400.8$\pm$0.2 & 539.7$\pm$0.6 &  403.9$\pm$0.2\\
-            Threshold dispersion [\si{\elementarycharge}$^-$] & 32.9$\pm$0.1 & 33.0$\pm$0.2 & 55.5$\pm$0.4 & 44.7$\pm$0.2\\
-            Noise [\si{\elementarycharge}$^-$] & 13.01$\pm$0.06 & 12.26$\pm$0.07 & 13.9$\pm$0.1 & 11.7$\pm$0.1\\
-            Noise dispersion [\si{\elementarycharge}$^-$] & 1.61$\pm$0.04 & 1.50$\pm$0.05 & 1.91$\pm$0.07 & 1.58$\pm$0.07\\
-            \hline
-            \end{tabular}
-            \end{center}
-        \end{table}       
-
-    \end{frame}
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 2: <Threshold_noise>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-        \frametitle{Threshold and noise}
-        \centering
-        \includegraphics[width=.75\linewidth]{figures/charaterization/threshold_noise_maps.pdf}
-        \begin{itemize}
-            \item With this threshold the mean rate is $\sim$\SI{3}{Hz} on all the matrix, excluding the noisy pixels!
-            \item Changing the register which sets the discriminator threshold the effective threshold changes in range (375-500\si{\elementarycharge}$^-$).
-        \end{itemize}
-    \end{frame}
-
-
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 4: <ToT vs charge>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Calibration of the signal}
-        Q injected in DAC depends on the C$_{inj}$, different for each pixel.     
+        Q$_{inj}$ depends on the C$_{inj}$, different for each pixel.     
         \bigskip
         How convert the DAC units in electrons collected in the sensor?\\
         \begin{itemize}
-            \item take advantage linearity of the output signal 
+            \item linearity of the output signal 
             \item need of a reference, radioactive source
+            \item ATTENZIONE A COME CITI LA LINEARITÀ CHE È MISLEADING
+            \item Formula per la calibrazione. 
         \end{itemize}
         \bigskip
         \begin{beamercolorbox}[sep=0em,wd=0.85\textwidth,ht=1.5ex, dp=0.1ex, rounded=true, center]{lightbluebox}
@@ -162,23 +101,19 @@
         \frametitle{ToT linearity}
         \begin{itemize}
             \item linearity is due to the \textbf{PMOS} reset circuit of the amplifier which guaranties that the discharge of the preamplifier is costant in time. Then the ToT is completely correlated with the pulse amplitude 
-            \item ToT is saved as a 6-bits variable and can vary in range 0-63 $\rightarrow$ \textbf{rollover}
-            \item tested with the injection
+            \item ToT is saved as a 6-bits variable and can vary in range 0-63
+            \item calibrated with the injection
         \end{itemize}
         \medskip
         \medskip
         \medskip
         \begin{columns}
-            \column{0.33\textwidth}  
-                \includegraphics[width=1.1\linewidth]{figures/Monopix1/pulse_60to10.png}
-            \column{0.33\textwidth}
-                \includegraphics[width=1.2\linewidth]{figures/charaterization/ToT_rollover.png} 
-            \column{0.33\textwidth}
-            \includegraphics[width=1.2\linewidth]{figures/charaterization/ToT_injection.pdf} 
+            \column{0.5\textwidth}  
+                \includegraphics[width=.8\linewidth]{figures/Monopix1/pulse_60to10.png}
+            \column{0.5\textwidth}
+                \includegraphics[width=.8\linewidth]{figures/charaterization/ToT_injection.pdf} 
         \end{columns}
     \end{frame}    
-
-      
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 4: <ToT calibration>  %%
@@ -204,6 +139,8 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Different collection properties}
+        2 different \textbf{dose profile} in the sensor: Reduced Deep P-Well (RDPW) and Full Deep P-Well (FDPW)
+
         \begin{itemize}
             \item Different charge collection efficiency due to the deep p-well structure within the sensor
         \end{itemize}

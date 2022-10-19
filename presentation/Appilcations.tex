@@ -1,61 +1,25 @@
 \section{Pixel detectors}
-
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 1: <Pixels types>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Pixel detectors}
-        %Up to 1974 gaseous detector where used for tracking (spatial resolution $\sim$\SI{100}{\um}). 
-        The affirmation of the quark model required higher spatial resolution to reconstruct short-lived particles decays $\rightarrow$ pixel detectors start replacing gas detectors for \textbf{tracking} \\
-        \medskip
-        Widely used for \textbf{imaging} with applications in space experiments and in medicine and many other exotic domains.\\
-        \bigskip
-        INSERIRE IMMAGINI
-    \end{frame}
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <Pixels types>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-        \frametitle{Pixel detectors}
-        Many different types of pixel detectors have been developed: 
+        Many different types of pixel detectors have been developed, prima nati per \textbf{imaging}, poi per \textbf{tracking} sostituiscono i detector a gas hanno higher spatial resolution to reconstruct short-lived particles decays
         \begin{columns}
             \column{0.7\textwidth} 
                 \begin{itemize}
-                    \item CCD 
-                    \item hybrid pixels
-                    \item DEPFET
+                    \item CCD $\rightarrow$ per l'imaging
+                    \item hybrid pixels $\rightarrow$ per la HEP
                     \item Monolitich Active Pixel Sensors
+                    \begin{itemize}
+                        \item DEPFET $\rightarrow$ BelleII vertex , perchè per Belle2 è importante il material budget
+                        \item CMOS MAPS
+                    \end{itemize}
                 \end{itemize}
             \column{0.7\textwidth} 
             INSERIRE IMMAGINI
-
-            
         \end{columns}
-
-
     \end{frame}
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <Applications>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %\begin{frame}
-    %    \frametitle{Tracking in HEP}
-
-    %    Task of pixel detectors in tracking:
-    %    \begin{itemize}
-    %        \item pattern recognition with the identification of particle tracks even in the presence of large backgrounds and pile-up
-    %        \item measurement of vertices (primary and secondary)
-    %        \item multi-track and vertex separation in the core of jets
-    %        \item measurement of specific ionization
-    %        \item momentum measurement combining with the information from other detectors
-    %    \end{itemize}
-    %\end{frame} 
-
-
-
-
 
 
 
@@ -76,28 +40,12 @@
                 \textbf{BUT: }
                 \begin{itemize}
                     \item bump bonding delicate and expensive
-                    \item material budget
+                    \item hight material budget and high MS: spessore tipico hybrid \SI{250}{\um}, spessore maps \SI{25}{\um} active
                     \item power consumption
                 \end{itemize}
         \end{columns}
-        \begin{table}
-            \begin{center}
-                %\scalebox{0.75}{
-                \begin{tabular}{|c | c |  c |}
-                \hline
-                & Hybrid & Monolitich\\
-                \hline
-                \hline
-                thickness & \SI{250}{\um} & \SI{25}{\um} active\\
-                electrode pitch & 50-\SI{100}{\um} & 10-\SI{50}{\um}\\
-                module area & \SI{10}{cm\squared} & $\sim$\si{cm\squared}\\
-                energy loss (mip) & \SI{100}{keV} & \SI{3}{keV}\\
-                noise equivalent & \SI{1}{keV} & \SI{0.2}{keV}\\
-                spatial resolution & 10-\SI{15}{\um} & 5-\SI{10}{\um}\\
-                rate capability & \si{GHz/cm\squared} & \SI{100}{MHz/cm\squared} \\
-                \hline
-                \end{tabular}
-            \end{center}
-        \end{table}
-
+        electrode pitch,  50-\SI{100}{\um} , 10-\SI{50}{\um}\\
+        module area, \SI{10}{cm\squared} , $\sim$\si{cm\squared}\\
+        spatial resolution  10-\SI{15}{\um} , 5-\SI{10}{\um}\\
+                rate capability , \si{GHz/cm\squared} , \SI{100}{MHz/cm\squared} \\
     \end{frame}
