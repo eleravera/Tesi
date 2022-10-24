@@ -56,10 +56,6 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
       These boards have been positioned vertically in front of the plexiglass gun on a table specifically built for the testbeam. The three boards have been enclosed in a box of alluminium with a window on the DUT and with the required holes at the side to enable the biasing via cables and the connection with the DAQ provided via ethernet cable.       
       A trigger signal coming from the control unity and synchronized with the pulses emitted from the beam was also sent to the FPGA.
       This digital signal cannot be considered a real trigger, since the TJ-Monopix1 prototype has been designed to be triggerless, but its Time of Arrival (ToA) has allowed the reconstruction of the correct timing during the analysis.
-
-      In order to reduce the particle flux on the sensor, two alluminium collimators have been fabricated: one has been positioned at the plexiglass gun exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the plexiglass gun output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^{-4}}$. In table \ref{tab:Dose_N} are reported, as a function of the Dose Per Pulse (DPP) setted by the control unit of the accelerator,the number of electrons which exit from the gun, the number of electrons which are expected arrive on the DUT if the collimator B is not mounted. 
-      To obtain the rate on pixel, N$_{on\_DUT}$ must be divided by \SI{4}{\us}.
-
       \begin{table}
          \begin{center}
          \begin{tabular}{ c |c | c}
@@ -74,7 +70,11 @@ Then, for \SI{9}{MeV} electrons, whose stopping power in water\footnote{Water is
          \label{tab:Dose_N}
          \end{center}
      \end{table}
-      
+     
+      In order to reduce the particle flux on the sensor, two alluminium collimators have been fabricated: one has been positioned at the plexiglass gun exit while the other in front of the DUT. The collimators are $t$=\SI{32}{mm} thick and have a diameter $d$ equal to \SI{1}{mm}: assuming a beam divergence bigger than $d/t$=1/32 = \SI{1.8}{\degree}, which is the case, the collimator at the plexiglass gun output was supposed to work as a point source and to reduce the rate on the DUT of a factor at least 4 10${^{-4}}$. In table \ref{tab:Dose_N} are reported, as a function of the Dose Per Pulse (DPP) setted by the control unit of the accelerator,the number of electrons which exit from the gun, the number of electrons which are expected arrive on the DUT if the collimator B is not mounted. 
+      To obtain the rate on pixel, N$_{on\_DUT}$ must be divided by \SI{4}{\us}.
+
+  
       The second one, located near the DUT, was instead supposed to shield the sensor from the electrons which passed the first one, except for a region of \SI{1}{mm\squared} configurable using micrometers screws. 
       It must be said that this arrangement of the collimators was not optimized. Simulations performed after the beam test indicate that multiple scattering in air plays an important role and the back of the envelope calculation of the flux was not correct.    
       \begin{figure}

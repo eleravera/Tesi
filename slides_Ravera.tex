@@ -40,6 +40,13 @@
 \usepackage{presentation/setting/packages}
 %\setbeamersize{text margin left=5mm,text margin right=5mm} 
 
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=ellipse,draw=red,inner sep=1.5pt] (char) {#1};}}
+
+
+
+
+
 % Settaggi documento %%
         
 \hypersetup{
@@ -50,7 +57,7 @@
 \title[]{Characterization of monolithic CMOS pixel sensors for charged particle detectors and for high intensity dosimetry}
 
 \institute{Università degli studi di Pisa}
-\author[E. Ravera]{Eleonora Ravera}
+\author[Eleonora Ravera]{Eleonora Ravera}
 \year=2022
 \month=10
 \day=27
@@ -72,6 +79,8 @@
 		%%%%%%%%%%%%%%%%%%%%%%%
 		%%  Slide 1: TITOLO  %%
 		%%%%%%%%%%%%%%%%%%%%%%%
+%\setbeamertemplate{headline}[backup]
+%\setbeamertemplate{footline}[backup]
 \begin{frame}
 \setTitlestyleDissertation
 \maketitle
@@ -82,7 +91,9 @@
 \definecolor{barcolor}{RGB}{160,196,222}
 \setbeamercolor{lightbluebox}{bg=barcolor}
 
-\begin{frame}
+%\setbeamertemplate{headline}[normal]
+%\setbeamertemplate{footline}[normal]
+\begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{itemize}
         \item Pixel detectors 
@@ -99,10 +110,10 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{itemize}
-        \item Pixel detectors 
+        \item <alert@1> Pixel detectors 
         \item CMOS Monolitich Active Pixels 
         \item TJ-Monopix1
         \item Characterization 
@@ -112,11 +123,11 @@
 
 \input{presentation/Appilcations.tex}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{itemize}
         \item Pixel detectors 
-        \item CMOS Monolitich Active Pixels 
+        \item <alert@1> CMOS Monolitich Active Pixels 
         \item TJ-Monopix1
         \item Characterization 
         \item Beam test and FLASH-RT
@@ -125,45 +136,44 @@
 \input{presentation/MAPS.tex}
 
 
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{itemize}
         \item Pixel detectors 
         \item CMOS Monolitich Active Pixels 
-        \item TJ-Monopix1
+        \item <alert@1> TJ-Monopix1
         \item Characterization 
         \item Beam test and FLASH-RT
     \end{itemize}
 \end{frame}
 \input{presentation/Monopix1.tex}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{itemize}
         \item Pixel detectors 
         \item CMOS Monolitich Active Pixels 
         \item TJ-Monopix1
-        \item Characterization 
+        \item <alert@1> Characterization 
         \begin{enumerate}
             \item Threshold and noise
             \item Calibration of the ToT
             \item Characterization with radioactive sources
-            \item Study of the readout time \bigskip\bigskip
-            \item test on beam
+            \item Study of the readout time
         \end{enumerate}
         \item Beam test and FLASH-RT
     \end{itemize}
 \end{frame}
 \input{presentation/Characterization.tex}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
     \frametitle{Outline}
     \begin{itemize}
         \item Pixel detectors 
         \item CMOS Monolitich Active Pixels 
         \item TJ-Monopix1
         \item Characterization 
-        \item Beam test and FLASH-RT
+        \item <alert@1> Beam test and FLASH-RT
     \end{itemize}
 \end{frame}
 \input{presentation/SChiara.tex}

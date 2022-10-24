@@ -1,26 +1,35 @@
 \section{Pixel detectors}
+
+
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 1: <Pixels types>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{Pixel detectors}
-        Many different types of pixel detectors have been developed, prima nati per \textbf{imaging}, poi per \textbf{tracking} sostituiscono i detector a gas hanno higher spatial resolution to reconstruct short-lived particles decays
+        \frametitle{Pixel detectors: many different types}
+        Originally born for \textbf{imaging}, then used for \textbf{tracking} replaced gas detectors because of higher spatial resolution to reconstruct short-lived particle decays
         \begin{columns}
-            \column{0.7\textwidth} 
-                \begin{itemize}
-                    \item CCD $\rightarrow$ per l'imaging
-                    \item hybrid pixels $\rightarrow$ per la HEP
-                    \item Monolitich Active Pixel Sensors
+            \column{0.5\textwidth} 
+                \vspace*{-0.5cm}\begin{itemize}
+                    \item CCDs 
+                    \item Hybrid pixels 
+                    \item Monolitich Active Pixels
                     \begin{itemize}
-                        \item DEPFET $\rightarrow$ BelleII vertex , perchè per Belle2 è importante il material budget
+                        \item DEPFET %$\rightarrow$ BelleII vertex , perchè per Belle2 è importante il material budget
                         \item CMOS MAPS
                     \end{itemize}
                 \end{itemize}
-            \column{0.7\textwidth} 
-            INSERIRE IMMAGINI
+            \medskip
+            \pause
+            \column{0.5\textwidth} 
+                \vspace*{+0.5cm}\centering\includegraphics[width=.9\linewidth]{figures/Pixel_detectors/CCD_presentation.pdf} 
         \end{columns}
+        
+        \pause
+        \vspace*{-0.8cm}\includegraphics[width=.34\linewidth]{figures/Pixel_detectors/hybrid_scheme2.png}
+        \pause
+        \includegraphics[width=.64\linewidth]{figures/Pixel_detectors/Monolitich.pdf}
     \end{frame}
-
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,24 +37,69 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Hybrid vs monolithic}
-        \textbf{Hybrid pixel}: electronics and sensor are on two different wafer\\
-        \textbf{monolithic pixel}: electronics and sensor are on the same wafer\\ 
         \begin{columns}
-            \column{0.7\textwidth} 
-                \begin{itemize}
-                    \item Sensor and ASIC can be optimized separately
-                    \item Are radiation hard
-                \end{itemize}
-            \column{0.7\textwidth} 
-                \textbf{BUT: }
-                \begin{itemize}
-                    \item bump bonding delicate and expensive
-                    \item hight material budget and high MS: spessore tipico hybrid \SI{250}{\um}, spessore maps \SI{25}{\um} active
-                    \item power consumption
-                \end{itemize}
+            \column{0.47\textwidth} 
+                \centering\textbf{Hybrid pixels}
+                \begin{beamercolorbox}[ rounded=true, center]{celadon}
+                    \begin{enumerate}
+                        \item sensor and ASIC can be optimized separately
+                        \item module area$\sim$\SI{10}{cm\squared}
+                        \item rate capability$\sim$\si{GHz/cm\squared}
+                        \item are more radiation hard 
+                    \end{enumerate} 
+                \end{beamercolorbox}
+            \column{0.06\textwidth} 
+                \includegraphics[width=1.5\linewidth]{presentation/pollicesu.png}
+            \column{0.47\textwidth} 
+                \centering\textbf{Monolithic active pixels}
+                \begin{beamercolorbox}[ rounded=true, center]{celadon}
+                    \begin{enumerate}
+                        \item active thick$\sim$\SI{25}{\um}
+                        \item pitch$\sim$10-\SI{50}{\um}
+                        \item point resolution$\sim$5-\SI{10}{\um}
+                        \item low power consumption
+                        \item good S/N ratio
+                    \end{enumerate}    
+                \end{beamercolorbox}
         \end{columns}
-        electrode pitch,  50-\SI{100}{\um} , 10-\SI{50}{\um}\\
-        module area, \SI{10}{cm\squared} , $\sim$\si{cm\squared}\\
-        spatial resolution  10-\SI{15}{\um} , 5-\SI{10}{\um}\\
-                rate capability , \si{GHz/cm\squared} , \SI{100}{MHz/cm\squared} \\
+       
+        \begin{columns}                
+            \column{0.47\textwidth} 
+                %\medskip
+                \begin{beamercolorbox}[rounded=true, center]{gray}
+                    \begin{enumerate}
+                        \item pitch$\sim$50-\SI{100}{\um}
+                        \item point resolution$\sim$10-\SI{15}{\um}
+                        \item \tikzmark{start}sensor thick$\sim$\SI{250}{\um}\tikzmark{end}\tikz[remember picture] \node[coordinate] (t1) {};
+                        %\item sensor \tikzmark{start}thick$\sim$\tikzmark{end}\SI{250}{\um}\tikz[remember picture] \node[coordinate] (t1) {};
+                        \item bump bonding delicate and expensive
+                    \end{enumerate}    
+                \end{beamercolorbox}
+                %\vspace*{-0.3cm}
+                \hspace*{+1.0cm}
+                {\color{red}Multiple Scattering!} \tikz[remember picture] \node[coordinate] (n1) {};
+
+                \begin{tikzpicture}[remember picture,overlay]
+                    \node<2>[ellipse,draw,fit={(pic cs:start) (pic cs:end)}, red,xscale=.9,yscale=2.] {};
+                \end{tikzpicture} 
+                
+                %\begin{tikzpicture}[remember picture,overlay]
+                %    \node<2>[ellipse,draw,fit={(pic cs:start) (pic cs:end)}, red,xscale=2.,yscale=2.] {};
+                %\end{tikzpicture} 
+
+                    %disegno la freccia
+                    \begin{tikzpicture}[remember picture, overlay]
+                        \usetikzlibrary {arrows.meta}
+                        \path[draw=red,thick,->]<1-> ([yshift=1mm, xshift=5mm]t1) to [out=0, in=0,distance=0.5in] (n1);
+                    \end{tikzpicture}
+            \column{0.06\textwidth} 
+                \includegraphics[width=1.5\linewidth]{presentation/pollicegiu.png}
+            \column{0.47\textwidth}
+                \begin{beamercolorbox}[rounded=true, center]{gray}
+                    \begin{enumerate}
+                    \item module area$\sim$\si{cm\squared}
+                    \item rate capability $\sim$\SI{100}{MHz/cm\squared}
+                    \end{enumerate}    
+                \end{beamercolorbox}
+        \end{columns}
     \end{frame}

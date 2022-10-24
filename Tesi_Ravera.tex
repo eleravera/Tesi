@@ -39,19 +39,22 @@
 
 %\textcolor{red}{#1}
 \newcommand{\red}[1]{}
-\begin{document}
+\begin{document} 
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
 \fancyhead[R]{}
 \fancyhead[L]{\ifnum\value{chapter}=0\else\chaptername\ \thechapter\ \fi \ \leftmark}
-
 %\fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
+
+
+%Per mettere numero di riga
 %\linenumbers
 \input{tex/frontespizio}
 
 \tableofcontents
 
 \chapter*{Introduction}
+\markboth{Introduction}{}
 \input{tex/introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
@@ -72,11 +75,14 @@
 \input{tex/test_beam_measurements.tex}
 
 
-\chapter{Conclusions}
+\chapter*{Conclusions}
+\markboth{Conclusions}{}
 \input{tex/conclusion.tex}
 
-\chapter{Acknowledgements}
+\printbibliography[heading=bibintoc, title={Bibliography}]
+
+\chapter*{Acknowledgements}
+\markboth{}{}
 \input{tex/ringraziamenti.tex}
 
-\printbibliography[heading=bibintoc, title={Bibliography}] 
 \end{document}

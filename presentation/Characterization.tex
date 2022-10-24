@@ -1,12 +1,12 @@
-\section{Charaterization}
+\section{Characterization}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%  Slide 1: <> %%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{Threshold and noise}
+        \frametitle{Threshold and noise}\medskip
         The lower the threshold, the lower the minium detectable signal, allowing for thinner detector (Q$_{MIP}\propto$d). \\
         \medskip
-        The threshold and the noise are \textbf{strictly} related with the \textbf{FE} status\\
+        The threshold and the noise are \textbf{strictly} related with the \textbf{FE} settings\\
         \medskip
         What determins the minimum stable threshold?
         \begin{itemize}
@@ -14,7 +14,8 @@
             \item the \textbf{threshold dispersion} 
         \end{itemize}
         \medskip
-        Numeri attesi da simulazione with optimal FE settings
+        \centering ......................................................................\\\medskip
+        \centering Expected values found by simulation with optimal FE settings %(sottolinea NON DA ME)
         \begin{center}
         \begin{beamercolorbox}[rounded=true, center]{palette light primary}
             Noise \hspace*{1.2cm} Threshold \hspace*{1.2cm} Threshold dispersion
@@ -32,86 +33,146 @@
     \begin{frame}
         \frametitle{Threshold and noise: how to measure them?}
         \begin{itemize}
-            \item\textbf{Iinternal injection circuit}: allows sending a voltage step on an injecting capacitance C$_{inj}$ at the FE input
+            \item\textbf{Internal injection circuit} allows sending a voltage step V$_{inj}$[DAC] on an injecting capacitance C$_{inj}$ at the FE input\\\medskip
+            \item Scan at different pulse height V$_{inj}$[DAC] injecting 100 pulses at fixed discriminator threshold 
         \end{itemize}
-        \bigskip
+        \medskip\medskip
+        By design:
+        \begin{beamercolorbox}[ rounded=true, center]{palette light primary}
+            C$_{inj}$ = \SI{230}{fF} $\rightarrow$ Q$_{inj}$ = \SI{20}{\elementarycharge}$^-$/DAC
+        \end{beamercolorbox}  
+    \end{frame}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%  Slide 1: <Scurve> %%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}
+        \frametitle{S-curve}
+        \begin{itemize}
+            \item Efficiency curve as a function of the injected V$_{inj}$[DAC]
+        \end{itemize}
+        \begin{beamercolorbox}[ rounded=true, center]{palette titleframe}
+            Q$_{inj}$=\SI{20}{\elementarycharge}$^-$/DAC
+        \end{beamercolorbox}
+        \medskip
         \begin{columns}
             \column{0.45\textwidth}  
-                Efficiency vs injected charge at fix threshold
                 \includegraphics[width=1.1\linewidth]{figures/charaterization/scurve.pdf}
             \column{0.55\textwidth} 
-                By design:
-                \begin{beamercolorbox}[ rounded=true, center]{lightbluebox}
-                    C$_{inj}$=\SI{230}{fF} $\rightarrow$ Q$_{inj}$=\SI{20}{\elementarycharge}$^-$/DAC
-                \end{beamercolorbox}
-                \\
-                \bigskip
                 Assuming a gaussian noise:
                 \begin{itemize}
-                    \item the threshold is the 50\%
-                    \item the noise is 1/slope 
+                    \item threshold $\rightarrow$ the 50\%
+                    \item noise $\rightarrow$ 1/slope 
                 \end{itemize}
                 \medskip
-                Analitical parametrization of the curve with the $error\,function$
+                Analitical parametrization of the curve with the $error\,function$\\
+                
+   
                 %\begin{equation*}
                 %    \tiny
                 %    f(x, \mu, \sigma) = \frac{1}{2} \; \left(1\,+\,erf\left(\frac{x-\mu}{\sigma \sqrt{2}}\right)\right)
                 %    \label{eq:fit_scurve}
                 %\end{equation*}
-        \end{columns}
+        \end{columns} 
     \end{frame}
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 2: <Threshold_noise>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}
+        \frametitle{Threshold and noise results with different FE}
+        Noise rate, ma$\sim$\SI{3}{Hz}
+
+        \begin{columns}
+            \column{0.45\textwidth}        
+                \includegraphics[width=.95\linewidth]{figures/charaterization/threshold_histogram.pdf}
+            \column{0.45\textwidth}        
+                \includegraphics[width=.95\linewidth]{figures/charaterization/noise_histogram.pdf} 
+        \end{columns}                  
+        %\hspace*{+0.1cm}
+        \begin{table}[h!]
+            \footnotesize
+            \begin{tabular}{| c |  c | c | c |c || c|}
+            \hline
+            & PMOS A & PMOS B & PMOS C & HV & simulation \\
+            \hline
+            \hline
+            $\mu$ [\si{\elementarycharge}$^-$] & 401.7$\pm$0.2 & 400.8$\pm$0.2 & 539.7$\pm$0.6 &  403.9$\pm$0.2 & $\sim$270\\
+            $\Delta_{\mu}$ [\si{\elementarycharge}$^-$] & 32.9$\pm$0.1 & 33.0$\pm$0.2 & 55.5$\pm$0.4 & 44.7$\pm$0.2 & $\sim$30\\
+            $\sigma$ [\si{\elementarycharge}$^-$] & 13.01$\pm$0.06 & 12.26$\pm$0.07 & 13.9$\pm$0.1 & 11.7$\pm$0.1 & $\sim$9 \\
+            $\Delta_{\sigma}$ [\si{\elementarycharge}$^-$] & 1.61$\pm$0.04 & 1.50$\pm$0.05 & 1.91$\pm$0.07 & 1.58$\pm$0.07 & -\\
+            \hline
+            \end{tabular}
+        \end{table}       
+    \end{frame}
+
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 4: <ToT vs charge>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Calibration of the signal}
-        Q$_{inj}$ depends on the C$_{inj}$, different for each pixel.     
-        \bigskip
-        How convert the DAC units in electrons collected in the sensor?\\
-        \begin{itemize}
-            \item linearity of the output signal 
-            \item need of a reference, radioactive source
-            \item ATTENZIONE A COME CITI LA LINEARITÀ CHE È MISLEADING
-            \item Formula per la calibrazione. 
-        \end{itemize}
-        \bigskip
-        \begin{beamercolorbox}[sep=0em,wd=0.85\textwidth,ht=1.5ex, dp=0.1ex, rounded=true, center]{lightbluebox}
-            Fe$^{55}$ $\rightarrow$ Mn$^{55}$ + K$_\alpha$ (\SI{5.9}{keV}) or K$_\beta$ (\SI{6.5}{keV})
+        How convert the $ToT_{signal, clk}$ \SI{25}{ns} counts in electrons?
+        \smallskip
+        \pause
+        \begin{enumerate}
+            \item Used the \textbf{internal injection} circuit for a parametrization of the ToT: $ToT_{signal,clk}\rightarrow V_{signal, clk}$
+            \item Used radioactive source for a reference in charge $e^-$: $V_{signal, clk}\rightarrow Q_{signal}$
+        \end{enumerate}
+        \medskip
+        \pause
+        \begin{beamercolorbox}[sep=0em,wd=0.95\textwidth,ht=1.5ex, dp=0.1ex, rounded=true, center]{palette light primary}
+            Fe$^{55}$ $\rightarrow$ Mn$^{55}$ + K$_\alpha$ (\SI{5.9}{keV}, 24.4\%) or K$_\beta$ (\SI{6.5}{keV}, 2.9\%)
         \end{beamercolorbox}
         \begin{tikzpicture}[overlay]
             \draw[decorate,decoration={brace}]
                 (3.5,0) -- (5.5,0);
         \end{tikzpicture}
         \begin{columns}
-            \column{0.2\textwidth}             
-            \column{0.8\textwidth}             
+            \column{0.2\textwidth}    
+            \column{0.8\textwidth}    
             \begin{itemize}
-                \item $\lambda$=\SI{29}{\um}$\rightarrow$ P$_{abs}$=, photo-electric effect
+                \item P$_{abs, photo-electric}\sim$58\% $\rightarrow$ $\lambda$=\SI{29}{\um}
                 \item $w_i$=\SI{3.6}{eV} in Si @ \SI{300}{\kelvin}$\rightarrow$ \SI{1616}{\elementarycharge}$^-$
             \end{itemize}
         \end{columns}
+        \medskip
+        \pause
+        \begin{beamercolorbox}[rounded=true, center]{palette titleframe}
+        \begin{equation*}
+            Q_{signal}[e^-] = \frac{1616e^-}{V_{Fe55,DAC}}V_{signal,DAC}=\frac{1616e^-}{V_{Fe55,DAC}}\frac{(ToT_{signal,clk}-q)}{slope}
+        \end{equation*}
+    \end{beamercolorbox}
     \end{frame}  
+
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 3: <ToT linearity>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{ToT linearity}
+        \frametitle{ToT calibration}
         \begin{itemize}
-            \item linearity is due to the \textbf{PMOS} reset circuit of the amplifier which guaranties that the discharge of the preamplifier is costant in time. Then the ToT is completely correlated with the pulse amplitude 
-            \item ToT is saved as a 6-bits variable and can vary in range 0-63
-            \item calibrated with the injection
+            \item ToT[clock counts] calibration in V$_{inj, ToT}$[DAC] done using the internal \textbf{injection} circuit
+            \item Scan in the voltage step height V$_{inj, ToT}$[DAC]
+            \item Q$_{inj}$[$e^-$] depends on the C$_{inj}$, different for each pixel: Q$_{inj}$=V$_{inj}$C$_{inj}$\\  
+            %\item Sent 100 pulse for each V$_{inj, ToT}$[DAC]
         \end{itemize}
-        \medskip
-        \medskip
+        %\begin{beamercolorbox}[rounded=true, center]{palette titleframe}
+        %    \begin{equation*}
+        %        ToT[clk.cnts] = V_{inj, ToT}[DAC] slope[DAC/clk.cnts] + q[clk.cnts]
+        %    \end{equation*}
+        %\end{beamercolorbox}
         \medskip
         \begin{columns}
             \column{0.5\textwidth}  
-                \includegraphics[width=.8\linewidth]{figures/Monopix1/pulse_60to10.png}
+                \includegraphics[width=0.95\linewidth]{figures/Monopix1/pulse_60to10.png}
             \column{0.5\textwidth}
-                \includegraphics[width=.8\linewidth]{figures/charaterization/ToT_injection.pdf} 
+                \includegraphics[width=1.1\linewidth]{figures/charaterization/ToT_injection.pdf} 
         \end{columns}
     \end{frame}    
 
@@ -120,39 +181,19 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{ToT absolute calibration: Fe$^{55} \rightarrow$ Mn$^{55}$ K$_{\alpha}$}
-        Long tail on the left corresponds to partial absorption of the charge produced by the photo-electron
         \begin{columns}
-            \column{0.5\textwidth}                  
-                \includegraphics[width=1.25\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
-            \column{0.5\textwidth}    
+            \column{0.65\textwidth}   
+                \vspace*{-0.5cm}\hspace*{+0.3cm}\includegraphics[width=1.45\linewidth]{figures/charaterization/absolute_calibration_explanation.pdf}
+            \column{0.5\textwidth} 
+            \vspace*{2.5cm} 
             \begin{enumerate}
-                \item Fit with a gaussian to find the peak position in the spectrum
+                \item Fit with a \textbf{gaussian} to find the peak position in the spectrum
                 \item Conversion from ToT in DAC (using the line parameters)
                 \item Peak value in DAC fixed to be equal to \SI{1616}{\elementarycharge}$^-$
             \end{enumerate} 
         \end{columns}
     \end{frame}     
 
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 4: <ToT calibration>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-        \frametitle{Different collection properties}
-        2 different \textbf{dose profile} in the sensor: Reduced Deep P-Well (RDPW) and Full Deep P-Well (FDPW)
-
-        \begin{itemize}
-            \item Different charge collection efficiency due to the deep p-well structure within the sensor
-        \end{itemize}
-        \begin{columns}
-            \column{0.5\textwidth}                  
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
-                \centering Full deep p-well
-            \column{0.5\textwidth}    
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}
-                \centering Partial deep p-well
-        \end{columns}
-    \end{frame}
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,8 +206,8 @@
             \includegraphics[width=1.1\linewidth]{figures/charaterization/conversion_factor_map.pdf}
             \column{0.5\textwidth} 
             \begin{itemize}
-                \item C$_{inj}$ is in range 180-200\si{fF} (exp. \SI{230}{fF})
-                \item F is is range 16.5-18.5 (exp. \SI{20.2}{\elementarycharge/DAC}$^-$)
+                \item C$_{inj}$ is in range 180-200\si{fF} (expected \SI{230}{fF})
+                \item F is is range 16.5-18.5 (expected \SI{20.2}{\elementarycharge/DAC}$^-$)
                 \item structure on rows probably due to bias line differences in the injection circuit 
                 \item applying the calibration the threshold and noise are respectively \SI{340}{\elementarycharge}$^-$ and \SI{10}{\elementarycharge}$^-$
             \end{itemize}
@@ -180,17 +221,17 @@
     \begin{frame}
         \frametitle{Changing the bias}
         \begin{columns}
-            \column{0.3\textwidth} 
+            \column{0.28\textwidth} 
                 Acquisitions with:
                 \begin{itemize}
                     \item Injection
                     \item Fe$^{55}$ source
                 \end{itemize}
-            \column{0.7\textwidth} 
+            \column{0.8\textwidth} 
                 %Maximum bias suggested
                 \begin{table}
                     \begin{center}
-                    \scalebox{0.75}{
+                    \scalebox{0.85}{
                     \begin{tabular}{| c |  c | c | c |}
                     \hline
                     & -\SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
@@ -204,9 +245,12 @@
                 \end{table}
         \end{columns}
         \begin{columns}
-            \column{0.4\textwidth}          
-            \includegraphics[width=1.2\linewidth]{figures/charaterization/Fe_spectrum_bias.pdf}
-        \column{0.6\textwidth}
+            \column{0.4\textwidth}  
+            \medskip        
+            \includegraphics[width=1.1\linewidth]{figures/charaterization/ToT_gain.pdf}
+            \column{0.05\textwidth}
+
+            \column{0.6\textwidth}
             Reducing the bias from -\SI{6}{V} to \SI{0}{V} reduction of the below quantity in the Fe$^{55}$ spectrum: 
             \begin{enumerate}
                 \item ToT value of the peak $\sim$30\%
@@ -214,49 +258,10 @@
                 \item hit rate $\sim$60\%
             \end{enumerate}
             1 is due to the reduction in the gain, 2 and 3 are due to the decrease in the depletion thickness
-          
         \end{columns}
     \end{frame}      
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 4: <Aquisitions with sources>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-        \frametitle{Acquisition with sources: Fe$^{55}$, Sr$^{90}$, cosmic rays}
-        \begin{columns}
-            \column{0.35\textwidth} 
-                \begin{table}
-                    \tiny
-                    \begin{center}
-                    \begin{tabular}{|c | c |}
-                    \hline
-                    Source & Rate [\si{Hz}]\\
-                    \hline
-                    \hline
-                    Fe$^{55}$ & 3.3 10$^3$\\
-                    Sr$^{90}$ & \\
-                    CR & \\
-                    Noise &  \\
-                    \hline
-                    \end{tabular}
-                    \end{center}
-                \end{table}
-
-            \column{0.65\textwidth} 
-                \begin{itemize}
-                    \item Fe$^{55}$ photon produces smaller clusters: pure charge sharing
-                    \item Sr$^{90}$ and cosmic rays go across more pixels 
-                \end{itemize}    
-        \end{columns}
-        \medskip
-        \begin{columns}
-            \column{0.5\textwidth} 
-            \includegraphics[width=1.\linewidth]{figures/charaterization/hits_per_evt.png}            
-            \column{0.5\textwidth} 
-            \includegraphics[width=1.\linewidth]{figures/charaterization/cluster_dimension.pdf}
-        \end{columns}
-    \end{frame}    
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,21 +272,27 @@
         \begin{columns}
             \column{0.5\textwidth} 
                 \begin{itemize}
-                    \item Q released per pixel
+                    \item Q released per pixel for different cluster dimensions
                 \end{itemize}
                 \bigskip
                 \includegraphics[width=1.1\linewidth]{figures/charaterization/Sr90_spectrum_per_pixel.pdf} 
             \column{0.5\textwidth} 
-            E$_{e, max}$=\SI{546}{keV}, E$_{e, max}$=\SI{2.3}{MeV}
+            %\vspace*{+1.4cm}
+            %\begin{tikzpicture}[overlay]
+            %    \draw[decorate,decoration={brace,mirror}](0.5,0) -- (1.5,0);
+            %    \draw[decorate,decoration={brace,mirror}](3.,0) -- (3.,0);
+            %\end{tikzpicture}
+            %E$_{e, max}$=\SI{546}{keV}, 
+            \centering\includegraphics[width=.75\linewidth]{figures/charaterization/large_angle_particles.pdf}
                 \begin{figure}
                     \includegraphics[width=.3\linewidth]{figures/charaterization/evts/Sr90/18b.png}
                     \includegraphics[width=.3\linewidth]{figures/charaterization/evts/Sr90/10b.png} 
-                    \includegraphics[width=.3\linewidth]{figures/charaterization/evts/Sr90/10b.png}
+                    \includegraphics[width=.3\linewidth]{figures/charaterization/evts/Sr90/21a.png}
                 \end{figure}
                 \begin{itemize}
+                    \item E$_{e, max}$=\SI{2.3}{MeV}
                     \item Q in cluster is proportional to the cluster size
                     \item due to large angle electrons
-                    \item MPV $\sim$\SI{500}{\elementarycharge}$^-$
                     \item charge sharing between pixels 
                 \end{itemize}
         \end{columns}
@@ -295,19 +306,20 @@
         \begin{columns}
             \column{0.5\textwidth} 
                 \begin{itemize}
-                    \item Q released per pixel
+                    \item Q released per pixel for different cluster dimensions 
                 \end{itemize}
                 \bigskip
                 \includegraphics[width=1.1\linewidth]{figures/charaterization/cosmic_rays_spectrum_per_pixel.pdf} 
             \column{0.5\textwidth} 
+            \centering\includegraphics[width=.75\linewidth]{figures/charaterization/large_angle_particles.pdf}
                 \begin{figure}
                     \includegraphics[width=.3\linewidth]{figures/charaterization/evts/cosmic_rays/11a.png}
                     \includegraphics[width=.3\linewidth]{figures/charaterization/evts/cosmic_rays/12.png} 
                     \includegraphics[width=.3\linewidth]{figures/charaterization/evts/cosmic_rays/19a.png}
                 \end{figure}
+
                 \begin{itemize}
                     \item Q in cluster is proportional to the cluster size
-                    \item MPV $\sim$\SI{500}{\elementarycharge}$^-$
                     \item broad distribution due to the more various sample of particles and energies
                 \end{itemize}
         \end{columns}

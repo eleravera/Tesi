@@ -8,6 +8,7 @@
 % 2. under the GNU Public License.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{navigation symbols}{}
 
 %% 	Variabili di tipo "color": 
 
@@ -19,16 +20,23 @@
 \definecolor{bluUnits25}{rgb}{0.78,0.82,0.9}
 \definecolor{bluUnits10}{rgb}{0.93,0.94,0.96}
 \definecolor{grey}{rgb}{0.3686, 0.5255, 0.6235} 
+%\definecolor{celadon}{rgb}{0.67, 0.88, 0.69}
+\definecolor{celadon}{rgb}{0.67, 0.93, 0.79}
+\definecolor{gray}{rgb}{0.8, 0.8, 0.8}
+
 
 %%	Palette di colori 
 
 \setbeamercolor{palette primary}{bg=bluUnits100,fg=white}
 \setbeamercolor{palette secondary}{bg=bluUnits80,fg=bluUnits25}
 \setbeamercolor{palette tertiary}{bg=bluUnits50,fg=bluUnits100}
-\setbeamercolor{palette quaternary}{bg=bluUnits40,fg=white}
+\setbeamercolor{palette quaternary}{bg=bluUnits40,fg= bluUnits100}
 \setbeamercolor{palette quaternary blue}{bg=bluUnits40,fg=bluUnits100}
 \setbeamercolor{palette light primary}{bg=bluUnits25,fg=bluUnits100}
 \setbeamercolor{palette titleframe}{bg=bluUnits10, fg=bluUnits80}
+
+\setbeamercolor{celadon}{bg=celadon, fg=bluUnits80}
+\setbeamercolor{gray}{bg=gray, fg=bluUnits80}
 
 
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,7 +47,6 @@
 %\usebackgroundtemplate{\tikz\node[opacity=0.1]{\includegraphics[height=\textheight]{\LogoFiligrana}};}
 
 %%	Elenchi puntati, numerati, etc.
-
 \setbeamercolor{structure}{fg=bluUnits80}
 \setbeamertemplate{enumerate item}[circle]
 \setbeamertemplate{itemize subitem}[ball]
@@ -51,36 +58,38 @@
 %% 	Colore delle scritte nella presentazione
 \setbeamercolor{normal text}{fg=bluUnits100,bg=white}
 
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% Impostazioni normal slides  %%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 	Settaggio della linea in alto (headline)
 \setbeamertemplate{headline}{
 	\vskip1pt
 	\leavevmode	
 	\hbox{
 		\begin{beamercolorbox}[wd=.99\paperwidth,ht=2.5ex,dp=1.125ex]{palette light primary}
-			\insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll}
+			\insertsectionnavigationhorizontal{\paperwidth}{\hskip0pt plus1fill}{\hskip0pt plus1fill}
 		\end{beamercolorbox}
 	}
 }
 
 %%	Settaggio riga in basso (footline) 
- 
 \setbeamertemplate{footline}{
        \leavevmode
 	   \hbox{
            \begin{beamercolorbox}[wd=.2\textwidth,ht=2.6ex,dp=1ex,center]{palette tertiary}
-		    \usebeamerfont{author in head/foot}\insertshortauthor
+		    \usebeamerfont{date in head/foot}\insertdate
     	\end{beamercolorbox}
 	
     	\begin{beamercolorbox}[wd=.27\textwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
-	   		\usebeamerfont{institute in head/foot}\insertshortinstitute
+	   		\usebeamerfont{author in head/foot}\insertshortauthor
 	   	\end{beamercolorbox}
 	
-    	\begin{beamercolorbox}[wd=.40\textwidth,ht=2.6ex,dp=1ex,center]{palette primary}
-    		\usebeamerfont{title in head/foot}\insertshorttitle
+    	\begin{beamercolorbox}[wd=.4\textwidth,ht=2.6ex,dp=1ex,center]{palette primary}
+    		\usebeamerfont{institute in head/foot}\insertshortinstitute
     	\end{beamercolorbox}
 
     	\begin{beamercolorbox}[wd=.1\textwidth,ht=2.6ex,dp=1ex,center]{palette light primary}
-	   		\insertframenumber{}/\inserttotalframenumber
+	   		\insertframenumber{}/\inserttotalframenumber\strut\quad
 	    \end{beamercolorbox}
     }
     \vskip2pt
@@ -88,7 +97,6 @@
 }
 
 %%	Settaggio tittoli delle slide  
-
 \setbeamertemplate{frametitle}{
 	\begin{beamercolorbox}[wd=\paperwidth,ht=2.75ex,dp=1ex,left]{palette titleframe}
 		\qquad \textbf{\insertframetitle}
@@ -96,14 +104,45 @@
 }
 
 
+
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% Impostazioni backup slides  %%
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 	Settaggio della linea in alto (headline)
+\defbeamertemplate{headline}{backup}{
+	\vskip1pt
+	\leavevmode	
+	\hbox{
+		\begin{beamercolorbox}[wd=.99\paperwidth,ht=2.5ex,dp=1.125ex]{palette light primary}
+		\end{beamercolorbox}
+	}}
+
+%%	Settaggio riga in basso (footline) 
+\defbeamertemplate{footline}{backup}{
+       \leavevmode
+	   \hbox{
+           \begin{beamercolorbox}[wd=.2\textwidth,ht=2.6ex,dp=1ex,center]{palette tertiary}
+		    \usebeamerfont{date in head/foot}\insertdate
+    	\end{beamercolorbox}
+	
+    	\begin{beamercolorbox}[wd=.27\textwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
+	   		\usebeamerfont{author in head/foot}\insertshortauthor
+	   	\end{beamercolorbox}
+	
+    	\begin{beamercolorbox}[wd=.4\textwidth,ht=2.6ex,dp=1ex,center]{palette primary}
+    		\usebeamerfont{institute in head/foot}\insertshortinstitute
+    	\end{beamercolorbox}
+
+    	\begin{beamercolorbox}[wd=.1\textwidth,ht=2.6ex,dp=1ex,center]{palette light primary}
+	    \end{beamercolorbox}
+    }
+    \vskip2pt
+}
+
+
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		%% Impostazioni Prima Slide  %%
 		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	
-	
-	
-		
 \def\setTitlestyleDissertation{
 	
 	\defbeamertemplate*{title page}{customized}[1][]{
@@ -164,5 +203,4 @@
 		\end{center}
 	}
 }
-
 
