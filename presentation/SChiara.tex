@@ -6,8 +6,8 @@
     \begin{frame}
         \frametitle{FLASH radiotherapy}
         \begin{itemize}
-            \item Radiotherapy takes advantage of the damage caused by the ionization of energy loss by particles
-            \item FLASH-RT consists in delivering a high level of dose in a small fraction of time: this seems reducing the toxiticy of the radiation on healty tissues
+            \item Radiotherapy takes advantage of the damage caused by the ionization of energy loss by particles to damage ill tissue
+            \item FLASH-RT consists in delivering a high dose in a very short time: this seems to be reducing the toxiticy of radiation on healty tissues, increasing the therapeutic window
         \end{itemize}
         \medskip
         \begin{columns}
@@ -20,7 +20,7 @@
                 \begin{itemize}
                     \item medical aspect%: in vitro and with animals; only one patient has been treated
                     \item  bio-physics aspect%: dependence of the FLASH effect on the treatment conditions 
-                    \item  strumental aspect%: need for new detectors
+                    \item  instrumental aspect%: need for new detectors
                 \end{itemize}
             \end{itemize}
         \end{columns}
@@ -83,12 +83,36 @@
                 \hspace*{-0.6cm}
                 \includegraphics[width=1.15\linewidth]{figures/pixel_detectors_usage/saturation_dosimeters.pdf}
                 %COSA SONO I COLORI
-                Rif.articolo\\\bigskip
+                \centering\textit{Di Martino et al. 2020}\\\bigskip
                 \hspace*{-3.cm}$N_A$ = 0.2-1.2 10$^9$/cm$^2$ @ Dose Per Pulse = 0.07-0.4 Gy
         \end{columns}
     \end{frame}     
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <dosimeters>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{FLASH-RT: need for detectors}
+        All online detector types show saturation problems at such high intensity
+        \medskip
+        \begin{columns}
+            \column{0.4\textwidth} 
+            Different types of detector with different charateristics are required: 
+                \begin{itemize}
+                    \item \textbf{dosimeters} 
+                    \item \textbf{beam monitors} 
+                    \item detectors for diagnostic 
+                \end{itemize}
+            \column{0.6\textwidth}  
+                \hspace*{-0.6cm}
+                \includegraphics[width=1.15\linewidth]{figures/test_beam/dosimeters_saturation_our_points.pdf}
+                %COSA SONO I COLORI
+                \centering\textit{Di Martino et al. 2020}\\\bigskip
+                \hspace*{-3.cm}$N_A$ = 0.2-1.2 10$^9$/cm$^2$ @ Dose Per Pulse = 0.07-0.4 Gy
+        \end{columns}
+    \end{frame}   
 
+    
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 1: <dosimeters>  %%
@@ -104,7 +128,7 @@
                 \item use a fast FE and a fast readout
             \end{itemize}
             \bigskip
-            \item \textbf{Beam position monitors}: very thin detectors ($\sim$\SI{50}{\um}) with low disturbance 
+            \item \textbf{Beam position monitors}: very thin detectors ($\sim$\SI{50}{\um}) that do not disturb the beam
                 \begin{itemize}
                     \item \textbf{Very High Energy Electrons FLASH-RT} that uses pencil beams, in this case the pixels are saturated but it does not matter
                 \end{itemize}
@@ -116,7 +140,7 @@
     %% Slide 2: <> %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{Test on the beam: experimental set up}
+        \frametitle{Test on the beam: experimental setup}
         \smallskip
         \includegraphics[width=.95\linewidth]{figures/test_beam/Flash-beam-scheme.pdf}\\
         \smallskip
@@ -133,7 +157,7 @@
     %% Slide 2: <> %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{Test on the beam: experimental set up}
+        \frametitle{Test on the beam: experimental setup}
         \centering
         \includegraphics[width=.7\linewidth]{figures/test_beam/testbeam_photos.pdf}  
     \end{frame}    
@@ -148,9 +172,9 @@
                 \includegraphics[width=1.1\linewidth]{figures/test_beam/tot_mapq1_15-57.png}  
             \column{0.5\textwidth} 
                 \begin{itemize}
-                    \item Under-extimation of the Bremsstrahlung production of electrons which stop in the collimators 
+                    \item Underestimation of the Bremsstrahlung produced by electrons that stop in the collimators 
                     \item High background in data
-                    \item Need for a simulation to better understand the data
+                    \item Need a simulation to better understand the data
                 \end{itemize}
             \end{columns}
         \end{frame}  
@@ -166,7 +190,7 @@
                 \includegraphics[width=1.1\linewidth]{figures/test_beam/hits.pdf}  
             \column{0.5\textwidth} 
                 \begin{itemize}
-                    \item Saturation due to the readout system occurs without collimators
+                    \item Saturation of the readout system occurs without collimators
                     \item Readout logic has been tested with high hit rate
                 \end{itemize}
             \end{columns}

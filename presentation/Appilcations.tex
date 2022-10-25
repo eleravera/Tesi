@@ -7,30 +7,73 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
         \frametitle{Pixel detectors: many different types}
-        Originally born for \textbf{imaging}, then used for \textbf{tracking} replaced gas detectors because of higher spatial resolution to reconstruct short-lived particle decays
+        Originally developed for \textbf{imaging} applications. Then used for charged particle \textbf{tracking}, providing unprecedented resolution to reconstruct decay vertices.\\\bigskip
+        \pause
         \begin{columns}
             \column{0.5\textwidth} 
-                \vspace*{-0.5cm}\begin{itemize}
-                    \item CCDs 
+                \begin{itemize}
+                    \item \textbf{CCDs} 
                     \item Hybrid pixels 
-                    \item Monolitich Active Pixels
+                    \item Monolithic Active Pixels
                     \begin{itemize}
                         \item DEPFET %$\rightarrow$ BelleII vertex , perchè per Belle2 è importante il material budget
                         \item CMOS MAPS
                     \end{itemize}
                 \end{itemize}
             \medskip
-            \pause
             \column{0.5\textwidth} 
-                \vspace*{+0.5cm}\centering\includegraphics[width=.9\linewidth]{figures/Pixel_detectors/CCD_presentation.pdf} 
+                \centering\includegraphics[width=1.\linewidth]{figures/Pixel_detectors/CCD_presentation.pdf} 
         \end{columns}
-        
-        \pause
-        \vspace*{-0.8cm}\includegraphics[width=.34\linewidth]{figures/Pixel_detectors/hybrid_scheme2.png}
-        \pause
-        \includegraphics[width=.64\linewidth]{figures/Pixel_detectors/Monolitich.pdf}
+
     \end{frame}
 
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <Pixels types>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Pixel detectors: many different types}
+        Originally developed for \textbf{imaging} applications. Then used for charged particle \textbf{tracking}, providing unprecedented resolution to reconstruct decay vertices.\\\bigskip
+        \begin{columns}
+            \column{0.5\textwidth} 
+                \begin{itemize}
+                    \item CCDs 
+                    \item \textbf{Hybrid pixels}
+                    \item Monolithic Active Pixels
+                    \begin{itemize}
+                        \item DEPFET %$\rightarrow$ BelleII vertex , perchè per Belle2 è importante il material budget
+                        \item CMOS MAPS
+                    \end{itemize}
+                \end{itemize}
+            \medskip
+            \column{0.5\textwidth} 
+                \centering\includegraphics[width=.9\linewidth]{figures/Pixel_detectors/hybrid_scheme2.png} 
+        \end{columns}
+    \end{frame}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <Pixels types>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Pixel detectors: many different types}
+        Originally developed for \textbf{imaging} applications. Then used for charged particle \textbf{tracking}, providing unprecedented resolution to reconstruct decay vertices.\\\bigskip
+        \begin{columns}
+            \column{0.5\textwidth} 
+                \begin{itemize}
+                    \item CCDs 
+                    \item Hybrid pixels 
+                    \item \textbf{Monolithic Active Pixels}
+                    \begin{itemize}
+                        \item DEPFET %$\rightarrow$ BelleII vertex , perchè per Belle2 è importante il material budget
+                        \item CMOS MAPS
+                    \end{itemize}
+                \end{itemize}
+            \medskip
+            \column{0.5\textwidth} 
+                \centering\includegraphics[width=1.\linewidth]{figures/Pixel_detectors/Monolitich.pdf} 
+        \end{columns}
+    \end{frame}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 1: <Pixels types>  %%
@@ -42,9 +85,9 @@
                 \centering\textbf{Hybrid pixels}
                 \begin{beamercolorbox}[ rounded=true, center]{celadon}
                     \begin{enumerate}
-                        \item sensor and ASIC can be optimized separately
                         \item module area$\sim$\SI{10}{cm\squared}
                         \item rate capability$\sim$\si{GHz/cm\squared}
+                        \item sensor and ASIC can be optimized separately
                         \item are more radiation hard 
                     \end{enumerate} 
                 \end{beamercolorbox}
@@ -54,9 +97,9 @@
                 \centering\textbf{Monolithic active pixels}
                 \begin{beamercolorbox}[ rounded=true, center]{celadon}
                     \begin{enumerate}
-                        \item active thick$\sim$\SI{25}{\um}
                         \item pitch$\sim$10-\SI{50}{\um}
                         \item point resolution$\sim$5-\SI{10}{\um}
+                        \item thickness$\sim$\SI{25}{\um}
                         \item low power consumption
                         \item good S/N ratio
                     \end{enumerate}    
@@ -70,7 +113,7 @@
                     \begin{enumerate}
                         \item pitch$\sim$50-\SI{100}{\um}
                         \item point resolution$\sim$10-\SI{15}{\um}
-                        \item \tikzmark{start}sensor thick$\sim$\SI{250}{\um}\tikzmark{end}\tikz[remember picture] \node[coordinate] (t1) {};
+                        \item \tikzmark{start}thickness$\sim$\SI{250}{\um}\tikzmark{end}\tikz[remember picture] \node[coordinate] (t1) {};
                         %\item sensor \tikzmark{start}thick$\sim$\tikzmark{end}\SI{250}{\um}\tikz[remember picture] \node[coordinate] (t1) {};
                         \item bump bonding delicate and expensive
                     \end{enumerate}    

@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{report}
+\documentclass[a4paper,11pt]{book}
 \usepackage[Sonny]{fncychap}
 \usepackage{fancyhdr} 
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
@@ -42,22 +42,25 @@
 \begin{document} 
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
-\fancyhead[R]{}
-\fancyhead[L]{\ifnum\value{chapter}=0\else\chaptername\ \thechapter\ \fi \ \leftmark}
-%\fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
+\fancyhead[LEH]{}
+\fancyhead[ROH]{}
 
+%\fancyhead[R]{}
+%\fancyhead[L]{\ifnum\value{chapter}=0\else\chaptername\ \thechapter\ \fi \ \leftmark}
+%\fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
 
 %Per mettere numero di riga
 %\linenumbers
+\frontmatter
 \input{tex/frontespizio}
 
 \tableofcontents
-
 \chapter*{Introduction}
 \markboth{Introduction}{}
 \input{tex/introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
+\mainmatter
 \chapter{Use of pixel detectors}\label{chap:usage_of_pixels}
 \input{tex/usage_of_pixel_detectors}
 
@@ -75,14 +78,15 @@
 \input{tex/test_beam_measurements.tex}
 
 
-\chapter*{Conclusions}
-\markboth{Conclusions}{}
+\chapter{Conclusions}
+\markboth{Conclusions}{Conclusions}
 \input{tex/conclusion.tex}
 
+\backmatter
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
 \chapter*{Acknowledgements}
-\markboth{}{}
+\markboth{Acknowledgements}{}
 \input{tex/ringraziamenti.tex}
 
 \end{document}

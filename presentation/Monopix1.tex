@@ -3,12 +3,13 @@
     %%  Slide 1: <TJ-Monopix1>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{TJ-Monopix1}
+        \frametitle{TowerJazz Monopix1}
         \begin{itemize}
-            \item Designed by ATLAS collaboration besides LF-Monopix1
-            \item Small electrode design: \SI{2}{\um} with C$_D$=\SI{3}{fF}
-            \item The sensor implements a process modification in the epi-layer (promoter ALICE)
-            \item The Front End has 4 flavors, all ALPIDE-like (ALPIDE chip design by ALICE)
+            \item Designed by ATLAS collaboration
+            \item Produced by TowerJazz, an electronic foundry located in Israel
+            \item Small electrode design: \SI{2}{\um} with C=\SI{3}{fF}
+            \item The sensor implements a process modification in the epi-layer that allows the creation of a planar junction (ALICE)
+            \item The Front End has 4 flavors, all ALPIDE-like (ALPIDE chip design by ALICE and used in the ITS2)
         \end{itemize}
         \begin{columns}
             \column{0.5\textwidth}  
@@ -19,14 +20,14 @@
                     Matrix size &  1$\times$2\si{cm\squared}\\
                     Pixel size & 36 $\times$ 40 \si{\um\squared}\\
                     Max depletion & \SI{25}{\um}\\
-                    BCID & \SI{40}{MHz} \\
                     ToT & 6-bits \\
+                    Time resolution & \SI{25}{ns} \\
                     %Power cons. & $\sim$ 120 \si{mW/cm\squared}\\    
                     \hline
                     \end{tabular}
                 \end{table}
             \column{0.5\textwidth} 
-                \hspace*{-0.4cm}\vspace*{+0.3cm}\includegraphics[width=1.1\linewidth]{figures/Monopix1/Monopix1_section_scheme_ngap.png}\\
+                \hspace*{-0.4cm}\includegraphics[width=1.1\linewidth]{figures/Monopix1/Monopix1_section_scheme_ngap.png}\\
         \end{columns}
     \end{frame} 
 
@@ -38,13 +39,15 @@
         \frametitle{TJ-Monopix1 analog output}
         \begin{columns}
             \column{0.5\textwidth}
-                \hspace*{-0.5cm} 
+            ToT = \textbf{Time Over Threshold}\\
+            \bigskip
+            \hspace*{-0.5cm} 
                 \includegraphics[width=1.25\linewidth]{figures/Monopix1/tot_example.pdf}
             \column{0.5\textwidth}  
                 \begin{itemize}
-                    \item The reset circuit of the amplifier made with a \textbf{PMOS}, guaranties that the costant discharge of the preamplifier. 
-                    \item The ToT is completely correlated with the pulse amplitude 
-                    \item Before readout ToT is stored in RAM as a 6-bits variable $\rightarrow$ ToT can vary in range 0-63
+                    \item The reset circuit of the amplifier made with a \textbf{PMOS}, guaranties the discharge of the preamplifier with constant slope
+                    \item The ToT grows linearly with the pulse amplitude
+                    \item Before readout ToT is stored in RAM as a 6-bits variable $\rightarrow$ then the ToT can vary in range 0-\SI{1.6}{\us}
                 \end{itemize}
         \end{columns}
     \end{frame} 
@@ -55,12 +58,13 @@
     %%  Slide 1: <TJ-Monopix1>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
-        \frametitle{TJ-Monopix1}
+        \frametitle{TJ-Monopix1 experimental setup}
             Bias of the sensor\hspace{80pt} Connection with the DAQ
             \begin{center}
                 \centering \includegraphics[width=.99\linewidth]{figures/Monopix1/board_circle.pdf}
             \end{center}
             \hspace{15pt}DUT \hspace{45pt}GPAC breakout board \hspace{25pt} FPGA\\
+            \footnotesize(Device Under Test)
     \end{frame} 
  
 

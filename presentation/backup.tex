@@ -12,60 +12,6 @@
         Backup        
     \end{frame} 
 
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <Applications>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %\begin{frame}
-    %    \frametitle{Tracking in HEP}
-
-    %    Task of pixel detectors in tracking:
-    %    \begin{itemize}
-    %        \item pattern recognition with the identification of particle tracks even in the presence of large backgrounds and pile-up
-    %        \item measurement of vertices (primary and secondary)
-    %        \item multi-track and vertex separation in the core of jets
-    %        \item measurement of specific ionization
-    %        \item momentum measurement combining with the information from other detectors
-    %    \end{itemize}
-    %\end{frame} 
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{}
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.8\linewidth]{figures/Monopix1/readout_timing.png}
-        \end{figure}
-    \end{frame} 
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{Radiotherapy}
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=.8\linewidth]{figures/pixel_detectors_usage/Bragg-Peak.png}
-        \end{figure}
-    \end{frame} 
-
-
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{Front end}
-            \textbf{ALPIDE like}
-            \begin{figure}[h!]
-                \centering
-                \includegraphics[width=.8\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}        
-            \end{figure}
-    \end{frame}     
-
-    
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 3: <Sensors types>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,87 +37,20 @@
             \end{frame} 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 4: <ToT calibration>  %%
+    %%  Slide 1: <Applications>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{Different collection properties}
-        2 different \textbf{dose profile} in the sensor: Reduced Deep P-Well (RDPW) and Full Deep P-Well (FDPW)
+    %\begin{frame}
+    %    \frametitle{Tracking in HEP}
 
-        \begin{itemize}
-            \item Different charge collection efficiency due to the deep p-well structure within the sensor
-        \end{itemize}
-        \begin{columns}
-            \column{0.5\textwidth}                  
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
-                \centering Full deep p-well
-            \column{0.5\textwidth}    
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}
-                \centering Partial deep p-well
-        \end{columns}
-    \end{frame}
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 4: <Aquisitions with sources>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{Acquisition with sources: Fe$^{55}$, Sr$^{90}$, cosmic rays}
-        \begin{columns}
-            \column{0.35\textwidth} 
-                \begin{table}
-                    \tiny
-                    \begin{center}
-                    \begin{tabular}{|c | c |}
-                    \hline
-                    Source & Rate [\si{Hz}]\\
-                    \hline
-                    \hline
-                    Fe$^{55}$ & 3.3 10$^3$\\
-                    Sr$^{90}$ & \\
-                    CR & \\
-                    Noise &  \\
-                    \hline
-                    \end{tabular}
-                    \end{center}
-                \end{table}
-
-            \column{0.65\textwidth} 
-                \begin{itemize}
-                    \item Fe$^{55}$ photon produces smaller clusters: pure charge sharing
-                    \item Sr$^{90}$ and cosmic rays go across more pixels 
-                \end{itemize}    
-        \end{columns}
-        \medskip
-        \begin{columns}
-            \column{0.5\textwidth} 
-            \includegraphics[width=1.\linewidth]{figures/charaterization/hits_per_evt.png}            
-            \column{0.5\textwidth} 
-            \includegraphics[width=1.\linewidth]{figures/charaterization/cluster_dimension.pdf}
-        \end{columns}
-    \end{frame}    
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{Noisy pixels}
-        \begin{columns}
-            \column{0.4\textwidth} 
-                \centering
-                \includegraphics[width=.8\linewidth]{figures/Monopix1/masking_scheme.png}        
-            \column{0.4\textwidth} 
-            %\includegraphics[width=.8\linewidth]{figures/characterization/noisy.png}
-        \end{columns}
-    \end{frame}    
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <MIMOSA>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{MIMOSA series}
-        First CMOS MAPS in HEP. Ma aveva rolling shut readout. 
-        \includegraphics[width=.45\linewidth]{figures/pixel_detectors_usage/ALICE_FoCAL.png} with MIMOSA
-    \end{frame} 
+    %    Task of pixel detectors in tracking:
+    %    \begin{itemize}
+    %        \item pattern recognition with the identification of particle tracks even in the presence of large backgrounds and pile-up
+    %        \item measurement of vertices (primary and secondary)
+    %        \item multi-track and vertex separation in the core of jets
+    %        \item measurement of specific ionization
+    %        \item momentum measurement combining with the information from other detectors
+    %    \end{itemize}
+    %\end{frame} 
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,6 +75,152 @@
         %ALPIDE is under test for several other HEP detectors (i.e. Belle2) and applications and 
     \end{frame} 
 
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{ALPIDE front end}
+            \textbf{ALPIDE like}: circuit implemented in TJ-Monopix1
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=.8\linewidth]{figures/Monopix1/Monopix1_FE_circuit.png}        
+            \end{figure}
+    \end{frame}     
+
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{TJ-Monopix1 readout sequence}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=.8\linewidth]{figures/Monopix1/readout_timing.png}
+        \end{figure}
+    \end{frame} 
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 4: <ToT calibration>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Different collection properties}
+        2 different \textbf{dose profile} in the sensor: Reduced Deep P-Well (RDPW) and Full Deep P-Well (FDPW)
+
+        \begin{itemize}
+            \item Different charge collection efficiency due to the deep p-well structure within the sensor
+        \end{itemize}
+        \begin{columns}
+            \column{0.5\textwidth}                  
+                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
+                \centering Full deep p-well
+            \column{0.5\textwidth}    
+                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}
+                \centering Partial deep p-well
+        \end{columns}
+    \end{frame}
+
+
+
+
+
+    \begin{frame}[noframenumbering]
+        \frametitle{Threshold and noise results with different FEs}
+        \begin{columns}
+            \column{0.45\textwidth}        
+                \includegraphics[width=.95\linewidth]{figures/charaterization/threshold_allflavors_presentazione.pdf}
+            \column{0.45\textwidth}        
+                \includegraphics[width=.95\linewidth]{figures/charaterization/noise_allflavors_presentazione.pdf} 
+        \end{columns}                  
+        %\hspace*{+0.1cm}
+        \begin{table}[h!]
+            \footnotesize
+            \begin{tabular}{| c |  c | c | c |c || c|}
+            \hline
+            & PMOS A & PMOS B & PMOS C & HV & simulation \\
+            \hline
+            \hline
+            $\mu$ [\si{\elementarycharge}$^-$] & 401.7$\pm$0.2 & 400.8$\pm$0.2 & 539.7$\pm$0.6 &  403.9$\pm$0.2 & $\sim$270\\
+            $\Delta_{\mu}$ [\si{\elementarycharge}$^-$] & 32.9$\pm$0.1 & 33.0$\pm$0.2 & 55.5$\pm$0.4 & 44.7$\pm$0.2 & $\sim$30\\
+            $\sigma$ [\si{\elementarycharge}$^-$] & 13.01$\pm$0.06 & 12.26$\pm$0.07 & 13.9$\pm$0.1 & 11.7$\pm$0.1 & $\sim$9 \\
+            $\Delta_{\sigma}$ [\si{\elementarycharge}$^-$] & 1.61$\pm$0.04 & 1.50$\pm$0.05 & 1.91$\pm$0.07 & 1.58$\pm$0.07 & -\\
+            \hline
+            \end{tabular}
+        \end{table}       
+    \end{frame}
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 4: <Aquisitions with sources>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Acquisition with sources: Fe$^{55}$, Sr$^{90}$, cosmic rays}
+        \begin{columns}
+            \column{0.6\textwidth} 
+                \includegraphics[width=1.\linewidth]{figures/charaterization/hits_per_evt.png}
+            \column{0.4\textwidth} 
+                \begin{itemize}
+                    \item Fe$^{55}$ photon produces smaller clusters: pure charge sharing
+                    \item Sr$^{90}$ and cosmic rays go across more pixels 
+                \end{itemize}    
+        \end{columns}
+    \end{frame}    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Noisy pixels}
+        \begin{columns}
+            \column{0.4\textwidth} 
+                \centering
+                \includegraphics[width=.8\linewidth]{figures/Monopix1/masking_scheme.png}        
+            \column{0.4\textwidth} 
+            %\includegraphics[width=.8\linewidth]{figures/characterization/noisy.png}
+        \end{columns}
+    \end{frame}    
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Radiotherapy}
+        \begin{columns}
+            \column{0.4\textwidth}  
+            Many different sources: 
+            \begin{itemize}
+                \item hadrons $\rightarrow$ Bragg peak 
+                \item photons $\rightarrow$ exponential absoption
+                \item electrons $\rightarrow$ $\sim$\SI{10}{MeV} or VHEE $\sim$\SI{100}{MeV}
+            \end{itemize}
+            \column{0.6\textwidth}  
+                \begin{figure}[h!]
+                    \centering
+                    \includegraphics[width=1.\linewidth]{figures/pixel_detectors_usage/Bragg-Peak.png}
+                \end{figure}
+        \end{columns}
+    \end{frame} 
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Slide 2: <> %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Test on the beam: ElectronFLASH}
+        ElectronFLASH is the new accelerator for research on FLASH-RT placed in S. Chiara hospital in Pisa \\
+        \medskip
+        Accelerator charateristics: 
+        \begin{itemize}
+            \item linear accelerator
+            \item bunched beam
+            \item two energy configurations 7-9\si{MeV}
+            \item can reach ultra high intensity (over \SI{5000}{Gy/s})
+            \item beam parameters can be configured independently from each other
+            \item equipped with a set of plexiglass applicators (diameters in range from \SI{1}{cm} to \SI{12}{cm}) which are used to produce a uniform dose profile 
+        \end{itemize}
+    \end{frame}  
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Slide 3: <> %%
@@ -242,20 +267,100 @@
     \end{frame}   
 
 
+
+
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %% Slide 2: <> %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}[noframenumbering]
-        \frametitle{Test on the beam: ElectronFLASH}
-        ElectronFLASH is the new accelerator for research on FLASH-RT placed in S. Chiara hospital in Pisa \\
-        \medskip
-        Accelerator charateristics: 
-        \begin{itemize}
-            \item linear accelerator
-            \item bunched beam
-            \item two energy configurations 7-9\si{MeV}
-            \item can reach ultra high intensity (over \SI{5000}{Gy/s})
-            \item beam parameters can be configured independently from each other
-            \item equipped with a set of plexiglass applicators (diameters in range from \SI{1}{cm} to \SI{12}{cm}) which are used to produce a uniform dose profile 
-        \end{itemize}
-    \end{frame}  
+        \frametitle{ARCADIA MD1}
+        \begin{columns}
+            \column{0.5\textwidth}        
+                \includegraphics[width=1.05\linewidth]{figures/ARCADIA/sensor.png}
+                \begin{itemize}
+                    \item n-doped epitaxial layer
+                \end{itemize}
+            \column{0.5\textwidth}        
+                \begin{table}[h!]
+                    \footnotesize
+                    \begin{tabular}{| c |c |}
+                    \hline
+                    Parameter & Value\\
+                    \hline
+                    \hline
+                    Matrix size & 1.28$\times$1.28 \si{cm\squared}\\
+                    Pixel size & 25$\times$25 \si{\um\squared}\\
+                    Depth &  48/100/200\si{\um}\\
+                    Electrode size & 9$\times$9\si{\um\squared}\\
+                    Power consumption & $\sim$ 10\si{mW/cm\squared}\\ 
+                    Output signal & digital \\
+                    \hline
+                    \end{tabular}
+                \end{table}
+        \end{columns}                  
+    \end{frame}
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Slide 2: <> %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{ARCADIA MD1: experimental setup}
+            \includegraphics[width=.95\linewidth]{figures/ARCADIA/setup_foto.pdf}
+    \end{frame}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Slide 2: <> %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{ARCADIA MD1: matrix division}
+            \includegraphics[width=1.\linewidth]{figures/ARCADIA/hierarchy.png}
+            \begin{columns}
+                \column{0.65\textwidth}   
+                    The matrix contains 512$\times$512 pixels divided in:
+                    \begin{itemize}
+                        \item 16 sections containing 512$\times$32 pixels
+                        \item 512$\times$2 double columns
+                        \item cores of 32$\times$2 pixels
+                        \item regions contaning 4$\times$2 pixels $\rightarrow$ regions can be master or slave
+                    \end{itemize}
+                \column{0.35\textwidth}   
+                    \begin{table}
+                        \begin{tabular}{|c |c |}
+                        \hline
+                        Bits & Meaning  \\
+                        \hline
+                        \hline
+                        31:24 & timestamp\\
+                        23:20 & section index\\
+                        19:16 & column index\\
+                        15:9 & pixel region\\
+                        8:0 & hitmap\\
+                        \hline
+                        \end{tabular}
+                    \end{table}
+            \end{columns}
+    \end{frame}
+
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Slide 2: <> %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{ARCADIA MD1: clustering}
+            \textbf{Clustering} allows trasmit less data packet, 
+            \textit{Master} regions can decide what \textit{slaves} data to trasmit
+            \includegraphics[width=.85\linewidth]{figures/ARCADIA/clustering.png}
+    \end{frame}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Slide 2: <> %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{ARCADIA MD1: clustering}
+            %Without clustering
+            \includegraphics[width=.9\linewidth]{figures/ARCADIA/nonclustering.png}
+    \end{frame}
