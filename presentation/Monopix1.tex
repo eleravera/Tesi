@@ -1,5 +1,49 @@
 \section{TJ-Monopix1}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <READOUT>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Front end electronics}
+            \begin{columns}
+                \column{0.7\textwidth}  
+                Pitch$\sim$\SI{50}{\um} $\rightarrow$ \textbf{pixel area economy} and dimension of components are extremely relevant. \\\smallskip
+                %MAPS usage allowed by miniaturization of components, i.e. TJ-Monopix1 is 180{nm} CMOS process.\\
+                \column{0.4\textwidth}  
+                    \begin{figure}[h!]
+                        \vspace*{-0.9cm}\hspace*{-0.9cm}
+                        \includegraphics[width=1.06\linewidth]{figures/Monopix1/Monopix1_2x2pixelsgroup.png}
+                    \end{figure}
+            \end{columns}
+
+            \begin{columns}
+                \column{0.45\textwidth} 
+                    The pixel area include the:
+                    \begin{itemize}
+                        \item Analog front end
+                        \item Digital readout 
+                    \end{itemize} 
+                \column{0.55\textwidth} 
+                    \vspace*{-0.15cm}%\hspace*{+0.15}
+                    \begin{beamercolorbox}[rounded=true, center]{palette light primary}
+                        \setlength{\tabcolsep}{0.5em} % for the horizontal padding
+                        {\renewcommand{\arraystretch}{1.2}% for the vertical padding
+                        \begin{tabular}{l|l}
+                            \circled{Analog} & Digital\\
+                            \hline
+                            Triggered & \circled{Triggerless}\\
+                            \hline
+                            Buffer & \circled{No buffer} \\
+                            \hline
+                            Rolling shutter & \circled{Sparsified}\\
+                        \end{tabular}
+                        }
+                    \end{beamercolorbox}
+            \end{columns}
+    \end{frame} 
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 1: <TJ-Monopix1>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}
@@ -20,7 +64,6 @@
                     Matrix size &  1$\times$2\si{cm\squared}\\
                     Pixel size & 36 $\times$ 40 \si{\um\squared}\\
                     Max depletion & \SI{25}{\um}\\
-                    ToT & 6-bits \\
                     Time resolution & \SI{25}{ns} \\
                     %Power cons. & $\sim$ 120 \si{mW/cm\squared}\\    
                     \hline
@@ -54,18 +97,6 @@
 
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <TJ-Monopix1>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}
-        \frametitle{TJ-Monopix1 experimental setup}
-            Bias of the sensor\hspace{80pt} Connection with the DAQ
-            \begin{center}
-                \centering \includegraphics[width=.99\linewidth]{figures/Monopix1/board_circle.pdf}
-            \end{center}
-            \hspace{15pt}DUT \hspace{45pt}GPAC breakout board \hspace{25pt} FPGA\\
-            \footnotesize(Device Under Test)
-    \end{frame} 
  
 
 

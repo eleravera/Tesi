@@ -52,6 +52,33 @@
     %    \end{itemize}
     %\end{frame} 
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <ALICE>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{Belle2 vertex detector}
+        Thin detector needed for a precise reconstruction of B-decay vertices
+        \begin{columns}
+            \column{0.4\textwidth}  
+                \textbf{VXD} made by:
+                \begin{itemize}
+                    \small
+                    \item PXD $\rightarrow$ 2 DEPFET layers
+                    \item SVD $\rightarrow$ 4 strip layers
+                \end{itemize}
+            \column{0.6\textwidth}
+                \includegraphics[width=1.1\linewidth]{figures/pixel_detectors_usage/SVD_Belle2.png}
+        \end{columns}
+        Replacement of VXD with \textbf{VTX}, proposed for LSH2. VTX should be made of 5 layers of CMOS MAPS
+        \begin{itemize}
+            \item improvements in the track and vertex resolutions
+            \item reduction in the material budget
+            \item higher background tolerance because
+            of the smaller sensor (pixels than strips)
+        \end{itemize}
+    \end{frame} 
+
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 1: <ALICE>  %%
@@ -104,7 +131,7 @@
             \item The \textbf{token} manage the priority chain
             \item The \textbf{freeze} is a global signal and is used to lock the matrix during the readout. \\
             \small Pixels without any hit can store new data but they cannot access the priority chain untill the freeze stops
-            \item The \textbf{reed} is used to indicate when the pixel can access the data bus
+            \item The \textbf{read} is used to indicate when the pixel can access the data bus
         \end{itemize}
     \end{frame} 
 
@@ -168,10 +195,10 @@
             & PMOS A & PMOS B & PMOS C & HV & simulation \\
             \hline
             \hline
-            $\mu$ [\si{\elementarycharge}$^-$] & 401.7$\pm$0.2 & 400.8$\pm$0.2 & 539.7$\pm$0.6 &  403.9$\pm$0.2 & $\sim$270\\
-            $\Delta_{\mu}$ [\si{\elementarycharge}$^-$] & 32.9$\pm$0.1 & 33.0$\pm$0.2 & 55.5$\pm$0.4 & 44.7$\pm$0.2 & $\sim$30\\
-            $\sigma$ [\si{\elementarycharge}$^-$] & 13.01$\pm$0.06 & 12.26$\pm$0.07 & 13.9$\pm$0.1 & 11.7$\pm$0.1 & $\sim$9 \\
-            $\Delta_{\sigma}$ [\si{\elementarycharge}$^-$] & 1.61$\pm$0.04 & 1.50$\pm$0.05 & 1.91$\pm$0.07 & 1.58$\pm$0.07 & -\\
+            $\mu$ [\si{\elementarycharge}$^-$] & 401.7$\pm$0.2 & 400.8$\pm$0.2 & 539.7$\pm$0.6 &  597.7$\pm$0.3 & $\sim$270\\
+            $\Delta_{\mu}$ [\si{\elementarycharge}$^-$] & 32.9$\pm$0.1 & 33.0$\pm$0.2 & 55.5$\pm$0.4 & 66.1$\pm$0.3 & $\sim$30\\
+            $\sigma$ [\si{\elementarycharge}$^-$] & 13.01$\pm$0.06 & 12.26$\pm$0.07 & 13.9$\pm$0.1 & 17.3$\pm$0.1 & $\sim$9 \\
+            $\Delta_{\sigma}$ [\si{\elementarycharge}$^-$] & 1.61$\pm$0.04 & 1.50$\pm$0.05 & 1.91$\pm$0.07 & 2.3$\pm$0.1 & -\\
             \hline
             \end{tabular}
         \end{table}       
@@ -254,7 +281,7 @@
             \includegraphics[width=.49\linewidth]{figures/test_beam/Q2_17_11.pdf}
         \end{figure}
         \begin{itemize}
-            \item the collimators do not shield the detectors by all particles
+            \item the collimators do not shield the detectors from all particles
             \item probably photons are produced by electrons in Al collimators
             \item for each accelerator pulse, 2 readout "cycle"  
         \end{itemize}
@@ -297,6 +324,8 @@
             \column{0.5\textwidth}        
                 \includegraphics[width=1.05\linewidth]{figures/ARCADIA/sensor.png}
                 \begin{itemize}
+                    \item produced by LFoundry (Italy)
+                    \item 110 nm CMOS technology
                     \item n-doped epitaxial layer
                 \end{itemize}
             \column{0.5\textwidth}        
@@ -308,6 +337,7 @@
                     \hline
                     \hline
                     Matrix size & 1.28$\times$1.28 \si{cm\squared}\\
+                    Number of pixels & 512$\times$512\\
                     Pixel size & 25$\times$25 \si{\um\squared}\\
                     Depth &  48/100/200\si{\um}\\
                     Electrode size & 9$\times$9\si{\um\squared}\\
@@ -381,4 +411,22 @@
         \frametitle{ARCADIA MD1: clustering}
             %Without clustering
             \includegraphics[width=.9\linewidth]{figures/ARCADIA/nonclustering.png}
+    \end{frame}
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 4: <ToT calibration>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{ARCADIA measurement with radioactive sources}
+        \begin{columns}
+            \column{0.5\textwidth}                  
+                \includegraphics[width=.8\linewidth]{figures/charaterization/ARCADIA/Fe55_5min30s.png} \\
+                \centering Fe$^{55}$
+                
+            \column{0.5\textwidth}    
+                \includegraphics[width=1.\linewidth]{figures/charaterization/ARCADIA/Sr90_2min.pdf}\\
+                \centering Sr$^{90}$
+        \end{columns}
     \end{frame}

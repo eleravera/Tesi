@@ -1,4 +1,19 @@
 \section{Characterization}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <TJ-Monopix1>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}
+        \frametitle{TJ-Monopix1 experimental setup}
+            Bias of the sensor\hspace{80pt} Connection with the DAQ
+            \begin{center}
+                \centering \includegraphics[width=.99\linewidth]{figures/Monopix1/board_circle.pdf}
+            \end{center}
+            \hspace{15pt}DUT \hspace{45pt}GPAC breakout board \hspace{25pt} FPGA\\
+            \footnotesize(Device Under Test)
+    \end{frame} 
+
+
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%  Slide 1: <> %%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6,15 +21,14 @@
         \frametitle{Threshold and noise}\medskip
         The lower the threshold, the lower the minium detectable signal, allowing for thinner detector (Q$_{MIP}\propto$d). \\
         \medskip
-        The threshold and the noise are \textbf{strictly} related with the \textbf{FE} settings\\
-        \medskip
-        What determins the minimum stable threshold?
+        What determines the minimum stable threshold?
         \begin{itemize}
             \item the \textbf{ENC} = Equivalent Noise Charge
             \item the \textbf{threshold dispersion} among different pixels
         \end{itemize}
         \medskip
         \centering ......................................................................\\\medskip
+       % The threshold and the noise are \textbf{strictly} related with the \textbf{FE} settings\\
         \centering Expected values found by simulation with optimal FE settings %(sottolinea NON DA ME)
         \begin{center}
         \begin{beamercolorbox}[rounded=true, center]{palette light primary}
@@ -132,7 +146,7 @@
         \pause
         \begin{enumerate}
             \item Used the \textbf{internal injection} circuit for a parametrization of the ToT: $ToT_{signal,clk}\rightarrow V_{signal, DAC}$
-            \item Used radioactive source for a reference in charge $e^-$: $V_{signal, DAC}\rightarrow Q_{signal, e^-}$
+            \item Used radioactive source as a reference in charge $e^-$: $V_{signal, DAC}\rightarrow Q_{signal, e^-}$
         \end{enumerate}
         \medskip
         \pause
@@ -225,8 +239,8 @@
             \begin{itemize}
                 \item C$_{inj}$ is in range 180-200\si{fF} (expected \SI{230}{fF})
                 \item F is is range 16.5-18.5 (expected \SI{20.2}{\elementarycharge/DAC}$^-$)
-                \item structure on rows probably due to bias line differences in the injection circuit 
                 \item applying the calibration the threshold and noise are respectively \SI{340}{\elementarycharge}$^-$ and \SI{10}{\elementarycharge}$^-$
+                \item structure on rows probably due to bias line differences in the injection circuit 
             \end{itemize}
         \end{columns}
     \end{frame}
@@ -350,12 +364,12 @@
         \frametitle{Readout time}
         Used the internal \textbf{injection} circuit that allows injecting pulses at different rate 
         \begin{itemize}
-            \item No memory on pixel
             \item Readout is completely sequential: one serializer @ \SI{40}{MHz}
             \begin{itemize}
                 \item each hit is a 27-bits data packet $\rightarrow$ the single pixel readout time is at least \SI{675}{ns} 
-                \item next prototype version, TJ-Monopix2, has a faster serializer \SI{640}{MHz} that removes the limitation in the readout speed 
+                \item next prototype version, TJ-Monopix2, has a faster serializer \SI{640}{MHz} that improves the readout speed 
             \end{itemize}
+            \item No memory on pixel
         \end{itemize}
 
         \medskip
@@ -363,7 +377,7 @@
             \column{0.55\textwidth}              
                 \includegraphics[width=1.07\linewidth]{figures/charaterization/deadtime_presentazione.pdf}
             \column{0.45\textwidth}  
-            Readout time \textbf{slightly} depends on the FE status and can be reduced down to \SI{31}{clk.}cnts = \SI{775}{ns} per pixels 
+            Readout time \textbf{slightly} depends on the FE status and is at least \SI{31}{clk.}cnts = \SI{775}{ns} per pixels 
 
         \end{columns}            
     \end{frame}          
