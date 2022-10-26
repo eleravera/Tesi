@@ -111,7 +111,11 @@
             \column{0.1\textwidth} 
 
             \column{0.45\textwidth} 
-                Noise rate with this FE setting $\sim$\SI{3}{Hz} 
+                %Noise rate with this FE setting $\sim$\SI{3}{Hz} on 25088 pixels
+                \begin{itemize}
+                    \item Measurement $\rightarrow$ without optimized FE settings
+                    \item Simulation $\rightarrow$ with optimized FE settings
+                \end{itemize}
         \end{columns}
 
         \end{frame}
@@ -250,8 +254,8 @@
                     & -\SI{6}{V} & -\SI{3}{V} & \SI{0}{V}\\
                     \hline
                     \hline
-                    Threshold [DAC] & 20 $\pm$ 2 & 21 $\pm$ 2 & 24 $\pm$ 2\\
-                    Noise [DAC] & 0.61 $\pm$ 0.08 & 0.62 $\pm$ 0.08 & 0.82 $\pm$ 0.1\\
+                    Threshold [$e^-$] & 350 $\pm$ 35 & 368 $\pm$ 35 & 420 $\pm$ 35\\
+                    Noise [$e^-$] & 10.9 $\pm$ 1.4 & 10.9 $\pm$ 1.4 & 14.4 $\pm$ 1.8\\
                     \hline
                     \end{tabular}}
                     \end{center}
@@ -305,7 +309,7 @@
                 \begin{itemize}
                     \item E$_{e, max}$=\SI{2.3}{MeV}
                     \item Q in cluster is proportional to the cluster size
-                    \item due to large angle electrons
+                    \item small variation of Q per pixel because of large angle electrons
                     \item charge sharing among pixels 
                 \end{itemize}
         \end{columns}
@@ -349,7 +353,7 @@
             \item No memory on pixel
             \item Readout is completely sequential: one serializer @ \SI{40}{MHz}
             \begin{itemize}
-                \item each hit is a 27-bits data packet, at least \SI{675}{ns} needed 
+                \item each hit is a 27-bits data packet $\rightarrow$ the single pixel readout time is at least \SI{675}{ns} 
                 \item next prototype version, TJ-Monopix2, has a faster serializer \SI{640}{MHz} that removes the limitation in the readout speed 
             \end{itemize}
         \end{itemize}
@@ -357,7 +361,7 @@
         \medskip
         \begin{columns}
             \column{0.55\textwidth}              
-                \includegraphics[width=1.07\linewidth]{figures/charaterization/default_line.pdf}
+                \includegraphics[width=1.07\linewidth]{figures/charaterization/deadtime_presentazione.pdf}
             \column{0.45\textwidth}  
             Readout time \textbf{slightly} depends on the FE status and can be reduced down to \SI{31}{clk.}cnts = \SI{775}{ns} per pixels 
 

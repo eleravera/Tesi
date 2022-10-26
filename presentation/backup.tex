@@ -92,29 +92,59 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}[noframenumbering]
         \frametitle{TJ-Monopix1 readout sequence}
-        \begin{figure}[h!]
+        \begin{columns}
+            \column{0.6\textwidth}             
             \centering
-            \includegraphics[width=.8\linewidth]{figures/Monopix1/readout_timing.png}
-        \end{figure}
+            \includegraphics[width=1.\linewidth]{figures/Monopix1/readout_timing.png}
+        \column{0.4\textwidth}    
+        \textbf{BCID} = Bunch Crossing identification
+        is the clock of the timestamp   \\
+        \end{columns}
+        \begin{itemize}
+            \item The \textbf{token} manage the priority chain
+            \item The \textbf{freeze} is a global signal and is used to lock the matrix during the readout. \\
+            \small Pixels without any hit can store new data but they cannot access the priority chain untill the freeze stops
+            \item The \textbf{reed} is used to indicate when the pixel can access the data bus
+        \end{itemize}
     \end{frame} 
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%  Slide 1: <>  %%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}[noframenumbering]
+        \frametitle{TJ-Monopix1: noisy pixels}
+        The masking algorithm uses 3 cordinates to mask a pixel: 
+        \begin{columns}
+            \column{0.55\textwidth} 
+            \small
+            \begin{itemize}
+                \item MASKV $\rightarrow$ column of the pixel
+                \item MASKH $\rightarrow$ row of the pixel
+                \item MASKD $\rightarrow$ diagonal of the pixel
+            \end{itemize}   
+            \centering             
+            \includegraphics[width=.7\linewidth]{figures/Monopix1/masking_scheme.png}        
+                \column{0.5\textwidth} 
+                \includegraphics[width=1.1\linewidth]{figures/charaterization/noisy.png}
+                \centering IDB = discriminator threshold 
+        \end{columns}
+
+    \end{frame}   
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%  Slide 4: <ToT calibration>  %%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}[noframenumbering]
         \frametitle{Different collection properties}
-        2 different \textbf{dose profile} in the sensor: Reduced Deep P-Well (RDPW) and Full Deep P-Well (FDPW)
-
-        \begin{itemize}
-            \item Different charge collection efficiency due to the deep p-well structure within the sensor
-        \end{itemize}
+        2 different \textbf{dose profile} in the sensor: Reduced Deep P-Well (RDPW) and Full Deep P-Well (FDPW) with different charge collection efficiency
         \begin{columns}
             \column{0.5\textwidth}                  
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
-                \centering Full deep p-well
-            \column{0.5\textwidth}    
-                \includegraphics[width=1.1\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}
+                \includegraphics[width=1.\linewidth]{figures/charaterization/fit_gauss_r185.pdf}
                 \centering Partial deep p-well
+            \column{0.5\textwidth}    
+                \includegraphics[width=1.\linewidth]{figures/charaterization/fit_line_gauss_r69.pdf}
+                \centering Full deep p-well
         \end{columns}
     \end{frame}
 
@@ -166,19 +196,7 @@
         \end{columns}
     \end{frame}    
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%  Slide 1: <>  %%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{frame}[noframenumbering]
-        \frametitle{Noisy pixels}
-        \begin{columns}
-            \column{0.4\textwidth} 
-                \centering
-                \includegraphics[width=.8\linewidth]{figures/Monopix1/masking_scheme.png}        
-            \column{0.4\textwidth} 
-            %\includegraphics[width=.8\linewidth]{figures/characterization/noisy.png}
-        \end{columns}
-    \end{frame}    
+ 
 
 
 
